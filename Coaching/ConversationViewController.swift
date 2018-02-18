@@ -13,16 +13,20 @@ class ConversationViewController: UIViewController {
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
 		return scrollView
 	}()
 	
-	lazy var textField: UITextField = {
-		let textField = UITextField()
-		textField.translatesAutoresizingMaskIntoConstraints = false
-		textField.backgroundColor = UIColor.red.withAlphaComponent(0.5)
-		textField.placeholder = "Message"
-		return textField
+	lazy var messageBarView: MessageBarView = {
+		let messageBarView = MessageBarView()
+		messageBarView.translatesAutoresizingMaskIntoConstraints = false
+		messageBarView.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+		
+		messageBarView.placeholder = "Message"
+		
+		messageBarView.button.setTitle("Send", for: .normal)
+		messageBarView.button.setTitleColor(.blue, for: .normal)
+		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
+		return messageBarView
 	}()
 	
 	lazy var textFieldView: UIView = {
@@ -32,16 +36,7 @@ class ConversationViewController: UIViewController {
 		return view
 	}()
 	
-	lazy var textFieldButton: UIButton = {
-		let button = UIButton()
-		button.translatesAutoresizingMaskIntoConstraints = false
-		button.setTitle("Send", for: .normal)
-		button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
-		return button
-	}()
-	
-	var textFieldBottomConstraint: NSLayoutConstraint!
-	var textFieldHeightConstraint: NSLayoutConstraint!
+	var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
 	// MARK: - UIViewController
 	
@@ -54,55 +49,6 @@ class ConversationViewController: UIViewController {
 	}
 	
 	// MARK: - Layout helpers
-	
-	fileprivate func setupTextFieldView() {
-		
-		// Adding subviews
-		
-		textFieldView.addSubview(textField)
-		textFieldView.addSubview(textFieldButton)
-		
-		// Text Field Height Constraint
-		
-		textFieldHeightConstraint = textField.heightAnchor.constraint(equalToConstant: 44)
-		textFieldHeightConstraint.isActive = true
-		
-		// Subviews Constraints
-		
-		NSLayoutConstraint.activate([
-			textField.leadingAnchor.constraint(equalTo: textFieldView.leadingAnchor, constant: 8),
-			textField.topAnchor.constraint(equalTo: textFieldView.topAnchor, constant: 8),
-			textField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -8),
-			textFieldButton.heightAnchor.constraint(equalToConstant: 44),
-			textFieldButton.widthAnchor.constraint(equalToConstant: 50),
-			textFieldButton.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -8),
-			textFieldButton.trailingAnchor.constraint(equalTo: textFieldView.trailingAnchor, constant: -8),
-			textField.trailingAnchor.constraint(equalTo: textFieldButton.leadingAnchor, constant: -8),
-			])
-		
-		// Adding view
-		view.addSubview(textFieldView)
-		
-		// View constraints
-		
-		if #available(iOS 11.0, *) {
-			textFieldBottomConstraint = textFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-
-			NSLayoutConstraint.activate([
-				textFieldBottomConstraint,
-				textFieldView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				textFieldView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				])
-		} else {
-			textFieldBottomConstraint = textFieldView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-
-			NSLayoutConstraint.activate([
-				textFieldBottomConstraint,
-				textFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				textFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				])
-		}
-	}
 	
 	func setupLayout() {
 		
@@ -126,8 +72,31 @@ class ConversationViewController: UIViewController {
 		}
 		
 		// Text Field
-
-		setupTextFieldView()
+		view.addSubview(messageBarView)
+		
+		if #available(iOS 11.0, *) {
+			messageBarViewBottomConstraint = messageBarView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+			
+			NSLayoutConstraint.activate([
+				messageBarViewBottomConstraint,
+				messageBarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+				messageBarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+				])
+		} else {
+			messageBarViewBottomConstraint = messageBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+			
+			NSLayoutConstraint.activate([
+				messageBarViewBottomConstraint,
+				messageBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+				messageBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+				])
+		}
+		
+		// Updates size properties
+		messageBarView.setNeedsLayout()
+		messageBarView.layoutIfNeeded()
+		
+		scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageBarView.frame.height, right: 0)
 		
 		// Fake test messages
 		
@@ -159,8 +128,8 @@ class ConversationViewController: UIViewController {
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		guard let keyboardEndFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
 		
-		textFieldBottomConstraint.constant = -keyboardEndFrame.cgRectValue.height
-		scrollView.contentInset.bottom += keyboardEndFrame.cgRectValue.height
+		messageBarViewBottomConstraint.constant = -keyboardEndFrame.cgRectValue.height
+		scrollView.contentInset.bottom = messageBarView.frame.height + keyboardEndFrame.cgRectValue.height
 		
 		UIView.animate(withDuration: animationDuration) { [unowned self] in
 			self.view.layoutIfNeeded()
@@ -172,8 +141,8 @@ class ConversationViewController: UIViewController {
 		guard let userInfo = notification.userInfo else { return }
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		
-		textFieldBottomConstraint.constant = 0.0
-		scrollView.contentInset.bottom = textField.frame.height
+		messageBarViewBottomConstraint.constant = 0.0
+		scrollView.contentInset.bottom = messageBarView.frame.height
 		
 		UIView.animate(withDuration: animationDuration) { [unowned self] in
 			self.view.layoutIfNeeded()
@@ -182,6 +151,8 @@ class ConversationViewController: UIViewController {
 	
 	@objc func sendButtonTapped(_ sender: UIButton) {
 		print("Send tapped")
+		view.endEditing(true) // debug
+		print(messageBarView.textView)
 	}
 }
 

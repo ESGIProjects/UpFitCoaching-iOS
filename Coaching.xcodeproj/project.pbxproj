@@ -11,6 +11,7 @@
 		D773DD4E203362DE001520CA /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationViewController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
 		D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D773DD54203362DE001520CA /* LaunchScreen.storyboard */; };
+		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		D773DD52203362DE001520CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D773DD55203362DE001520CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D773DD57203362DE001520CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				D773DD4B203362DE001520CA /* AppDelegate.swift */,
 				D773DD4D203362DE001520CA /* ConversationViewController.swift */,
+				D7C5A1562039D1F400389AEB /* MessageBarView.swift */,
 				D773DD52203362DE001520CA /* Assets.xcassets */,
 				D773DD54203362DE001520CA /* LaunchScreen.storyboard */,
 				D773DD57203362DE001520CA /* Info.plist */,
@@ -132,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationViewController.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 			);
