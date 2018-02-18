@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConversationViewController: UIViewController {
 	
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
