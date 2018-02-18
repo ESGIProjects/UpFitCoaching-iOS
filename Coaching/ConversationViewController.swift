@@ -20,8 +20,24 @@ class ConversationViewController: UIViewController {
 	lazy var textField: UITextField = {
 		let textField = UITextField()
 		textField.translatesAutoresizingMaskIntoConstraints = false
-		textField.backgroundColor = UIColor.red.withAlphaComponent(0.3)
+		textField.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+		textField.placeholder = "Message"
 		return textField
+	}()
+	
+	lazy var textFieldView: UIView = {
+		let view = UIView()
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+		return view
+	}()
+	
+	lazy var textFieldButton: UIButton = {
+		let button = UIButton()
+		button.translatesAutoresizingMaskIntoConstraints = false
+		button.setTitle("Send", for: .normal)
+		button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
+		return button
 	}()
 	
 	var textFieldBottomConstraint: NSLayoutConstraint!
@@ -39,7 +55,58 @@ class ConversationViewController: UIViewController {
 	
 	// MARK: - Layout helpers
 	
+	fileprivate func setupTextFieldView() {
+		
+		// Adding subviews
+		
+		textFieldView.addSubview(textField)
+		textFieldView.addSubview(textFieldButton)
+		
+		// Text Field Height Constraint
+		
+		textFieldHeightConstraint = textField.heightAnchor.constraint(equalToConstant: 44)
+		textFieldHeightConstraint.isActive = true
+		
+		// Subviews Constraints
+		
+		NSLayoutConstraint.activate([
+			textField.leadingAnchor.constraint(equalTo: textFieldView.leadingAnchor, constant: 8),
+			textField.topAnchor.constraint(equalTo: textFieldView.topAnchor, constant: 8),
+			textField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -8),
+			textFieldButton.heightAnchor.constraint(equalToConstant: 44),
+			textFieldButton.widthAnchor.constraint(equalToConstant: 50),
+			textFieldButton.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -8),
+			textFieldButton.trailingAnchor.constraint(equalTo: textFieldView.trailingAnchor, constant: -8),
+			textField.trailingAnchor.constraint(equalTo: textFieldButton.leadingAnchor, constant: -8),
+			])
+		
+		// Adding view
+		view.addSubview(textFieldView)
+		
+		// View constraints
+		
+		if #available(iOS 11.0, *) {
+			textFieldBottomConstraint = textFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+
+			NSLayoutConstraint.activate([
+				textFieldBottomConstraint,
+				textFieldView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+				textFieldView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+				])
+		} else {
+			textFieldBottomConstraint = textFieldView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+			NSLayoutConstraint.activate([
+				textFieldBottomConstraint,
+				textFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+				textFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+				])
+		}
+	}
+	
 	func setupLayout() {
+		
+		// Scroll view
 		view.addSubview(scrollView)
 		
 		if #available(iOS 11.0, *) {
@@ -58,27 +125,11 @@ class ConversationViewController: UIViewController {
 				])
 		}
 		
-		view.addSubview(textField)
-		textFieldHeightConstraint = textField.heightAnchor.constraint(equalToConstant: 44)
-		textFieldHeightConstraint.isActive = true
+		// Text Field
+
+		setupTextFieldView()
 		
-		if #available(iOS 11.0, *) {
-			textFieldBottomConstraint = textField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-			
-			NSLayoutConstraint.activate([
-				textFieldBottomConstraint,
-				textField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				textField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				])
-		} else {
-			textFieldBottomConstraint = textField.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-			
-			NSLayoutConstraint.activate([
-				textFieldBottomConstraint,
-				textField.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				textField.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				])
-		}
+		// Fake test messages
 		
 		var lastLabel: UILabel?
 		
@@ -127,6 +178,10 @@ class ConversationViewController: UIViewController {
 		UIView.animate(withDuration: animationDuration) { [unowned self] in
 			self.view.layoutIfNeeded()
 		}
+	}
+	
+	@objc func sendButtonTapped(_ sender: UIButton) {
+		print("Send tapped")
 	}
 }
 
