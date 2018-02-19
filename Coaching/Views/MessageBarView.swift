@@ -53,22 +53,29 @@ class MessageBarView: UIView {
 	}
 	
 	private func setupLayout() {
-		// Initializing Text View
+		// Add a blur effect
+		let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+		blurEffectView.frame = bounds
+		
+		blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		addSubview(blurEffectView)
+		
+		// Initialize Text View
 		textView = UITextView()
 		textView.delegate = self
 		textView.translatesAutoresizingMaskIntoConstraints = false
 		textView.font = UIFont.systemFont(ofSize: 16)
 		textView.isScrollEnabled = false
 		
-		// Initializing Button
+		// Initialize Button
 		button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		
-		// Adds elements to view
+		// Add elements to the view
 		addSubview(textView)
 		addSubview(button)
 		
-		// Constraints
+		// Add constraints
 		textFieldHeightConstraint = textView.heightAnchor.constraint(equalToConstant: 35)
 		textFieldHeightConstraint.isActive = true
 		

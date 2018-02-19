@@ -26,7 +26,6 @@ class ConversationViewController: UIViewController {
 	lazy var messageBarView: MessageBarView = {
 		let messageBarView = MessageBarView()
 		messageBarView.translatesAutoresizingMaskIntoConstraints = false
-        messageBarView.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
 		
 		messageBarView.placeholder = "Message"
 		
