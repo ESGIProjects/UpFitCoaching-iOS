@@ -21,6 +21,10 @@ class MessageBarView: UIView {
 		}
 	}
 	
+	var isMessageEmpty: Bool {
+		return textView.text == "" || textView.text == placeholder
+	}
+	
 	private var textFieldHeightConstraint: NSLayoutConstraint!
 	
 	override init(frame: CGRect) {
