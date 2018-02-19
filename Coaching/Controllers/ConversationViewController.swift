@@ -13,6 +13,7 @@ class ConversationViewController: UIViewController {
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.keyboardDismissMode = .onDrag
 		return scrollView
 	}()
 	
@@ -29,14 +30,7 @@ class ConversationViewController: UIViewController {
 		return messageBarView
 	}()
 	
-	lazy var textFieldView: UIView = {
-		let view = UIView()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
-		return view
-	}()
-	
-	var messageBarViewBottomConstraint: NSLayoutConstraint!
+	private var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
 	// MARK: - UIViewController
 	
@@ -46,6 +40,7 @@ class ConversationViewController: UIViewController {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
 	}
 	
 	// MARK: - Layout helpers
@@ -123,7 +118,6 @@ class ConversationViewController: UIViewController {
 	}
 	
 	@objc func keyboardWillShow(notification: NSNotification) {
-		print("Keyboard will show")
 		guard let userInfo = notification.userInfo else { return }
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		guard let keyboardEndFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -137,7 +131,6 @@ class ConversationViewController: UIViewController {
 	}
 	
 	@objc func keyboardWillHide(notification: NSNotification) {
-		print("Keyboard will hide")
 		guard let userInfo = notification.userInfo else { return }
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		
@@ -150,9 +143,7 @@ class ConversationViewController: UIViewController {
 	}
 	
 	@objc func sendButtonTapped(_ sender: UIButton) {
-		print("Send tapped")
-		view.endEditing(true) // debug
-		print(messageBarView.textView)
+		// debug : add a label
+		
 	}
 }
-

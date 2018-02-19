@@ -35,6 +35,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A8A18E5203AFD09006D2183 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D773DD4D203362DE001520CA /* ConversationViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1A8A18E6203AFD11006D2183 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D7C5A1562039D1F400389AEB /* MessageBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D773DD3F203362DD001520CA = {
 			isa = PBXGroup;
 			children = (
@@ -54,9 +70,9 @@
 		D773DD4A203362DE001520CA /* Coaching */ = {
 			isa = PBXGroup;
 			children = (
+				1A8A18E6203AFD11006D2183 /* Views */,
+				1A8A18E5203AFD09006D2183 /* Controllers */,
 				D773DD4B203362DE001520CA /* AppDelegate.swift */,
-				D773DD4D203362DE001520CA /* ConversationViewController.swift */,
-				D7C5A1562039D1F400389AEB /* MessageBarView.swift */,
 				D773DD52203362DE001520CA /* Assets.xcassets */,
 				D773DD54203362DE001520CA /* LaunchScreen.storyboard */,
 				D773DD57203362DE001520CA /* Info.plist */,
