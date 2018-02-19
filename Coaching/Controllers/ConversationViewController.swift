@@ -17,10 +17,16 @@ class ConversationViewController: UIViewController {
 		return scrollView
 	}()
 	
+	lazy var contentView: UIView = {
+		let contentView = UIView()
+		contentView.translatesAutoresizingMaskIntoConstraints = false
+		return contentView
+	}()
+	
 	lazy var messageBarView: MessageBarView = {
 		let messageBarView = MessageBarView()
 		messageBarView.translatesAutoresizingMaskIntoConstraints = false
-		messageBarView.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+        messageBarView.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
 		
 		messageBarView.placeholder = "Message"
 		
@@ -36,6 +42,8 @@ class ConversationViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		edgesForExtendedLayout = []
 		setupLayout()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
@@ -61,10 +69,25 @@ class ConversationViewController: UIViewController {
 			NSLayoutConstraint.activate([
 				scrollView.topAnchor.constraint(equalTo: view.topAnchor),
 				scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-				scrollView.leftAnchor.constraint(equalTo: view.leadingAnchor),
-				scrollView.rightAnchor.constraint(equalTo: view.trailingAnchor)
+				scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+				scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 				])
 		}
+		
+		// Content view
+		scrollView.addSubview(contentView)
+		
+		let contentViewHeightConstraint = contentView.heightAnchor.constraint(equalTo: view.heightAnchor)
+		contentViewHeightConstraint.priority = .defaultLow
+		
+		NSLayoutConstraint.activate([
+			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+			contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+			contentViewHeightConstraint
+			])
 		
 		// Text Field
 		view.addSubview(messageBarView)
@@ -92,27 +115,61 @@ class ConversationViewController: UIViewController {
 		messageBarView.layoutIfNeeded()
 		
 		scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageBarView.frame.height, right: 0)
+		scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: messageBarView.frame.height, right: 0)
 		
 		// Fake test messages
 		
-		var lastLabel: UILabel?
+//		let label = UILabel()
+//		label.translatesAutoresizingMaskIntoConstraints = false
+//		label.text = "LABEL"
+//		label.backgroundColor = .red
+//		label.textColor = .white
+//
+//		contentView.addSubview(label)
+//
+//		NSLayoutConstraint.activate([
+//			label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+//			label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+//			label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+//			label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+//			])
 		
+		var lastLabel: UILabel?
+
 		for index in 0 ..< 50 {
 			let label = UILabel()
 			label.translatesAutoresizingMaskIntoConstraints = false
 			label.text = "This is my label number \(index)"
-			scrollView.addSubview(label)
-			label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: label.intrinsicContentSize.height * CGFloat(index)).isActive = true
-			label.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 8.0).isActive = true
+			label.numberOfLines = 0
 			
-			scrollView.contentSize.height += label.intrinsicContentSize.height
+			contentView.addSubview(label)
+			
+			
+//			label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: label.intrinsicContentSize.height * CGFloat(index)).isActive = true
+			if let lastLabel = lastLabel {
+				label.topAnchor.constraint(equalTo: lastLabel.bottomAnchor, constant: 0).isActive = true
+			} else {
+				label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+			}
+			
+			label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0).isActive = true
+			label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0).isActive = true
+
+//			scrollView.contentSize.height += label.intrinsicContentSize.height
 			lastLabel = label
 		}
-		
+//
 		if let label = lastLabel {
-			label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
+			label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
 			
-			let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height)
+			scrollView.setNeedsLayout()
+			scrollView.layoutIfNeeded()
+			
+			print(label.frame.origin.y, label.frame.size.height, label.frame.origin.y + label.frame.size.height)
+
+//			let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height)
+			let bottomOffset = CGPoint(x: 0, y: label.frame.origin.y + label.frame.size.height)
+//			scrollView.scrollRectToVisible(label.frame, animated: true)
 			scrollView.setContentOffset(bottomOffset, animated: true)
 		}
 	}
@@ -143,7 +200,36 @@ class ConversationViewController: UIViewController {
 	}
 	
 	@objc func sendButtonTapped(_ sender: UIButton) {
-		// debug : add a label
 		
+		scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.frame.height), animated: true)
+
+		// 1. Delete constraint on last label
+		let constraints = contentView.constraints.filter { (constraint) -> Bool in
+			return constraint.firstAttribute == .bottom && constraint.secondItem === self.contentView
+		}
+		
+		guard let bottomConstraint = constraints.first else { return }
+		print(bottomConstraint)
+		guard let label = bottomConstraint.firstItem as? UILabel else { return }
+		print(label.text!)
+		
+//		scrollView.removeConstraint(bottomConstraint)
+
+		// 2. Add new label
+//		let newLabel = UILabel()
+//		newLabel.text = "I'm the new label!"
+//		newLabel.translatesAutoresizingMaskIntoConstraints = false
+//		scrollView.addSubview(newLabel)
+//		scrollView.contentSize.height += label.intrinsicContentSize.height
+//
+//		newLabel.topAnchor.constraint(equalTo: label.bottomAnchor)
+//		newLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+//
+//		print("New label origin", newLabel.frame.origin)
+		
+		// 3. Scroll to label
+//		scrollView.setContentOffset(newLabel.frame.origin, animated: true)
 	}
+	
+	
 }
