@@ -42,6 +42,8 @@ class ConversationViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		view.backgroundColor = .white
+		
 		edgesForExtendedLayout = []
 		setupLayout()
 		
@@ -199,8 +201,7 @@ class ConversationViewController: UIViewController {
 			topConstraint = message.topAnchor.constraint(equalTo: lastMessage.bottomAnchor)
 		} else {
 			topConstraint = message.topAnchor.constraint(equalTo: contentView.topAnchor)
-		}
-		
+		}		
 
 		// Add the new message at the end
 		contentView.addSubview(message)
