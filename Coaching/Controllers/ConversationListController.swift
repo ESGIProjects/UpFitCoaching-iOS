@@ -19,7 +19,7 @@ class ConversationListController: UIViewController {
 	}()
 	
 	var conversations: [(name: String, message: String, date: Date)] = [
-		(name: "Jason Pierna", message: "Ceci est un message", date: Date()),
+		(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message", date: Date()),
 		(name: "Kévin Le", message: "Ceci est un deuxième message", date: Date()),
 		(name: "Maeva Malih", message: "Coucou", date: Date())
 	]
@@ -28,6 +28,9 @@ class ConversationListController: UIViewController {
 		super.viewDidLoad()
 		
 		title = "Messages"
+		tableView.estimatedRowHeight = 100.0
+		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
 		
 		setupLayout()
 	}
@@ -60,12 +63,18 @@ extension ConversationListController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+		let cell: ConversationListCell!
+		
+		if let dequeueCell = tableView.dequeueReusableCell(withIdentifier: "ConversationListCell", for: indexPath) as? ConversationListCell {
+			cell = dequeueCell
+		} else {
+			cell = ConversationListCell(frame: .zero)
+		}
 		
 		cell.accessoryType = .disclosureIndicator
 		
-		cell.textLabel?.text = conversations[indexPath.row].name
-		cell.detailTextLabel?.text = conversations[indexPath.row].message
+		cell.nameLabel.text = conversations[indexPath.row].name
+		cell.messageLabel.text = conversations[indexPath.row].message
 		
 		return cell
 	}
