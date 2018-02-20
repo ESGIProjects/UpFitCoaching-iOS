@@ -73,11 +73,8 @@ class ConversationViewController: UIViewController {
 				])
 		}
 		
-		// Layout the Csontent view
+		// Layout the Content view
 		scrollView.addSubview(contentView)
-		
-		let contentViewHeightConstraint = contentView.heightAnchor.constraint(equalTo: view.heightAnchor)
-		contentViewHeightConstraint.priority = .defaultLow
 		
 		NSLayoutConstraint.activate([
 			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -85,7 +82,6 @@ class ConversationViewController: UIViewController {
 			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
 			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
 			contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
-			contentViewHeightConstraint
 			])
 		
 		// Layout the Message Bar
@@ -125,15 +121,15 @@ class ConversationViewController: UIViewController {
 			message.translatesAutoresizingMaskIntoConstraints = false
 			message.text = "This is my label number \(index)"
 			message.numberOfLines = 0
-			
+
 			contentView.addSubview(message)
-			
+
 			if lastMessage != nil {
 				message.topAnchor.constraint(equalTo: lastMessage!.bottomAnchor, constant: 0).isActive = true
 			} else {
 				message.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
 			}
-			
+
 			message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0).isActive = true
 			message.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0).isActive = true
 
@@ -190,20 +186,27 @@ class ConversationViewController: UIViewController {
 		// Empty the text view
 		messageBarView.textView.text = ""
 		
-		// Delete constraint on last message
-		guard let bottomConstraint = contentView.constraints.filter({ constraint -> Bool in
+		var topConstraint: NSLayoutConstraint!
+		
+		// Delete constraint on last message if exist
+		if let bottomConstraint = contentView.constraints.filter({ constraint -> Bool in
 			return constraint.firstAttribute == .bottom && constraint.secondItem === self.contentView
-		}).first else { return }
+		}).first {
+			guard let lastMessage = bottomConstraint.firstItem as? UILabel else { return }
+			
+			contentView.removeConstraint(bottomConstraint)
+			
+			topConstraint = message.topAnchor.constraint(equalTo: lastMessage.bottomAnchor)
+		} else {
+			topConstraint = message.topAnchor.constraint(equalTo: contentView.topAnchor)
+		}
 		
-		guard let lastMessage = bottomConstraint.firstItem as? UILabel else { return }
-		
-		contentView.removeConstraint(bottomConstraint)
 
 		// Add the new message at the end
 		contentView.addSubview(message)
 
 		NSLayoutConstraint.activate([
-			message.topAnchor.constraint(equalTo: lastMessage.bottomAnchor),
+			topConstraint,
 			message.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 			message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
 			message.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
