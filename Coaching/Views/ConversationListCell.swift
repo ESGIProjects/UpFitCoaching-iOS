@@ -66,42 +66,19 @@ class ConversationListCell: UITableViewCell {
 		contentView.addSubview(nameLabel)
 		contentView.addSubview(messageLabel)
 		
-//		let photoImageViewHeightConstraint = photoImageView.heightAnchor.constraint(equalToConstant: 50)
-//		photoImageViewHeightConstraint.priority = .defaultHigh
-//
-//		NSLayoutConstraint.activate([
-//			photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
-//			photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0),
-//			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
-//			photoImageViewHeightConstraint,
-//			photoImageView.widthAnchor.constraint(equalToConstant: 50),
-//
-//			nameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: 0.0),
-//			nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
-//			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
-//
-//			messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0.0),
-//			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: photoImageView.bottomAnchor),
-//			messageLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
-//			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
-//			])
-		
-		let photoImageViewHeightConstraint = photoImageView.heightAnchor.constraint(equalToConstant: 50)
-		photoImageViewHeightConstraint.priority = .defaultHigh
-		
 		NSLayoutConstraint.activate([
 			photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
 			photoImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
-			photoImageView.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
-			photoImageViewHeightConstraint,
+			photoImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
+			photoImageView.heightAnchor.constraint(equalToConstant: 50),
 			photoImageView.widthAnchor.constraint(equalToConstant: 50),
 			
 			nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
 			nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
 			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
 			
-			messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0.0),
+			messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2.0),
 			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
 			messageLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
 			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
