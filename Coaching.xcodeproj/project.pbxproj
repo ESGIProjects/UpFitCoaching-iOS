@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationViewController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 			isa = PBXGroup;
 			children = (
 				D773DD4D203362DE001520CA /* ConversationViewController.swift */,
+				1AA39738203C1BA10020092D /* ConversationListController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationViewController.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,

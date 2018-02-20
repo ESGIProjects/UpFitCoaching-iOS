@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-		window?.rootViewController = UINavigationController(rootViewController: ConversationViewController())
+		window?.rootViewController = UINavigationController(rootViewController: ConversationListController())
 		window?.makeKeyAndVisible()
 		
 		return true
