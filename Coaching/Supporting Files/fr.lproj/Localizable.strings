@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Coaching
+
+  Created by Jason Pierna on 10/03/2018.
+  Copyright © 2018 Jason Pierna. All rights reserved.
+*/
+
+"mail_placeholder" = "E-Mail";
+"mail_missing_title" = "E-Mail manquant";
+"password_missing_title" = "Mot de passe manquant";
+"password_placeholder" = "Mot de passe";
+"message_placeholder" = "Message";
+
+"login_button" = "Se connecter";
+"OK_button" = "OK";
+"sendMessage_button" = "Envoyer";
+
+"login_title" = "Connexion";
+"conversationList_title" = "Messages";
+
+// Debug
+"debug_longMessage" = "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message";
+"debug_shortMessage" = "Ceci est un message";
+"debug_labelNumber %d" = "Ceci est mon label numéro %d";

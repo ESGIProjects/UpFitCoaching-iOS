@@ -51,11 +51,11 @@ class MessageBarView: UIView {
 	}
 	
 	override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
+		
 		aCoder.encode(textView, forKey: "textView")
 		aCoder.encode(button, forKey: "button")
 		aCoder.encode(placeholder, forKey: "placeholder")
-		
-		super.encode(with: aCoder)
 	}
 	
 	private func setupLayout() {
@@ -89,11 +89,11 @@ class MessageBarView: UIView {
 			textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
 			textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
 			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8),
 			button.heightAnchor.constraint(equalToConstant: 35),
-			button.widthAnchor.constraint(equalToConstant: 50),
+			button.widthAnchor.constraint(equalToConstant: 65),
 			button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8)
+			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
 			])
 	}
 }

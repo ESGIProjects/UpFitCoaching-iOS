@@ -62,7 +62,7 @@ class ConversationController: UIViewController {
 		for index in 0 ..< 50 {
 			let message = UILabel()
 			message.translatesAutoresizingMaskIntoConstraints = false
-			message.text = "This is my label number \(index)"
+			message.text = "debug_labelNumber %d".localized(with: index)
 			message.numberOfLines = 0
 
 			contentView.addSubview(message)

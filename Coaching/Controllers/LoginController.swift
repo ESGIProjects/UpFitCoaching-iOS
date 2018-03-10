@@ -19,7 +19,7 @@ class LoginController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		title = "Login"
+		title = "login_title".localized
 		edgesForExtendedLayout = []
 		setupLayout()
 		
@@ -42,15 +42,15 @@ class LoginController: UIViewController {
 	
 	@objc func signin(_ sender: UIButton) {
 		guard let mailValue = mailTextField.text else {
-			let alert = UIAlertController(title: "Mail missing", message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default))
+			let alert = UIAlertController(title: "mail_missing_title".localized, message: nil, preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
 			present(alert, animated: true)
 			return
 		}
 		
 		guard let passwordValue = passwordTextField.text else {
-			let alert = UIAlertController(title: "Password missing", message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default))
+			let alert = UIAlertController(title: "password_missing_title".localized, message: nil, preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
 			present(alert, animated: true)
 			return
 		}

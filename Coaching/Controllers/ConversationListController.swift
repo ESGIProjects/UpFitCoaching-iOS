@@ -13,15 +13,15 @@ class ConversationListController: UIViewController {
 	lazy var tableView = createTableView()
 	
 	var conversations: [Conversation] = [
-		Conversation(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message"),
-		Conversation(name: "Kévin Le", message: "Ceci est un deuxième message 🐷"),
-		Conversation(name: "Maeva Malih", message: "Coucou")
+		Conversation(name: "Jason Pierna", message: "debug_longMessage".localized),
+		Conversation(name: "Kévin Le", message: "debug_shortMessage".localized),
+		Conversation(name: "Maeva Malih", message: "debug_shortMessage".localized)
 	]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "Messages"
+		title = "conversationList_title".localized
 		
 		if #available(iOS 11.0, *) {
 			navigationController?.navigationBar.prefersLargeTitles = true

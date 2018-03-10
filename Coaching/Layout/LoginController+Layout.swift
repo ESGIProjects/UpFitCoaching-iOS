@@ -39,7 +39,7 @@ extension LoginController {
 		textField.borderStyle = .roundedRect
 		textField.keyboardType = .emailAddress
 		textField.returnKeyType = .next
-		textField.placeholder = "Mail"
+		textField.placeholder = "mail_placeholder".localized
 		return textField
 	}
 	
@@ -49,14 +49,14 @@ extension LoginController {
 		textField.borderStyle = .roundedRect
 		textField.isSecureTextEntry = true
 		textField.returnKeyType = .done
-		textField.placeholder = "Password"
+		textField.placeholder = "password_placeholder".localized
 		return textField
 	}
 	
 	func createLoginButton() -> UIButton {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
-		button.setTitle("Sign In", for: .normal)
+		button.setTitle("login_button".localized, for: .normal)
 		button.setTitleColor(.red, for: .normal)
 		button.addTarget(self, action: #selector(signin(_:)), for: .touchUpInside)
 		return button

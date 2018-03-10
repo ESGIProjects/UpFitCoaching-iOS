@@ -29,9 +29,9 @@ extension ConversationController {
 		let messageBarView = MessageBarView()
 		messageBarView.translatesAutoresizingMaskIntoConstraints = false
 		
-		messageBarView.placeholder = "Message"
+		messageBarView.placeholder = "message_placeholder".localized
 		
-		messageBarView.button.setTitle("Send", for: .normal)
+		messageBarView.button.setTitle("sendMessage_button".localized, for: .normal)
 		messageBarView.button.setTitleColor(.blue, for: .normal)
 		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
 		return messageBarView
