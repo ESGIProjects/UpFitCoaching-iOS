@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-//        window?.rootViewController = UINavigationController(rootViewController: ConversationListController())
-        window?.rootViewController = LoginViewController()
+		window?.rootViewController = UINavigationController(rootViewController: LoginController())
 		window?.makeKeyAndVisible()
 		
 		return true

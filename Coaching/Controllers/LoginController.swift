@@ -10,6 +10,8 @@ import UIKit
 
 class LoginController: UIViewController {
 	
+	lazy var scrollView = createScrollView()
+	lazy var contentView = createContentView()
 	lazy var titleLabel = createTitleLabel()
 	lazy var mailTextField = createMailTextField()
 	lazy var passwordTextField = createPassworTextField()
@@ -17,18 +19,23 @@ class LoginController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		title = "Login"
-		
+		edgesForExtendedLayout = []
 		setupLayout()
+		
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = true
+		}
 	}
 	
 	func setupLayout() {
-		// Text fields
-		view.addSubview(titleLabel)
-		view.addSubview(mailTextField)
-		view.addSubview(passwordTextField)
-		view.addSubview(loginButton)
+		view.addSubview(scrollView)
+		scrollView.addSubview(contentView)
+		
+		contentView.addSubview(titleLabel)
+		contentView.addSubview(mailTextField)
+		contentView.addSubview(passwordTextField)
+		contentView.addSubview(loginButton)
 		
 		NSLayoutConstraint.activate(layoutConstraints())
 	}
@@ -48,10 +55,13 @@ class LoginController: UIViewController {
 			return
 		}
 		
-		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
-			print(data ?? "No data")
-			print(response ?? "no response")
-			print(error ?? "no error")
-		}
+		let conversationListController = ConversationListController()
+		present(UINavigationController(rootViewController: conversationListController), animated: true)
+		
+//		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
+//			print(data ?? "No data")
+//			print(response ?? "no response")
+//			print(error ?? "no error")
+//		}
 	}
 }
