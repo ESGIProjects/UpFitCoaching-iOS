@@ -39,8 +39,14 @@ class MessageBarView: UIView {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		textView = aDecoder.decodeObject(forKey: "textView") as! UITextView
-		button = aDecoder.decodeObject(forKey: "button") as! UIButton
+		if let textView = aDecoder.decodeObject(forKey: "textView") as? UITextView {
+			self.textView = textView
+		}
+		
+		if let button = aDecoder.decodeObject(forKey: "button") as? UIButton {
+			self.button = button
+		}
+		
 		placeholder = aDecoder.decodeObject(forKey: "placeholder") as? String
 	}
 	
@@ -87,7 +93,7 @@ class MessageBarView: UIView {
 			button.widthAnchor.constraint(equalToConstant: 50),
 			button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
 			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8),
+			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8)
 			])
 	}
 }

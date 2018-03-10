@@ -19,8 +19,8 @@ class ConversationListController: UIViewController {
 	}()
 	
 	var conversations: [(name: String, message: String, date: Date)] = [
-		(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message", date: Date()),
-		(name: "Kévin Le", message: "Ceci est un deuxième message", date: Date()),
+		(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message", date: Date()),
+		(name: "Kévin Le", message: "Ceci est un deuxième message 🐷", date: Date()),
 		(name: "Maeva Malih", message: "Coucou", date: Date())
 	]
 	

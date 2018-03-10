@@ -83,7 +83,7 @@ class ConversationViewController: UIViewController {
 			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
 			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-			contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+			contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
 			])
 		
 		// Layout the Message Bar

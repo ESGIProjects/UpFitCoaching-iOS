@@ -49,9 +49,18 @@ class ConversationListCell: UITableViewCell {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		nameLabel = aDecoder.decodeObject(forKey: "nameLabel") as! UILabel
-		messageLabel = aDecoder.decodeObject(forKey: "messageLabel") as! UILabel
-		dateLabel = aDecoder.decodeObject(forKey: "dateLabel") as! UILabel
+		
+		if let nameLabel = aDecoder.decodeObject(forKey: "nameLabel") as? UILabel {
+			self.nameLabel = nameLabel
+		}
+		
+		if let messageLabel = aDecoder.decodeObject(forKey: "messageLabel") as? UILabel {
+			self.messageLabel = messageLabel
+		}
+		
+		if let dateLabel = aDecoder.decodeObject(forKey: "dateLabel") as? UILabel {
+			self.dateLabel = dateLabel
+		}
 	}
 	
 	override func encode(with aCoder: NSCoder) {
@@ -81,7 +90,7 @@ class ConversationListCell: UITableViewCell {
 			messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2.0),
 			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
 			messageLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
-			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
+			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
 			])
 		
 		photoImageView.layer.cornerRadius = 25
