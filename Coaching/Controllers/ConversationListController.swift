@@ -12,10 +12,10 @@ class ConversationListController: UIViewController {
 	
 	lazy var tableView = createTableView()
 	
-	var conversations: [(name: String, message: String)] = [
-		(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message"),
-		(name: "Kévin Le", message: "Ceci est un deuxième message 🐷"),
-		(name: "Maeva Malih", message: "Coucou")
+	var conversations: [Conversation] = [
+		Conversation(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message"),
+		Conversation(name: "Kévin Le", message: "Ceci est un deuxième message 🐷"),
+		Conversation(name: "Maeva Malih", message: "Coucou")
 	]
 	
 	override func viewDidLoad() {
