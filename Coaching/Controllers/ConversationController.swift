@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ConversationController.swift
 //  Coaching
 //
 //  Created by Jason Pierna on 13/02/2018.
@@ -8,32 +8,11 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController {
+class ConversationController: UIViewController {
 	
-	lazy var scrollView: UIScrollView = {
-		let scrollView = UIScrollView()
-		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		scrollView.keyboardDismissMode = .onDrag
-		return scrollView
-	}()
-	
-	lazy var contentView: UIView = {
-		let contentView = UIView()
-		contentView.translatesAutoresizingMaskIntoConstraints = false
-		return contentView
-	}()
-	
-	lazy var messageBarView: MessageBarView = {
-		let messageBarView = MessageBarView()
-		messageBarView.translatesAutoresizingMaskIntoConstraints = false
-		
-		messageBarView.placeholder = "Message"
-		
-		messageBarView.button.setTitle("Send", for: .normal)
-		messageBarView.button.setTitleColor(.blue, for: .normal)
-		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
-		return messageBarView
-	}()
+	lazy var scrollView = createScrollView()
+	lazy var contentView = createContentView()
+	lazy var messageBarView = createMessageBarView()
 	
 	private var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
@@ -56,56 +35,18 @@ class ConversationViewController: UIViewController {
 	
 	func setupLayout() {
 		
-		// Layout the Scroll view
 		view.addSubview(scrollView)
-		
-		if #available(iOS 11.0, *) {
-			NSLayoutConstraint.activate([
-				scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-				scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-				scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				])
-		} else {
-			NSLayoutConstraint.activate([
-				scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-				scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-				scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				])
-		}
-		
-		// Layout the Content view
 		scrollView.addSubview(contentView)
-		
-		NSLayoutConstraint.activate([
-			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-			contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
-			])
-		
-		// Layout the Message Bar
 		view.addSubview(messageBarView)
 		
 		if #available(iOS 11.0, *) {
 			messageBarViewBottomConstraint = messageBarView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-			
-			NSLayoutConstraint.activate([
-				messageBarViewBottomConstraint,
-				messageBarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				messageBarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				])
 		} else {
 			messageBarViewBottomConstraint = messageBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-			
-			NSLayoutConstraint.activate([
-				messageBarViewBottomConstraint,
-				messageBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				messageBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				])
 		}
+		
+		NSLayoutConstraint.activate(layoutConstraints())
+		messageBarViewBottomConstraint.isActive = true
 		
 		// Update scroll view insets
 		messageBarView.setNeedsLayout()

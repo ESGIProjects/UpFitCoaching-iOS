@@ -1,24 +1,26 @@
 //
-//  LoginViewController.swift
+//  LoginController+Layout.swift
 //  Coaching
 //
-//  Created by Jason Pierna on 20/02/2018.
+//  Created by Jason Pierna on 10/03/2018.
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+extension LoginController {
 	
-	lazy var titleLabel: UILabel = {
+	// MARK: - Creating elements
+	
+	func createTitleLabel() -> UILabel {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.text = "Coaching App"
 		label.font = UIFont.preferredFont(forTextStyle: .title1)
 		return label
-	}()
+	}
 	
-	lazy var mailTextField: UITextField = {
+	func createMailTextField() -> UITextField {
 		let mailTextField = UITextField(frame: .zero)
 		mailTextField.translatesAutoresizingMaskIntoConstraints = false
 		mailTextField.borderStyle = .roundedRect
@@ -26,9 +28,9 @@ class LoginViewController: UIViewController {
 		mailTextField.returnKeyType = .next
 		mailTextField.placeholder = "Mail"
 		return mailTextField
-	}()
+	}
 	
-	lazy var passwordTextField: UITextField = {
+	func createPassworTextField() -> UITextField {
 		let passwordTextField = UITextField(frame: .zero)
 		passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 		passwordTextField.borderStyle = .roundedRect
@@ -36,32 +38,20 @@ class LoginViewController: UIViewController {
 		passwordTextField.returnKeyType = .done
 		passwordTextField.placeholder = "Password"
 		return passwordTextField
-	}()
+	}
 	
-	lazy var loginButton: UIButton = {
+	func createLoginButton() -> UIButton {
 		let loginButton = UIButton()
 		loginButton.translatesAutoresizingMaskIntoConstraints = false
 		loginButton.setTitle("Sign In", for: .normal)
 		loginButton.setTitleColor(.red, for: .normal)
 		loginButton.addTarget(self, action: #selector(signin(_:)), for: .touchUpInside)
 		return loginButton
-	}()
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		title = "Login"
-		
-		setupLayout()
 	}
 	
-	func setupLayout() {
-		// Text fields
-		view.addSubview(titleLabel)
-		view.addSubview(mailTextField)
-		view.addSubview(passwordTextField)
-		view.addSubview(loginButton)
-		
+	// MARK: - Constraints
+	
+	func layoutConstraints() -> [NSLayoutConstraint] {
 		var constraints = [NSLayoutConstraint]()
 		
 		if #available(iOS 11.0, *) {
@@ -104,28 +94,6 @@ class LoginViewController: UIViewController {
 			loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10.0)
 		]
 		
-		NSLayoutConstraint.activate(constraints)
-	}
-	
-	@objc func signin(_ sender: UIButton) {
-		guard let mailValue = mailTextField.text else {
-			let alert = UIAlertController(title: "Mail missing", message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default))
-			present(alert, animated: true)
-			return
-		}
-		
-		guard let passwordValue = passwordTextField.text else {
-			let alert = UIAlertController(title: "Password missing", message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default))
-			present(alert, animated: true)
-			return
-		}
-		
-		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
-			print(data ?? "No data")
-			print(response ?? "no response")
-			print(error ?? "no error")
-		}
+		return constraints
 	}
 }

@@ -10,24 +10,23 @@ import UIKit
 
 class ConversationListController: UIViewController {
 	
-	lazy var tableView: UITableView = {
-		let tableView = UITableView(frame: .zero)
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.delegate = self
-		tableView.dataSource = self
-		return tableView
-	}()
+	lazy var tableView = createTableView()
 	
-	var conversations: [(name: String, message: String, date: Date)] = [
-		(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message", date: Date()),
-		(name: "Kévin Le", message: "Ceci est un deuxième message 🐷", date: Date()),
-		(name: "Maeva Malih", message: "Coucou", date: Date())
+	var conversations: [(name: String, message: String)] = [
+		(name: "Jason Pierna", message: "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message"),
+		(name: "Kévin Le", message: "Ceci est un deuxième message 🐷"),
+		(name: "Maeva Malih", message: "Coucou")
 	]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		title = "Messages"
+		
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = true
+		}
+		
 		tableView.estimatedRowHeight = 100.0
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
@@ -84,7 +83,7 @@ extension ConversationListController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		
-		let conversationViewController = ConversationViewController()
+		let conversationViewController = ConversationController()
 		conversationViewController.title = conversations[indexPath.row].name
 
 		navigationController?.pushViewController(conversationViewController, animated: true)
