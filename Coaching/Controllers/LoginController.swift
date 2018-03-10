@@ -41,14 +41,14 @@ class LoginController: UIViewController {
 	}
 	
 	@objc func signin(_ sender: UIButton) {
-		guard let mailValue = mailTextField.text else {
+		guard let mailValue = mailTextField.text, mailValue != "" else {
 			let alert = UIAlertController(title: "mail_missing_title".localized, message: nil, preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
 			present(alert, animated: true)
 			return
 		}
 		
-		guard let passwordValue = passwordTextField.text else {
+		guard let passwordValue = passwordTextField.text, passwordValue != "" else {
 			let alert = UIAlertController(title: "password_missing_title".localized, message: nil, preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
 			present(alert, animated: true)

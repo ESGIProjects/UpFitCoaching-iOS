@@ -12,17 +12,16 @@ extension ConversationController {
 	
 	// MARK: - Creating elements
 	
-	func createScrollView() -> UIScrollView {
-		let scrollView = UIScrollView()
-		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		scrollView.keyboardDismissMode = .onDrag
-		return scrollView
-	}
-	
-	func createContentView() -> UIView {
-		let contentView = UIView()
-		contentView.translatesAutoresizingMaskIntoConstraints = false
-		return contentView
+	func createCollectionView() -> UICollectionView {
+		let collectionViewLayout = ConversationLayout()
+		collectionViewLayout.delegate = self
+		
+		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		collectionView.delegate = self
+		collectionView.dataSource = self
+		collectionView.backgroundColor = .white
+		return collectionView
 	}
 	
 	func createMessageBarView() -> MessageBarView {
@@ -44,37 +43,28 @@ extension ConversationController {
 		
 		if #available(iOS 11.0, *) {
 			constraints += [
-				// Scroll view
-				scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-				scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-				scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+				// Collection view
+				collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+				collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+				collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+				collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 				// Message bar view
 				messageBarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
 				messageBarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				]
+			]
 		} else {
 			constraints += [
-				// Scroll view
-				scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-				scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-				scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+				// Collection view
+				collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+				collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+				collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+				collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 				// Message bar view
 				messageBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 				messageBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				]
+			]
 		}
-		
-		constraints += [
-			// Content view
-			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-			contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
-		]
-		
+
 		return constraints
 	}
 }

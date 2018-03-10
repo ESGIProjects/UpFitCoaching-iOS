@@ -6,8 +6,8 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
-"mail_placeholder" = "E-Mail";
-"mail_missing_title" = "E-Mail manquant";
+"mail_placeholder" = "Adresse e-mail";
+"mail_missing_title" = "Adresse e-mail manquante";
 "password_missing_title" = "Mot de passe manquant";
 "password_placeholder" = "Mot de passe";
 "message_placeholder" = "Message";

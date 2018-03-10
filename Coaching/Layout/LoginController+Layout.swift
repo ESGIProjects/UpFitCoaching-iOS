@@ -15,7 +15,7 @@ extension LoginController {
 	func createScrollView() -> UIScrollView {
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		scrollView.keyboardDismissMode = .onDrag
+		scrollView.keyboardDismissMode = .interactive
 		return scrollView
 	}
 	
