@@ -9,11 +9,13 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-	lazy var stackView: UIStackView = {
-		let stackView = UIStackView()
-		stackView.translatesAutoresizingMaskIntoConstraints = false
-		stackView.axis = .vertical
-		return stackView
+	
+	lazy var titleLabel: UILabel = {
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.text = "Coaching App"
+		label.font = UIFont.preferredFont(forTextStyle: .title1)
+		return label
 	}()
 	
 	lazy var mailTextField: UITextField = {
@@ -48,60 +50,82 @@ class LoginViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		title = "Login"
+		
 		setupLayout()
 	}
 	
 	func setupLayout() {
 		// Text fields
-		stackView.addArrangedSubview(mailTextField)
-		stackView.addArrangedSubview(passwordTextField)
-		stackView.addArrangedSubview(loginButton)
+		view.addSubview(titleLabel)
+		view.addSubview(mailTextField)
+		view.addSubview(passwordTextField)
+		view.addSubview(loginButton)
 		
-		// Layout the stack view
-		view.addSubview(stackView)
+		var constraints = [NSLayoutConstraint]()
 		
-		NSLayoutConstraint.activate([
-			stackView.topAnchor.constraint(equalTo: view.topAnchor),
-			stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			stackView.heightAnchor.constraint(equalToConstant: 300)
-			])
+		if #available(iOS 11.0, *) {
+			constraints += [
+				titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+				titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10.0),
+				titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10.0),
+				
+				mailTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10.0),
+				mailTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10.0),
+				
+				passwordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10.0),
+				passwordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10.0),
+				
+				loginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10.0),
+				loginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10.0)
+			]
+		} else {
+			constraints += [
+				titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+				titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0),
+				titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0),
+				
+				mailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0),
+				mailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0),
+				
+				passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0),
+				passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0),
+				
+				loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0),
+				loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0)
+			]
+		}
 		
+		constraints += [
+			mailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15.0),
+			
+			passwordTextField.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 10.0),
+			
+			loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10.0)
+		]
 		
+		NSLayoutConstraint.activate(constraints)
 	}
 	
 	@objc func signin(_ sender: UIButton) {
-		if mailTextField.text == "" {
+		guard let mailValue = mailTextField.text else {
 			let alert = UIAlertController(title: "Mail missing", message: nil, preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default))
 			present(alert, animated: true)
 			return
 		}
 		
-		if passwordTextField.text == "" {
+		guard let passwordValue = passwordTextField.text else {
 			let alert = UIAlertController(title: "Password missing", message: nil, preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default))
 			present(alert, animated: true)
 			return
 		}
 		
-		print("-------------- LOGIN NETWORK CALL HERE")
-		var request = URLRequest(url: URL(string: "http://localhost:8000/signin/")!)
-//		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//		request.addValue("application/json", forHTTPHeaderField: "Accept")
-		request.httpMethod = "POST"
-		
-		let postParams = "mail=\(mailTextField.text!)&passwd=\(passwordTextField.text!)"
-		request.httpBody = postParams.data(using: .utf8)
-		
-		let session = URLSession(configuration: .default)
-		session.dataTask(with: request) { (data, response, error) in
+		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
 			print(data ?? "No data")
 			print(response ?? "no response")
 			print(error ?? "no error")
-		}.resume()
-		
-		
-		
+		}
 	}
 }
