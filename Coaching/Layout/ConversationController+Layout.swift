@@ -18,9 +18,10 @@ extension ConversationController {
 		
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		collectionView.backgroundColor = .white
 		collectionView.delegate = self
 		collectionView.dataSource = self
-		collectionView.backgroundColor = .white
+		collectionView.keyboardDismissMode = .onDrag
 		return collectionView
 	}
 	
@@ -31,7 +32,8 @@ extension ConversationController {
 		messageBarView.placeholder = "message_placeholder".localized
 		
 		messageBarView.button.setTitle("sendMessage_button".localized, for: .normal)
-		messageBarView.button.setTitleColor(.blue, for: .normal)
+		messageBarView.button.setTitleColor(.main, for: .normal)
+		messageBarView.button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
 		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
 		return messageBarView
 	}

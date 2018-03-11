@@ -10,12 +10,14 @@ import UIKit
 
 class ConversationController: UIViewController {
 
+	static let currentUser = "Silver"
+	
 	lazy var collectionView = createCollectionView()
 	lazy var messageBarView = createMessageBarView()
 	
 	private var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
-	var messages = [(message: String, side: Side)](repeating: (message: "debug_shortMessage".localized, side: .left), count: 20)
+	var messages = [Message](repeating: Message("debug_shortMessage".localized, from: "Kévin Le", to: "Jason Pierna", at: Date()), count: 20)
 	
 	// MARK: - UIViewController
 	
@@ -29,11 +31,15 @@ class ConversationController: UIViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(test))
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
 		
+		if #available(iOS 11.0, *) {
+			navigationItem.largeTitleDisplayMode = .never
+		}
+		
 		setupLayout()
 		
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
 	}
 	
 	@objc func test() {
@@ -74,8 +80,8 @@ class ConversationController: UIViewController {
 		// Check if the message is not empty
 		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
 		
-		if let message = messageBarView.textView.text {
-			messages.append((message: message, side: .right))
+		if let messageContent = messageBarView.textView.text {
+			messages.append(Message(messageContent, from: ConversationController.currentUser, to: "Kévin Le", at: Date()))
 		}
 		
 		// Empty the text view
@@ -83,29 +89,39 @@ class ConversationController: UIViewController {
 		
 		// Reload UI
 		collectionView.reloadData()
+
+		// Scroll to bottom
+		collectionView.setNeedsLayout()
+		collectionView.layoutIfNeeded()
+		
+		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
 	}
 	
-	/*
-	
-	@objc func keyboardWillHide(notification: NSNotification) {
+	@objc func keyboardWillShow(notification: NSNotification) {
 		guard let userInfo = notification.userInfo else { return }
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
+		guard let keyboardEndFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
 		
-		messageBarViewBottomConstraint.constant = 0.0
-		scrollView.contentInset.bottom = messageBarView.frame.height
+		messageBarViewBottomConstraint.constant = -keyboardEndFrame.cgRectValue.height
+		collectionView.contentInset.bottom = messageBarView.frame.height + keyboardEndFrame.cgRectValue.height
+		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
 		
 		UIView.animate(withDuration: animationDuration) { [unowned self] in
 			self.view.layoutIfNeeded()
 		}
 	}
 	
-	@objc func sendButtonTapped(_ sender: UIButton) {
-		// Scroll to make the new message visible
-		contentView.setNeedsLayout()
-		contentView.layoutIfNeeded()
+	@objc func keyboardWillHide(notification: NSNotification) {
+		guard let userInfo = notification.userInfo else { return }
+		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		
-		scrollView.scrollRectToVisible(message.frame, animated: true)
-	}*/
+		messageBarViewBottomConstraint.constant = 0.0
+		collectionView.contentInset.bottom = messageBarView.frame.height
+		
+		UIView.animate(withDuration: animationDuration) { [unowned self] in
+			self.view.layoutIfNeeded()
+		}
+	}
 }
 
 // MARK: - UICollectionViewDelegate
@@ -125,9 +141,15 @@ extension ConversationController: UICollectionViewDataSource {
 		
 		let message = messages[indexPath.item]
 		
-		cell.messageLabel.text = message.message
-		cell.messageLabel.textColor = message.side == .left ? MessageCell.leftTextColor : MessageCell.rightTextColor
-		cell.contentView.backgroundColor = message.side == .left ? MessageCell.leftColor : MessageCell.rightColor
+		cell.messageLabel.text = message.content
+		
+		if message.sender != ConversationController.currentUser {
+			cell.messageLabel.textColor = .receivedBubbleText
+			cell.contentView.backgroundColor = .receivedBubbleBackground
+		} else {
+			cell.messageLabel.textColor = .sentBubbleText
+			cell.contentView.backgroundColor = .sentBubbleBackground
+		}
 		
 		return cell
 	}
@@ -136,10 +158,12 @@ extension ConversationController: UICollectionViewDataSource {
 // MARK: - ConversationLayoutDelegate
 extension ConversationController: ConversationLayoutDelegate {
 	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side {
-		return messages[indexPath.item].side
+		let message = messages[indexPath.item]
+		
+		return message.sender == ConversationController.currentUser ? .right : .left
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> (String, UIFont) {
-		return (messages[indexPath.item].message, UIFont.systemFont(ofSize: 17))
+		return (messages[indexPath.item].content, UIFont.systemFont(ofSize: 17))
 	}
 }

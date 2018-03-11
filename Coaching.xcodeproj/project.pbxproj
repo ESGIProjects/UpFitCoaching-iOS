@@ -23,6 +23,8 @@
 		D7B9CBF920541E6500B755CD /* ConversationListController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationListController+Layout.swift */; };
 		D7B9CBFB20541E7300B755CD /* LoginController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* LoginController+Layout.swift */; };
 		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
+		D7DAA24020554E7F007F3011 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA23F20554E7F007F3011 /* Colors.swift */; };
+		D7DAA24220554F7C007F3011 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA24120554F7C007F3011 /* Message.swift */; };
 		D7EFFF33204FDE47004694EC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFFF32204FDE47004694EC /* Network.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		D7B9CBF820541E6500B755CD /* ConversationListController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationListController+Layout.swift"; sourceTree = "<group>"; };
 		D7B9CBFA20541E7300B755CD /* LoginController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+Layout.swift"; sourceTree = "<group>"; };
 		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
+		D7DAA23F20554E7F007F3011 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D7DAA24120554F7C007F3011 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D7EFFF32204FDE47004694EC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				D789200C20542CF60020C703 /* Conversation.swift */,
+				D7DAA24120554F7C007F3011 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 		D7EFFF31204FDE08004694EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D7DAA23F20554E7F007F3011 /* Colors.swift */,
 				D7EFFF32204FDE47004694EC /* Network.swift */,
 				D789201620544FAD0020C703 /* String+Localization.swift */,
 			);
@@ -241,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
+				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* LoginController+Layout.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D789201720544FAD0020C703 /* String+Localization.swift in Sources */,
@@ -252,6 +259,7 @@
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* ConversationController+Layout.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
+				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 			);

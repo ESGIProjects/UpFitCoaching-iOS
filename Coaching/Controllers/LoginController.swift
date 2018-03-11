@@ -25,6 +25,7 @@ class LoginController: UIViewController {
 		
 		if #available(iOS 11.0, *) {
 			navigationController?.navigationBar.prefersLargeTitles = true
+			navigationItem.largeTitleDisplayMode = .never
 		}
 	}
 	

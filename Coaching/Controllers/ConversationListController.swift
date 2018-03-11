@@ -25,6 +25,7 @@ class ConversationListController: UIViewController {
 		
 		if #available(iOS 11.0, *) {
 			navigationController?.navigationBar.prefersLargeTitles = true
+			navigationItem.largeTitleDisplayMode = .always
 		}
 		
 		tableView.estimatedRowHeight = 100.0

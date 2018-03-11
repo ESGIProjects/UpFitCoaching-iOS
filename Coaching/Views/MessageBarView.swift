@@ -81,6 +81,12 @@ class MessageBarView: UIView {
 		addSubview(textView)
 		addSubview(button)
 		
+		// Customize Text View
+		textView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+		textView.layer.borderWidth = 1.0
+		textView.layer.cornerRadius = 15.0
+		textView.layer.masksToBounds = true
+		
 		// Add constraints
 		textFieldHeightConstraint = textView.heightAnchor.constraint(equalToConstant: 35)
 		textFieldHeightConstraint.isActive = true
