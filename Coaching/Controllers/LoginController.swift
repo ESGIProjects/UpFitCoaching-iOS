@@ -56,14 +56,9 @@ class LoginController: UIViewController {
 			return
 		}
 		
-//		let tabBarController = UITabBarController()
-//
-//		let conversationListController = ConversationListController()
-//		tabBarController.setViewControllers([UINavigationController(rootViewController: conversationListController)], animated: true)
-//
-//		present(tabBarController, animated: true)
+
 		
-		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
+		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, error in
 			
 			guard let response = response as? HTTPURLResponse else { return }
 			print("Status code:", response.statusCode)
@@ -74,20 +69,33 @@ class LoginController: UIViewController {
 				do {
 					let user = try decoder.decode(User.self, from: data)
 					print(user)
+					
+					let tabBarController = UITabBarController()
+					
+					let conversationListController = ConversationListController()
+					tabBarController.setViewControllers([UINavigationController(rootViewController: conversationListController)], animated: true)
+					
+					DispatchQueue.main.async {
+						self?.present(tabBarController, animated: true)
+					}
 				} catch {
 					print(error.localizedDescription)
 				}
 			} else {
 				do {
 					let errorMessage = try decoder.decode(ErrorMessage.self, from: data)
-					print(errorMessage.message)
+					
+					let alertController = UIAlertController(title: "error".localized, message: errorMessage.message.localized, preferredStyle: .alert)
+					alertController.addAction(UIAlertAction(title: "OK".localized, style: .default))
+					
+					DispatchQueue.main.async {
+						self?.present(alertController, animated: true)
+					}
+					
 				} catch {
 					print(error.localizedDescription)
 				}
 			}
-			
-			
-			
 		}
 	}
 }

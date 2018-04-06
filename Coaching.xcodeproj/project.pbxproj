@@ -10,7 +10,6 @@
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
-		D72296B52077989900052710 /* Network.strings in Resources */ = {isa = PBXBuildFile; fileRef = D72296B72077989900052710 /* Network.strings */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -33,8 +32,6 @@
 		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		1AA3973A203C50520020092D /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		D72296B62077989900052710 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Network.strings; sourceTree = "<group>"; };
-		D72296B8207798A200052710 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Network.strings; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -134,7 +131,6 @@
 				D773DD52203362DE001520CA /* Assets.xcassets */,
 				D773DD54203362DE001520CA /* LaunchScreen.storyboard */,
 				D789201320544E860020C703 /* Localizable.strings */,
-				D72296B72077989900052710 /* Network.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -222,7 +218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */,
-				D72296B52077989900052710 /* Network.strings in Resources */,
 				D789201120544E860020C703 /* Localizable.strings in Resources */,
 				D773DD53203362DE001520CA /* Assets.xcassets in Resources */,
 			);
@@ -273,15 +268,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D72296B72077989900052710 /* Network.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D72296B62077989900052710 /* en */,
-				D72296B8207798A200052710 /* fr */,
-			);
-			name = Network.strings;
-			sourceTree = "<group>";
-		};
 		D773DD54203362DE001520CA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -19,6 +19,15 @@
 "login_title" = "Connexion";
 "conversationList_title" = "Messages";
 
+"error" = "Erreur";
+"OK" = "OK";
+
+// Network
+"user_already_exists" = "Cet utilisateur existe déjà.";
+"user_insert_failed" = "Nous avons rencontré un problème lors de l'inscription. Merci de réessayer plus tard.";
+"user_not_exist" = "Cet utilisateur n'existe pas.";
+"internal_error" = "Nous recontrons un problème réseau. Merci de réessayer plus tard.";
+
 // Debug
 "debug_longMessage" = "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message";
 "debug_shortMessage" = "Ceci est un message";
