@@ -56,8 +56,12 @@ class LoginController: UIViewController {
 			return
 		}
 		
+		let tabBarController = UITabBarController()
+		
 		let conversationListController = ConversationListController()
-		present(UINavigationController(rootViewController: conversationListController), animated: true)
+		tabBarController.setViewControllers([UINavigationController(rootViewController: conversationListController)], animated: true)
+		
+		present(tabBarController, animated: true)
 		
 //		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
 //			print(data ?? "No data")
