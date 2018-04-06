@@ -56,17 +56,53 @@ class LoginController: UIViewController {
 			return
 		}
 		
-		let tabBarController = UITabBarController()
+//		let tabBarController = UITabBarController()
+//
+//		let conversationListController = ConversationListController()
+//		tabBarController.setViewControllers([UINavigationController(rootViewController: conversationListController)], animated: true)
+//
+//		present(tabBarController, animated: true)
 		
-		let conversationListController = ConversationListController()
-		tabBarController.setViewControllers([UINavigationController(rootViewController: conversationListController)], animated: true)
-		
-		present(tabBarController, animated: true)
-		
-//		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
-//			print(data ?? "No data")
-//			print(response ?? "no response")
-//			print(error ?? "no error")
-//		}
+		Network.login(mail: mailValue, password: passwordValue) { (data, response, error) in
+			
+			guard let response = response as? HTTPURLResponse else { return }
+			print("Status code:", response.statusCode)
+			guard let data = data else { return }
+			let decoder = JSONDecoder()
+			
+			if response.statusCode == 200 {
+				do {
+					let user = try decoder.decode(User.self, from: data)
+					print(user)
+				} catch {
+					print(error.localizedDescription)
+				}
+			} else {
+				do {
+					let errorMessage = try decoder.decode(ErrorMessage.self, from: data)
+					print(errorMessage.message)
+				} catch {
+					print(error.localizedDescription)
+				}
+			}
+			
+			
+			
+		}
 	}
+}
+
+struct User: Codable {
+	var id: Int
+	var type: Int
+	var mail: String
+	var firstName: String
+	var lastName: String
+	var birthDate: String
+	var city: String
+	var phoneNumber: String
+}
+
+struct ErrorMessage: Codable {
+	var message: String
 }
