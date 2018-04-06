@@ -1,0 +1,12 @@
+/* 
+  Network.strings
+  Coaching
+
+  Created by Jason Pierna on 06/04/2018.
+  Copyright © 2018 Jason Pierna. All rights reserved.
+*/
+
+"user_already_exists" = "This user already exists.";
+"user_insert_failed" = "There was a problem while signing up. Please try later.";
+"user_not_exist" = "This user doesn't exist.";
+"internal_error" = "We have a network problem. Please try later.";
