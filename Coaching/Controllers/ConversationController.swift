@@ -160,11 +160,14 @@ extension ConversationController: UICollectionViewDataSource {
 extension ConversationController: ConversationLayoutDelegate {
 	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side {
 		let message = messages[indexPath.item]
-		
 		return message.sender == ConversationController.currentUser ? .right : .left
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> (String, UIFont) {
-		return (messages[indexPath.item].content, UIFont.systemFont(ofSize: 17))
+	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String {
+		return messages[indexPath.item].content
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, fontAt indexPath: IndexPath) -> UIFont {
+		return UIFont.systemFont(ofSize: 17)
 	}
 }

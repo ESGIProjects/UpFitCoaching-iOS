@@ -14,7 +14,8 @@ enum Side {
 
 protocol ConversationLayoutDelegate: class {
 	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side
-	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> (String, UIFont)
+	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String
+	func collectionView(_ collectionView: UICollectionView, fontAt indexPath: IndexPath) -> UIFont
 }
 
 class ConversationLayout: UICollectionViewLayout {
@@ -51,11 +52,13 @@ class ConversationLayout: UICollectionViewLayout {
 			let indexPath = IndexPath(item: item, section: 0)
 			
 			let side = delegate.collectionView(collectionView, messageSideFor: indexPath)
-			let cellInfo = delegate.collectionView(collectionView, textAt: indexPath)
+			let text = delegate.collectionView(collectionView, textAt: indexPath)
+			let font = delegate.collectionView(collectionView, fontAt: indexPath)
 			
 			// Text size
 			let maxRect = CGSize(width: maxMessageWidth, height: .greatestFiniteMagnitude)
-			let boundingRect = cellInfo.0.boundingRect(with: maxRect, options: .usesLineFragmentOrigin, attributes: [.font: cellInfo.1], context: nil)
+			
+			let boundingRect = text.boundingRect(with: maxRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
 			
 			let textWidth = ceil(boundingRect.width)
 			let textHeight = ceil(boundingRect.height)
@@ -90,5 +93,4 @@ class ConversationLayout: UICollectionViewLayout {
 		contentHeight = 0
 		super.invalidateLayout()
 	}
-	
 }
