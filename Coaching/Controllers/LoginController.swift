@@ -16,7 +16,7 @@ class LoginController: UIViewController {
 	lazy var segmentedControl = UI.segmentedControl()
 	lazy var mailTextField = UI.mailTextField()
 	lazy var passwordTextField = UI.passwordTextField()
-	lazy var loginButton = UI.loginButton(self, action: #selector(signin(_:)))
+	lazy var loginButton = UI.loginButton(self, action: #selector(signIn(_:)))
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,7 +32,7 @@ class LoginController: UIViewController {
 		}
 	}
 	
-	func setupLayout() {
+	private func setupLayout() {
 		view.addSubview(scrollView)
 		scrollView.addSubview(contentView)
 		
@@ -46,76 +46,53 @@ class LoginController: UIViewController {
 		NSLayoutConstraint.activate(constraints)
 	}
 	
-	@objc func signin(_ sender: UIButton) {
+	@objc func signIn(_ sender: UIButton) {
 		guard let mailValue = mailTextField.text, mailValue != "" else {
-			let alert = UIAlertController(title: "mail_missing_title".localized, message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
-			present(alert, animated: true)
+			present(UIAlertController.simpleAlert(title: "mail_missing_title".localized, message: nil), animated: true)
 			return
 		}
 		
 		guard let passwordValue = passwordTextField.text, passwordValue != "" else {
-			let alert = UIAlertController(title: "password_missing_title".localized, message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
-			present(alert, animated: true)
+			present(UIAlertController.simpleAlert(title: "password_missing_title".localized, message: nil), animated: true)
 			return
 		}
 		
 		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, error in
 			
-			guard let response = response as? HTTPURLResponse else { return }
+			guard let response = response as? HTTPURLResponse,
+				let data = data else { return }
+			
 			print("Status code:", response.statusCode)
-			guard let data = data else { return }
 			let decoder = JSONDecoder()
 			
 			if response.statusCode == 200 {
-				do {
-					let user = try decoder.decode(User.self, from: data)
-					print(user)
-					
-					let tabBarController = UITabBarController()
-					
-					let conversationListController = ConversationListController()
-					tabBarController.setViewControllers([UINavigationController(rootViewController: conversationListController)], animated: true)
-					
-					DispatchQueue.main.async {
-						self?.present(tabBarController, animated: true)
-					}
-				} catch {
-					print(error.localizedDescription)
+				guard let client = try? decoder.decode(Client.self, from: data) else { return }
+				print(client)
+				
+				let tabBarController = UITabBarController.coachController()
+				DispatchQueue.main.async {
+					self?.present(tabBarController, animated: true)
 				}
+				
+				if self?.segmentedControl.selectedSegmentIndex == 0 {
+					// Coach
+				} else {
+					// Client
+				}
+				
 			} else {
-				do {
-					let errorMessage = try decoder.decode(ErrorMessage.self, from: data)
-					
-					let alertController = UIAlertController(title: "error".localized, message: errorMessage.message.localized, preferredStyle: .alert)
-					alertController.addAction(UIAlertAction(title: "OK".localized, style: .default))
-					
-					DispatchQueue.main.async {
-						self?.present(alertController, animated: true)
-					}
-					
-				} catch {
-					print(error.localizedDescription)
+				guard let errorMessage = try? decoder.decode(ErrorMessage.self, from: data) else { return }
+				
+				let alertController = UIAlertController.simpleAlert(title: "error".localized, message: errorMessage.message.localized)
+				
+				DispatchQueue.main.async {
+					self?.present(alertController, animated: true)
 				}
 			}
 		}
 	}
-}
-
-//swiftlint:disable identifier_name
-
-struct User: Codable {
-	var id: Int
-	var type: Int
-	var mail: String
-	var firstName: String
-	var lastName: String
-	var birthDate: String
-	var city: String
-	var phoneNumber: String
-}
-
-struct ErrorMessage: Codable {
-	var message: String
+	
+	@objc func signUp(_ sender: UIButton) {
+		// Push navigation to future SignUpController
+	}
 }

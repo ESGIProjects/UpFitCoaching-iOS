@@ -14,6 +14,9 @@
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
 		D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D773DD54203362DE001520CA /* LaunchScreen.storyboard */; };
+		D7811948207D3E72001762D4 /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811947207D3E72001762D4 /* Codables.swift */; };
+		D781194A207D3F2D001762D4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811949207D3F2D001762D4 /* Helpers.swift */; };
+		D781194E207D4392001762D4 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781194D207D4392001762D4 /* SettingsController.swift */; };
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
 		D789201720544FAD0020C703 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Localization.swift */; };
@@ -38,6 +41,9 @@
 		D773DD52203362DE001520CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D773DD55203362DE001520CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D773DD57203362DE001520CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7811947207D3E72001762D4 /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
+		D7811949207D3F2D001762D4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		D781194D207D4392001762D4 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789200E20544DF90020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D789201220544E860020C703 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,6 +77,7 @@
 				D70A3D4F203CB3D9001C491A /* LoginController.swift */,
 				1AA39738203C1BA10020092D /* ConversationListController.swift */,
 				D773DD4D203362DE001520CA /* ConversationController.swift */,
+				D781194D207D4392001762D4 /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -152,6 +159,8 @@
 				D7DAA23F20554E7F007F3011 /* Colors.swift */,
 				D7EFFF32204FDE47004694EC /* Network.swift */,
 				D789201620544FAD0020C703 /* String+Localization.swift */,
+				D7811947207D3E72001762D4 /* Codables.swift */,
+				D7811949207D3F2D001762D4 /* Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -253,12 +262,15 @@
 				D789201720544FAD0020C703 /* String+Localization.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
 				D7B9CBF920541E6500B755CD /* ConversationListController+UI.swift in Sources */,
+				D7811948207D3E72001762D4 /* Codables.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* ConversationController+UI.swift in Sources */,
+				D781194A207D3F2D001762D4 /* Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
+				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
