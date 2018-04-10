@@ -13,6 +13,7 @@ class LoginController: UIViewController {
 	lazy var scrollView = createScrollView()
 	lazy var contentView = createContentView()
 	lazy var titleLabel = createTitleLabel()
+	lazy var segmentedControl = createSegmentedControl()
 	lazy var mailTextField = createMailTextField()
 	lazy var passwordTextField = createPassworTextField()
 	lazy var loginButton = createLoginButton()
@@ -22,6 +23,8 @@ class LoginController: UIViewController {
 		title = "login_title".localized
 		edgesForExtendedLayout = []
 		setupLayout()
+		
+		navigationController?.setNavigationBarHidden(true, animated: false)
 		
 		if #available(iOS 11.0, *) {
 			navigationController?.navigationBar.prefersLargeTitles = true
@@ -34,6 +37,7 @@ class LoginController: UIViewController {
 		scrollView.addSubview(contentView)
 		
 		contentView.addSubview(titleLabel)
+		contentView.addSubview(segmentedControl)
 		contentView.addSubview(mailTextField)
 		contentView.addSubview(passwordTextField)
 		contentView.addSubview(loginButton)
@@ -55,8 +59,6 @@ class LoginController: UIViewController {
 			present(alert, animated: true)
 			return
 		}
-		
-
 		
 		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, error in
 			

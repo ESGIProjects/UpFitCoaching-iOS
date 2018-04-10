@@ -28,9 +28,17 @@ extension LoginController {
 	func createTitleLabel() -> UILabel {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.text = "Coaching App"
+		label.text = "app_name".localized
 		label.font = UIFont.preferredFont(forTextStyle: .title1)
+		label.textAlignment = .center
 		return label
+	}
+	
+	func createSegmentedControl() -> UISegmentedControl {
+		let view = UISegmentedControl(items: ["login_is_coach".localized, "login_is_client".localized])
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.selectedSegmentIndex = 0
+		return view
 	}
 	
 	func createMailTextField() -> UITextField {
@@ -90,11 +98,15 @@ extension LoginController {
 			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
 			contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
 			
-			titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10.0),
+			titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30.0),
 			titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
 			titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			mailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15.0),
+			segmentedControl.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30.0),
+			segmentedControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			segmentedControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
+			
+			mailTextField.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 15.0),
 			mailTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
 			mailTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
