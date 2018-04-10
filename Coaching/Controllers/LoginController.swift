@@ -10,13 +10,13 @@ import UIKit
 
 class LoginController: UIViewController {
 	
-	lazy var scrollView = createScrollView()
-	lazy var contentView = createContentView()
-	lazy var titleLabel = createTitleLabel()
-	lazy var segmentedControl = createSegmentedControl()
-	lazy var mailTextField = createMailTextField()
-	lazy var passwordTextField = createPassworTextField()
-	lazy var loginButton = createLoginButton()
+	lazy var scrollView = UI.scrollView()
+	lazy var contentView = UI.contentView()
+	lazy var titleLabel = UI.titleLabel()
+	lazy var segmentedControl = UI.segmentedControl()
+	lazy var mailTextField = UI.mailTextField()
+	lazy var passwordTextField = UI.passwordTextField()
+	lazy var loginButton = UI.loginButton(self, action: #selector(signin(_:)))
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,7 +42,8 @@ class LoginController: UIViewController {
 		contentView.addSubview(passwordTextField)
 		contentView.addSubview(loginButton)
 		
-		NSLayoutConstraint.activate(layoutConstraints())
+		let constraints = UI.getConstraints(for: self)
+		NSLayoutConstraint.activate(constraints)
 	}
 	
 	@objc func signin(_ sender: UIButton) {
@@ -101,6 +102,8 @@ class LoginController: UIViewController {
 		}
 	}
 }
+
+//swiftlint:disable identifier_name
 
 struct User: Codable {
 	var id: Int

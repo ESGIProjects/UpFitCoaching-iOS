@@ -12,8 +12,8 @@ class ConversationController: UIViewController {
 
 	static let currentUser = "Silver"
 	
-	lazy var collectionView = createCollectionView()
-	lazy var messageBarView = createMessageBarView()
+	lazy var collectionView = UI.collectionView(delegate: self, dataSource: self, layoutDelegate: self)
+	lazy var messageBarView = UI.messageBarView(self, action: #selector(sendButtonTapped(_:)))
 	
 	private var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
@@ -58,7 +58,8 @@ class ConversationController: UIViewController {
 			messageBarViewBottomConstraint = messageBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		}
 		
-		NSLayoutConstraint.activate(layoutConstraints())
+		let constraints = UI.getConstraints(for: self)
+		NSLayoutConstraint.activate(constraints)
 		messageBarViewBottomConstraint.isActive = true
 		
 		// Update scroll view insets

@@ -10,7 +10,7 @@ import UIKit
 
 class ConversationListController: UIViewController {
 	
-	lazy var tableView = createTableView()
+	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
 	
 	var conversations: [Conversation] = [
 		Conversation(name: "Jason Pierna", message: "debug_longMessage".localized),
@@ -39,21 +39,8 @@ class ConversationListController: UIViewController {
 		// Layout the table view
 		view.addSubview(tableView)
 		
-		if #available(iOS 11.0, *) {
-			NSLayoutConstraint.activate([
-				tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-				tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-				tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				])
-		} else {
-			NSLayoutConstraint.activate([
-				tableView.topAnchor.constraint(equalTo: view.topAnchor),
-				tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-				tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				])
-		}
+		let constraints = UI.getConstraints(for: self)
+		NSLayoutConstraint.activate(constraints)
 	}
 }
 
