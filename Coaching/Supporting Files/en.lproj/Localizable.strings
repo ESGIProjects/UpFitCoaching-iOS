@@ -6,6 +6,11 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
+"app_name" = "UpFit Coaching";
+
+"login_is_coach" = "I am a coach";
+"login_is_client" = "I am a client";
+
 "mail_placeholder" = "Mail";
 "mail_missing_title" = "Mail missing";
 "password_missing_title" = "Password missing";
