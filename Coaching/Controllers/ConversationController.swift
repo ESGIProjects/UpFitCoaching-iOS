@@ -25,10 +25,7 @@ class ConversationController: UIViewController {
 		super.viewDidLoad()
 		
 		view.backgroundColor = .white
-		
 		edgesForExtendedLayout = []
-		
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(test))
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
 		
 		if #available(iOS 11.0, *) {
@@ -37,12 +34,23 @@ class ConversationController: UIViewController {
 		
 		setupLayout()
 		
+		// Keyboard observers
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+		
+		// Orientaton observer
+		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 	}
 	
-	@objc func test() {
+	override func viewWillDisappear(_ animated: Bool) {
+		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+	}
+	
+	@objc func orientationDidChange() {
 		collectionView.collectionViewLayout.invalidateLayout()
 	}
 	
