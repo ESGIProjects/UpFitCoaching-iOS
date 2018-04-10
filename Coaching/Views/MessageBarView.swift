@@ -128,5 +128,7 @@ extension MessageBarView: UITextViewDelegate {
 		
 		let size = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: maxHeight))
 		textFieldHeightConstraint.constant = CGFloat.minimum(size.height, maxHeight)
+		
+		textView.isScrollEnabled = textView.contentSize.height < maxHeight ? false : true
 	}
 }

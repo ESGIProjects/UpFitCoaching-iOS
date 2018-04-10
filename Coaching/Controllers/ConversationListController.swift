@@ -85,6 +85,7 @@ extension ConversationListController: UITableViewDelegate {
 		tableView.deselectRow(at: indexPath, animated: true)
 		
 		let conversationViewController = ConversationController()
+		conversationViewController.hidesBottomBarWhenPushed = true
 		conversationViewController.title = conversations[indexPath.row].name
 
 		navigationController?.pushViewController(conversationViewController, animated: true)
