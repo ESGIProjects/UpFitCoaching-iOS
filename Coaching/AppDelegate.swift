@@ -18,7 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-		window?.rootViewController = UINavigationController(rootViewController: LoginController())
+		if let user = UserDefaults.standard.object(forKey: "usertype") as? String {
+			// Show the corresponding tab bar controller
+			window?.rootViewController = user == "coach" ? UITabBarController.coachController() : UITabBarController.clientController()
+		} else {
+			// Show login
+			window?.rootViewController = UINavigationController(rootViewController: LoginController())
+		}
+		
 		window?.makeKeyAndVisible()
 		
 		return true

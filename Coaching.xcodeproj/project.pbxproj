@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A9E194E207E403A0091FABB /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194D207E403A0091FABB /* SignUpController.swift */; };
+		1A9E1950207E404C0091FABB /* SignUpController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194F207E404C0091FABB /* SignUpController+UI.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
@@ -35,6 +37,8 @@
 		1A9E1946207E0EFB0091FABB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A9E1948207E0F480091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1A9E194D207E403A0091FABB /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		1A9E194F207E404C0091FABB /* SignUpController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpController+UI.swift"; sourceTree = "<group>"; };
 		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		1AA3973A203C50520020092D /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -71,17 +75,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A8A18E5203AFD09006D2183 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D70A3D4F203CB3D9001C491A /* LoginController.swift */,
-				1AA39738203C1BA10020092D /* ConversationListController.swift */,
-				D773DD4D203362DE001520CA /* ConversationController.swift */,
-				D781194D207D4392001762D4 /* SettingsController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		1A8A18E6203AFD11006D2183 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +83,55 @@
 				D7AA4E8F20548098004A0986 /* MessageCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1A9E1949207E30730091FABB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D70A3D4F203CB3D9001C491A /* LoginController.swift */,
+				1A9E194D207E403A0091FABB /* SignUpController.swift */,
+				1A9E1951207E40630091FABB /* UI */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1A9E194A207E30900091FABB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D781194D207D4392001762D4 /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1A9E194B207E30A40091FABB /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				1AA39738203C1BA10020092D /* ConversationListController.swift */,
+				D773DD4D203362DE001520CA /* ConversationController.swift */,
+				D7B9CBF5205419F300B755CD /* UI */,
+				D789200B20542CE30020C703 /* Models */,
+				1A8A18E6203AFD11006D2183 /* Views */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		1A9E194C207E37040091FABB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A9E1949207E30730091FABB /* Login */,
+				1A9E194B207E30A40091FABB /* Messages */,
+				1A9E194A207E30900091FABB /* Settings */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1A9E1951207E40630091FABB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D7B9CBFA20541E7300B755CD /* LoginController+UI.swift */,
+				1A9E194F207E404C0091FABB /* SignUpController+UI.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		D773DD3F203362DD001520CA = {
@@ -112,10 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				D773DD4B203362DE001520CA /* AppDelegate.swift */,
-				D789200B20542CE30020C703 /* Models */,
-				1A8A18E6203AFD11006D2183 /* Views */,
-				1A8A18E5203AFD09006D2183 /* Controllers */,
-				D7B9CBF5205419F300B755CD /* UI */,
+				1A9E194C207E37040091FABB /* Controllers */,
 				D7EFFF31204FDE08004694EC /* Helpers */,
 				D789201520544F7E0020C703 /* Supporting Files */,
 				D773DD57203362DE001520CA /* Info.plist */,
@@ -145,7 +184,6 @@
 		D7B9CBF5205419F300B755CD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D7B9CBFA20541E7300B755CD /* LoginController+UI.swift */,
 				D7B9CBF820541E6500B755CD /* ConversationListController+UI.swift */,
 				D7B9CBF620541A0A00B755CD /* ConversationController+UI.swift */,
 				D7AA4E91205481F3004A0986 /* ConversationLayout.swift */,
@@ -261,6 +299,7 @@
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D789201720544FAD0020C703 /* String+Localization.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
+				1A9E1950207E404C0091FABB /* SignUpController+UI.swift in Sources */,
 				D7B9CBF920541E6500B755CD /* ConversationListController+UI.swift in Sources */,
 				D7811948207D3E72001762D4 /* Codables.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
@@ -270,6 +309,7 @@
 				D7B9CBF720541A0A00B755CD /* ConversationController+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
+				1A9E194E207E403A0091FABB /* SignUpController.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,

@@ -70,6 +70,15 @@ extension LoginController {
 			return button
 		}
 		
+		class func signUpButton(_ target: Any?, action: Selector) -> UIButton {
+			let button = UIButton()
+			button.translatesAutoresizingMaskIntoConstraints = false
+			button.setTitle("signup_button".localized, for: .normal)
+			button.setTitleColor(.red, for: .normal)
+			button.addTarget(target, action: action, for: .touchUpInside)
+			return button
+		}
+		
 		class func getConstraints(for controller: LoginController) -> [NSLayoutConstraint] {
 			var constraints = [NSLayoutConstraint]()
 			
@@ -113,9 +122,13 @@ extension LoginController {
 				controller.passwordTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
 				controller.loginButton.topAnchor.constraint(equalTo: controller.passwordTextField.bottomAnchor, constant: 10.0),
-				controller.loginButton.bottomAnchor.constraint(equalTo: controller.contentView.bottomAnchor, constant: 10.0),
 				controller.loginButton.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
-				controller.loginButton.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0)
+				controller.loginButton.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
+				
+				controller.signUpButton.topAnchor.constraint(equalTo: controller.loginButton.bottomAnchor, constant: 10.0),
+				controller.signUpButton.bottomAnchor.constraint(equalTo: controller.contentView.bottomAnchor, constant: 10.0),
+				controller.signUpButton.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.signUpButton.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0)
 			]
 			
 			return constraints

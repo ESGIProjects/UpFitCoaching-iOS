@@ -17,19 +17,19 @@ class LoginController: UIViewController {
 	lazy var mailTextField = UI.mailTextField()
 	lazy var passwordTextField = UI.passwordTextField()
 	lazy var loginButton = UI.loginButton(self, action: #selector(signIn(_:)))
+	lazy var signUpButton = UI.signUpButton(self, action: #selector(signUp(_:)))
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		title = "login_title".localized
 		edgesForExtendedLayout = []
+		
 		setupLayout()
-		
-		navigationController?.setNavigationBarHidden(true, animated: false)
-		
-		if #available(iOS 11.0, *) {
-			navigationController?.navigationBar.prefersLargeTitles = true
-			navigationItem.largeTitleDisplayMode = .never
-		}
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		navigationController?.setNavigationBarHidden(true, animated: true)
 	}
 	
 	private func setupLayout() {
@@ -41,6 +41,7 @@ class LoginController: UIViewController {
 		contentView.addSubview(mailTextField)
 		contentView.addSubview(passwordTextField)
 		contentView.addSubview(loginButton)
+		contentView.addSubview(signUpButton)
 		
 		let constraints = UI.getConstraints(for: self)
 		NSLayoutConstraint.activate(constraints)
@@ -92,6 +93,6 @@ class LoginController: UIViewController {
 	}
 	
 	@objc func signUp(_ sender: UIButton) {
-		// Push navigation to future SignUpController
+		navigationController?.pushViewController(SignUpController(), animated: true)
 	}
 }
