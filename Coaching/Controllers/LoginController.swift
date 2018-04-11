@@ -57,7 +57,9 @@ class LoginController: UIViewController {
 			return
 		}
 		
-		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, error in
+		let isCoach = segmentedControl.selectedSegmentIndex == 0
+		
+		Network.login(mail: mailValue, password: passwordValue, isCoach: false) { [weak self] data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return }
@@ -69,17 +71,14 @@ class LoginController: UIViewController {
 				guard let client = try? decoder.decode(Client.self, from: data) else { return }
 				print(client)
 				
-				let tabBarController = UITabBarController.coachController()
+				let tabBarController = isCoach ? UITabBarController.coachController() : UITabBarController.clientController()
+				
 				DispatchQueue.main.async {
-					self?.present(tabBarController, animated: true)
+					self?.present(tabBarController, animated: true) {
+						self?.mailTextField.text = ""
+						self?.passwordTextField.text = ""
+					}
 				}
-				
-				if self?.segmentedControl.selectedSegmentIndex == 0 {
-					// Coach
-				} else {
-					// Client
-				}
-				
 			} else {
 				guard let errorMessage = try? decoder.decode(ErrorMessage.self, from: data) else { return }
 				

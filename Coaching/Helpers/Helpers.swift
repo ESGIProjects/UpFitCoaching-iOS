@@ -37,6 +37,17 @@ extension UITabBarController {
 	}
 	
 	class func clientController() -> UITabBarController {
-		return UITabBarController()
+		
+		var viewControllers = [UIViewController]()
+		
+		let settingsController = SettingsController()
+		settingsController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings"), tag: 2)
+		viewControllers.append(settingsController)
+		
+		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
+		
+		let tabBarController = UITabBarController()
+		tabBarController.setViewControllers(viewControllers, animated: true)
+		return tabBarController
 	}
 }
