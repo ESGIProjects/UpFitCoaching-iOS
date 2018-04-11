@@ -111,8 +111,14 @@ class ConversationController: UIViewController {
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		guard let keyboardEndFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
 		
-		messageBarViewBottomConstraint.constant = -keyboardEndFrame.cgRectValue.height
-		collectionView.contentInset.bottom = messageBarView.frame.height + keyboardEndFrame.cgRectValue.height
+		var keyboardHeight = keyboardEndFrame.cgRectValue.height
+		
+		if #available(iOS 11.0, *) {
+			keyboardHeight -= view.safeAreaInsets.bottom
+		}
+		
+		messageBarViewBottomConstraint.constant = -keyboardHeight
+		collectionView.contentInset.bottom = messageBarView.frame.height + keyboardHeight
 		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
 		
 		UIView.animate(withDuration: animationDuration) { [unowned self] in
