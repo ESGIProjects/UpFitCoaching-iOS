@@ -17,8 +17,9 @@ class SettingsController: UIViewController {
 		title = "Settings"
 		
 		tableView = UITableView(frame: .zero, style: .grouped)
+		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.dataSource = self
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
+		tableView.delegate = self
 		
 		view.addSubview(tableView)
 		
@@ -38,6 +39,10 @@ class SettingsController: UIViewController {
 				])
 		}
 	}
+	
+	@objc func signOut(_ sender: UIButton) {
+		tabBarController?.dismiss(animated: true)
+	}
 }
 
 extension SettingsController: UITableViewDataSource {
@@ -46,10 +51,30 @@ extension SettingsController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell") else { return UITableViewCell(style: .default, reuseIdentifier: "SettingsCell") }
 		
-		cell.textLabel?.text = "Hello world"
+		let button = UIButton()
+		button.translatesAutoresizingMaskIntoConstraints = false
+		
+		button.setTitle("Sign out", for: .normal)
+		button.setTitleColor(.red, for: .normal)
+		button.addTarget(self, action: #selector(signOut(_:)), for: .touchUpInside)
+		
+		let cell = UITableViewCell()
+		cell.contentView.addSubview(button)
+		
+		NSLayoutConstraint.activate([
+			button.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+			button.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor),
+			button.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+			button.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor)
+			])
 		
 		return cell
+	}
+}
+
+extension SettingsController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }
