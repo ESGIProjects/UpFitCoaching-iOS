@@ -22,7 +22,7 @@ class SignUpController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "signupController_title".localized
+		title = "signUpController_title".localized
 		view.backgroundColor = .white
 		setupLayout()
 	}
@@ -48,27 +48,27 @@ class SignUpController: UIViewController {
 	
 	@objc func signUp(_ sender: UIButton) {
 		guard let firstName = firstNameTextField.text, firstName != "" else {
-			present(UIAlertController.simpleAlert(title: "firstName_missing_title", message: nil), animated: true)
+			present(UIAlertController.simpleAlert(title: "firstName_missing_title".localized, message: nil), animated: true)
 			return
 		}
 		
 		guard let lastName = lastNameTextField.text, lastName != "" else {
-			present(UIAlertController.simpleAlert(title: "lastName_missing_title", message: nil), animated: true)
+			present(UIAlertController.simpleAlert(title: "lastName_missing_title".localized, message: nil), animated: true)
 			return
 		}
 		
 		guard let mail = mailTextField.text, mail != "" else {
-			present(UIAlertController.simpleAlert(title: "mail_missing_title", message: nil), animated: true)
+			present(UIAlertController.simpleAlert(title: "mail_missing_title".localized, message: nil), animated: true)
 			return
 		}
 		
 		guard let password = passwordTextField.text, password != "" else {
-			present(UIAlertController.simpleAlert(title: "password_missing_title", message: nil), animated: true)
+			present(UIAlertController.simpleAlert(title: "password_missing_title".localized, message: nil), animated: true)
 			return
 		}
 		
 		guard let confirmPassword = confirmPasswordTextField.text, password == confirmPassword else {
-			present(UIAlertController.simpleAlert(title: "confirmPassword_error_title", message: nil), animated: true)
+			present(UIAlertController.simpleAlert(title: "confirmPassword_error_title".localized, message: nil), animated: true)
 			return
 		}
 		

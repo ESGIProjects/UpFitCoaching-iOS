@@ -6,28 +6,40 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
+// Common labels
 "app_name" = "UpFit Coaching";
+"error" = "Error";
+"OK_button" = "OK";
+
+// Login
+"login_title" = "Login";
+"signUpController_title" = "Sign Up";
 
 "login_is_coach" = "I am a coach";
 "login_is_client" = "I am a client";
 
 "mail_placeholder" = "Mail";
+"password_placeholder" = "Password";
+"confirmPassword_placeholder" = "Confirm Password";
+"firstName_placeholder" = "First name";
+"lastName_placeholder" = "Last name";
+
 "mail_missing_title" = "Mail missing";
 "password_missing_title" = "Password missing";
-"password_placeholder" = "Password";
-"message_placeholder" = "Message";
+"firstName_missing_title" = "First name missing";
+"lastName_missing_title" = "Last name missing";
+"confirmPassword_error_title" = "You must enter the same password twice.";
 
 "login_button" = "Sign In";
-"OK_button" = "OK";
+"signUp_button" = "Sign Up";
+"signUp_long_button" = "No account yet? Sign Up.";
+
+// Messages
+"conversationList_title" = "Messages";
+"message_placeholder" = "Message";
 "sendMessage_button" = "Send";
 
-"login_title" = "Login";
-"conversationList_title" = "Messages";
-
-"error" = "Error";
-"OK" = "OK";
-
-// Network
+// Network messages
 "user_already_exists" = "This user already exists.";
 "user_insert_failed" = "There was a problem while signing up. Please try later.";
 "user_not_exist" = "This user doesn't exist.";

@@ -29,7 +29,7 @@ extension SignUpController {
 			textField.borderStyle = .roundedRect
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
-			textField.placeholder = "first_name_placeholder".localized
+			textField.placeholder = "firstName_placeholder".localized
 			return textField
 		}
 		
@@ -40,7 +40,7 @@ extension SignUpController {
 			textField.keyboardType = .emailAddress
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
-			textField.placeholder = "last_name_placeholder".localized
+			textField.placeholder = "lastName_placeholder".localized
 			return textField
 		}
 		
@@ -71,14 +71,14 @@ extension SignUpController {
 			textField.borderStyle = .roundedRect
 			textField.isSecureTextEntry = true
 			textField.returnKeyType = .done
-			textField.placeholder = "confirm_password_placeholder".localized
+			textField.placeholder = "confirmPassword_placeholder".localized
 			return textField
 		}
 		
 		class func signUpButton(_ target: Any?, action: Selector) -> UIButton {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
-			button.setTitle("signup_button".localized, for: .normal)
+			button.setTitle("signUp_button".localized, for: .normal)
 			button.setTitleColor(.red, for: .normal)
 			button.addTarget(target, action: action, for: .touchUpInside)
 			return button

@@ -73,7 +73,7 @@ extension LoginController {
 		class func signUpButton(_ target: Any?, action: Selector) -> UIButton {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
-			button.setTitle("signup_button".localized, for: .normal)
+			button.setTitle("signUp_long_button".localized, for: .normal)
 			button.setTitleColor(.red, for: .normal)
 			button.addTarget(target, action: action, for: .touchUpInside)
 			return button
