@@ -17,6 +17,7 @@ class SignUpController: UIViewController {
 	lazy var mailTextField = UI.mailTextField()
 	lazy var passwordTextField = UI.passwordTextField()
 	lazy var confirmPasswordTextField = UI.confirmPasswordTextField()
+	lazy var birthDatePicker = UI.birthDatePicker()
 	lazy var signUpButton = UI.signUpButton(self, action: #selector(signUp(_:)))
 	
 	override func viewDidLoad() {
@@ -40,6 +41,7 @@ class SignUpController: UIViewController {
 		contentView.addSubview(mailTextField)
 		contentView.addSubview(passwordTextField)
 		contentView.addSubview(confirmPasswordTextField)
+		contentView.addSubview(birthDatePicker)
 		contentView.addSubview(signUpButton)
 		
 		let constraints = UI.getConstraints(for: self)

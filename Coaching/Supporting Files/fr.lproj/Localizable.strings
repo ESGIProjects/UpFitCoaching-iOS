@@ -39,6 +39,10 @@
 "message_placeholder" = "Message";
 "sendMessage_button" = "Envoyer";
 
+// Settings
+"settings_title" = "Réglages";
+"signOut_button" = "Déconnexion";
+
 // Network messages
 "user_already_exists" = "Cet utilisateur existe déjà.";
 "user_insert_failed" = "Nous avons rencontré un problème lors de l'inscription. Merci de réessayer plus tard.";

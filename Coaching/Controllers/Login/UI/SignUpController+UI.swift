@@ -6,6 +6,8 @@
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
+//swiftlint:disable type_name
+
 import UIKit
 
 extension SignUpController {
@@ -75,6 +77,15 @@ extension SignUpController {
 			return textField
 		}
 		
+		class func birthDatePicker() -> UIDatePicker {
+			let picker = UIDatePicker(frame: .zero)
+			picker.translatesAutoresizingMaskIntoConstraints = false
+			picker.datePickerMode = .date
+			picker.locale = Locale.current
+			picker.maximumDate = picker.date
+			return picker
+		}
+		
 		class func signUpButton(_ target: Any?, action: Selector) -> UIButton {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
@@ -131,7 +142,11 @@ extension SignUpController {
 				c.confirmPasswordTextField.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
 				c.confirmPasswordTextField.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
 				
-				c.signUpButton.topAnchor.constraint(equalTo: c.confirmPasswordTextField.bottomAnchor, constant: 15.0),
+				c.birthDatePicker.topAnchor.constraint(equalTo: c.confirmPasswordTextField.bottomAnchor, constant: 15.0),
+				c.birthDatePicker.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
+				c.birthDatePicker.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				
+				c.signUpButton.topAnchor.constraint(equalTo: c.birthDatePicker.bottomAnchor, constant: 15.0),
 				c.signUpButton.bottomAnchor.constraint(equalTo: c.contentView.bottomAnchor, constant: -10.0),
 				c.signUpButton.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
 				c.signUpButton.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0)

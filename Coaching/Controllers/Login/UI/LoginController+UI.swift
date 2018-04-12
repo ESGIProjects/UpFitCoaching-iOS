@@ -65,7 +65,7 @@ extension LoginController {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
 			button.setTitle("login_button".localized, for: .normal)
-			button.setTitleColor(.red, for: .normal)
+			button.setTitleColor(.main, for: .normal)
 			button.addTarget(target, action: action, for: .touchUpInside)
 			return button
 		}
@@ -73,8 +73,13 @@ extension LoginController {
 		class func signUpButton(_ target: Any?, action: Selector) -> UIButton {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
-			button.setTitle("signUp_long_button".localized, for: .normal)
-			button.setTitleColor(.red, for: .normal)
+			
+			let attributedString = NSAttributedString(string: "signUp_long_button".localized, attributes: [
+				.font: UIFont.systemFont(ofSize: 15),
+				.foregroundColor: UIColor.main
+				])
+			
+			button.setAttributedTitle(attributedString, for: .normal)
 			button.addTarget(target, action: action, for: .touchUpInside)
 			return button
 		}
@@ -121,11 +126,11 @@ extension LoginController {
 				controller.passwordTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
 				controller.passwordTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				controller.loginButton.topAnchor.constraint(equalTo: controller.passwordTextField.bottomAnchor, constant: 10.0),
+				controller.loginButton.topAnchor.constraint(equalTo: controller.passwordTextField.bottomAnchor, constant: 20.0),
 				controller.loginButton.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
 				controller.loginButton.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				controller.signUpButton.topAnchor.constraint(equalTo: controller.loginButton.bottomAnchor, constant: 10.0),
+				controller.signUpButton.topAnchor.constraint(equalTo: controller.loginButton.bottomAnchor, constant: 5.0),
 				controller.signUpButton.bottomAnchor.constraint(equalTo: controller.contentView.bottomAnchor, constant: 10.0),
 				controller.signUpButton.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
 				controller.signUpButton.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0)

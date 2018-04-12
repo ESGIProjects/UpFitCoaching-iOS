@@ -14,6 +14,6 @@ extension String {
 	}
 	
 	func localized(with arguments: CVarArg...) -> String {
-		return String(format: self.localized, arguments: arguments)
+		return String(format: localized, arguments: arguments)
 	}
 }

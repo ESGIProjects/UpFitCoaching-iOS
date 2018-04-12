@@ -14,7 +14,7 @@ class SettingsController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "Settings"
+		title = "settings_title".localized
 		
 		tableView = UITableView(frame: .zero, style: .grouped)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +55,7 @@ extension SettingsController: UITableViewDataSource {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		
-		button.setTitle("Sign out", for: .normal)
+		button.setTitle("signOut_button".localized, for: .normal)
 		button.setTitleColor(.red, for: .normal)
 		button.addTarget(self, action: #selector(signOut(_:)), for: .touchUpInside)
 		

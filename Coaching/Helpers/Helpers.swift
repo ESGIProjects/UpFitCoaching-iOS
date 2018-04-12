@@ -26,7 +26,7 @@ extension UITabBarController {
 		viewControllers.append(conversationListController)
 		
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings"), tag: 2)
+		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
 		viewControllers.append(settingsController)
 		
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
@@ -41,7 +41,7 @@ extension UITabBarController {
 		var viewControllers = [UIViewController]()
 		
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings"), tag: 2)
+		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
 		viewControllers.append(settingsController)
 		
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
