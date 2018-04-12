@@ -7,16 +7,33 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ConversationListController: UIViewController {
 	
 	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
+	lazy var conversations: Results<Conversation> = { try! Realm().objects(Conversation.self) }()
 	
-	var conversations: [Conversation] = [
-		Conversation(name: "Jason Pierna", message: "debug_longMessage".localized),
-		Conversation(name: "Kévin Le", message: "debug_shortMessage".localized),
-		Conversation(name: "Maeva Malih", message: "debug_shortMessage".localized)
-	]
+	private func populateDefaultConversations() {
+		if conversations.count == 0 {
+			
+			let realm = try! Realm()
+			
+			try! realm.write {
+				let defaultNames = ["Jason Pierna", "Kévin Le", "Maëva Malih"]
+				
+				for name in defaultNames {
+					let conversation = Conversation()
+					conversation.name = name
+					conversation.message = "debug_shortMessage".localized
+					
+					realm.add(conversation)
+				}
+			}
+			
+			conversations = realm.objects(Conversation.self)
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,6 +50,7 @@ class ConversationListController: UIViewController {
 		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
 		
 		setupLayout()
+		populateDefaultConversations()
 	}
 	
 	private func setupLayout() {
