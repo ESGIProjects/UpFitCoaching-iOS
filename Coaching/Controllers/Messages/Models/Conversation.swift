@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import RealmSwift
+//import RealmSwift
 
-class Conversation: Object {
-	@objc dynamic var name = ""
-	@objc dynamic var message = ""
+class Conversation/*: Object*/ {
+	/*@objc dynamic*/ var name: String
+	/*@objc dynamic*/ var message: String
 
-//	init(name: String, message: String) {
-//		self.name = name
-//		self.message = message
-//	}
+	init(name: String, message: String) {
+		self.name = name
+		self.message = message
+	}
 }
