@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import Starscream
 
 class ConversationController: UIViewController {
 
 	static let currentUser = "Silver"
 	
-	lazy var collectionView = UI.collectionView(delegate: self, dataSource: self, layoutDelegate: self)
+	lazy var collectionView = UI.collectionView(delegate: nil, dataSource: self, layoutDelegate: self)
 	lazy var messageBarView = UI.messageBarView(self, action: #selector(sendButtonTapped(_:)))
 	
 	private var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
-	var messages = [Message](repeating: Message("debug_shortMessage".localized, from: "Kévin Le", to: "Jason Pierna", at: Date()), count: 20)
+	var messages = [Message]()
+	var socket: WebSocket?
+	
+	let decoder = JSONDecoder()
+	let encoder = JSONEncoder()
 	
 	// MARK: - UIViewController
 	
@@ -41,6 +46,13 @@ class ConversationController: UIViewController {
 		
 		// Orientaton observer
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
+		
+		// WebSocket
+		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=2&type=0") {
+			socket = WebSocket(url: webSocketURL, protocols: ["message"])
+			socket?.delegate = self
+			socket?.connect()
+		}
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -48,6 +60,9 @@ class ConversationController: UIViewController {
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+		
+		socket?.disconnect(forceTimeout: 0)
+		socket?.delegate = nil
 	}
 	
 	@objc func orientationDidChange() {
@@ -91,6 +106,11 @@ class ConversationController: UIViewController {
 		
 		if let messageContent = messageBarView.textView.text {
 			messages.append(Message(messageContent, from: ConversationController.currentUser, to: "Kévin Le", at: Date()))
+			
+			// Send through socket
+			if let data = try? encoder.encode(ErrorMessage(message: messageContent)) {
+				socket?.write(data: data)
+			}
 		}
 		
 		// Empty the text view
@@ -98,12 +118,7 @@ class ConversationController: UIViewController {
 		
 		// Reload UI
 		collectionView.reloadData()
-
-		// Scroll to bottom
-		collectionView.setNeedsLayout()
-		collectionView.layoutIfNeeded()
-		
-		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
+		scrollToBottom()
 	}
 	
 	@objc func keyboardWillShow(notification: NSNotification) {
@@ -137,12 +152,15 @@ class ConversationController: UIViewController {
 			self.view.layoutIfNeeded()
 		}
 	}
+	
+	func scrollToBottom() {
+		collectionView.setNeedsLayout()
+		collectionView.layoutIfNeeded()
+		
+		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
+	}
 }
 
-// MARK: - UICollectionViewDelegate
-extension ConversationController: UICollectionViewDelegate {
-	
-}
 // MARK: - UICollectionViewDataSource
 extension ConversationController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -183,5 +201,34 @@ extension ConversationController: ConversationLayoutDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, fontAt indexPath: IndexPath) -> UIFont {
 		return UIFont.systemFont(ofSize: 17)
+	}
+}
+
+// MARK: - WebSocketDelegate
+extension ConversationController: WebSocketDelegate {
+	func websocketDidConnect(socket: WebSocketClient) {
+		print(#function)
+	}
+	
+	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+		print(#function)
+	}
+	
+	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+		print(#function)
+		
+		guard let json = text.data(using: .utf8),
+			let message = try? decoder.decode(ErrorMessage.self, from: json) else { return }
+		
+		messages.append(Message(message.message, from: "Jason", to: "Silver", at: Date()))
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.collectionView.reloadData()
+			self?.scrollToBottom()
+		}
+	}
+	
+	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+		print(#function)
 	}
 }
