@@ -24,3 +24,12 @@ struct Client: Codable {
 struct ErrorMessage: Codable {
 	var message: String
 }
+
+struct CodableMessage: Codable {
+	var message: String
+	var fromId: Int
+	var fromType: Int
+	var toId: Int
+	var toType: Int
+	var date: String
+}

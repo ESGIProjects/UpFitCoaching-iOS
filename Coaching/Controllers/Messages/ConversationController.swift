@@ -11,7 +11,7 @@ import Starscream
 
 class ConversationController: UIViewController {
 
-	static let currentUser = "Silver"
+	static let currentUser = "2"
 	
 	lazy var collectionView = UI.collectionView(delegate: nil, dataSource: self, layoutDelegate: self)
 	lazy var messageBarView = UI.messageBarView(self, action: #selector(sendButtonTapped(_:)))
@@ -21,6 +21,7 @@ class ConversationController: UIViewController {
 	var messages = [Message]()
 	var socket: WebSocket?
 	
+	let dateFormatter = DateFormatter()
 	let decoder = JSONDecoder()
 	let encoder = JSONEncoder()
 	
@@ -32,6 +33,8 @@ class ConversationController: UIViewController {
 		view.backgroundColor = .white
 		edgesForExtendedLayout = []
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
+		
+		dateFormatter.dateFormat = "yyyy-MM-dd"
 		
 		if #available(iOS 11.0, *) {
 			navigationItem.largeTitleDisplayMode = .never
@@ -48,7 +51,7 @@ class ConversationController: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 		
 		// WebSocket
-		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=2&type=0") {
+		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=\(ConversationController.currentUser)&type=0") {
 			socket = WebSocket(url: webSocketURL, protocols: ["message"])
 			socket?.delegate = self
 			socket?.connect()
@@ -104,11 +107,14 @@ class ConversationController: UIViewController {
 		// Check if the message is not empty
 		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
 		
-		if let messageContent = messageBarView.textView.text {
-			messages.append(Message(messageContent, from: ConversationController.currentUser, to: "Kévin Le", at: Date()))
+		if let messageText = messageBarView.textView.text {
+			let message = Message(messageText, from: ConversationController.currentUser, to: "1", at: Date())
+			messages.append(message)
 			
 			// Send through socket
-			if let data = try? encoder.encode(ErrorMessage(message: messageContent)) {
+			let codableMessage = CodableMessage(message: messageText, fromId: 2, fromType: 0, toId: 1, toType: 0, date: dateFormatter.string(from: Date()))
+			
+			if let data = try? encoder.encode(codableMessage) {
 				socket?.write(data: data)
 			}
 		}
@@ -215,12 +221,13 @@ extension ConversationController: WebSocketDelegate {
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-		print(#function)
+		guard let json = text.data(using: .utf8) else { return }
+		guard let codableMessage = try? decoder.decode(CodableMessage.self, from: json) else { return }
 		
-		guard let json = text.data(using: .utf8),
-			let message = try? decoder.decode(ErrorMessage.self, from: json) else { return }
+		let date = dateFormatter.date(from: codableMessage.date) ?? Date()
 		
-		messages.append(Message(message.message, from: "Jason", to: "Silver", at: Date()))
+		let message = Message(codableMessage.message, from: "\(codableMessage.fromId)", to: "\(codableMessage.toId)", at: date)
+		messages.append(message)
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.collectionView.reloadData()
