@@ -64,8 +64,7 @@ class ConversationController: UIViewController {
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
 		
-		socket?.disconnect(forceTimeout: 0)
-		socket?.delegate = nil
+		socket?.disconnect()
 	}
 	
 	@objc func orientationDidChange() {
