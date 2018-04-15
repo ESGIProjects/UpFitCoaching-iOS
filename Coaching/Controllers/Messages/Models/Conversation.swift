@@ -7,14 +7,39 @@
 //
 
 import Foundation
-//import RealmSwift
+import RealmSwift
 
-class Conversation/*: Object*/ {
-	/*@objc dynamic*/ var name: String
-	/*@objc dynamic*/ var message: String
+final class ConversationObject: Object {
 
-	init(name: String, message: String) {
-		self.name = name
-		self.message = message
+	@objc dynamic var conversationID = UUID().uuidString
+	@objc dynamic var name = ""
+	@objc dynamic var message = ""
+	
+	convenience init(conversation: Conversation) {
+		self.init()
+		
+		conversationID = conversation.conversationID
+		name = conversation.name
+		message = conversation.message
+	}
+
+	override static func primaryKey() -> String? {
+		return "conversationID"
+	}
+}
+
+struct Conversation {
+	let conversationID: String
+	let name: String
+	let message: String
+	
+	static let all = FetchRequest<[Conversation], ConversationObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(Conversation.init) })
+}
+
+extension Conversation {
+	init(object: ConversationObject) {
+		conversationID = object.conversationID
+		name = object.name
+		message = object.message
 	}
 }

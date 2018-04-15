@@ -7,36 +7,15 @@
 //
 
 import UIKit
-//import RealmSwift
+import RealmSwift
 
 class ConversationListController: UIViewController {
 	
 	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
-	var conversations = [
-		Conversation(name: "Jason", message: "debug_shortMessage".localized)
-	]
-//	lazy var conversations: Results<Conversation> = { try! Realm().objects(Conversation.self) }()
-	
-//	private func populateDefaultConversations() {
-//		if conversations.count == 0 {
-//
-//			let realm = try! Realm()
-//
-//			try! realm.write {
-//				let defaultNames = ["Jason Pierna", "Kévin Le", "Maëva Malih"]
-//
-//				for name in defaultNames {
-//					let conversation = Conversation()
-//					conversation.name = name
-//					conversation.message = "debug_shortMessage".localized
-//
-//					realm.add(conversation)
-//				}
-//			}
-//
-//			conversations = realm.objects(Conversation.self)
-//		}
-//	}
+	lazy var conversations: [Conversation] = {
+		let database = Database()
+		return database.fetch(using: Conversation.all)
+	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,7 +32,15 @@ class ConversationListController: UIViewController {
 		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
 		
 		setupLayout()
-//		populateDefaultConversations()
+		
+		if conversations.count == 0 {
+			let conversation = Conversation(conversationID: UUID().uuidString, name: "Jason", message: "Miaou")
+			
+			let database = Database()
+			database.createOrUpdate(model: conversation, with: ConversationObject.init)
+			conversations = database.fetch(using: Conversation.all)
+			tableView.reloadData()
+		}
 	}
 	
 	private func setupLayout() {

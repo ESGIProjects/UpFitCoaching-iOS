@@ -12,6 +12,7 @@
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
+		D7108AFA2083B1C700AB6260 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7108AF92083B1C700AB6260 /* Database.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
 		D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		D7108AF92083B1C700AB6260 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				D789201620544FAD0020C703 /* String+Localization.swift */,
 				D7811947207D3E72001762D4 /* Codables.swift */,
 				D7811949207D3F2D001762D4 /* Helpers.swift */,
+				D7108AF92083B1C700AB6260 /* Database.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
+				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* ConversationController+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Helpers.swift in Sources */,
