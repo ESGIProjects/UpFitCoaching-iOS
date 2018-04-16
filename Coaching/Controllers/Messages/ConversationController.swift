@@ -107,7 +107,7 @@ class ConversationController: UIViewController {
 		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
 		
 		if let messageText = messageBarView.textView.text {
-			let message = Message(messageText, from: ConversationController.currentUser, to: "1", at: Date())
+			let message = Message(messageID: UUID().uuidString, sender: ConversationController.currentUser, receiver: "1", content: messageText, date: Date())
 			messages.append(message)
 			
 			// Send through socket
@@ -225,7 +225,7 @@ extension ConversationController: WebSocketDelegate {
 		
 		let date = dateFormatter.date(from: codableMessage.date) ?? Date()
 		
-		let message = Message(codableMessage.message, from: "\(codableMessage.fromId)", to: "\(codableMessage.toId)", at: date)
+		let message = Message(messageID: UUID().uuidString, sender: "\(codableMessage.fromId)", receiver: "\(codableMessage.toId)", content: codableMessage.message, date: date)
 		messages.append(message)
 		
 		DispatchQueue.main.async { [weak self] in

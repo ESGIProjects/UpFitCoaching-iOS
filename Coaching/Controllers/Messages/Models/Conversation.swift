@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 final class ConversationObject: Object {
-
 	@objc dynamic var conversationID = UUID().uuidString
 	@objc dynamic var name = ""
 	@objc dynamic var message = ""

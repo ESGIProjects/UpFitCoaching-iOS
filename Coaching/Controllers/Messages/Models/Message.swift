@@ -7,17 +7,44 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Message {
-	var sender: String
-	var receiver: String
-	var content: String
-	var date: Date
+final class MessageObject: Object {
+	@objc dynamic var messageID = UUID().uuidString
+	@objc dynamic var sender = ""
+	@objc dynamic var receiver = ""
+	@objc dynamic var content = ""
+	@objc dynamic var date = Date()
 	
-	init(_ content: String, from sender: String, to receiver: String, at date: Date) {
-		self.sender = sender
-		self.receiver = receiver
-		self.content = content
-		self.date = date
+	override static func primaryKey() -> String? {
+		return "messageID"
+	}
+	
+	convenience init(message: Message) {
+		self.init()
+		
+		messageID = message.messageID
+		sender = message.sender
+		receiver = message.receiver
+		content = message.content
+		date = message.date
+	}
+}
+
+struct Message {
+	let messageID: String
+	let sender: String
+	let receiver: String
+	let content: String
+	let date: Date
+}
+
+extension Message {
+	init(object: MessageObject) {
+		messageID = object.messageID
+		sender = object.sender
+		receiver = object.receiver
+		content = object.content
+		date = object.date
 	}
 }
