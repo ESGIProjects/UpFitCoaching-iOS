@@ -70,7 +70,14 @@ class LoginController: UIViewController {
 			
 			if response.statusCode == 200 {
 				guard let client = try? decoder.decode(Client.self, from: data) else { return }
-				print(client)
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "yyyy-MM-dd"
+				
+				let birthDate = dateFormatter.date(from: client.birthDate) ?? Date()
+				
+				let user = User(userID: client.id, type: client.type, mail: client.mail, firstName: client.firstName, lastName: client.lastName, birhDate: birthDate, city: client.city, phoneNumber: client.phoneNumber)
+				
+				Database().createOrUpdate(model: user, with: UserObject.init)
 				
 				let tabBarController = isCoach ? UITabBarController.coachController() : UITabBarController.clientController()
 				

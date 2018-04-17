@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-		if let user = UserDefaults.standard.object(forKey: "usertype") as? String {
+		let users = Database().fetch(using: User.all)
+		
+		if let user = users.first {
 			// Show the corresponding tab bar controller
-			window?.rootViewController = user == "coach" ? UITabBarController.coachController() : UITabBarController.clientController()
+			window?.rootViewController = user.type == 0 ? UITabBarController.coachController() : UITabBarController.clientController()
 		} else {
 			// Show login
 			window?.rootViewController = UINavigationController(rootViewController: LoginController())

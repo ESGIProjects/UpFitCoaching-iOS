@@ -51,7 +51,7 @@ final class Database {
 		return fetch(with: request.predicate, sortDescriptors: request.sortDescriptors, transformer: request.transformer)
 	}
 	
-	func delete<RealmObject: Object>(type: RealmObject.Type, with primaryKey: String) {
+	func delete<RealmObject: Object>(type: RealmObject.Type, with primaryKey: Int) {
 		let object = realm.object(ofType: type, forPrimaryKey: primaryKey)
 		
 		if let object = object {

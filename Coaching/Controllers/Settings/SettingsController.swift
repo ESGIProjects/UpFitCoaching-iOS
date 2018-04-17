@@ -41,7 +41,19 @@ class SettingsController: UIViewController {
 	}
 	
 	@objc func signOut(_ sender: UIButton) {
-		tabBarController?.dismiss(animated: true)
+		
+		let database = Database()
+		
+		if let user = database.fetch(using: User.all).first {
+			database.delete(type: UserObject.self, with: user.userID)
+			
+			if tabBarController?.presentingViewController != nil {
+				tabBarController?.dismiss(animated: true)
+			} else {
+				guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
+				window.rootViewController = UINavigationController(rootViewController: LoginController())
+			}
+		}
 	}
 }
 

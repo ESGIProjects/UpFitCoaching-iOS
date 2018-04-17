@@ -31,6 +31,7 @@
 		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
 		D7DAA24020554E7F007F3011 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA23F20554E7F007F3011 /* Colors.swift */; };
 		D7DAA24220554F7C007F3011 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA24120554F7C007F3011 /* Message.swift */; };
+		D7EF961F20860EBB002E0A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF961E20860EBB002E0A9B /* User.swift */; };
 		D7EFFF33204FDE47004694EC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFFF32204FDE47004694EC /* Network.swift */; };
 		EE8D5295A8AAC9488B4DE659 /* Pods_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
 		D7DAA23F20554E7F007F3011 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D7DAA24120554F7C007F3011 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D7EF961E20860EBB002E0A9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D7EFFF32204FDE47004694EC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E995B5783B3772E82DD83D26 /* Pods-Coaching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 				D70A3D4F203CB3D9001C491A /* LoginController.swift */,
 				1A9E194D207E403A0091FABB /* SignUpController.swift */,
 				1A9E1951207E40630091FABB /* UI */,
+				D7EF961D20860E99002E0A9B /* Models */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -215,6 +218,14 @@
 				D7AA4E91205481F3004A0986 /* ConversationLayout.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		D7EF961D20860E99002E0A9B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D7EF961E20860EBB002E0A9B /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D7EFFF31204FDE08004694EC /* Helpers */ = {
@@ -384,6 +395,7 @@
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
+				D7EF961F20860EBB002E0A9B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
