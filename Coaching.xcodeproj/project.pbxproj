@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A9E194E207E403A0091FABB /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194D207E403A0091FABB /* SignUpController.swift */; };
-		1A9E1950207E404C0091FABB /* SignUpController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194F207E404C0091FABB /* SignUpController+UI.swift */; };
+		1A9E1950207E404C0091FABB /* SignUp+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194F207E404C0091FABB /* SignUp+UI.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
@@ -25,14 +25,15 @@
 		D789201720544FAD0020C703 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Localization.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
-		D7B9CBF720541A0A00B755CD /* ConversationController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* ConversationController+UI.swift */; };
-		D7B9CBF920541E6500B755CD /* ConversationListController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationListController+UI.swift */; };
-		D7B9CBFB20541E7300B755CD /* LoginController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* LoginController+UI.swift */; };
+		D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */; };
+		D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */; };
+		D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* Login+UI.swift */; };
 		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
 		D7DAA24020554E7F007F3011 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA23F20554E7F007F3011 /* Colors.swift */; };
 		D7DAA24220554F7C007F3011 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA24120554F7C007F3011 /* Message.swift */; };
 		D7EF961F20860EBB002E0A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF961E20860EBB002E0A9B /* User.swift */; };
 		D7EFFF33204FDE47004694EC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFFF32204FDE47004694EC /* Network.swift */; };
+		D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */; };
 		EE8D5295A8AAC9488B4DE659 /* Pods_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +42,7 @@
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A9E1948207E0F480091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1A9E194D207E403A0091FABB /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
-		1A9E194F207E404C0091FABB /* SignUpController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpController+UI.swift"; sourceTree = "<group>"; };
+		1A9E194F207E404C0091FABB /* SignUp+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUp+UI.swift"; sourceTree = "<group>"; };
 		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		1AA3973A203C50520020092D /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +62,15 @@
 		D789201620544FAD0020C703 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
-		D7B9CBF620541A0A00B755CD /* ConversationController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationController+UI.swift"; sourceTree = "<group>"; };
-		D7B9CBF820541E6500B755CD /* ConversationListController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationListController+UI.swift"; sourceTree = "<group>"; };
-		D7B9CBFA20541E7300B755CD /* LoginController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+UI.swift"; sourceTree = "<group>"; };
+		D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+UI.swift"; sourceTree = "<group>"; };
+		D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+UI.swift"; sourceTree = "<group>"; };
+		D7B9CBFA20541E7300B755CD /* Login+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+UI.swift"; sourceTree = "<group>"; };
 		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
 		D7DAA23F20554E7F007F3011 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D7DAA24120554F7C007F3011 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D7EF961E20860EBB002E0A9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D7EFFF32204FDE47004694EC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Helpers.swift"; sourceTree = "<group>"; };
 		E995B5783B3772E82DD83D26 /* Pods-Coaching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,8 +140,8 @@
 		1A9E1951207E40630091FABB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D7B9CBFA20541E7300B755CD /* LoginController+UI.swift */,
-				1A9E194F207E404C0091FABB /* SignUpController+UI.swift */,
+				D7B9CBFA20541E7300B755CD /* Login+UI.swift */,
+				1A9E194F207E404C0091FABB /* SignUp+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -213,8 +215,8 @@
 		D7B9CBF5205419F300B755CD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D7B9CBF820541E6500B755CD /* ConversationListController+UI.swift */,
-				D7B9CBF620541A0A00B755CD /* ConversationController+UI.swift */,
+				D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */,
+				D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */,
 				D7AA4E91205481F3004A0986 /* ConversationLayout.swift */,
 			);
 			path = UI;
@@ -231,14 +233,23 @@
 		D7EFFF31204FDE08004694EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D7DAA23F20554E7F007F3011 /* Colors.swift */,
 				D7EFFF32204FDE47004694EC /* Network.swift */,
-				D789201620544FAD0020C703 /* String+Localization.swift */,
 				D7811947207D3E72001762D4 /* Codables.swift */,
-				D7811949207D3F2D001762D4 /* Helpers.swift */,
 				D7108AF92083B1C700AB6260 /* Database.swift */,
+				D7F8ED062087E0260049B385 /* Extensions */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D7F8ED062087E0260049B385 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D7DAA23F20554E7F007F3011 /* Colors.swift */,
+				D789201620544FAD0020C703 /* String+Localization.swift */,
+				D7811949207D3F2D001762D4 /* Helpers.swift */,
+				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,24 +386,25 @@
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
-				D7B9CBFB20541E7300B755CD /* LoginController+UI.swift in Sources */,
+				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D789201720544FAD0020C703 /* String+Localization.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
-				1A9E1950207E404C0091FABB /* SignUpController+UI.swift in Sources */,
-				D7B9CBF920541E6500B755CD /* ConversationListController+UI.swift in Sources */,
+				1A9E1950207E404C0091FABB /* SignUp+UI.swift in Sources */,
+				D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */,
 				D7811948207D3E72001762D4 /* Codables.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,
-				D7B9CBF720541A0A00B755CD /* ConversationController+UI.swift in Sources */,
+				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				1A9E194E207E403A0091FABB /* SignUpController.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
+				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 				D7EF961F20860EBB002E0A9B /* User.swift in Sources */,

@@ -11,11 +11,11 @@ import RealmSwift
 
 final class UserObject: Object {
 	@objc dynamic var userID = 0
-	@objc dynamic var type = 2
+	let type: RealmOptional<Int> = RealmOptional(2)
 	@objc dynamic var mail = ""
 	@objc dynamic var firstName = ""
 	@objc dynamic var lastName = ""
-	@objc dynamic var birhDate = Date()
+	@objc dynamic var birthDate = Date()
 	@objc dynamic var city = ""
 	@objc dynamic var phoneNumber = ""
 	
@@ -27,25 +27,36 @@ final class UserObject: Object {
 		self.init()
 		
 		userID = user.userID
-		type = user.type
+		type.value = user.type
 		mail = user.mail
 		firstName = user.firstName
 		lastName = user.lastName
-		birhDate = user.birhDate
+		birthDate = user.birthDate
 		city = user.city
 		phoneNumber = user.phoneNumber
 	}
 }
 
-struct User {
-	let userID: Int
-	let type: Int
-	let mail: String
-	let firstName: String
-	let lastName: String
-	let birhDate: Date
-	let city: String
-	let phoneNumber: String
+struct User: Codable {
+	enum CodingKeys: String, CodingKey {
+		case userID = "id"
+		case type
+		case mail
+		case firstName
+		case lastName
+		case birthDate
+		case city
+		case phoneNumber
+	}
+	
+	var userID: Int
+	var type: Int?
+	var mail: String
+	var firstName: String
+	var lastName: String
+	var birthDate: Date
+	var city: String
+	var phoneNumber: String
 	
 	static let all = FetchRequest<[User], UserObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(User.init) })
 }
@@ -53,11 +64,11 @@ struct User {
 extension User {
 	init(object: UserObject) {
 		userID = object.userID
-		type = object.type
+		type = object.type.value
 		mail = object.mail
 		firstName = object.firstName
 		lastName = object.lastName
-		birhDate = object.birhDate
+		birthDate = object.birthDate
 		city = object.city
 		phoneNumber = object.phoneNumber
 	}

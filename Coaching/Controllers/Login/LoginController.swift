@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LoginController: UIViewController {
+	
+	// MARK: - UI
 	
 	lazy var scrollView = UI.scrollView()
 	lazy var contentView = UI.contentView()
@@ -17,6 +20,8 @@ class LoginController: UIViewController {
 	lazy var passwordTextField = UI.passwordTextField()
 	lazy var loginButton = UI.loginButton(self, action: #selector(signIn(_:)))
 	lazy var signUpButton = UI.signUpButton(self, action: #selector(signUp(_:)))
+	
+	// MARK: - UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,6 +35,8 @@ class LoginController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		navigationController?.setNavigationBarHidden(true, animated: true)
 	}
+	
+	// MARK: - Helpers
 	
 	private func setupLayout() {
 		view.addSubview(scrollView)
@@ -45,7 +52,12 @@ class LoginController: UIViewController {
 		NSLayoutConstraint.activate(constraints)
 	}
 	
+	// MARK: - Actions
+	
 	@objc func signIn(_ sender: UIButton) {
+		
+		// Check if the form is complete
+		
 		guard let mailValue = mailTextField.text, mailValue != "" else {
 			present(UIAlertController.simpleAlert(title: "mail_missing_title".localized, message: nil), animated: true)
 			return
@@ -56,26 +68,35 @@ class LoginController: UIViewController {
 			return
 		}
 		
+		// Perform the network call
+		
 		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return }
 			
+			// Display the HTTP status code
 			print("Status code:", response.statusCode)
-			let decoder = JSONDecoder()
 			
+			// Creating the JSON decoder
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateFormat = "yyyy-MM-dd"
+			
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .formatted(dateFormatter)
+			
+			// If the login is a success
 			if response.statusCode == 200 {
-				guard let client = try? decoder.decode(Client.self, from: data) else { return }
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "yyyy-MM-dd"
+				// Decode user data
+				guard let user = try? decoder.decode(User.self, from: data) else { return }
+				print(user)
 				
-				let birthDate = dateFormatter.date(from: client.birthDate) ?? Date()
-
-				let user = User(userID: client.id, type: client.type ?? 2, mail: client.mail, firstName: client.firstName, lastName: client.lastName, birhDate: birthDate, city: client.city, phoneNumber: client.phoneNumber)
-
+				// Save user info
 				Database().createOrUpdate(model: user, with: UserObject.init)
+				UserDefaults.standard.set(user.userID, forKey: "userID")
 				
-				let tabBarController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
+				// Present the correct controller for the user
+				let tabBarController = user.type == nil ? UITabBarController.coachController() : UITabBarController.clientController()
 				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
@@ -84,6 +105,7 @@ class LoginController: UIViewController {
 					}
 				}
 			} else {
+				// Display the error sent by the server
 				guard let errorMessage = try? decoder.decode(ErrorMessage.self, from: data) else { return }
 				
 				let alertController = UIAlertController.simpleAlert(title: "error".localized, message: errorMessage.message.localized)

@@ -11,15 +11,22 @@ import Starscream
 
 class ConversationController: UIViewController {
 	
+	// MARK: - UI
+	
 	lazy var collectionView = UI.collectionView(delegate: nil, dataSource: self, layoutDelegate: self)
 	lazy var messageBarView = UI.messageBarView(self, action: #selector(sendButtonTapped(_:)))
 	
 	private var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
-	var currentUser: User!
+	// MARK: - User info
 	
+	var currentUser = Database().getCurrentUser()
 	var messages = [Message]()
+	
+	// MARK: - Sockets
 	var socket: WebSocket?
+	
+	// Formatters
 	
 	let dateFormatter = DateFormatter()
 	let decoder = JSONDecoder()
@@ -30,15 +37,16 @@ class ConversationController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		guard let user = UserDefaults.standard.object(forKey: "user") as? User else { return }
-		currentUser = user
+		// Setting up
+		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		decoder.dateDecodingStrategy = .formatted(dateFormatter)
+		encoder.dateEncodingStrategy = .formatted(dateFormatter)
 		
+		// Layout
 		view.backgroundColor = .white
 		edgesForExtendedLayout = []
-		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
-		
-		dateFormatter.dateFormat = "yyyy-MM-dd"
-		
+	
 		if #available(iOS 11.0, *) {
 			navigationItem.largeTitleDisplayMode = .never
 		}
@@ -53,7 +61,9 @@ class ConversationController: UIViewController {
 		// Orientaton observer
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 		
-		// WebSocket
+		// Setting up the websocket
+		guard let currentUser = currentUser else { return }
+		
 		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=\(currentUser.userID)&type=0") {
 			socket = WebSocket(url: webSocketURL, protocols: ["message"])
 			socket?.delegate = self
@@ -62,19 +72,17 @@ class ConversationController: UIViewController {
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
+		// Remove every observers
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
 		
+		// Disconnect websocket
 		socket?.disconnect()
 	}
 	
-	@objc func orientationDidChange() {
-		collectionView.collectionViewLayout.invalidateLayout()
-	}
-	
-	// MARK: - Layout helpers
+	// MARK: - Helpers
 	
 	func setupLayout() {
 		view.addSubview(collectionView)
@@ -105,18 +113,30 @@ class ConversationController: UIViewController {
 		collectionView.setContentOffset(bottomOffset, animated: true)
 	}
 	
+	func scrollToBottom() {
+		collectionView.setNeedsLayout()
+		collectionView.layoutIfNeeded()
+		
+		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
+	}
+	
+	// MARK: - Actions
+	
+	@objc func orientationDidChange() {
+		collectionView.collectionViewLayout.invalidateLayout()
+	}
+	
 	@objc func sendButtonTapped(_ sender: UIButton) {
 		// Check if the message is not empty
 		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
+		guard let currentUser = currentUser else { return }
 		
 		if let messageText = messageBarView.textView.text {
-			let message = Message(messageID: UUID().uuidString, sender: "\(currentUser.userID)", receiver: "1", content: messageText, date: Date())
+			let message = Message(messageID: nil, senderID: currentUser.userID, senderType: currentUser.type ?? 2, receiverID: 1, receiverType: 0, date: Date(), content: messageText)
 			messages.append(message)
 			
 			// Send through socket
-			let codableMessage = CodableMessage(message: messageText, fromId: 2, fromType: 0, toId: 1, toType: 0, date: dateFormatter.string(from: Date()))
-			
-			if let data = try? encoder.encode(codableMessage) {
+			if let data = try? encoder.encode(message) {
 				socket?.write(data: data)
 			}
 		}
@@ -160,13 +180,6 @@ class ConversationController: UIViewController {
 			self.view.layoutIfNeeded()
 		}
 	}
-	
-	func scrollToBottom() {
-		collectionView.setNeedsLayout()
-		collectionView.layoutIfNeeded()
-		
-		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
-	}
 }
 
 // MARK: - UICollectionViewDataSource
@@ -180,11 +193,13 @@ extension ConversationController: UICollectionViewDataSource {
 			return UICollectionViewCell()
 		}
 		
+		guard let currentUser = currentUser else { return cell }
+		
 		let message = messages[indexPath.item]
 		
 		cell.messageLabel.text = message.content
 		
-		if message.sender != "\(currentUser.userID)" {
+		if message.senderID != currentUser.userID {
 			cell.messageLabel.textColor = .receivedBubbleText
 			cell.contentView.backgroundColor = .receivedBubbleBackground
 		} else {
@@ -199,8 +214,10 @@ extension ConversationController: UICollectionViewDataSource {
 // MARK: - ConversationLayoutDelegate
 extension ConversationController: ConversationLayoutDelegate {
 	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side {
+		guard let currentUser = currentUser else { return .left }
+		
 		let message = messages[indexPath.item]
-		return message.sender == "\(currentUser)" ? .right : .left
+		return message.senderID == currentUser.userID ? .right : .left
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String {
@@ -224,11 +241,8 @@ extension ConversationController: WebSocketDelegate {
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
 		guard let json = text.data(using: .utf8) else { return }
-		guard let codableMessage = try? decoder.decode(CodableMessage.self, from: json) else { return }
-		
-		let date = dateFormatter.date(from: codableMessage.date) ?? Date()
-		
-		let message = Message(messageID: UUID().uuidString, sender: "\(codableMessage.fromId)", receiver: "\(codableMessage.toId)", content: codableMessage.message, date: date)
+		guard let message = try? decoder.decode(Message.self, from: json) else { return }
+	
 		messages.append(message)
 		
 		DispatchQueue.main.async { [weak self] in

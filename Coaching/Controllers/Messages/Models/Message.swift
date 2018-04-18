@@ -10,11 +10,13 @@ import Foundation
 import RealmSwift
 
 final class MessageObject: Object {
-	@objc dynamic var messageID = UUID().uuidString
-	@objc dynamic var sender = ""
-	@objc dynamic var receiver = ""
-	@objc dynamic var content = ""
+	@objc dynamic var messageID = 0
+	@objc dynamic var senderID = 0
+	@objc dynamic var senderType = 0
+	@objc dynamic var receiverID = 0
+	@objc dynamic var receiverType = 0
 	@objc dynamic var date = Date()
+	@objc dynamic var content = ""
 	
 	override static func primaryKey() -> String? {
 		return "messageID"
@@ -23,28 +25,44 @@ final class MessageObject: Object {
 	convenience init(message: Message) {
 		self.init()
 		
-		messageID = message.messageID
-		sender = message.sender
-		receiver = message.receiver
-		content = message.content
+		messageID = message.messageID ?? 0
+		senderID = message.senderID
+		senderType = message.senderType
+		receiverID = message.receiverID
+		receiverType = message.receiverType
 		date = message.date
+		content = message.content
 	}
 }
 
-struct Message {
-	let messageID: String
-	let sender: String
-	let receiver: String
-	let content: String
+struct Message: Codable {
+	enum CodingKeys: String, CodingKey {
+		case messageID = "id"
+		case senderID = "fromId"
+		case senderType = "fromType"
+		case receiverID = "toId"
+		case receiverType = "toType"
+		case date
+		case content = "message"
+	}
+	
+	let messageID: Int?
+	let senderID: Int
+	let senderType: Int
+	let receiverID: Int
+	let receiverType: Int
 	let date: Date
+	let content: String
 }
 
 extension Message {
 	init(object: MessageObject) {
 		messageID = object.messageID
-		sender = object.sender
-		receiver = object.receiver
-		content = object.content
+		senderID = object.senderID
+		senderType = object.senderType
+		receiverID = object.receiverID
+		receiverType = object.receiverType
 		date = object.date
+		content = object.content
 	}
 }

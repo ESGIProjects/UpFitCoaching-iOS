@@ -1,5 +1,5 @@
 //
-//  SignUpController+UI.swift
+//  SignUp+UI.swift
 //  Coaching
 //
 //  Created by Jason Pierna on 11/04/2018.

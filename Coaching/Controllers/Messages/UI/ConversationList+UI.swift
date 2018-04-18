@@ -1,5 +1,5 @@
 //
-//  ConversationListController+UI.swift
+//  ConversationList+UI.swift
 //  Coaching
 //
 //  Created by Jason Pierna on 10/03/2018.

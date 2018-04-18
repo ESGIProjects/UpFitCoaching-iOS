@@ -27,10 +27,21 @@ final class Database {
 	}
 	
 	func createOrUpdate<Model, RealmObject: Object>(model: Model, with reverseTransformer: (Model) -> RealmObject) {
+		print(#function)
+		
 		let object = reverseTransformer(model)
-		try? realm.write {
-			realm.add(object, update: true)
+		
+		do {
+			try realm.write {
+				realm.add(object, update: true)
+			}
+		} catch {
+			print(error.localizedDescription)
 		}
+		
+//		try? realm.write {
+//			realm.add(object, update: true)
+//		}
 	}
 	
 	func fetch<Model, RealmObject: Object>(with predicate: NSPredicate?, sortDescriptors: [SortDescriptor], transformer: (Results<RealmObject>) -> Model) -> Model {

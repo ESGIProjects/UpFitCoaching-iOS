@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-		if let user = UserDefaults.standard.object(forKey: "user") as? User {
+		if let user = Database().getCurrentUser() {
 			// Show the corresponding tab bar controller
-			window?.rootViewController = user.type == 0 ? UITabBarController.coachController() : UITabBarController.clientController()
+			window?.rootViewController = user.type == nil ? UITabBarController.coachController() : UITabBarController.clientController()
 		} else {
 			// Show login
 			window?.rootViewController = UINavigationController(rootViewController: LoginController())
