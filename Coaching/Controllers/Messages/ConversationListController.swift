@@ -34,10 +34,13 @@ class ConversationListController: UIViewController {
 		setupLayout()
 		
 		if conversations.count == 0 {
-			let conversation = Conversation(conversationID: UUID().uuidString, name: "Jason", message: "Miaou")
-			
 			let database = Database()
+			
+			// Create the conversation object
+			let conversation = Conversation(conversationID: database.next(type: ConversationObject.self, of: "conversationID"), name: "Jason", message: "Miaou")
 			database.createOrUpdate(model: conversation, with: ConversationObject.init)
+			
+			// Reload data
 			conversations = database.fetch(using: Conversation.all)
 			tableView.reloadData()
 		}
