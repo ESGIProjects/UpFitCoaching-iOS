@@ -4,3 +4,13 @@ disabled_rules:
   - function_parameter_count
 excluded:
   - Pods
+
+# Customized rules
+identifier_name:
+  excluded:
+    - id
+type_name:
+  excluded:
+    - UI
+function_body_length:
+  warning: 80

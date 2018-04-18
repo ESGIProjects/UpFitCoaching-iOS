@@ -6,8 +6,6 @@
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
-//swiftlint:disable type_name
-
 import UIKit
 
 extension SignUpController {
@@ -95,61 +93,60 @@ extension SignUpController {
 			return button
 		}
 		
-		//swiftlint:disable identifier_name
-		class func getConstraints(for c: SignUpController) -> [NSLayoutConstraint] {
+		class func getConstraints(for controller: SignUpController) -> [NSLayoutConstraint] {
 			var constraints = [NSLayoutConstraint]()
 			
 			if #available(iOS 11.0, *) {
 				constraints += [
-					c.scrollView.topAnchor.constraint(equalTo: c.view.safeAreaLayoutGuide.topAnchor),
-					c.scrollView.bottomAnchor.constraint(equalTo: c.view.safeAreaLayoutGuide.bottomAnchor),
-					c.scrollView.leadingAnchor.constraint(equalTo: c.view.safeAreaLayoutGuide.leadingAnchor),
-					c.scrollView.trailingAnchor.constraint(equalTo: c.view.safeAreaLayoutGuide.trailingAnchor)
+					controller.scrollView.topAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.topAnchor),
+					controller.scrollView.bottomAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.bottomAnchor),
+					controller.scrollView.leadingAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.leadingAnchor),
+					controller.scrollView.trailingAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.trailingAnchor)
 				]
 			} else {
 				constraints += [
-					c.scrollView.topAnchor.constraint(equalTo: c.view.topAnchor),
-					c.scrollView.bottomAnchor.constraint(equalTo: c.view.bottomAnchor),
-					c.scrollView.leadingAnchor.constraint(equalTo: c.view.leadingAnchor),
-					c.scrollView.trailingAnchor.constraint(equalTo: c.view.trailingAnchor)
+					controller.scrollView.topAnchor.constraint(equalTo: controller.view.topAnchor),
+					controller.scrollView.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor),
+					controller.scrollView.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor),
+					controller.scrollView.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor)
 				]
 			}
 			
 			constraints += [
-				c.contentView.topAnchor.constraint(equalTo: c.scrollView.topAnchor),
-				c.contentView.bottomAnchor.constraint(equalTo: c.scrollView.bottomAnchor),
-				c.contentView.leadingAnchor.constraint(equalTo: c.scrollView.leadingAnchor),
-				c.contentView.trailingAnchor.constraint(equalTo: c.scrollView.trailingAnchor),
-				c.contentView.widthAnchor.constraint(equalTo: c.view.widthAnchor),
+				controller.contentView.topAnchor.constraint(equalTo: controller.scrollView.topAnchor),
+				controller.contentView.bottomAnchor.constraint(equalTo: controller.scrollView.bottomAnchor),
+				controller.contentView.leadingAnchor.constraint(equalTo: controller.scrollView.leadingAnchor),
+				controller.contentView.trailingAnchor.constraint(equalTo: controller.scrollView.trailingAnchor),
+				controller.contentView.widthAnchor.constraint(equalTo: controller.view.widthAnchor),
 				
-				c.firstNameTextField.topAnchor.constraint(equalTo: c.contentView.topAnchor, constant: 30.0),
-				c.firstNameTextField.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.firstNameTextField.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				controller.firstNameTextField.topAnchor.constraint(equalTo: controller.contentView.topAnchor, constant: 30.0),
+				controller.firstNameTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.firstNameTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				c.lastNameTextField.topAnchor.constraint(equalTo: c.firstNameTextField.bottomAnchor, constant: 15.0),
-				c.lastNameTextField.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.lastNameTextField.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				controller.lastNameTextField.topAnchor.constraint(equalTo: controller.firstNameTextField.bottomAnchor, constant: 15.0),
+				controller.lastNameTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.lastNameTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				c.mailTextField.topAnchor.constraint(equalTo: c.lastNameTextField.bottomAnchor, constant: 15.0),
-				c.mailTextField.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.mailTextField.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				controller.mailTextField.topAnchor.constraint(equalTo: controller.lastNameTextField.bottomAnchor, constant: 15.0),
+				controller.mailTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.mailTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				c.passwordTextField.topAnchor.constraint(equalTo: c.mailTextField.bottomAnchor, constant: 15.0),
-				c.passwordTextField.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.passwordTextField.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				controller.passwordTextField.topAnchor.constraint(equalTo: controller.mailTextField.bottomAnchor, constant: 15.0),
+				controller.passwordTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.passwordTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				c.confirmPasswordTextField.topAnchor.constraint(equalTo: c.passwordTextField.bottomAnchor, constant: 15.0),
-				c.confirmPasswordTextField.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.confirmPasswordTextField.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				controller.confirmPasswordTextField.topAnchor.constraint(equalTo: controller.passwordTextField.bottomAnchor, constant: 15.0),
+				controller.confirmPasswordTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.confirmPasswordTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				c.birthDatePicker.topAnchor.constraint(equalTo: c.confirmPasswordTextField.bottomAnchor, constant: 15.0),
-				c.birthDatePicker.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.birthDatePicker.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0),
+				controller.birthDatePicker.topAnchor.constraint(equalTo: controller.confirmPasswordTextField.bottomAnchor, constant: 15.0),
+				controller.birthDatePicker.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.birthDatePicker.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				c.signUpButton.topAnchor.constraint(equalTo: c.birthDatePicker.bottomAnchor, constant: 15.0),
-				c.signUpButton.bottomAnchor.constraint(equalTo: c.contentView.bottomAnchor, constant: -10.0),
-				c.signUpButton.leadingAnchor.constraint(equalTo: c.contentView.leadingAnchor, constant: 10.0),
-				c.signUpButton.trailingAnchor.constraint(equalTo: c.contentView.trailingAnchor, constant: -10.0)
+				controller.signUpButton.topAnchor.constraint(equalTo: controller.birthDatePicker.bottomAnchor, constant: 15.0),
+				controller.signUpButton.bottomAnchor.constraint(equalTo: controller.contentView.bottomAnchor, constant: -10.0),
+				controller.signUpButton.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
+				controller.signUpButton.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0)
 			]
 			
 			return constraints

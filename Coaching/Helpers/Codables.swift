@@ -6,8 +6,6 @@
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
-//swiftlint:disable identifier_name
-
 import Foundation
 
 struct Client: Codable {

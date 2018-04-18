@@ -6,8 +6,6 @@
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
-//swiftlint:disable type_name
-
 import UIKit
 
 extension LoginController {	
