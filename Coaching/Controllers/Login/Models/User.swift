@@ -11,7 +11,7 @@ import RealmSwift
 
 final class UserObject: Object {
 	@objc dynamic var userID = 0
-	@objc dynamic var type = 0
+	@objc dynamic var type = 2
 	@objc dynamic var mail = ""
 	@objc dynamic var firstName = ""
 	@objc dynamic var lastName = ""

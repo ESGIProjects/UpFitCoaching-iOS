@@ -32,13 +32,6 @@ extension LoginController {
 			return label
 		}
 		
-		class func segmentedControl() -> UISegmentedControl {
-			let view = UISegmentedControl(items: ["login_is_coach".localized, "login_is_client".localized])
-			view.translatesAutoresizingMaskIntoConstraints = false
-			view.selectedSegmentIndex = 0
-			return view
-		}
-		
 		class func mailTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
@@ -112,11 +105,7 @@ extension LoginController {
 				controller.titleLabel.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
 				controller.titleLabel.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				
-				controller.segmentedControl.topAnchor.constraint(equalTo: controller.titleLabel.bottomAnchor, constant: 30.0),
-				controller.segmentedControl.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
-				controller.segmentedControl.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
-				
-				controller.mailTextField.topAnchor.constraint(equalTo: controller.segmentedControl.bottomAnchor, constant: 15.0),
+				controller.mailTextField.topAnchor.constraint(equalTo: controller.titleLabel.bottomAnchor, constant: 15.0),
 				controller.mailTextField.leadingAnchor.constraint(equalTo: controller.contentView.leadingAnchor, constant: 10.0),
 				controller.mailTextField.trailingAnchor.constraint(equalTo: controller.contentView.trailingAnchor, constant: -10.0),
 				

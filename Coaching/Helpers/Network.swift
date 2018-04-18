@@ -36,12 +36,11 @@ class Network {
 		session.dataTask(with: request, completionHandler: completion).resume()
 	}
 	
-	static func login(mail: String, password: String, isCoach: Bool, completion: @escaping NetworkCallback) {
+	static func login(mail: String, password: String, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signin/")
 		let parameters: [String: Any] = [
 			"mail": mail,
-			"password": password,
-			"isCoach": isCoach ? 1 : 0
+			"password": password
 		]
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)

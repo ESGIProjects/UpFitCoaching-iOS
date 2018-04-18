@@ -10,7 +10,7 @@ import Foundation
 
 struct Client: Codable {
 	var id: Int
-	var type: Int
+	var type: Int?
 	var mail: String
 	var firstName: String
 	var lastName: String

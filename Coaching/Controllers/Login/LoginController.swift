@@ -13,7 +13,6 @@ class LoginController: UIViewController {
 	lazy var scrollView = UI.scrollView()
 	lazy var contentView = UI.contentView()
 	lazy var titleLabel = UI.titleLabel()
-	lazy var segmentedControl = UI.segmentedControl()
 	lazy var mailTextField = UI.mailTextField()
 	lazy var passwordTextField = UI.passwordTextField()
 	lazy var loginButton = UI.loginButton(self, action: #selector(signIn(_:)))
@@ -37,7 +36,6 @@ class LoginController: UIViewController {
 		scrollView.addSubview(contentView)
 		
 		contentView.addSubview(titleLabel)
-		contentView.addSubview(segmentedControl)
 		contentView.addSubview(mailTextField)
 		contentView.addSubview(passwordTextField)
 		contentView.addSubview(loginButton)
@@ -58,9 +56,7 @@ class LoginController: UIViewController {
 			return
 		}
 		
-		let isCoach = segmentedControl.selectedSegmentIndex == 0
-		
-		Network.login(mail: mailValue, password: passwordValue, isCoach: false) { [weak self] data, response, _ in
+		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return }
@@ -74,12 +70,12 @@ class LoginController: UIViewController {
 				dateFormatter.dateFormat = "yyyy-MM-dd"
 				
 				let birthDate = dateFormatter.date(from: client.birthDate) ?? Date()
-				
-				let user = User(userID: client.id, type: client.type, mail: client.mail, firstName: client.firstName, lastName: client.lastName, birhDate: birthDate, city: client.city, phoneNumber: client.phoneNumber)
-				
+
+				let user = User(userID: client.id, type: client.type ?? 2, mail: client.mail, firstName: client.firstName, lastName: client.lastName, birhDate: birthDate, city: client.city, phoneNumber: client.phoneNumber)
+
 				Database().createOrUpdate(model: user, with: UserObject.init)
 				
-				let tabBarController = isCoach ? UITabBarController.coachController() : UITabBarController.clientController()
+				let tabBarController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
 				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
