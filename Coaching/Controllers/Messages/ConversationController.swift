@@ -10,13 +10,13 @@ import UIKit
 import Starscream
 
 class ConversationController: UIViewController {
-
-	static let currentUser = "2"
 	
 	lazy var collectionView = UI.collectionView(delegate: nil, dataSource: self, layoutDelegate: self)
 	lazy var messageBarView = UI.messageBarView(self, action: #selector(sendButtonTapped(_:)))
 	
 	private var messageBarViewBottomConstraint: NSLayoutConstraint!
+	
+	var currentUser: User!
 	
 	var messages = [Message]()
 	var socket: WebSocket?
@@ -29,6 +29,9 @@ class ConversationController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		guard let user = UserDefaults.standard.object(forKey: "user") as? User else { return }
+		currentUser = user
 		
 		view.backgroundColor = .white
 		edgesForExtendedLayout = []
@@ -51,7 +54,7 @@ class ConversationController: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 		
 		// WebSocket
-		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=\(ConversationController.currentUser)&type=0") {
+		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=\(currentUser.userID)&type=0") {
 			socket = WebSocket(url: webSocketURL, protocols: ["message"])
 			socket?.delegate = self
 			socket?.connect()
@@ -107,7 +110,7 @@ class ConversationController: UIViewController {
 		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
 		
 		if let messageText = messageBarView.textView.text {
-			let message = Message(messageID: UUID().uuidString, sender: ConversationController.currentUser, receiver: "1", content: messageText, date: Date())
+			let message = Message(messageID: UUID().uuidString, sender: "\(currentUser.userID)", receiver: "1", content: messageText, date: Date())
 			messages.append(message)
 			
 			// Send through socket
@@ -181,7 +184,7 @@ extension ConversationController: UICollectionViewDataSource {
 		
 		cell.messageLabel.text = message.content
 		
-		if message.sender != ConversationController.currentUser {
+		if message.sender != "\(currentUser.userID)" {
 			cell.messageLabel.textColor = .receivedBubbleText
 			cell.contentView.backgroundColor = .receivedBubbleBackground
 		} else {
@@ -197,7 +200,7 @@ extension ConversationController: UICollectionViewDataSource {
 extension ConversationController: ConversationLayoutDelegate {
 	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side {
 		let message = messages[indexPath.item]
-		return message.sender == ConversationController.currentUser ? .right : .left
+		return message.sender == "\(currentUser)" ? .right : .left
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String {
@@ -235,6 +238,6 @@ extension ConversationController: WebSocketDelegate {
 	}
 	
 	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-		print(#function)
+		
 	}
 }

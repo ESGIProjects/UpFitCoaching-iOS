@@ -19,9 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-		let users = Database().fetch(using: User.all)
-		
-		if let user = users.first {
+		if let user = UserDefaults.standard.object(forKey: "user") as? User {
 			// Show the corresponding tab bar controller
 			window?.rootViewController = user.type == 0 ? UITabBarController.coachController() : UITabBarController.clientController()
 		} else {
