@@ -68,7 +68,7 @@ extension ConversationListController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell: ConversationListCell!
+		let cell: ConversationListCell
 		
 		if let dequeueCell = tableView.dequeueReusableCell(withIdentifier: "ConversationListCell", for: indexPath) as? ConversationListCell {
 			cell = dequeueCell

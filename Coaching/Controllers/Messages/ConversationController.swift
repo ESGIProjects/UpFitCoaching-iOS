@@ -213,11 +213,11 @@ extension ConversationController: UICollectionViewDataSource {
 
 // MARK: - ConversationLayoutDelegate
 extension ConversationController: ConversationLayoutDelegate {
-	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side {
-		guard let currentUser = currentUser else { return .left }
+	func collectionView(_ collectionView: UICollectionView, isMessageFromUserFor indexPath: IndexPath) -> Bool {
+		guard let currentUser = currentUser else { return false }
 		
 		let message = messages[indexPath.item]
-		return message.senderID == currentUser.userID ? .right : .left
+		return message.senderID == currentUser.userID
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String {

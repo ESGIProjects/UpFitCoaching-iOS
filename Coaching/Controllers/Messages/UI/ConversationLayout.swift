@@ -8,12 +8,8 @@
 
 import UIKit
 
-enum Side {
-	case left, right
-}
-
 protocol ConversationLayoutDelegate: class {
-	func collectionView(_ collectionView: UICollectionView, messageSideFor indexPath: IndexPath) -> Side
+	func collectionView(_ collectionView: UICollectionView, isMessageFromUserFor indexPath: IndexPath) -> Bool
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String
 	func collectionView(_ collectionView: UICollectionView, fontAt indexPath: IndexPath) -> UIFont
 }
@@ -51,7 +47,7 @@ class ConversationLayout: UICollectionViewLayout {
 		for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
 			let indexPath = IndexPath(item: item, section: 0)
 			
-			let side = delegate.collectionView(collectionView, messageSideFor: indexPath)
+			let isFromUser = delegate.collectionView(collectionView, isMessageFromUserFor: indexPath)
 			let text = delegate.collectionView(collectionView, textAt: indexPath)
 			let font = delegate.collectionView(collectionView, fontAt: indexPath)
 			
@@ -66,7 +62,7 @@ class ConversationLayout: UICollectionViewLayout {
 			// Bubble
 			let width = textWidth + xPadding * 4
 			let height = textHeight + yPadding * 4
-			let xPosition = side == .left ? 0.0 : contentWidth - width
+			let xPosition = isFromUser ? contentWidth - width : 0.0
 			let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
 			
 			// Attributes
