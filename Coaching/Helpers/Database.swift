@@ -31,17 +31,9 @@ final class Database {
 		
 		let object = reverseTransformer(model)
 		
-		do {
-			try realm.write {
-				realm.add(object, update: true)
-			}
-		} catch {
-			print(error.localizedDescription)
+		try? realm.write {
+			realm.add(object, update: true)
 		}
-		
-//		try? realm.write {
-//			realm.add(object, update: true)
-//		}
 	}
 	
 	func fetch<Model, RealmObject: Object>(with predicate: NSPredicate?, sortDescriptors: [SortDescriptor], transformer: (Results<RealmObject>) -> Model) -> Model {

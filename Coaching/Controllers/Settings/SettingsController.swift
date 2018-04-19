@@ -9,11 +9,17 @@
 import UIKit
 
 class SettingsController: UIViewController {
+	
+	// MARK: - UI
+	
 	var tableView: UITableView!
+	
+	// MARK: - UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// Layout
 		title = "settings_title".localized
 		
 		tableView = UITableView(frame: .zero, style: .grouped)
@@ -40,12 +46,15 @@ class SettingsController: UIViewController {
 		}
 	}
 	
+	// MARK: - Actions
+	
 	@objc func signOut(_ sender: UIButton) {
 		
 		let database = Database()
 		
-		if let user = database.fetch(using: User.all).first {
+		if let user = database.getCurrentUser() {
 			database.delete(type: UserObject.self, with: user.userID)
+			UserDefaults.standard.removeObject(forKey: "userID")
 			
 			if tabBarController?.presentingViewController != nil {
 				tabBarController?.dismiss(animated: true)
@@ -57,6 +66,7 @@ class SettingsController: UIViewController {
 	}
 }
 
+// MARK: - UITableViewDataSource
 extension SettingsController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 1
@@ -85,6 +95,7 @@ extension SettingsController: UITableViewDataSource {
 	}
 }
 
+// MARK: - UITableViewDelegate
 extension SettingsController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)

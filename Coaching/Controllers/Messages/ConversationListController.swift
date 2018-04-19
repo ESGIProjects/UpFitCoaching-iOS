@@ -11,11 +11,15 @@ import RealmSwift
 
 class ConversationListController: UIViewController {
 	
+	// MARK: - UI
+	
 	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
-	lazy var conversations: [Conversation] = {
-		let database = Database()
-		return database.fetch(using: Conversation.all)
-	}()
+
+	// MARK: - Data
+	
+	lazy var conversations: [Conversation] = Database().fetch(using: Conversation.all)
+	
+	// MARK: - UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -46,6 +50,8 @@ class ConversationListController: UIViewController {
 		}
 	}
 	
+	// MARK: - Helpers
+	
 	private func setupLayout() {
 		// Layout the table view
 		view.addSubview(tableView)
@@ -55,6 +61,7 @@ class ConversationListController: UIViewController {
 	}
 }
 
+// MARK: - UITableViewDataSource
 extension ConversationListController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return conversations.count
@@ -78,6 +85,7 @@ extension ConversationListController: UITableViewDataSource {
 	}
 }
 
+// MARK: - UITableViewDelegate
 extension ConversationListController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
