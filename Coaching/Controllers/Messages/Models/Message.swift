@@ -43,7 +43,7 @@ struct Message: Codable {
 		case receiverID = "toId"
 		case receiverType = "toType"
 		case date
-		case content = "message"
+		case content
 	}
 	
 	let messageID: Int?
