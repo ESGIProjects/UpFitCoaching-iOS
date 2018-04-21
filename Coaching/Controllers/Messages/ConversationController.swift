@@ -42,7 +42,7 @@ class ConversationController: UIViewController {
 		
 		// Setting up
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
-		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		dateFormatter.dateFormat = "yyyy-MM-dd"// HH:mm:ss"
 		decoder.dateDecodingStrategy = .formatted(dateFormatter)
 		encoder.dateEncodingStrategy = .formatted(dateFormatter)
 		
@@ -64,14 +64,9 @@ class ConversationController: UIViewController {
 		// Orientaton observer
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 		
-		// Setting up the websocket
-		guard let currentUser = currentUser else { return }
+		// Updates websocket delegate
+		MessagesDelegate.instance.delegate = self
 		
-		if let webSocketURL = URL(string: "ws://212.47.234.147/ws?id=\(currentUser.userID)&type=0") {
-			socket = WebSocket(url: webSocketURL, protocols: ["message"])
-			socket?.delegate = self
-			socket?.connect()
-		}
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -81,8 +76,8 @@ class ConversationController: UIViewController {
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
 		
-		// Disconnect websocket
-		socket?.disconnect()
+		// Updates websocket delegate
+		MessagesDelegate.instance.delegate = UIApplication.shared.delegate as? AppDelegate
 	}
 	
 	// MARK: - Helpers
