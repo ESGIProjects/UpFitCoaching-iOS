@@ -49,19 +49,14 @@ class SettingsController: UIViewController {
 	// MARK: - Actions
 	
 	@objc func signOut(_ sender: UIButton) {
+		Database().deleteAll()
+		UserDefaults.standard.removeObject(forKey: "userID")
 		
-		let database = Database()
-		
-		if let user = database.getCurrentUser() {
-			database.delete(type: UserObject.self, with: user.userID)
-			UserDefaults.standard.removeObject(forKey: "userID")
-			
-			if tabBarController?.presentingViewController != nil {
-				tabBarController?.dismiss(animated: true)
-			} else {
-				guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
-				window.rootViewController = UINavigationController(rootViewController: LoginController())
-			}
+		if tabBarController?.presentingViewController != nil {
+			tabBarController?.dismiss(animated: true)
+		} else {
+			guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
+			window.rootViewController = UINavigationController(rootViewController: LoginController())
 		}
 	}
 }
