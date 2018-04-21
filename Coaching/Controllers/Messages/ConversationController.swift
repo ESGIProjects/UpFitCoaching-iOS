@@ -21,7 +21,10 @@ class ConversationController: UIViewController {
 	// MARK: - User info
 	
 	var currentUser = Database().getCurrentUser()
-	var messages = [Message]()
+	lazy var messages: [Message] = {
+		guard let currentUser = currentUser else { return [Message]() }
+		return Database().getMessages(between: currentUser.userID, and: 1)
+	}()
 	
 	// MARK: - Sockets
 	var socket: WebSocket?
@@ -39,7 +42,7 @@ class ConversationController: UIViewController {
 		
 		// Setting up
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
-		dateFormatter.dateFormat = "yyyy-MM-dd"
+		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		decoder.dateDecodingStrategy = .formatted(dateFormatter)
 		encoder.dateEncodingStrategy = .formatted(dateFormatter)
 		
@@ -132,12 +135,17 @@ class ConversationController: UIViewController {
 		guard let currentUser = currentUser else { return }
 		
 		if let messageText = messageBarView.textView.text {
-			let message = Message(messageID: nil, senderID: currentUser.userID, senderType: currentUser.type ?? 2, receiverID: 1, receiverType: 0, date: Date(), content: messageText)
+			var message = Message(messageID: nil, senderID: currentUser.userID, senderType: currentUser.type ?? 2, receiverID: 1, receiverType: 0, date: Date(), content: messageText)
 			messages.append(message)
 			
 			// Send through socket
 			if let data = try? encoder.encode(message) {
 				socket?.write(data: data)
+				let database = Database()
+				let temporaryMessageID = database.reverseNext(type: MessageObject.self, of: "messageID") - 1
+				
+				message.messageID = temporaryMessageID
+				database.createOrUpdate(model: message, with: MessageObject.init)
 			}
 		}
 		
@@ -164,8 +172,8 @@ class ConversationController: UIViewController {
 		collectionView.contentInset.bottom = messageBarView.frame.height + keyboardHeight
 		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
 		
-		UIView.animate(withDuration: animationDuration) { [unowned self] in
-			self.view.layoutIfNeeded()
+		UIView.animate(withDuration: animationDuration) { [weak self] in
+			self?.view.layoutIfNeeded()
 		}
 	}
 	
@@ -236,14 +244,16 @@ extension ConversationController: WebSocketDelegate {
 	}
 	
 	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		print(#function)
+		print(#function, error ?? "")
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
 		guard let json = text.data(using: .utf8) else { return }
 		guard let message = try? decoder.decode(Message.self, from: json) else { return }
-	
+		guard message.messageID != nil else { return }
+		
 		messages.append(message)
+		Database().createOrUpdate(model: message, with: MessageObject.init)
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.collectionView.reloadData()

@@ -27,8 +27,6 @@ final class Database {
 	}
 	
 	func createOrUpdate<Model, RealmObject: Object>(model: Model, with reverseTransformer: (Model) -> RealmObject) {
-		print(#function)
-		
 		let object = reverseTransformer(model)
 		
 		try? realm.write {
@@ -57,6 +55,11 @@ final class Database {
 	func next<RealmObject: Object>(type: RealmObject.Type, of property: String) -> Int {		
 		guard let max = realm.objects(type).max(ofProperty: property) as Int? else { return 1 }
 		return max
+	}
+	
+	func reverseNext<RealmObject: Object>(type: RealmObject.Type, of property: String) -> Int {
+		guard let min = realm.objects(type).min(ofProperty: property) as Int? else { return -1 }
+		return min > 0 ? -1 : min
 	}
 	
 	func delete<RealmObject: Object>(type: RealmObject.Type, with primaryKey: Int) {

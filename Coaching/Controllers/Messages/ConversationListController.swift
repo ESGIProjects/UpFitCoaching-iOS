@@ -17,7 +17,7 @@ class ConversationListController: UIViewController {
 
 	// MARK: - Data
 	
-	lazy var conversations: [Conversation] = Database().fetch(using: Conversation.all)
+	lazy var conversations = Database().fetch(using: Conversation.all)
 	
 	// MARK: - UIViewController
 	

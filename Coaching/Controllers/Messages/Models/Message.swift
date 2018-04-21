@@ -46,7 +46,7 @@ struct Message: Codable {
 		case content
 	}
 	
-	let messageID: Int?
+	var messageID: Int?
 	let senderID: Int
 	let senderType: Int
 	let receiverID: Int
