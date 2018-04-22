@@ -39,6 +39,16 @@
 "message_placeholder" = "Message";
 "sendMessage_button" = "Envoyer";
 
+// Calendar
+"calendar_title" = "Calendrier";
+"monday_short" = "L";
+"tuesday_short" = "M";
+"wednesday_short" = "M";
+"thursday_short" = "J";
+"friday_short" = "V";
+"saturday_short" = "S";
+"sunday_short" = "D";
+
 // Settings
 "settings_title" = "Réglages";
 "signOut_button" = "Déconnexion";
@@ -48,7 +58,3 @@
 "user_insert_failed" = "Nous avons rencontré un problème lors de l'inscription. Merci de réessayer plus tard.";
 "user_not_exist" = "Cet utilisateur n'existe pas.";
 "internal_error" = "Nous recontrons un problème réseau. Merci de réessayer plus tard.";
-
-// Debug
-"debug_longMessage" = "Ceci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un messageCeci est un message";
-"debug_shortMessage" = "Ceci est un message";

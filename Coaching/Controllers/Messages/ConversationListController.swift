@@ -62,7 +62,7 @@ class ConversationListController: UIViewController {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(messagesDownloaded), name: .messagesDownloaded, object: nil)
 		
-		//downloadMessages()
+		downloadMessages()
 	}
 	
 	// MARK: - Helpers

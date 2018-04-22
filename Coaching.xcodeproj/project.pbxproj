@@ -12,6 +12,8 @@
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
+		D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642B208CBDA600EC3F6C /* CalendarCell.swift */; };
+		D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */; };
 		D7108AFA2083B1C700AB6260 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7108AF92083B1C700AB6260 /* Database.swift */; };
 		D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */; };
 		D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60CA208CB2B700F143CA /* CalendarController.swift */; };
@@ -50,6 +52,8 @@
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
 		D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		D70C642B208CBDA600EC3F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+UI.swift"; sourceTree = "<group>"; };
 		D7108AF92083B1C700AB6260 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDelegate.swift; sourceTree = "<group>"; };
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
@@ -169,10 +173,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D70C642D208CCED500EC3F6C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D70C642B208CBDA600EC3F6C /* CalendarCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D70C6430208CCEF700EC3F6C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		D71D60C9208CB29D00F143CA /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				D71D60CA208CB2B700F143CA /* CalendarController.swift */,
+				D70C6430208CCEF700EC3F6C /* UI */,
+				D70C642D208CCED500EC3F6C /* Views */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -413,7 +435,9 @@
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
+				D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */,
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
+				D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Helpers.swift in Sources */,

@@ -25,8 +25,12 @@ extension UITabBarController {
 		conversationListController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
 		viewControllers.append(conversationListController)
 		
+		let calendarController = CalendarController()
+		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 2)
+		viewControllers.append(calendarController)
+		
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
+		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 3)
 		viewControllers.append(settingsController)
 		
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
@@ -39,6 +43,10 @@ extension UITabBarController {
 	class func clientController() -> UITabBarController {
 		
 		var viewControllers = [UIViewController]()
+		
+		let calendarController = CalendarController()
+		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 1)
+		viewControllers.append(calendarController)
 		
 		let settingsController = SettingsController()
 		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)

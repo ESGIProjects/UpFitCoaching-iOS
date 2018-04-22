@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			window?.rootViewController = UINavigationController(rootViewController: LoginController())
 		}
 		
-		window?.rootViewController = CalendarController() // override for layout test
 		window?.makeKeyAndVisible()
 		
 		return true

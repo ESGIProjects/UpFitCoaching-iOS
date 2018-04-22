@@ -16,4 +16,9 @@ extension UIColor {
 	static let receivedBubbleText = UIColor.black
 	static let sentBubbleBackground = UIColor(red: 43.0/255.0, green: 149.0/255.0, blue: 245.0/255.0, alpha: 1.0)
 	static let sentBubbleText = UIColor.white
+	
+	// Calendar
+	static let outsideMonthDates = UIColor.clear
+	static let currentMonthDates = UIColor.black
+	static let selectedDate = UIColor.white
 }
