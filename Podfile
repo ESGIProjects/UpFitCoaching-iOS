@@ -7,4 +7,5 @@ target 'Coaching' do
   # Pods for Coaching
   pod 'RealmSwift'
   pod 'Starscream'
+  pod 'JTAppleCalendar'
 end

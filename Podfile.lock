@@ -1,4 +1,5 @@
 PODS:
+  - JTAppleCalendar (7.1.5)
   - Realm (3.3.2):
     - Realm/Headers (= 3.3.2)
   - Realm/Headers (3.3.2)
@@ -7,20 +8,23 @@ PODS:
   - Starscream (3.0.5)
 
 DEPENDENCIES:
+  - JTAppleCalendar
   - RealmSwift
   - Starscream
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - JTAppleCalendar
     - Realm
     - RealmSwift
     - Starscream
 
 SPEC CHECKSUMS:
+  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
   RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: e4f51a53f645684122cc9dc2fe0e8886fe647adc
+PODFILE CHECKSUM: ad9b56edbefa7bfe8343ffb77a4a55f5bffafc9e
 
 COCOAPODS: 1.5.0
