@@ -32,13 +32,13 @@ extension CalendarController {
 				UILabel(frame: .zero)
 			]
 			
-			labels[0].text = "sunday_short".localized
-			labels[1].text = "monday_short".localized
-			labels[2].text = "tuesday_short".localized
-			labels[3].text = "wednesday_short".localized
-			labels[4].text = "thursday_short".localized
-			labels[5].text = "friday_short".localized
-			labels[6].text = "saturday_short".localized
+			labels[0].text = "monday_short".localized
+			labels[1].text = "tuesday_short".localized
+			labels[2].text = "wednesday_short".localized
+			labels[3].text = "thursday_short".localized
+			labels[4].text = "friday_short".localized
+			labels[5].text = "saturday_short".localized
+			labels[6].text = "sunday_short".localized
 			
 			for label in labels {
 				label.textAlignment = .center
@@ -55,15 +55,28 @@ extension CalendarController {
 			let view = JTAppleCalendarView(frame: .zero)
 			view.translatesAutoresizingMaskIntoConstraints = false
 			
+			// Protocols
 			view.calendarDelegate = delegate
 			view.calendarDataSource = dataSource
 			
+			// Settings
 			view.scrollDirection = .horizontal
 			view.showsVerticalScrollIndicator = false
 			view.showsHorizontalScrollIndicator = false
 			view.isPagingEnabled = true
 			
+			// Layout
 			view.backgroundColor = .white
+			
+			return view
+		}
+		
+		class func tableView(delegate: UITableViewDelegate? = nil, dataSource: UITableViewDataSource? = nil) -> UITableView {
+			let view = UITableView(frame: .zero)
+			view.translatesAutoresizingMaskIntoConstraints = false
+			
+			view.delegate = delegate
+			view.dataSource = dataSource
 			
 			return view
 		}

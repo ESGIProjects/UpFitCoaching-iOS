@@ -18,6 +18,7 @@ class CalendarController: UIViewController {
 	lazy var monthLabel = UI.monthLabel()
 	lazy var weekdaysHeaderView = UI.weekdaysHeaderView()
 	lazy var calendarView = UI.calendarView(delegate: self, dataSource: self)
+	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
 	
 	// MARK: - UIViewController
 	
@@ -26,8 +27,11 @@ class CalendarController: UIViewController {
 		
 		// Setting up layout
 		title = "calendar_title".localized
-		calendarView.register(CalendarCell.self, forCellWithReuseIdentifier: "CustomCell")
 		setupLayout()
+		
+		// Register cells
+		calendarView.register(CalendarCell.self, forCellWithReuseIdentifier: "CalendarCell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CalendarTableCell")
 		
 		// Display the correct month
 		calendarView.visibleDates(updateMonthLabel)
@@ -49,6 +53,7 @@ class CalendarController: UIViewController {
 		view.addSubview(monthLabel)
 		view.addSubview(weekdaysHeaderView)
 		view.addSubview(calendarView)
+		view.addSubview(tableView)
 		
 		var topAnchor: NSLayoutYAxisAnchor
 		var bottomAnchor: NSLayoutYAxisAnchor
@@ -80,7 +85,12 @@ class CalendarController: UIViewController {
 			calendarView.topAnchor.constraint(equalTo: weekdaysHeaderView.bottomAnchor),
 			calendarView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			calendarView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			calendarView.heightAnchor.constraint(equalToConstant: 327)
+			calendarView.heightAnchor.constraint(equalToConstant: 250),
+			
+			tableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor),
+			tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+			tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
 			])
 	}
 	
@@ -106,7 +116,7 @@ extension CalendarController: JTAppleCalendarViewDelegate {
 	func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
 		var cell: CalendarCell
 		
-		if let reusableCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CalendarCell {
+		if let reusableCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as? CalendarCell {
 			cell = reusableCell
 		} else {
 			cell = CalendarCell(frame: .zero)
@@ -148,6 +158,28 @@ extension CalendarController: JTAppleCalendarViewDataSource {
 		formatter.locale = Calendar.current.locale
 		
 		guard let startDate = formatter.date(from: "2018-01-01"), let endDate = formatter.date(from: "2018-12-31") else { fatalError() }
-		return ConfigurationParameters(startDate: startDate, endDate: endDate)
+		
+		let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: nil, calendar: nil, generateInDates: nil, generateOutDates: nil, firstDayOfWeek: .monday, hasStrictBoundaries: nil)
+		return parameters
+	}
+}
+
+// MARK: - UITableViewDelegate
+extension CalendarController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+	}
+}
+
+// MARK: - UITableViewDataSource
+extension CalendarController: UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 10
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .default, reuseIdentifier: "CalendarTableCell")
+		cell.textLabel?.text = "Hello world"
+		return cell
 	}
 }
