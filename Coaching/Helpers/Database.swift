@@ -34,6 +34,14 @@ final class Database {
 		}
 	}
 	
+	func createOrUpdate<Model, RealmObject: Object>(models: [Model], with reverseTransformer: (Model) -> RealmObject) {
+		let objects = models.map { reverseTransformer($0) }
+		
+		try? realm.write {
+			realm.add(objects, update: true)
+		}
+	}
+	
 	func fetch<Model, RealmObject: Object>(with predicate: NSPredicate?, sortDescriptors: [SortDescriptor], transformer: (Results<RealmObject>) -> Model) -> Model {
 		var results = realm.objects(RealmObject.self)
 		
@@ -76,5 +84,11 @@ final class Database {
 		try? realm.write {
 			realm.deleteAll()
 		}		
+	}
+	
+	func deleteAll<RealmObject: Object>(of type: RealmObject.Type) {
+		try? realm.write {
+			realm.delete(realm.objects(type))
+		}
 	}
 }

@@ -9,6 +9,10 @@
 import UIKit
 import RealmSwift
 
+extension Notification.Name {
+	static let test = Notification.Name("test")
+}
+
 class ConversationListController: UIViewController {
 	
 	// MARK: - UI
@@ -37,6 +41,8 @@ class ConversationListController: UIViewController {
 		
 		setupLayout()
 		
+//		NotificationCenter.default.addObserver(self, selector: #selector(testNotification), name: .test, object: nil)
+		
 		if conversations.count == 0 {
 			let database = Database()
 			
@@ -48,6 +54,8 @@ class ConversationListController: UIViewController {
 			conversations = database.fetch(using: Conversation.all)
 			tableView.reloadData()
 		}
+		
+		downloadMessages()
 	}
 	
 	// MARK: - Helpers
@@ -58,6 +66,42 @@ class ConversationListController: UIViewController {
 		
 		let constraints = UI.getConstraints(for: self)
 		NSLayoutConstraint.activate(constraints)
+	}
+
+	private func downloadMessages() {
+		print(#function)
+		
+		guard let currentUser = Database().getCurrentUser() else { return }
+		Network.getConversation(between: 1, and: currentUser.userID) { data, response, _ in
+			
+			guard let response = response as? HTTPURLResponse,
+				let data = data else { return}
+			
+			// Print the HTTP status code
+			print("Status code:", response.statusCode)
+			
+			// Creating the JSON decoder
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+			
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .formatted(dateFormatter)
+			
+			// If the fetch is a success
+			if response.statusCode == 200 {
+				// Decode messages list
+				guard let messages = try? decoder.decode([Message].self, from: data) else { return }
+				print(messages.count, "messages")
+				
+				// Save messages
+				let database = Database()
+				database.deleteAll(of: MessageObject.self)
+				database.createOrUpdate(models: messages, with: MessageObject.init)
+				
+				// Post a notification telling its done
+				NotificationCenter.default.post(name: NSNotification.Name("test"), object: nil, userInfo: nil)
+			}
+		}
 	}
 }
 

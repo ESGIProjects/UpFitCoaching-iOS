@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 extension Database {
 	func getCurrentUser() -> User? {
@@ -26,7 +27,7 @@ extension Database {
 		
 		// Creating the fetch request
 		let fetchRequest = FetchRequest<[Message], MessageObject>(predicate: NSPredicate(format: "(senderID == %d AND receiverID = %d) OR (senderID == %d AND receiverID == %d)", first, second, second, first),
-																  sortDescriptors: [],
+																  sortDescriptors: [SortDescriptor(keyPath: "date")],
 																  transformer: { $0.map(Message.init) })
 		
 		return fetch(using: fetchRequest)

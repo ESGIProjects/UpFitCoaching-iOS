@@ -25,9 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Request notifications authorization
 		center.delegate = self
-		center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-			print("Granted:", granted, "Error:", error?.localizedDescription ?? "none")
-		}
+		center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
 		
 //		let dateFormatter = DateFormatter()
 //		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
@@ -38,9 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if let user = Database().getCurrentUser() {
 			// Show the corresponding tab bar controller
 			window?.rootViewController = user.type == nil ? UITabBarController.coachController() : UITabBarController.clientController()
-			
-			// Download new messages
-			// ...
 			
 			// Starts websocket
 			MessagesDelegate.instance.delegate = self
@@ -70,13 +65,16 @@ extension AppDelegate: WebSocketDelegate {
 		print(#function)
 		
 		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd"
+		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .formatted(dateFormatter)
 		
 		guard let json = text.data(using: .utf8) else {  return }
 		guard let message = try? decoder.decode(Message.self, from: json) else { print("decoder error"); return }
 		guard message.messageID != nil else { return }
+		
+		// Save message
+		Database().createOrUpdate(model: message, with: MessageObject.init)
 
 		// Create a local notification
 		let content = UNMutableNotificationContent()

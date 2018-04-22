@@ -75,7 +75,7 @@ class LoginController: UIViewController {
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return }
 			
-			// Display the HTTP status code
+			// Print the HTTP status code
 			print("Status code:", response.statusCode)
 			
 			// Creating the JSON decoder

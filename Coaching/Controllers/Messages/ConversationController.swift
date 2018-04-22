@@ -26,9 +26,6 @@ class ConversationController: UIViewController {
 		return Database().getMessages(between: currentUser.userID, and: 1)
 	}()
 	
-	// MARK: - Sockets
-	var socket: WebSocket?
-	
 	// Formatters
 	
 	let dateFormatter = DateFormatter()
@@ -42,7 +39,7 @@ class ConversationController: UIViewController {
 		
 		// Setting up
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
-		dateFormatter.dateFormat = "yyyy-MM-dd"// HH:mm:ss"
+		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		decoder.dateDecodingStrategy = .formatted(dateFormatter)
 		encoder.dateEncodingStrategy = .formatted(dateFormatter)
 		
@@ -135,7 +132,8 @@ class ConversationController: UIViewController {
 			
 			// Send through socket
 			if let data = try? encoder.encode(message) {
-				socket?.write(data: data)
+				MessagesDelegate.instance.socket?.write(data: data)
+				
 				let database = Database()
 				let temporaryMessageID = database.reverseNext(type: MessageObject.self, of: "messageID") - 1
 				

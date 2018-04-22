@@ -18,9 +18,8 @@ class Network {
 	typealias NetworkCallback = ((Data?, URLResponse?, Error?) -> Void)
 	private static var baseURL = "http://212.47.234.147"
 	
-	private static func call(_ stringUrl: String, httpMethod: HTTPMethod, parameters: [String: Any], completion: @escaping NetworkCallback) {
-		guard let url = URL(string: stringUrl) else { return }
-		
+	private class func call(_ stringUrl: String, httpMethod: HTTPMethod, parameters: [String: Any], completion: @escaping NetworkCallback) {
+		var request: URLRequest
 		var callParameters = [String]()
 		
 		for (key, value) in parameters {
@@ -28,15 +27,23 @@ class Network {
 		}
 		let parameterString = callParameters.map({ String($0) }).joined(separator: "&")
 		
-		var request = URLRequest(url: url)
+		switch httpMethod {
+		case .get:
+			guard let url = URL(string: stringUrl.appending("?").appending(parameterString)) else { return }
+			request = URLRequest(url: url)
+		case .post:
+			guard let url = URL(string: stringUrl) else { return }
+			request = URLRequest(url: url)
+			request.httpBody = parameterString.data(using: .utf8)
+		}
+		
 		request.httpMethod = httpMethod.rawValue
-		request.httpBody = parameterString.data(using: .utf8)
 		
 		let session = URLSession(configuration: .default)
 		session.dataTask(with: request, completionHandler: completion).resume()
 	}
 	
-	static func login(mail: String, password: String, completion: @escaping NetworkCallback) {
+	class func login(mail: String, password: String, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signin/")
 		let parameters: [String: Any] = [
 			"mail": mail,
@@ -46,7 +53,7 @@ class Network {
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
-	static func register(mail: String, password: String, type: Int, firstName: String, lastName: String, birthDate: String, city: String, phoneNumber: String, completion: @escaping NetworkCallback) {
+	class func register(mail: String, password: String, type: Int, firstName: String, lastName: String, birthDate: String, city: String, phoneNumber: String, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signup/")
 		let parameters: [String: Any] = [
 			"mail": mail,
@@ -60,5 +67,16 @@ class Network {
 		]
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
+	
+	class func getConversation(between first: Int, and second: Int, page: Int = 0, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/conversation/")
+		let parameters: [String: Any] = [
+			"coachId": first,
+			"clientId": second,
+			"page": page
+		]
+		
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
 	}
 }
