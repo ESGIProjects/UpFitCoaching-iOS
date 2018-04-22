@@ -46,6 +46,8 @@ struct Message: Codable {
 		case content
 	}
 	
+	static let all = FetchRequest<[Message], MessageObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(Message.init) })
+	
 	var messageID: Int?
 	let senderID: Int
 	let senderType: Int

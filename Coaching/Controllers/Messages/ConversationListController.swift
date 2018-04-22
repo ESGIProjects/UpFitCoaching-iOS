@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 extension Notification.Name {
-	static let test = Notification.Name("test")
+	static let messagesDownloaded = Notification.Name("messagesDownloaded")
 }
 
 class ConversationListController: UIViewController {
@@ -21,7 +21,26 @@ class ConversationListController: UIViewController {
 
 	// MARK: - Data
 	
-	lazy var conversations = Database().fetch(using: Conversation.all)
+	let currentUser = Database().getCurrentUser()
+	lazy var oldconversations = Database().fetch(using: Conversation.all)
+	lazy var conversations: [Conversation] = {
+		guard let currentUser = currentUser else { return [] }
+		let messages = Database().fetch(using: Message.all)
+		
+		// Get all user
+		var users = messages.map { $0.receiverID == currentUser.userID ? $0.senderID : $0.receiverID }
+		users = Array(Set(users))
+		
+		// Get last message for user
+		var conversations = [Conversation]()
+		
+		for user in users {
+			guard let lastMessage = messages.filter({ $0.receiverID == user || $0.senderID == user }).sorted(by: { $0.date < $1.date }).last else { continue }
+			conversations.append(Conversation(conversationID: 0, name: "\(user)", message: lastMessage.content))
+		}
+		
+		return conversations
+	}()
 	
 	// MARK: - UIViewController
 	
@@ -41,21 +60,9 @@ class ConversationListController: UIViewController {
 		
 		setupLayout()
 		
-//		NotificationCenter.default.addObserver(self, selector: #selector(testNotification), name: .test, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(messagesDownloaded), name: .messagesDownloaded, object: nil)
 		
-		if conversations.count == 0 {
-			let database = Database()
-			
-			// Create the conversation object
-			let conversation = Conversation(conversationID: database.next(type: ConversationObject.self, of: "conversationID"), name: "Jason", message: "Miaou")
-			database.createOrUpdate(model: conversation, with: ConversationObject.init)
-			
-			// Reload data
-			conversations = database.fetch(using: Conversation.all)
-			tableView.reloadData()
-		}
-		
-		downloadMessages()
+		//downloadMessages()
 	}
 	
 	// MARK: - Helpers
@@ -69,9 +76,8 @@ class ConversationListController: UIViewController {
 	}
 
 	private func downloadMessages() {
-		print(#function)
+		guard let currentUser = currentUser else { return }
 		
-		guard let currentUser = Database().getCurrentUser() else { return }
 		Network.getConversation(between: 1, and: currentUser.userID) { data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
@@ -99,8 +105,38 @@ class ConversationListController: UIViewController {
 				database.createOrUpdate(models: messages, with: MessageObject.init)
 				
 				// Post a notification telling its done
-				NotificationCenter.default.post(name: NSNotification.Name("test"), object: nil, userInfo: nil)
+				NotificationCenter.default.post(name: .messagesDownloaded, object: nil, userInfo: nil)
 			}
+		}
+	}
+	
+	// MARK: - Actions
+	@objc func messagesDownloaded() {
+		guard let currentUser = currentUser else { return }
+		
+		let database = Database()
+		let messages = database.fetch(using: Message.all)
+		
+		var users = messages.map { $0.receiverID == currentUser.userID ? $0.senderID : $0.receiverID }
+		users = Array(Set(users))
+		
+		// Re-generate conversations
+		var conversations = [Conversation]()
+		database.deleteAll(of: ConversationObject.self)
+		
+		for user in users {
+			let conversation = Conversation(conversationID: database.next(type: ConversationObject.self, of: "conversationID"), name: "User \(user)", message: "Miaou")
+			conversations.append(conversation)
+		}
+		
+		// Save conversations
+		database.createOrUpdate(models: conversations, with: ConversationObject.init)
+		
+		// Reload data
+		self.conversations = conversations
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.tableView.reloadData()
 		}
 	}
 }
