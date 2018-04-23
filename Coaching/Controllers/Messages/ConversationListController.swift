@@ -9,10 +9,6 @@
 import UIKit
 import RealmSwift
 
-extension Notification.Name {
-	static let messagesDownloaded = Notification.Name("messagesDownloaded")
-}
-
 class ConversationListController: UIViewController {
 	
 	// MARK: - UI
@@ -22,24 +18,12 @@ class ConversationListController: UIViewController {
 	// MARK: - Data
 	
 	let currentUser = Database().getCurrentUser()
-	lazy var oldconversations = Database().fetch(using: Conversation.all)
+	
 	lazy var conversations: [Conversation] = {
 		guard let currentUser = currentUser else { return [] }
+		
 		let messages = Database().fetch(using: Message.all)
-		
-		// Get all user
-		var users = messages.map { $0.receiverID == currentUser.userID ? $0.senderID : $0.receiverID }
-		users = Array(Set(users))
-		
-		// Get last message for user
-		var conversations = [Conversation]()
-		
-		for user in users {
-			guard let lastMessage = messages.filter({ $0.receiverID == user || $0.senderID == user }).sorted(by: { $0.date < $1.date }).last else { continue }
-			conversations.append(Conversation(conversationID: 0, name: "\(user)", message: lastMessage.content))
-		}
-		
-		return conversations
+		return Conversation.generateConversations(from: messages, for: currentUser)
 	}()
 	
 	// MARK: - UIViewController
@@ -61,7 +45,6 @@ class ConversationListController: UIViewController {
 		setupLayout()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(messagesDownloaded), name: .messagesDownloaded, object: nil)
-		
 		downloadMessages()
 	}
 	
@@ -78,7 +61,7 @@ class ConversationListController: UIViewController {
 	private func downloadMessages() {
 		guard let currentUser = currentUser else { return }
 		
-		Network.getConversation(between: 1, and: currentUser.userID) { data, response, _ in
+		Network.getMessages(for: currentUser.userID) { data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return}
@@ -114,26 +97,9 @@ class ConversationListController: UIViewController {
 	@objc func messagesDownloaded() {
 		guard let currentUser = currentUser else { return }
 		
-		let database = Database()
-		let messages = database.fetch(using: Message.all)
-		
-		var users = messages.map { $0.receiverID == currentUser.userID ? $0.senderID : $0.receiverID }
-		users = Array(Set(users))
-		
-		// Re-generate conversations
-		var conversations = [Conversation]()
-		database.deleteAll(of: ConversationObject.self)
-		
-		for user in users {
-			let conversation = Conversation(conversationID: database.next(type: ConversationObject.self, of: "conversationID"), name: "User \(user)", message: "Miaou")
-			conversations.append(conversation)
-		}
-		
-		// Save conversations
-		database.createOrUpdate(models: conversations, with: ConversationObject.init)
-		
-		// Reload data
-		self.conversations = conversations
+		// Reload conversations
+		let messages = Database().fetch(using: Message.all)
+		conversations = Conversation.generateConversations(from: messages, for: currentUser)
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
@@ -158,8 +124,10 @@ extension ConversationListController: UITableViewDataSource {
 		
 		cell.accessoryType = .disclosureIndicator
 		
-		cell.nameLabel.text = conversations[indexPath.row].name
-		cell.messageLabel.text = conversations[indexPath.row].message
+		let conversation = conversations[indexPath.row]
+		
+		cell.nameLabel.text = "User \(conversation.user)"
+		cell.messageLabel.text = conversation.message.content
 		
 		return cell
 	}
@@ -170,10 +138,11 @@ extension ConversationListController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		
-		let conversationViewController = ConversationController()
-		conversationViewController.hidesBottomBarWhenPushed = true
-		conversationViewController.title = conversations[indexPath.row].name
+		let conversationController = ConversationController()
+		conversationController.hidesBottomBarWhenPushed = true
+		conversationController.title = "User \(conversations[indexPath.row].user)"
+		conversationController.otherUser = conversations[indexPath.row].user
 
-		navigationController?.pushViewController(conversationViewController, animated: true)
+		navigationController?.pushViewController(conversationController, animated: true)
 	}
 }

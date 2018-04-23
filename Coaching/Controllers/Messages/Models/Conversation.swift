@@ -7,38 +7,25 @@
 //
 
 import Foundation
-import RealmSwift
-
-final class ConversationObject: Object {
-	@objc dynamic var conversationID = 0
-	@objc dynamic var name = ""
-	@objc dynamic var message = ""
-	
-	convenience init(conversation: Conversation) {
-		self.init()
-		
-		conversationID = conversation.conversationID
-		name = conversation.name
-		message = conversation.message
-	}
-
-	override static func primaryKey() -> String? {
-		return "conversationID"
-	}
-}
 
 struct Conversation {
-	let conversationID: Int
-	let name: String
-	let message: String
+	let user: Int
+	let message: Message
 	
-	static let all = FetchRequest<[Conversation], ConversationObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(Conversation.init) })
-}
-
-extension Conversation {
-	init(object: ConversationObject) {
-		conversationID = object.conversationID
-		name = object.name
-		message = object.message
+	static func generateConversations(from messages: [Message], for currentUser: User) -> [Conversation] {
+		var conversations = [Conversation]()
+		
+		// Get users from messages
+		var users = messages.map { $0.receiver == currentUser.userID ? $0.sender : $0.receiver }
+		users = Array(Set(users))
+		
+		// Get last message for each user
+		for user in users {
+			guard let lastMessage = messages.filter({ $0.receiver == user || $0.sender == user }).sorted(by: { $0.date < $1.date }).last else { continue }
+			conversations.append(Conversation(user: user, message: lastMessage))
+		}
+				
+		// Sort conversations by date, descending
+		return conversations.sorted(by: { $0.message.date > $1.message.date })
 	}
 }
