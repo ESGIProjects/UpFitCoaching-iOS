@@ -27,15 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		center.delegate = self
 		center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
 		
-//		let dateFormatter = DateFormatter()
-//		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
-//		print(dateFormatter.string(from: Date()))
-//		
-//		print(dateFormatter.date(from: "2018-04-20 17:00:00+0200")?.timeIntervalSinceNow)
-		
 		if let user = Database().getCurrentUser() {
 			// Show the corresponding tab bar controller
-			window?.rootViewController = user.type == nil ? UITabBarController.coachController() : UITabBarController.clientController()
+			window?.rootViewController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
 			
 			// Starts websocket
 			MessagesDelegate.instance.delegate = self

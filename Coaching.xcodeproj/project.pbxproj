@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A0199208DCC610005C60A /* Notification+Names.swift */; };
 		1A9E194E207E403A0091FABB /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194D207E403A0091FABB /* SignUpController.swift */; };
 		1A9E1950207E404C0091FABB /* SignUp+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194F207E404C0091FABB /* SignUp+UI.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A9A0199208DCC610005C60A /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
 		1A9E1946207E0EFB0091FABB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A9E1948207E0F480091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				D789201620544FAD0020C703 /* String+Localization.swift */,
 				D7811949207D3F2D001762D4 /* Helpers.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
+				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
+				1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */,
 				D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */,
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
 				D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */,

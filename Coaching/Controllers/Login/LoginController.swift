@@ -96,7 +96,7 @@ class LoginController: UIViewController {
 				UserDefaults.standard.set(user.userID, forKey: "userID")
 				
 				// Present the correct controller for the user
-				let tabBarController = user.type == nil ? UITabBarController.coachController() : UITabBarController.clientController()
+				let tabBarController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
 				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
