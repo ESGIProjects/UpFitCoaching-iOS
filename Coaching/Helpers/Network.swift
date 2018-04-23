@@ -69,12 +69,10 @@ class Network {
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
-	class func getConversation(between first: Int, and second: Int, page: Int = 0, completion: @escaping NetworkCallback) {
-		let url = baseURL.appending("/conversation/")
+	class func getMessages(for user: Int, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/messages/")
 		let parameters: [String: Any] = [
-			"coachId": first,
-			"clientId": second,
-			"page": page
+			"userId": user
 		]
 		
 		call(url, httpMethod: .get, parameters: parameters, completion: completion)

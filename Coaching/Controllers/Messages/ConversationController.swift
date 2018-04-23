@@ -20,10 +20,14 @@ class ConversationController: UIViewController {
 	
 	// MARK: - User info
 	
-	var currentUser = Database().getCurrentUser()
+	let currentUser = Database().getCurrentUser()
+	var otherUser: Int?
+	
 	lazy var messages: [Message] = {
-		guard let currentUser = currentUser else { return [Message]() }
-		return Database().getMessages(between: currentUser.userID, and: 1)
+		guard let currentUser = currentUser else { return [] }
+		guard let otherUser = otherUser else { return [] }
+		
+		return Database().getMessages(between: currentUser.userID, and: otherUser)
 	}()
 	
 	// Formatters
@@ -125,13 +129,16 @@ class ConversationController: UIViewController {
 		// Check if the message is not empty
 		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
 		guard let currentUser = currentUser else { return }
+		guard let otherUser = otherUser else { return }
 		
 		if let messageText = messageBarView.textView.text {
-			var message = Message(messageID: nil, senderID: currentUser.userID, senderType: currentUser.type ?? 2, receiverID: 1, receiverType: 0, date: Date(), content: messageText)
+			var message = Message(messageID: nil, sender: currentUser.userID, receiver: otherUser, date: Date(), content: messageText)
 			messages.append(message)
 			
 			// Send through socket
 			if let data = try? encoder.encode(message) {
+				print(String(data: data, encoding: .utf8))
+				
 				MessagesDelegate.instance.socket?.write(data: data)
 				
 				let database = Database()
@@ -200,7 +207,7 @@ extension ConversationController: UICollectionViewDataSource {
 		
 		cell.messageLabel.text = message.content
 		
-		if message.senderID != currentUser.userID {
+		if message.sender != currentUser.userID {
 			cell.messageLabel.textColor = .receivedBubbleText
 			cell.contentView.backgroundColor = .receivedBubbleBackground
 		} else {
@@ -218,7 +225,7 @@ extension ConversationController: ConversationLayoutDelegate {
 		guard let currentUser = currentUser else { return false }
 		
 		let message = messages[indexPath.item]
-		return message.senderID == currentUser.userID
+		return message.sender == currentUser.userID
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String {
