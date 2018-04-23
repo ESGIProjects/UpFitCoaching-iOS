@@ -24,7 +24,7 @@ class MessagesDelegate {
 	
 	private init() {
 		guard let userID = UserDefaults.standard.object(forKey: "userID") as? Int else { return }
-		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)&type=0") else { return }
+		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)") else { return }
 		
 		socket = WebSocket(url: url)
 	}
