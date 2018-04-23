@@ -137,8 +137,6 @@ class ConversationController: UIViewController {
 			
 			// Send through socket
 			if let data = try? encoder.encode(message) {
-				print(String(data: data, encoding: .utf8))
-				
 				MessagesDelegate.instance.socket?.write(data: data)
 				
 				let database = Database()

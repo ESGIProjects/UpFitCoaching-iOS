@@ -35,6 +35,11 @@ class CalendarController: UIViewController {
 		
 		// Display the correct month
 		calendarView.visibleDates(updateMonthLabel)
+		
+		let today = Date()
+		
+		calendarView.selectDates([today])
+		calendarView.scrollToDate(today, animateScroll: false)
 	}
 	
 	// MARK: - Layout
@@ -78,7 +83,7 @@ class CalendarController: UIViewController {
 			monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 			monthLabel.heightAnchor.constraint(equalToConstant: 50.0),
 			
-			weekdaysHeaderView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor),
+			weekdaysHeaderView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 10.0),
 			weekdaysHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			weekdaysHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
 			
@@ -173,8 +178,23 @@ extension CalendarController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension CalendarController: UITableViewDataSource {
+	func numberOfSections(in tableView: UITableView) -> Int {
+		let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+		messageLabel.text = "Nothing scheduled this day"
+		messageLabel.textColor = .gray
+		messageLabel.numberOfLines = 0
+		messageLabel.textAlignment = .center
+		messageLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+		messageLabel.sizeToFit()
+		
+		tableView.separatorColor = .clear
+		tableView.backgroundView = messageLabel
+		
+		return 0
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 10
+		return 0
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -31,6 +31,7 @@ class ConversationListController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// Layout
 		title = "conversationList_title".localized
 		
 		if #available(iOS 11.0, *) {
@@ -38,13 +39,19 @@ class ConversationListController: UIViewController {
 			navigationItem.largeTitleDisplayMode = .always
 		}
 		
+		setupLayout()
+		
+		// Add button on navigation bar
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(startConversation))
+		
+		// Setting up table view
 		tableView.estimatedRowHeight = 100.0
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
 		
-		setupLayout()
-		
+		// Add observer
 		NotificationCenter.default.addObserver(self, selector: #selector(messagesDownloaded), name: .messagesDownloaded, object: nil)
+		
 		downloadMessages()
 	}
 	
@@ -105,10 +112,36 @@ class ConversationListController: UIViewController {
 			self?.tableView.reloadData()
 		}
 	}
+	
+	@objc func startConversation() {
+		print("Start conversation !!")
+	}
 }
 
 // MARK: - UITableViewDataSource
 extension ConversationListController: UITableViewDataSource {
+	func numberOfSections(in tableView: UITableView) -> Int {
+		if conversations.count > 0 {
+			tableView.separatorColor = .gray
+			tableView.backgroundView = nil
+			
+			return 1
+		} else {
+			let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+			messageLabel.text = "You have no messages yet.\nStart a conversation!"
+			messageLabel.textColor = .gray
+			messageLabel.numberOfLines = 0
+			messageLabel.textAlignment = .center
+			messageLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+			messageLabel.sizeToFit()
+			
+			tableView.separatorColor = .clear
+			tableView.backgroundView = messageLabel
+			
+			return 0
+		}
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return conversations.count
 	}
