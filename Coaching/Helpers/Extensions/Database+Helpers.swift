@@ -23,10 +23,10 @@ extension Database {
 		return fetch(using: fetchRequest).first
 	}
 	
-	func getMessages(between first: Int, and second: Int) -> [Message] {
+	func getMessages(between first: User, and second: User) -> [Message] {
 		
 		// Creating the fetch request
-		let fetchRequest = FetchRequest<[Message], MessageObject>(predicate: NSPredicate(format: "(sender == %d AND receiver = %d) OR (sender == %d AND receiver == %d)", first, second, second, first),
+		let fetchRequest = FetchRequest<[Message], MessageObject>(predicate: NSPredicate(format: "(sender.userID == %d AND receiver.userID = %d) OR (sender.userID == %d AND receiver.userID == %d)", first.userID, second.userID, second.userID, first.userID),
 																  sortDescriptors: [SortDescriptor(keyPath: "date")],
 																  transformer: { $0.map(Message.init) })
 		

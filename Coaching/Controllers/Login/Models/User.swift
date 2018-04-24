@@ -39,7 +39,7 @@ final class UserObject: Object {
 	}
 }
 
-struct User: Codable {
+struct User: Codable, Equatable {
 	enum CodingKeys: String, CodingKey {
 		case userID = "id"
 		case type
@@ -63,6 +63,10 @@ struct User: Codable {
 	var birthDate: Date?
 	
 	static let all = FetchRequest<[User], UserObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(User.init) })
+	
+	static func == (lhs: User, rhs: User) -> Bool {
+		return lhs.userID == rhs.userID
+	}
 }
 
 extension User {

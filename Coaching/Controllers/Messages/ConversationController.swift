@@ -21,13 +21,13 @@ class ConversationController: UIViewController {
 	// MARK: - User info
 	
 	let currentUser = Database().getCurrentUser()
-	var otherUser: Int?
+	var otherUser: User?
 	
 	lazy var messages: [Message] = {
 		guard let currentUser = currentUser else { return [] }
 		guard let otherUser = otherUser else { return [] }
 		
-		return Database().getMessages(between: currentUser.userID, and: otherUser)
+		return Database().getMessages(between: currentUser, and: otherUser)
 	}()
 	
 	// Formatters
@@ -66,8 +66,7 @@ class ConversationController: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 		
 		// Updates websocket delegate
-		MessagesDelegate.instance.delegate = self
-		
+		MessagesDelegate.instance.delegate = self		
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -132,7 +131,7 @@ class ConversationController: UIViewController {
 		guard let otherUser = otherUser else { return }
 		
 		if let messageText = messageBarView.textView.text {
-			var message = Message(messageID: nil, sender: currentUser.userID, receiver: otherUser, date: Date(), content: messageText)
+			var message = Message(messageID: nil, sender: currentUser, receiver: otherUser, date: Date(), content: messageText)
 			messages.append(message)
 			
 			// Send through socket
@@ -205,7 +204,7 @@ extension ConversationController: UICollectionViewDataSource {
 		
 		cell.messageLabel.text = message.content
 		
-		if message.sender != currentUser.userID {
+		if message.sender != currentUser {
 			cell.messageLabel.textColor = .receivedBubbleText
 			cell.contentView.backgroundColor = .receivedBubbleBackground
 		} else {
@@ -223,7 +222,7 @@ extension ConversationController: ConversationLayoutDelegate {
 		guard let currentUser = currentUser else { return false }
 		
 		let message = messages[indexPath.item]
-		return message.sender == currentUser.userID
+		return message.sender == currentUser
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, textAt indexPath: IndexPath) -> String {

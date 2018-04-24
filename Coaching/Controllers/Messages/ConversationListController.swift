@@ -159,7 +159,7 @@ extension ConversationListController: UITableViewDataSource {
 		
 		let conversation = conversations[indexPath.row]
 		
-		cell.nameLabel.text = "User \(conversation.user)"
+		cell.nameLabel.text = "\(conversation.user.firstName) \(conversation.user.lastName)"
 		cell.messageLabel.text = conversation.message.content
 		
 		return cell
@@ -171,10 +171,12 @@ extension ConversationListController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		
+		let user = conversations[indexPath.row].user
+		
 		let conversationController = ConversationController()
 		conversationController.hidesBottomBarWhenPushed = true
-		conversationController.title = "User \(conversations[indexPath.row].user)"
-		conversationController.otherUser = conversations[indexPath.row].user
+		conversationController.title = "\(user.firstName) \(user.lastName)"
+		conversationController.otherUser = user
 
 		navigationController?.pushViewController(conversationController, animated: true)
 	}

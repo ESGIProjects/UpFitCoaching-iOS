@@ -11,8 +11,8 @@ import RealmSwift
 
 final class MessageObject: Object {
 	@objc dynamic var messageID = 0
-	@objc dynamic var sender = 0
-	@objc dynamic var receiver = 0
+	@objc dynamic var sender: UserObject!
+	@objc dynamic var receiver: UserObject!
 	@objc dynamic var date = Date()
 	@objc dynamic var content = ""
 	
@@ -24,8 +24,8 @@ final class MessageObject: Object {
 		self.init()
 		
 		messageID = message.messageID ?? 0
-		sender = message.sender
-		receiver = message.receiver
+		sender = UserObject(user: message.sender)
+		receiver = UserObject(user: message.receiver)
 		date = message.date
 		content = message.content
 	}
@@ -43,8 +43,8 @@ struct Message: Codable {
 	static let all = FetchRequest<[Message], MessageObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(Message.init) })
 	
 	var messageID: Int?
-	let sender: Int
-	let receiver: Int
+	let sender: User
+	let receiver: User
 	let date: Date
 	let content: String
 }
@@ -52,8 +52,8 @@ struct Message: Codable {
 extension Message {
 	init(object: MessageObject) {
 		messageID = object.messageID
-		sender = object.sender
-		receiver = object.receiver
+		sender = User(object: object.sender)
+		receiver = User(object: object.receiver)
 		date = object.date
 		content = object.content
 	}
