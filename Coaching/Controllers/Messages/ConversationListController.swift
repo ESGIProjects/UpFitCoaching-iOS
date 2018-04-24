@@ -17,16 +17,21 @@ class ConversationListController: UIViewController {
 
 	// MARK: - Data
 	
-	let currentUser = Database().getCurrentUser()
-	
-	lazy var conversations: [Conversation] = {
-		guard let currentUser = currentUser else { return [] }
-		
-		let messages = Database().fetch(using: Message.all)
-		return Conversation.generateConversations(from: messages, for: currentUser)
-	}()
+	let currentUser = Database().getCurrentUser()	
+	var conversations = [Conversation]()
 	
 	// MARK: - UIViewController
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		guard let currentUser = currentUser else { return }
+		
+		let messages = Database().fetch(using: Message.all)
+		conversations = Conversation.generateConversations(from: messages, for: currentUser)
+		
+		tableView.reloadData()
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
