@@ -287,8 +287,8 @@
 			children = (
 				D7DAA23F20554E7F007F3011 /* Colors.swift */,
 				D789201620544FAD0020C703 /* String+Localization.swift */,
-				D7811949207D3F2D001762D4 /* Helpers.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
+				D7811949207D3F2D001762D4 /* Helpers.swift */,
 				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
 			);
 			path = Extensions;

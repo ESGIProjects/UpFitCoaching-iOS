@@ -63,6 +63,7 @@ extension CalendarController {
 			view.scrollDirection = .horizontal
 			view.showsVerticalScrollIndicator = false
 			view.showsHorizontalScrollIndicator = false
+			view.scrollingMode = .stopAtEachSection
 			view.isPagingEnabled = true
 			
 			// Layout
