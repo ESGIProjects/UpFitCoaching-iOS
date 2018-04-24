@@ -83,7 +83,7 @@ class ConversationListCell: UITableViewCell {
 			photoImageView.heightAnchor.constraint(equalToConstant: 50),
 			photoImageView.widthAnchor.constraint(equalToConstant: 50),
 			
-			nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
+			nameLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
 			nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
 			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
 			
@@ -93,6 +93,6 @@ class ConversationListCell: UITableViewCell {
 			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
 			])
 		
-		photoImageView.layer.cornerRadius = 25
+		photoImageView.layer.cornerRadius = 25.0
 	}
 }
