@@ -52,7 +52,7 @@ extension AppDelegate: WebSocketDelegate {
 	}
 	
 	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		print(#function, error ?? "")
+		print(#function, error ?? "", error?.localizedDescription ?? "")
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
@@ -70,15 +70,8 @@ extension AppDelegate: WebSocketDelegate {
 		// Save message
 		Database().createOrUpdate(model: message, with: MessageObject.init)
 
-		// Create a local notification
-		let content = UNMutableNotificationContent()
-		content.title = "Jason Pierna"
-		content.body = message.content
-		content.sound = UNNotificationSound.default()
-
-		// Add the notification to the queue, for immediate firing
-		let request = UNNotificationRequest(identifier: "message", content: content, trigger: nil)
-		center.add(request)
+		// Fire notification
+		MessagesDelegate.fireNotification(message: message)
 	}
 	
 	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

@@ -7,6 +7,7 @@
 //
 
 import Starscream
+import UserNotifications
 
 class MessagesDelegate {
 	
@@ -35,5 +36,17 @@ class MessagesDelegate {
 	
 	func disconnect() {
 		socket?.disconnect()
+	}
+	
+	class func fireNotification(message: Message) {
+		// Create a local notification
+		let content = UNMutableNotificationContent()
+		content.title = "\(message.sender.firstName) \(message.sender.lastName)"
+		content.body = message.content
+		content.sound = UNNotificationSound.default()
+		
+		// Add the notification to the queue, for immediate firing
+		let request = UNNotificationRequest(identifier: "message", content: content, trigger: nil)
+		UNUserNotificationCenter.current().add(request)
 	}
 }

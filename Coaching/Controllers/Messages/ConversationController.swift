@@ -64,12 +64,18 @@ class ConversationController: UIViewController {
 		
 		// Orientaton observer
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		
 		// Updates websocket delegate
-		MessagesDelegate.instance.delegate = self		
+		MessagesDelegate.instance.delegate = self
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		
 		// Remove every observers
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
@@ -241,20 +247,25 @@ extension ConversationController: WebSocketDelegate {
 	}
 	
 	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		print(#function, error ?? "")
+		print(#function, error ?? "", error?.localizedDescription ?? "")
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+		guard let otherUser = otherUser else { return }
 		guard let json = text.data(using: .utf8) else { return }
 		guard let message = try? decoder.decode(Message.self, from: json) else { return }
 		guard message.messageID != nil else { return }
-		
-		messages.append(message)
 		Database().createOrUpdate(model: message, with: MessageObject.init)
 		
-		DispatchQueue.main.async { [weak self] in
-			self?.collectionView.reloadData()
-			self?.scrollToBottom()
+		if message.sender == otherUser {
+			messages.append(message)
+			
+			DispatchQueue.main.async { [weak self] in
+				self?.collectionView.reloadData()
+				self?.scrollToBottom()
+			}
+		} else {
+			MessagesDelegate.fireNotification(message: message)
 		}
 	}
 	

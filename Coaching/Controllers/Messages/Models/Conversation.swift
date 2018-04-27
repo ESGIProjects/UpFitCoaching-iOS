@@ -9,8 +9,8 @@
 import Foundation
 
 struct Conversation {
-	let user: User
-	let message: Message
+	var user: User
+	var message: Message
 	
 	static func generateConversations(from messages: [Message], for currentUser: User) -> [Conversation] {
 		var conversations = [Conversation]()
@@ -33,6 +33,17 @@ struct Conversation {
 		}
 				
 		// Sort conversations by date, descending
-		return conversations.sorted(by: { $0.message.date > $1.message.date})
+		return conversations.sorted(by: { $0.message.date > $1.message.date })
+	}
+}
+
+extension Array where Iterator.Element == Conversation {
+	mutating func add(message: Message) {
+		if let index = index(where: { $0.user == message.sender }) {
+			self[index].message = message
+			self = sorted(by: { $0.message.date > $1.message.date })
+		} else {
+			insert(Conversation(user: message.sender, message: message), at: 0)
+		}
 	}
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Starscream
 
 class ConversationListController: UIViewController {
 	
@@ -17,7 +18,7 @@ class ConversationListController: UIViewController {
 
 	// MARK: - Data
 	
-	let currentUser = Database().getCurrentUser()	
+	let currentUser = Database().getCurrentUser()
 	var conversations = [Conversation]()
 	
 	// MARK: - UIViewController
@@ -27,10 +28,19 @@ class ConversationListController: UIViewController {
 		
 		guard let currentUser = currentUser else { return }
 		
+		// Reload conversations
 		let messages = Database().fetch(using: Message.all)
 		conversations = Conversation.generateConversations(from: messages, for: currentUser)
 		
 		tableView.reloadData()
+		
+		// Updates websocket delegate
+		MessagesDelegate.instance.delegate = self
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		// Updates websocket delegate
+		MessagesDelegate.instance.delegate = UIApplication.shared.delegate as? AppDelegate
 	}
 	
 	override func viewDidLoad() {
@@ -182,5 +192,42 @@ extension ConversationListController: UITableViewDelegate {
 		conversationController.otherUser = user
 
 		navigationController?.pushViewController(conversationController, animated: true)
+	}
+}
+
+extension ConversationListController: WebSocketDelegate {
+	func websocketDidConnect(socket: WebSocketClient) {
+		print(#function)
+	}
+	
+	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+		print(#function, error ?? "", error?.localizedDescription ?? "")
+	}
+	
+	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+		print(#function)
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .formatted(dateFormatter)
+		
+		guard let json = text.data(using: .utf8) else {  return }
+		guard let message = try? decoder.decode(Message.self, from: json) else { print("decoder error"); return }
+		guard message.messageID != nil else { return }
+		
+		// Save message
+		Database().createOrUpdate(model: message, with: MessageObject.init)
+		
+		// Regenerate conversation
+		conversations.add(message: message)
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.tableView.reloadData()
+		}
+	}
+	
+	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+		print(#function)
 	}
 }
