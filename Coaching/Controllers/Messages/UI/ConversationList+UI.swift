@@ -15,6 +15,8 @@ extension ConversationListController {
 			tableView.translatesAutoresizingMaskIntoConstraints = false
 			tableView.delegate = delegate
 			tableView.dataSource = dataSource
+			tableView.estimatedRowHeight = 100.0
+			tableView.rowHeight = UITableViewAutomaticDimension
 			return tableView
 		}
 		

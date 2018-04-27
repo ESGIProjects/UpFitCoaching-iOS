@@ -76,14 +76,13 @@ class ConversationListCell: UITableViewCell {
 		contentView.addSubview(messageLabel)
 		
 		NSLayoutConstraint.activate([
-			photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
 			photoImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
 			photoImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
 			photoImageView.heightAnchor.constraint(equalToConstant: 50),
 			photoImageView.widthAnchor.constraint(equalToConstant: 50),
 			
-			nameLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
+			nameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor),
 			nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
 			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
 			

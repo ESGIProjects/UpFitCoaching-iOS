@@ -50,8 +50,6 @@ class ConversationListController: UIViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(startConversation))
 		
 		// Setting up table view
-		tableView.estimatedRowHeight = 100.0
-		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
 		
 		// Add observer
