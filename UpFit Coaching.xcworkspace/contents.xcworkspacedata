@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Coaching.xcodeproj">
+      location = "group:/Users/jasonpierna/Desktop/ESGI/Coaching/UpFit Coaching.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

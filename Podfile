@@ -1,10 +1,10 @@
 platform :ios, '9.0'
 inhibit_all_warnings!
 
-target 'Coaching' do
+target 'UpFit Coaching' do
   use_frameworks!
 
-  # Pods for Coaching
+  # Pods for UpFit Coaching
   pod 'RealmSwift'
   pod 'Starscream'
   pod 'JTAppleCalendar'

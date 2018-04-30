@@ -12,6 +12,8 @@
 		1A9E1950207E404C0091FABB /* SignUp+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E194F207E404C0091FABB /* SignUp+UI.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
+		1AFD971D2097207700289FB3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD971C2097207700289FB3 /* Event.swift */; };
+		84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
 		D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642B208CBDA600EC3F6C /* CalendarCell.swift */; };
 		D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */; };
@@ -40,10 +42,10 @@
 		D7EF961F20860EBB002E0A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF961E20860EBB002E0A9B /* User.swift */; };
 		D7EFFF33204FDE47004694EC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFFF32204FDE47004694EC /* Network.swift */; };
 		D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */; };
-		EE8D5295A8AAC9488B4DE659 /* Pods_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpFit_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9A0199208DCC610005C60A /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
 		1A9E1946207E0EFB0091FABB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,7 +54,10 @@
 		1A9E194F207E404C0091FABB /* SignUp+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUp+UI.swift"; sourceTree = "<group>"; };
 		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		1AA3973A203C50520020092D /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
+		1AFD971C2097207700289FB3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.debug.xcconfig"; sourceTree = "<group>"; };
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
+		7BB9226391226412543F80BB /* Pods-UpFit Coaching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.release.xcconfig"; sourceTree = "<group>"; };
 		D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D70C642B208CBDA600EC3F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -61,7 +66,7 @@
 		D7108AF92083B1C700AB6260 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDelegate.swift; sourceTree = "<group>"; };
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
-		D773DD48203362DE001520CA /* Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
 		D773DD52203362DE001520CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE8D5295A8AAC9488B4DE659 /* Pods_Coaching.framework in Frameworks */,
+				84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,10 +165,19 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		1AFD971B2097206500289FB3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD971C2097207700289FB3 /* Event.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		6D2E07DAE6FDC13B41A69836 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */,
+				040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,6 +187,8 @@
 			children = (
 				3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */,
 				E995B5783B3772E82DD83D26 /* Pods-Coaching.release.xcconfig */,
+				1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */,
+				7BB9226391226412543F80BB /* Pods-UpFit Coaching.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -199,6 +215,7 @@
 			children = (
 				D71D60CA208CB2B700F143CA /* CalendarController.swift */,
 				D70C6430208CCEF700EC3F6C /* UI */,
+				1AFD971B2097206500289FB3 /* Models */,
 				D70C642D208CCED500EC3F6C /* Views */,
 			);
 			path = Calendar;
@@ -207,7 +224,7 @@
 		D773DD3F203362DD001520CA = {
 			isa = PBXGroup;
 			children = (
-				D773DD4A203362DE001520CA /* Coaching */,
+				D773DD4A203362DE001520CA /* UpFit Coaching */,
 				D773DD49203362DE001520CA /* Products */,
 				AFEE5D02DBB12D6E37D24D0F /* Pods */,
 				6D2E07DAE6FDC13B41A69836 /* Frameworks */,
@@ -217,12 +234,12 @@
 		D773DD49203362DE001520CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D773DD48203362DE001520CA /* Coaching.app */,
+				D773DD48203362DE001520CA /* UpFit Coaching.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D773DD4A203362DE001520CA /* Coaching */ = {
+		D773DD4A203362DE001520CA /* UpFit Coaching */ = {
 			isa = PBXGroup;
 			children = (
 				D773DD4B203362DE001520CA /* AppDelegate.swift */,
@@ -231,7 +248,7 @@
 				D789201520544F7E0020C703 /* Supporting Files */,
 				D773DD57203362DE001520CA /* Info.plist */,
 			);
-			path = Coaching;
+			path = "UpFit Coaching";
 			sourceTree = "<group>";
 		};
 		D789200B20542CE30020C703 /* Models */ = {
@@ -297,9 +314,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D773DD47203362DE001520CA /* Coaching */ = {
+		D773DD47203362DE001520CA /* UpFit Coaching */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D773DD5A203362DE001520CA /* Build configuration list for PBXNativeTarget "Coaching" */;
+			buildConfigurationList = D773DD5A203362DE001520CA /* Build configuration list for PBXNativeTarget "UpFit Coaching" */;
 			buildPhases = (
 				B31271742F6097CE32DDBFD9 /* [CP] Check Pods Manifest.lock */,
 				D773DD44203362DE001520CA /* Sources */,
@@ -312,9 +329,9 @@
 			);
 			dependencies = (
 			);
-			name = Coaching;
+			name = "UpFit Coaching";
 			productName = Coaching;
-			productReference = D773DD48203362DE001520CA /* Coaching.app */;
+			productReference = D773DD48203362DE001520CA /* UpFit Coaching.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -333,7 +350,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D773DD43203362DD001520CA /* Build configuration list for PBXProject "Coaching" */;
+			buildConfigurationList = D773DD43203362DD001520CA /* Build configuration list for PBXProject "UpFit Coaching" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -347,7 +364,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D773DD47203362DE001520CA /* Coaching */,
+				D773DD47203362DE001520CA /* UpFit Coaching */,
 			);
 		};
 /* End PBXProject section */
@@ -372,7 +389,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Coaching/Pods-Coaching-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -387,7 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Coaching/Pods-Coaching-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B31271742F6097CE32DDBFD9 /* [CP] Check Pods Manifest.lock */ = {
@@ -401,7 +418,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Coaching-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-UpFit Coaching-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -441,6 +458,7 @@
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
+				1AFD971D2097207700289FB3 /* Event.swift in Sources */,
 				1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */,
 				D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */,
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
@@ -600,12 +618,13 @@
 		};
 		D773DD5B203362DE001520CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */;
+			baseConfigurationReference = 1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5RUJTG3BGA;
-				INFOPLIST_FILE = Coaching/Info.plist;
+				INFOPLIST_FILE = "UpFit Coaching/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coaching.Coaching;
@@ -617,12 +636,13 @@
 		};
 		D773DD5C203362DE001520CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E995B5783B3772E82DD83D26 /* Pods-Coaching.release.xcconfig */;
+			baseConfigurationReference = 7BB9226391226412543F80BB /* Pods-UpFit Coaching.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5RUJTG3BGA;
-				INFOPLIST_FILE = Coaching/Info.plist;
+				INFOPLIST_FILE = "UpFit Coaching/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coaching.Coaching;
@@ -635,7 +655,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D773DD43203362DD001520CA /* Build configuration list for PBXProject "Coaching" */ = {
+		D773DD43203362DD001520CA /* Build configuration list for PBXProject "UpFit Coaching" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D773DD58203362DE001520CA /* Debug */,
@@ -644,7 +664,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D773DD5A203362DE001520CA /* Build configuration list for PBXNativeTarget "Coaching" */ = {
+		D773DD5A203362DE001520CA /* Build configuration list for PBXNativeTarget "UpFit Coaching" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D773DD5B203362DE001520CA /* Debug */,
