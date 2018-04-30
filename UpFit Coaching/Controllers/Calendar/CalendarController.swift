@@ -11,14 +11,28 @@ import JTAppleCalendar
 
 class CalendarController: UIViewController {
 	
-	let formatter = DateFormatter()
-	
 	// MARK: - UI
 	
 	lazy var monthLabel = UI.monthLabel()
 	lazy var weekdaysHeaderView = UI.weekdaysHeaderView()
 	lazy var calendarView = UI.calendarView(delegate: self, dataSource: self)
 	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
+	
+	// MARK: - Data
+	
+	let formatter = DateFormatter()
+	let currentUser = Database().getCurrentUser()
+	lazy var events: [Event] = Database().fetch(using: Event.all)
+	var todayEvents = [Event]()
+	
+	var currentDate: Date! {
+		didSet {
+			todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
+			
+			calendarView.reloadData()
+			tableView.reloadData()
+		}
+	}
 	
 	// MARK: - UIViewController
 	
@@ -36,10 +50,29 @@ class CalendarController: UIViewController {
 		// Display the correct month
 		calendarView.visibleDates(updateMonthLabel)
 		
-		let today = Date()
+		// Select the current date
+		currentDate = Date()
+		calendarView.selectDates([currentDate])
+		calendarView.scrollToDate(currentDate, animateScroll: false)
 		
-		calendarView.selectDates([today])
-		calendarView.scrollToDate(today, animateScroll: false)
+		// Creating fake data
+		guard let currentUser = currentUser else { return }
+		
+		if events.count == 0 {
+			let firstDate = Date()
+			let secondDate = firstDate.addingTimeInterval(60 * 60 * 24 * 2)
+			
+			let firstEvent = Event(eventID: 1, name: "Premier rendez-vous", client: currentUser, coach: currentUser, start: firstDate, end: firstDate.addingTimeInterval(3600), created: firstDate, updated: firstDate)
+			let secondEvent = Event(eventID: 2, name: "Second rendez-vous", client: currentUser, coach: currentUser, start: secondDate, end: secondDate.addingTimeInterval(3600*2), created: firstDate, updated: firstDate)
+			
+			let database = Database()
+			database.createOrUpdate(model: firstEvent, with: EventObject.init)
+			database.createOrUpdate(model: secondEvent, with: EventObject.init)
+			
+			events = database.fetch(using: Event.all)
+			calendarView.reloadData()
+			tableView.reloadData()
+		}
 	}
 	
 	// MARK: - Layout
@@ -60,43 +93,7 @@ class CalendarController: UIViewController {
 		view.addSubview(calendarView)
 		view.addSubview(tableView)
 		
-		var topAnchor: NSLayoutYAxisAnchor
-		var bottomAnchor: NSLayoutYAxisAnchor
-		var leadingAnchor: NSLayoutXAxisAnchor
-		var trailingAnchor: NSLayoutXAxisAnchor
-		
-		if #available(iOS 11.0, *) {
-			topAnchor = view.safeAreaLayoutGuide.topAnchor
-			bottomAnchor = view.safeAreaLayoutGuide.bottomAnchor
-			leadingAnchor = view.safeAreaLayoutGuide.leadingAnchor
-			trailingAnchor = view.safeAreaLayoutGuide.trailingAnchor
-		} else {
-			topAnchor = view.topAnchor
-			bottomAnchor = view.bottomAnchor
-			leadingAnchor = view.leadingAnchor
-			trailingAnchor = view.trailingAnchor
-		}
-		
-		NSLayoutConstraint.activate([
-			monthLabel.topAnchor.constraint(equalTo: topAnchor),
-			monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-			monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-			monthLabel.heightAnchor.constraint(equalToConstant: 50.0),
-			
-			weekdaysHeaderView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 10.0),
-			weekdaysHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			weekdaysHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			
-			calendarView.topAnchor.constraint(equalTo: weekdaysHeaderView.bottomAnchor),
-			calendarView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			calendarView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			calendarView.heightAnchor.constraint(equalToConstant: 250),
-			
-			tableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor),
-			tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-			])
+		NSLayoutConstraint.activate(UI.getConstraints(for: self))
 	}
 	
 	private func handleCell(cell: JTAppleCell?, cellState: CellState) {
@@ -135,6 +132,8 @@ extension CalendarController: JTAppleCalendarViewDelegate {
 	
 	func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
 		handleCell(cell: cell, cellState: cellState)
+		print(cellState.date)
+		currentDate = cellState.date
 	}
 	
 	func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -179,6 +178,13 @@ extension CalendarController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension CalendarController: UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
+		
+		if todayEvents.count > 0 {
+			tableView.separatorColor = .gray
+			tableView.backgroundView = nil
+			return 1
+		}
+		
 		let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
 		messageLabel.text = "Nothing scheduled this day"
 		messageLabel.textColor = .gray
@@ -194,12 +200,22 @@ extension CalendarController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 0
+		return todayEvents.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = UITableViewCell(style: .default, reuseIdentifier: "CalendarTableCell")
-		cell.textLabel?.text = "Hello world"
+		var cell: CalendarTableCell
+		
+		if let reusableCell = tableView.dequeueReusableCell(withIdentifier: "CalendarTableCell", for: indexPath) as? CalendarTableCell {
+			cell = reusableCell
+		} else {
+			cell = CalendarTableCell(style: .default, reuseIdentifier: "CalendarTableCell")
+		}
+		
+		let event = todayEvents[indexPath.row]
+		
+		cell.textLabel?.text = event.name
+		
 		return cell
 	}
 }

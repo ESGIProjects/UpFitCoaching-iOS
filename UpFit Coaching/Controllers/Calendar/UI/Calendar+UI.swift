@@ -81,5 +81,45 @@ extension CalendarController {
 			
 			return view
 		}
+		
+		class func getConstraints(for controller: CalendarController) -> [NSLayoutConstraint] {
+			var topAnchor: NSLayoutYAxisAnchor
+			var bottomAnchor: NSLayoutYAxisAnchor
+			var leadingAnchor: NSLayoutXAxisAnchor
+			var trailingAnchor: NSLayoutXAxisAnchor
+			
+			if #available(iOS 11.0, *) {
+				topAnchor = controller.view.safeAreaLayoutGuide.topAnchor
+				bottomAnchor = controller.view.safeAreaLayoutGuide.bottomAnchor
+				leadingAnchor = controller.view.safeAreaLayoutGuide.leadingAnchor
+				trailingAnchor = controller.view.safeAreaLayoutGuide.trailingAnchor
+			} else {
+				topAnchor = controller.view.topAnchor
+				bottomAnchor = controller.view.bottomAnchor
+				leadingAnchor = controller.view.leadingAnchor
+				trailingAnchor = controller.view.trailingAnchor
+			}
+			
+			return [
+				controller.monthLabel.topAnchor.constraint(equalTo: topAnchor),
+				controller.monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+				controller.monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+				controller.monthLabel.heightAnchor.constraint(equalToConstant: 50.0),
+				
+				controller.weekdaysHeaderView.topAnchor.constraint(equalTo: controller.monthLabel.bottomAnchor, constant: 10.0),
+				controller.weekdaysHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+				controller.weekdaysHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+				
+				controller.calendarView.topAnchor.constraint(equalTo: controller.weekdaysHeaderView.bottomAnchor),
+				controller.calendarView.leadingAnchor.constraint(equalTo: leadingAnchor),
+				controller.calendarView.trailingAnchor.constraint(equalTo: trailingAnchor),
+				controller.calendarView.heightAnchor.constraint(equalToConstant: 250),
+				
+				controller.tableView.topAnchor.constraint(equalTo: controller.calendarView.bottomAnchor),
+				controller.tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+				controller.tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+				controller.tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+			]
+		}
 	}
 }
