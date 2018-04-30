@@ -20,6 +20,7 @@ extension ConversationController {
 			collectionView.delegate = delegate
 			collectionView.dataSource = dataSource
 			collectionView.keyboardDismissMode = .onDrag
+			collectionView.alwaysBounceVertical = true
 			return collectionView
 		}
 		

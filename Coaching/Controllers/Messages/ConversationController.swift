@@ -164,14 +164,24 @@ class ConversationController: UIViewController {
 		guard let userInfo = notification.userInfo else { return }
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		guard let keyboardEndFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
+		guard let tabBar = tabBarController?.tabBar else { return }
 		
+		// Determines keyboard height
 		var keyboardHeight = keyboardEndFrame.cgRectValue.height
 		
 		if #available(iOS 11.0, *) {
 			keyboardHeight -= view.safeAreaInsets.bottom
 		}
 		
-		messageBarViewBottomConstraint.constant = -keyboardHeight
+		// Removes tab bar height if not hidden
+		if tabBar.isHidden {
+			messageBarViewBottomConstraint.constant = -keyboardHeight
+
+		} else {
+			messageBarViewBottomConstraint.constant = -keyboardHeight + tabBar.bounds.height
+		}
+		
+		// Insets the collection view
 		collectionView.contentInset.bottom = messageBarView.frame.height + keyboardHeight
 		collectionView.scrollRectToVisible(CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1), animated: true)
 		
