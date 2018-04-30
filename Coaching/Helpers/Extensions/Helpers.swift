@@ -21,18 +21,22 @@ extension UITabBarController {
 		
 		var viewControllers = [UIViewController]()
 		
+		// Calendar
+		let calendarController = CalendarController()
+		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 0)
+		viewControllers.append(calendarController)
+		
+		// Conversation List
 		let conversationListController = ConversationListController()
 		conversationListController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
 		viewControllers.append(conversationListController)
 		
-		let calendarController = CalendarController()
-		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 2)
-		viewControllers.append(calendarController)
-		
+		// Settings
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 3)
+		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
 		viewControllers.append(settingsController)
 		
+		// Creating the tab bar controller
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
 		
 		let tabBarController = UITabBarController()
@@ -41,17 +45,28 @@ extension UITabBarController {
 	}
 	
 	class func clientController() -> UITabBarController {
-		
 		var viewControllers = [UIViewController]()
 		
+		// Calendar
 		let calendarController = CalendarController()
 		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 1)
 		viewControllers.append(calendarController)
 		
+		// Conversation
+		if let user = Database().getCurrentUser() {
+			let conversationController = ConversationController()
+			conversationController.title = "\(user.firstName) \(user.lastName)"
+			conversationController.otherUser = user
+			conversationController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 0)
+			viewControllers.append(conversationController)
+		}
+		
+		// Settings
 		let settingsController = SettingsController()
 		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
 		viewControllers.append(settingsController)
 		
+		// Creating the tab bar controller
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
 		
 		let tabBarController = UITabBarController()

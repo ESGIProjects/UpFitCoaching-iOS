@@ -195,6 +195,7 @@ extension ConversationListController: UITableViewDelegate {
 	}
 }
 
+// MARK: - WebSocketDelegate
 extension ConversationListController: WebSocketDelegate {
 	func websocketDidConnect(socket: WebSocketClient) {
 		print(#function)
