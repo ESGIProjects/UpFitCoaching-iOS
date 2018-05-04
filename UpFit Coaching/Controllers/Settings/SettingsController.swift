@@ -12,7 +12,8 @@ class SettingsController: UIViewController {
 	
 	// MARK: - UI
 	
-	var tableView: UITableView!
+	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
+	lazy var signOutButton = UI.signOutButton(self, action: #selector(signOut(_:)))
 	
 	// MARK: - UIViewController
 	
@@ -21,29 +22,12 @@ class SettingsController: UIViewController {
 		
 		// Layout
 		title = "settings_title".localized
-		
-		tableView = UITableView(frame: .zero, style: .grouped)
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.dataSource = self
-		tableView.delegate = self
-		
+		setupLayout()
+	}
+	
+	private func setupLayout() {
 		view.addSubview(tableView)
-		
-		if #available(iOS 11.0, *) {
-			NSLayoutConstraint.activate([
-				tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-				tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-				tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-				])
-		} else {
-			NSLayoutConstraint.activate([
-				tableView.topAnchor.constraint(equalTo: view.topAnchor),
-				tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-				tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-				])
-		}
+		NSLayoutConstraint.activate(getConstraints(for: self))
 	}
 	
 	// MARK: - Actions
@@ -68,22 +52,14 @@ extension SettingsController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		
-		let button = UIButton()
-		button.translatesAutoresizingMaskIntoConstraints = false
-		
-		button.setTitle("signOut_button".localized, for: .normal)
-		button.setTitleColor(.red, for: .normal)
-		button.addTarget(self, action: #selector(signOut(_:)), for: .touchUpInside)
-		
 		let cell = UITableViewCell()
-		cell.contentView.addSubview(button)
+		cell.contentView.addSubview(signOutButton)
 		
 		NSLayoutConstraint.activate([
-			button.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
-			button.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor),
-			button.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
-			button.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor)
+			signOutButton.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+			signOutButton.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor),
+			signOutButton.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+			signOutButton.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor)
 			])
 		
 		return cell

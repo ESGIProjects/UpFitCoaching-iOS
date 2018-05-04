@@ -74,3 +74,21 @@ extension UITabBarController {
 		return tabBarController
 	}
 }
+
+extension UIViewController {
+	// swiftlint:disable large_tuple
+	func getAnchors() -> (top: NSLayoutYAxisAnchor, bottom: NSLayoutYAxisAnchor, leading: NSLayoutXAxisAnchor, trailing: NSLayoutXAxisAnchor) {
+		
+		if #available(iOS 11.0, *) {
+			return (view.safeAreaLayoutGuide.topAnchor,
+					view.safeAreaLayoutGuide.bottomAnchor,
+					view.safeAreaLayoutGuide.leadingAnchor,
+					view.safeAreaLayoutGuide.trailingAnchor)
+		} else {
+			return (view.topAnchor,
+					view.bottomAnchor,
+					view.leadingAnchor,
+					view.trailingAnchor)
+		}
+	}
+}

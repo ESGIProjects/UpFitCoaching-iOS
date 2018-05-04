@@ -43,6 +43,8 @@ class CalendarController: UIViewController {
 		title = "calendar_title".localized
 		setupLayout()
 		
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent))
+		
 		// Register cells
 		calendarView.register(CalendarCell.self, forCellWithReuseIdentifier: "CalendarCell")
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CalendarTableCell")
@@ -108,6 +110,10 @@ class CalendarController: UIViewController {
 		} else {
 			cell.dateLabel.textColor = .outsideMonthDates
 		}
+	}
+	
+	@objc private func addEvent() {
+		
 	}
 }
 
