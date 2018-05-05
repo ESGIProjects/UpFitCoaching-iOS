@@ -10,6 +10,7 @@
 "app_name" = "UpFit Coaching";
 "error" = "Error";
 "OK_button" = "OK";
+"add_button" = "Add";
 
 // Login
 "login_title" = "Login";
@@ -48,6 +49,12 @@
 "friday_short" = "F";
 "saturday_short" = "S";
 "sunday_short" = "S";
+
+// Add Event
+"addEvent_title" = "New Event";
+"eventTitle_placeholder" = "Title";
+"eventStart_label" = "Starts";
+"eventEnd_label" = "Ends";
 
 // Settings
 "settings_title" = "Settings";

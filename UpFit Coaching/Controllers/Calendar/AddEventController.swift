@@ -99,7 +99,7 @@ class AddEventController: UIViewController {
 		title = "addEvent_title".localized
 		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Ajouter", style: .done, target: self, action: #selector(add))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add_button".localized, style: .done, target: self, action: #selector(add))
 		navigationItem.rightBarButtonItem?.isEnabled = false
 		
 		startValueLabel.text = dateFormatter.string(from: startDate)

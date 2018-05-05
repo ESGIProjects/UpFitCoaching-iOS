@@ -23,8 +23,8 @@ extension AddEventController {
 		class func titleTextField() -> UITextField {
 			let view = UITextField(frame: .zero)
 			view.translatesAutoresizingMaskIntoConstraints = false
-						
-			view.placeholder = "Title"
+			
+			view.placeholder = "eventTitle_placeholder".localized
 			view.keyboardType = .asciiCapable
 			view.clearButtonMode = .whileEditing
 			view.returnKeyType = .next
@@ -36,7 +36,7 @@ extension AddEventController {
 			let view = UILabel()
 			view.translatesAutoresizingMaskIntoConstraints = false
 			
-			view.text = "Start"
+			view.text = "eventStart_label".localized
 			
 			return view
 		}
@@ -45,8 +45,6 @@ extension AddEventController {
 			let view = UILabel()
 			view.translatesAutoresizingMaskIntoConstraints = false
 			
-			view.text = "5 mai 2018\t15:00"
-			
 			return view
 		}
 		
@@ -54,7 +52,7 @@ extension AddEventController {
 			let view = UILabel()
 			view.translatesAutoresizingMaskIntoConstraints = false
 			
-			view.text = "End"
+			view.text = "eventEnd_label".localized
 			
 			return view
 		}
@@ -62,8 +60,6 @@ extension AddEventController {
 		class func endValueLabel() -> UILabel {
 			let view = UILabel()
 			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.text = "16:00"
 			
 			return view
 		}
