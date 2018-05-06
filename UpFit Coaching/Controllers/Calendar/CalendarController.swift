@@ -152,7 +152,6 @@ extension CalendarController: JTAppleCalendarViewDelegate {
 	
 	func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
 		handleCell(cell: cell, cellState: cellState)
-		print(cellState.date)
 		currentDate = cellState.date
 	}
 	

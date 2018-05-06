@@ -79,7 +79,18 @@ class SignUpController: UIViewController {
 		
 		let birthDate = dateFormatter.string(from: birthDatePicker.date)
 		
-		Network.register(mail: mail, password: password, type: 1, firstName: firstName, lastName: lastName, birthDate: birthDate, city: "Paris", phoneNumber: "118218") { [weak self] data, response, _ in
+		let parameters: [String: Any] = [
+			"mail": mail,
+			"password": password,
+			"type": 1,
+			"firstName": firstName,
+			"lastName": lastName,
+			"birthDate": birthDate,
+			"city": "Paris",
+			"phoneNumber": "118218"
+		]
+		
+		Network.register(with: parameters) { [weak self] data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return }

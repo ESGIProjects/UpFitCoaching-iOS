@@ -8,12 +8,14 @@
 
 import Foundation
 
-enum HTTPMethod: String {
-	case get	= "GET"
-	case post	= "POST"
-}
-
 class Network {
+	
+	enum HTTPMethod: String {
+		case get	= "GET"
+		case post	= "POST"
+	}
+	
+	// MARK: - Perform call
 	
 	typealias NetworkCallback = ((Data?, URLResponse?, Error?) -> Void)
 	private static var baseURL = "http://212.47.234.147"
@@ -43,6 +45,8 @@ class Network {
 		session.dataTask(with: request, completionHandler: completion).resume()
 	}
 	
+	// MARK: - User management
+	
 	class func login(mail: String, password: String, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signin/")
 		let parameters: [String: Any] = [
@@ -53,28 +57,45 @@ class Network {
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
-	class func register(mail: String, password: String, type: Int, firstName: String, lastName: String, birthDate: String, city: String, phoneNumber: String, completion: @escaping NetworkCallback) {
+	class func register(with parameters: [String: Any], completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signup/")
-		let parameters: [String: Any] = [
-			"mail": mail,
-			"password": password,
-			"type": type,
-			"firstName": firstName,
-			"lastName": lastName,
-			"birthDate": birthDate,
-			"city": city,
-			"phoneNumber": phoneNumber
-		]
-		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
-	class func getMessages(for user: Int, completion: @escaping NetworkCallback) {
+	// MARK: - Messages
+	
+	class func getMessages(for user: User, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/messages/")
 		let parameters: [String: Any] = [
-			"userId": user
+			"userId": user.userID
 		]
 		
 		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
+	
+	// MARK: - Events
+	
+	class func getEvents(for user: User, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/events/")
+		let parameters: [String: Any] = [
+			"userId": user.userID
+		]
+		
+//		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
+	
+	class func addEvent(_ event: Event, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/events/")
+		let parameters: [String: Any] = [
+			"name": event.name,
+			"client": event.client.userID,
+			"coach": event.coach.userID,
+			"start": event.start,
+			"end": event.end,
+			"created": event.created,
+			"updated": event.updated
+		]
+		
+//		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 }

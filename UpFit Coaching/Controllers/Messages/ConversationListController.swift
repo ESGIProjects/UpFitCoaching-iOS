@@ -81,7 +81,7 @@ class ConversationListController: UIViewController {
 	private func downloadMessages() {
 		guard let currentUser = currentUser else { return }
 		
-		Network.getMessages(for: currentUser.userID) { data, response, _ in
+		Network.getMessages(for: currentUser) { data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return}
