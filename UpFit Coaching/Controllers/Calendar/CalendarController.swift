@@ -22,15 +22,12 @@ class CalendarController: UIViewController {
 	
 	let formatter = DateFormatter()
 	let currentUser = Database().getCurrentUser()
-	lazy var events: [Event] = Database().fetch(using: Event.all)
+	var events = [Event]()
 	var todayEvents = [Event]()
 	
 	var currentDate: Date! {
 		didSet {
-			todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
-			
-			calendarView.reloadData()
-			tableView.reloadData()
+			reloadEvents()
 		}
 	}
 	
@@ -77,6 +74,10 @@ class CalendarController: UIViewController {
 		}
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		reloadEvents()
+	}
+	
 	// MARK: - Layout
 	
 	private func updateMonthLabel(visibleDates: DateSegmentInfo) {
@@ -117,6 +118,16 @@ class CalendarController: UIViewController {
 	@objc private func addEvent() {
 		let addEventController = AddEventController()
 		present(UINavigationController(rootViewController: addEventController), animated: true)
+	}
+	
+	// MARK: - Helpers
+	
+	private func reloadEvents() {
+		events = Database().fetch(using: Event.all)
+		todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
+		
+		calendarView.reloadData()
+		tableView.reloadData()
 	}
 }
 
