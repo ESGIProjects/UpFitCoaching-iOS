@@ -23,6 +23,7 @@
 		D702D2FC209F7F3200970081 /* TypeRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */; };
 		D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FD209F800100970081 /* AccountRegister+UI.swift */; };
 		D702D300209F800800970081 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FF209F800800970081 /* DetailsRegister+UI.swift */; };
+		D702D302209F8D4000970081 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D301209F8D4000970081 /* Chart.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
 		D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642B208CBDA600EC3F6C /* CalendarCell.swift */; };
 		D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */; };
@@ -77,6 +78,7 @@
 		D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TypeRegister+UI.swift"; sourceTree = "<group>"; };
 		D702D2FD209F800100970081 /* AccountRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountRegister+UI.swift"; sourceTree = "<group>"; };
 		D702D2FF209F800800970081 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
+		D702D301209F8D4000970081 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D70C642B208CBDA600EC3F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+UI.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				1A9E194B207E30A40091FABB /* Messages */,
 				D71D60C9208CB29D00F143CA /* Calendar */,
 				1A9E194A207E30900091FABB /* Settings */,
+				D702D301209F8D4000970081 /* Chart.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				D702D300209F800800970081 /* DetailsRegister+UI.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
+				D702D302209F8D4000970081 /* Chart.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,

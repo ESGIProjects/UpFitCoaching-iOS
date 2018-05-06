@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		} else {
 			// Show login
 			window?.rootViewController = UINavigationController(rootViewController: LoginController())
+//			window?.rootViewController = Chart()
 		}
 		
 		window?.makeKeyAndVisible()
