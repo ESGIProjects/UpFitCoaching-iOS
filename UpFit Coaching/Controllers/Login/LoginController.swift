@@ -118,6 +118,6 @@ class LoginController: UIViewController {
 	}
 	
 	@objc func signUp(_ sender: UIButton) {
-		navigationController?.pushViewController(SignUpController(), animated: true)
+		navigationController?.pushViewController(RegisterController(), animated: true)
 	}
 }
