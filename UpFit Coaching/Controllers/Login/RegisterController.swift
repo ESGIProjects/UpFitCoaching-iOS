@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CryptoSwift
 
 class RegisterController: UIViewController {
 	
@@ -88,7 +89,7 @@ class RegisterController: UIViewController {
 			present(UIAlertController.simpleAlert(title: "password_missing_title".localized, message: nil), animated: true)
 			return
 		}
-		parameters["password"] = password
+		parameters["password"] = password.sha256()
 		
 		guard let confirmPassword = accountController.confirmPasswordTextField.text, password == confirmPassword else {
 			present(UIAlertController.simpleAlert(title: "confirmPassword_error_title".localized, message: nil), animated: true)

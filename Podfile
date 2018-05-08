@@ -9,4 +9,5 @@ target 'UpFit Coaching' do
   pod 'Starscream'
   pod 'JTAppleCalendar'
   pod 'Charts'
+  pod 'CryptoSwift'
 end

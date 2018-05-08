@@ -38,3 +38,4 @@ pod install
 * Starscream
 * JTAppleCalendar
 * Charts
+* CryptoSwift

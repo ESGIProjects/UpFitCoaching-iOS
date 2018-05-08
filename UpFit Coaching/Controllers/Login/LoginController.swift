@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import CryptoSwift
 
 class LoginController: UIViewController {
 	
@@ -70,7 +71,7 @@ class LoginController: UIViewController {
 		
 		// Perform the network call
 		
-		Network.login(mail: mailValue, password: passwordValue) { [weak self] data, response, _ in
+		Network.login(mail: mailValue, password: passwordValue.sha256()) { [weak self] data, response, _ in
 			
 			guard let response = response as? HTTPURLResponse,
 				let data = data else { return }
