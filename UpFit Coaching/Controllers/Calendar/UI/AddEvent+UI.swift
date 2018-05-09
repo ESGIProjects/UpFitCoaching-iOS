@@ -10,12 +10,9 @@ import UIKit
 
 extension AddEventController {
 	class UI {
-		class func tableView(delegate: UITableViewDelegate? = nil, dataSource: UITableViewDataSource? = nil) -> UITableView {
+		class func tableView() -> UITableView {
 			let view = UITableView(frame: .zero, style: .grouped)
 			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.delegate = delegate
-			view.dataSource = dataSource
 
 			return view
 		}
@@ -126,8 +123,8 @@ extension AddEventController {
 		}
 	}
 	
-	func getConstraints(for controller: AddEventController) -> [NSLayoutConstraint] {
-		let anchors = controller.getAnchors()
+	func getConstraints() -> [NSLayoutConstraint] {
+		let anchors = getAnchors()
 		
 		return [
 			tableView.topAnchor.constraint(equalTo: anchors.top),
@@ -135,5 +132,25 @@ extension AddEventController {
 			tableView.leadingAnchor.constraint(equalTo: anchors.leading),
 			tableView.trailingAnchor.constraint(equalTo: anchors.trailing)
 		]
+	}
+	
+	func setUIComponents() {
+		tableView = UI.tableView()
+		tableView.delegate = self
+		tableView.dataSource = self
+		
+		titleTextField = UI.titleTextField()
+		startLabel = UI.startLabel()
+		startValueLabel = UI.startValueLabel()
+		endLabel = UI.endLabel()
+		endValueLabel = UI.endValueLabel()
+		datePicker = UI.datePicker()
+	}
+	
+	func setupLayout() {
+		setUIComponents()
+		
+		view.addSubview(tableView)
+		NSLayoutConstraint.activate(getConstraints())
 	}
 }
