@@ -83,8 +83,8 @@ class User: NSObject, Codable {
 	
 	static let all = FetchRequest<[User], UserObject>(predicate: nil, sortDescriptors: [], transformer: { $0.map(User.init) })
 	
-	static func == (lhs: User, rhs: User) -> Bool {
-		return lhs.userID == rhs.userID
+	override func isEqual(_ object: Any?) -> Bool {
+		return userID == (object as? User)?.userID
 	}
 	
 	init(id: Int, type: Int, mail: String, firstName: String, lastName: String, city: String, phoneNumber: String) {

@@ -17,7 +17,7 @@ struct Conversation {
 		
 		// Get users from messages
 		var users = messages.map { $0.receiver == currentUser ? $0.sender : $0.receiver }
-		
+				
 		// Adds the coach if he exists
 		if let coachUser = currentUser.coach {
 			users.append(coachUser)
