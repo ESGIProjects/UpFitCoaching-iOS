@@ -24,10 +24,7 @@ class AddEventController: UIViewController {
 	var endValueLabel: UILabel!
 	var datePicker: UIDatePicker!
 	
-	// MARK: - UI Logic
-	
 	var startIndexPath = IndexPath(row: 0, section: 1)
-	
 	var endIndexPath: IndexPath {
 		if currentPicker == .start {
 			return IndexPath(row: 2, section: 1)
@@ -36,43 +33,12 @@ class AddEventController: UIViewController {
 		}
 	}
 	
+	var pickerIndexPath: IndexPath?
 	var currentPicker = DatePicker.none {
 		didSet {
-			// Setting the same value : do nothing
-			if currentPicker == oldValue { return }
-			
-			tableView.beginUpdates()
-			
-			// Delete the old picker
-			if let indexPath = pickerIndexPath {
-				tableView.deleteRows(at: [indexPath], with: .fade)
-			}
-			
-			if currentPicker == .none {
-				pickerIndexPath = nil
-			}
-			
-			if currentPicker == .start {
-				datePicker.date = startDate
-				
-				let indexPath = IndexPath(row: startIndexPath.row + 1, section: startIndexPath.section)
-				pickerIndexPath = indexPath
-				tableView.insertRows(at: [indexPath], with: .fade)
-			}
-			
-			if currentPicker == .end {
-				datePicker.date = endDate
-				
-				let indexPath = IndexPath(row: endIndexPath.row + 1, section: endIndexPath.section)
-				pickerIndexPath = indexPath
-				tableView.insertRows(at: [indexPath], with: .fade)
-			}
-			
-			tableView.endUpdates()
+			displayPicker(oldValue)
 		}
 	}
-	
-	var pickerIndexPath: IndexPath?
 	
 	let dateFormatter = DateFormatter()
 	
@@ -114,12 +80,11 @@ class AddEventController: UIViewController {
 	
 	// MARK: - Actions
 	
-	@objc private func cancel() {
+	@objc func cancel() {
 		navigationController?.dismiss(animated: true)
 	}
 	
-	@objc private func add() {
-		// Creating Event struct
+	@objc func add() {
 		guard let eventTitle = titleTextField.text else { return }
 		guard let currentUser = currentUser else { return }
 //		guard let otherUser = otherUser else { return }
@@ -136,13 +101,12 @@ class AddEventController: UIViewController {
 		navigationController?.dismiss(animated: true)
 	}
 	
-	@objc private func editTitle() {
+	@objc func editTitle() {
 		guard let text = titleTextField.text else { return }
 		navigationItem.rightBarButtonItem?.isEnabled = !text.isEmpty
 	}
 	
-	@objc private func changeDate() {
-		
+	@objc func changeDate() {
 		// Configure formatter
 		dateFormatter.dateStyle = .long
 		dateFormatter.timeStyle = .short
@@ -171,81 +135,40 @@ class AddEventController: UIViewController {
 			endValueLabel.text = endValue
 		}
 	}
-}
-
-// MARK: - UITableViewDelegate
-extension AddEventController: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		tableView.deselectRow(at: indexPath, animated: true)
-		
-		if indexPath == startIndexPath {
-			currentPicker = currentPicker == .start ? .none : .start
-			startValueLabel.textColor = currentPicker == .start ? .red : .black
-			endValueLabel.textColor = .black
-		} else if indexPath == endIndexPath {
-			currentPicker = currentPicker == .end ? .none : .end
-			startValueLabel.textColor = .black
-			endValueLabel.textColor = currentPicker == .end ? .red : .black
-		}
-	}
 	
-	func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-		return indexPath == startIndexPath || indexPath == endIndexPath
-	}
-}
-
-// MARK: - UITableViewDataSource
-extension AddEventController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath == pickerIndexPath {
-			return UITableViewAutomaticDimension
+	// MARK: - Helpers
+	
+	func displayPicker(_ oldValue: DatePicker) {
+		// Setting the same value : do nothing
+		if currentPicker == oldValue { return }
+		
+		tableView.beginUpdates()
+		
+		// Delete the old picker
+		if let indexPath = pickerIndexPath {
+			tableView.deleteRows(at: [indexPath], with: .fade)
 		}
 		
-		return 44.0
-	}
-	
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		switch section {
-		case 0:
-			return 1
-		case 1:
-			return 2 + (currentPicker != .none ? 1 : 0)
-		default:
-			return 0
+		if currentPicker == .none {
+			pickerIndexPath = nil
 		}
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		switch (indexPath.section, indexPath.row) {
-		case (0, 0):
-			let cell = UITableViewCell()
-			cell.contentView.addSubview(titleTextField)
+		
+		if currentPicker == .start {
+			datePicker.date = startDate
 			
-			NSLayoutConstraint.activate([
-
-				titleTextField.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
-				titleTextField.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 20.0),
-				titleTextField.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -20.0),
-				titleTextField.heightAnchor.constraint(equalToConstant: 30)
-				])
-			
-			return cell
-			
-		case (startIndexPath.section, startIndexPath.row):
-			return UI.startCell(startLabel, startValueLabel)
-			
-		case (endIndexPath.section, endIndexPath.row):
-			return UI.endCell(endLabel, endValueLabel)
-			
-		case (pickerIndexPath?.section, pickerIndexPath?.row):
-			return UI.pickerCell(datePicker)
-			
-		default:
-			return UITableViewCell()
+			let indexPath = IndexPath(row: startIndexPath.row + 1, section: startIndexPath.section)
+			pickerIndexPath = indexPath
+			tableView.insertRows(at: [indexPath], with: .fade)
 		}
+		
+		if currentPicker == .end {
+			datePicker.date = endDate
+			
+			let indexPath = IndexPath(row: endIndexPath.row + 1, section: endIndexPath.section)
+			pickerIndexPath = indexPath
+			tableView.insertRows(at: [indexPath], with: .fade)
+		}
+		
+		tableView.endUpdates()
 	}
 }

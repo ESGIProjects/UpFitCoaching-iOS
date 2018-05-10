@@ -13,7 +13,7 @@
 		1AB9E9E3209C6E13003441F8 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* AddEventController.swift */; };
 		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
 		1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */; };
-		1AB9EA1320A2FDB3003441F8 /* AddEventTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9EA1220A2FDB3003441F8 /* AddEventTableViewDelegate.swift */; };
+		1AB9EA1320A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9EA1220A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift */; };
 		1AFD971D2097207700289FB3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD971C2097207700289FB3 /* Event.swift */; };
 		84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */; };
 		D702D2F2209F598C00970081 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F1209F598C00970081 /* RegisterController.swift */; };
@@ -32,6 +32,11 @@
 		D7108AFA2083B1C700AB6260 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7108AF92083B1C700AB6260 /* Database.swift */; };
 		D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */; };
 		D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60CA208CB2B700F143CA /* CalendarController.swift */; };
+		D744014020A4C81D0078BEA4 /* AddEvent+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744013F20A4C81D0078BEA4 /* AddEvent+TableViewDataSource.swift */; };
+		D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */; };
+		D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */; };
+		D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */; };
+		D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -66,7 +71,7 @@
 		1AB9E9E2209C6E13003441F8 /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+UI.swift"; sourceTree = "<group>"; };
-		1AB9EA1220A2FDB3003441F8 /* AddEventTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTableViewDelegate.swift; sourceTree = "<group>"; };
+		1AB9EA1220A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		1AFD971C2097207700289FB3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.debug.xcconfig"; sourceTree = "<group>"; };
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +93,11 @@
 		D7108AF92083B1C700AB6260 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDelegate.swift; sourceTree = "<group>"; };
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		D744013F20A4C81D0078BEA4 /* AddEvent+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+TableViewDataSource.swift"; sourceTree = "<group>"; };
+		D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Delegate.swift"; sourceTree = "<group>"; };
+		D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+DataSource.swift"; sourceTree = "<group>"; };
+		D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDataSource.swift"; sourceTree = "<group>"; };
+		D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -206,7 +216,12 @@
 		1AB9EA1120A2FD67003441F8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				1AB9EA1220A2FDB3003441F8 /* AddEventTableViewDelegate.swift */,
+				1AB9EA1220A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift */,
+				D744013F20A4C81D0078BEA4 /* AddEvent+TableViewDataSource.swift */,
+				D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */,
+				D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */,
+				D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */,
+				D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -500,14 +515,18 @@
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
+				D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */,
+				D744014020A4C81D0078BEA4 /* AddEvent+TableViewDataSource.swift in Sources */,
 				1AB9E9E3209C6E13003441F8 /* AddEventController.swift in Sources */,
+				D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
+				D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */,
 				D789201720544FAD0020C703 /* String+Localization.swift in Sources */,
 				D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */,
-				1AB9EA1320A2FDB3003441F8 /* AddEventTableViewDelegate.swift in Sources */,
+				1AB9EA1320A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
 				D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */,
 				D702D2F2209F598C00970081 /* RegisterController.swift in Sources */,
@@ -538,6 +557,7 @@
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
+				D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 				D7EF961F20860EBB002E0A9B /* User.swift in Sources */,
 			);

@@ -13,15 +13,16 @@ class CalendarController: UIViewController {
 	
 	// MARK: - UI
 	
-	lazy var monthLabel = UI.monthLabel()
-	lazy var weekdaysHeaderView = UI.weekdaysHeaderView()
-	lazy var calendarView = UI.calendarView(delegate: self, dataSource: self)
-	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
+	var monthLabel: UILabel!
+	var weekdaysHeaderView: UIStackView!
+	var calendarView: JTAppleCalendarView!
+	var tableView: UITableView!
 	
 	// MARK: - Data
 	
 	let formatter = DateFormatter()
 	let currentUser = Database().getCurrentUser()
+	
 	var events = [Event]()
 	var todayEvents = [Event]()
 	
@@ -53,27 +54,6 @@ class CalendarController: UIViewController {
 		currentDate = Date()
 		calendarView.selectDates([currentDate])
 		calendarView.scrollToDate(currentDate, animateScroll: false)
-		
-		// Creating fake data
-		guard let currentUser = currentUser else { return }
-		
-		if events.count == 0 {
-			let firstDate = Date()
-			let secondDate = firstDate.addingTimeInterval(60 * 60 * 24 * 2)
-			
-			let firstEvent = Event(name: "Premier rendez-vous", type: 0, client: currentUser, coach: currentUser, start: firstDate, end: firstDate.addingTimeInterval(3600), createdBy: currentUser, updatedBy: currentUser)
-			let secondEvent = Event(name: "Second rendez-vous", type: 0, client: currentUser, coach: currentUser, start: secondDate, end: secondDate.addingTimeInterval(3600*2), createdBy: currentUser, updatedBy: currentUser)
-			firstEvent.eventID = 1
-			secondEvent.eventID = 2
-			
-			let database = Database()
-			database.createOrUpdate(model: firstEvent, with: EventObject.init)
-			database.createOrUpdate(model: secondEvent, with: EventObject.init)
-			
-			events = database.fetch(using: Event.all)
-			calendarView.reloadData()
-			tableView.reloadData()
-		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -82,7 +62,7 @@ class CalendarController: UIViewController {
 	
 	// MARK: - Layout
 	
-	private func updateMonthLabel(visibleDates: DateSegmentInfo) {
+	func updateMonthLabel(visibleDates: DateSegmentInfo) {
 		guard let date = visibleDates.monthDates.first?.date else { return }
 		
 		formatter.dateFormat = "MMMM yyyy"
@@ -92,16 +72,7 @@ class CalendarController: UIViewController {
 		monthLabel.text = formatter.string(from: date)
 	}
 	
-	private func setupLayout() {
-		view.addSubview(monthLabel)
-		view.addSubview(weekdaysHeaderView)
-		view.addSubview(calendarView)
-		view.addSubview(tableView)
-		
-		NSLayoutConstraint.activate(UI.getConstraints(for: self))
-	}
-	
-	private func handleCell(cell: JTAppleCell?, cellState: CellState) {
+	func handleCell(cell: JTAppleCell?, cellState: CellState) {
 		guard let cell = cell as? CalendarCell else { return }
 		
 		// Show or hide background
@@ -109,7 +80,11 @@ class CalendarController: UIViewController {
 		
 		// Select text color
 		if cellState.dateBelongsTo == .thisMonth {
-			cell.dateLabel.textColor = cellState.isSelected ? .selectedDate : .currentMonthDates
+			if cellState.isSelected {
+				cell.dateLabel.textColor = .selectedDate
+			} else {
+				cell.dateLabel.textColor = .currentMonthDates
+			}
 		} else {
 			cell.dateLabel.textColor = .outsideMonthDates
 		}
@@ -117,126 +92,18 @@ class CalendarController: UIViewController {
 	
 	// MARK: - Actions
 	
-	@objc private func addEvent() {
+	@objc func addEvent() {
 		let addEventController = AddEventController()
 		present(UINavigationController(rootViewController: addEventController), animated: true)
 	}
 	
 	// MARK: - Helpers
 	
-	private func reloadEvents() {
+	func reloadEvents() {
 		events = Database().fetch(using: Event.all)
 		todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
 		
 		calendarView.reloadData()
 		tableView.reloadData()
-	}
-}
-
-// MARK: - JTAppleCalendarViewDelegate
-extension CalendarController: JTAppleCalendarViewDelegate {
-	func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {}
-	
-	func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-		var cell: CalendarCell
-		
-		if let reusableCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as? CalendarCell {
-			cell = reusableCell
-		} else {
-			cell = CalendarCell(frame: .zero)
-		}
-	
-		cell.dateLabel.text = cellState.text
-		handleCell(cell: cell, cellState: cellState)
-		
-		return cell
-	}
-	
-	func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-		handleCell(cell: cell, cellState: cellState)
-		currentDate = cellState.date
-	}
-	
-	func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-		handleCell(cell: cell, cellState: cellState)
-	}
-	
-	func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-		updateMonthLabel(visibleDates: visibleDates)
-	}
-	
-	func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-		return cellState.dateBelongsTo == .thisMonth
-	}
-	
-	func calendar(_ calendar: JTAppleCalendarView, shouldDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-		return cellState.dateBelongsTo == .thisMonth
-	}
-}
-
-// MARK: - JTAppleCalendarViewDataSource
-extension CalendarController: JTAppleCalendarViewDataSource {
-	func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-		
-		formatter.dateFormat = "yyyy-MM-dd"
-		formatter.timeZone = Calendar.current.timeZone
-		formatter.locale = Calendar.current.locale
-		
-		guard let startDate = formatter.date(from: "2018-01-01"), let endDate = formatter.date(from: "2018-12-31") else { fatalError() }
-		
-		let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: nil, calendar: nil, generateInDates: nil, generateOutDates: nil, firstDayOfWeek: .monday, hasStrictBoundaries: nil)
-		return parameters
-	}
-}
-
-// MARK: - UITableViewDelegate
-extension CalendarController: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		tableView.deselectRow(at: indexPath, animated: true)
-	}
-}
-
-// MARK: - UITableViewDataSource
-extension CalendarController: UITableViewDataSource {
-	func numberOfSections(in tableView: UITableView) -> Int {
-		
-		if todayEvents.count > 0 {
-			tableView.separatorColor = .gray
-			tableView.backgroundView = nil
-			return 1
-		}
-		
-		let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-		messageLabel.text = "Nothing scheduled this day"
-		messageLabel.textColor = .gray
-		messageLabel.numberOfLines = 0
-		messageLabel.textAlignment = .center
-		messageLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
-		messageLabel.sizeToFit()
-		
-		tableView.separatorColor = .clear
-		tableView.backgroundView = messageLabel
-		
-		return 0
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return todayEvents.count
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var cell: CalendarTableCell
-		
-		if let reusableCell = tableView.dequeueReusableCell(withIdentifier: "CalendarTableCell", for: indexPath) as? CalendarTableCell {
-			cell = reusableCell
-		} else {
-			cell = CalendarTableCell(style: .default, reuseIdentifier: "CalendarTableCell")
-		}
-		
-		let event = todayEvents[indexPath.row]
-		
-		cell.textLabel?.text = event.name
-		
-		return cell
 	}
 }

@@ -261,10 +261,13 @@ extension ConversationController: WebSocketDelegate {
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+		print(text)
+		
 		guard let otherUser = otherUser else { return }
 		guard let json = text.data(using: .utf8) else { return }
 		guard let message = try? decoder.decode(Message.self, from: json) else { return }
 		guard message.messageID != nil else { return }
+		
 		Database().createOrUpdate(model: message, with: MessageObject.init)
 		
 		if message.sender == otherUser {
