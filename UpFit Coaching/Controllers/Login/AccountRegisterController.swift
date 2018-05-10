@@ -10,10 +10,10 @@ import UIKit
 
 class AccountRegisterController: UIViewController {
 	
-	lazy var mailTextField = UI.mailTextField()
-	lazy var passwordTextField = UI.passwordTextField()
-	lazy var confirmPasswordTextField = UI.confirmPasswordTextField()
-	lazy var nextButton = UI.nextButton(registerController, action: #selector(RegisterController.nextToDetails))
+	var mailTextField: UITextField!
+	var passwordTextField: UITextField!
+	var confirmPasswordTextField: UITextField!
+	var nextButton: UIButton!
 	
 	weak var registerController: RegisterController?
 	
@@ -28,12 +28,24 @@ class AccountRegisterController: UIViewController {
 		setupLayout()
 	}
 	
-	private func setupLayout() {
-		view.addSubview(mailTextField)
-		view.addSubview(passwordTextField)
-		view.addSubview(confirmPasswordTextField)
-		view.addSubview(nextButton)
+	@objc func next(_ sender: Any?) {
+		guard let mail = mailTextField.text, mail != "" else {
+			registerController?.presentAlert(title: "mail_missing_title".localized, message: nil)
+			return
+		}
+		registerController?.registerBox.mail = mail
 		
-		NSLayoutConstraint.activate(getConstraints())
+		guard let password = passwordTextField.text, password != "" else {
+			registerController?.presentAlert(title: "password_missing_title".localized, message: nil)
+			return
+		}
+		registerController?.registerBox.password = password.sha256()
+		
+		guard let confirmPassword = confirmPasswordTextField.text, password == confirmPassword else {
+			registerController?.presentAlert(title: "confirmPassword_error_title".localized, message: nil)
+			return
+		}
+		
+		registerController?.goToDetails(.forward)
 	}
 }

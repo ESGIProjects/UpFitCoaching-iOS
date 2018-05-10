@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		if let user = Database().getCurrentUser() {
 			// Show the corresponding tab bar controller
-			window?.rootViewController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
+			window?.rootViewController = UITabBarController.getRootViewController(for: user)
 			
 			// Starts websocket
 			MessagesDelegate.instance.delegate = self

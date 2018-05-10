@@ -13,15 +13,15 @@ class RegisterController: UIViewController {
 	
 	// MARK: - UI
 	
-	lazy var pageViewController = UI.pageViewController()
-	lazy var typeController = TypeRegisterController(registerController: self)
-	lazy var accountController = AccountRegisterController(registerController: self)
-	lazy var detailsController = DetailsRegisterController(registerController: self, type: type)
+	var pageViewController: UIPageViewController!
+	var typeController: TypeRegisterController!
+	var accountController: AccountRegisterController!
+	var detailsController: DetailsRegisterController!
 	
 	// MARK: - Data
 	
 	var type: Int?
-	var parameters = [String: Any]()
+	var registerBox = RegisterBox()
 	
 	// MARK: - UIViewController
 	
@@ -38,157 +38,48 @@ class RegisterController: UIViewController {
 		navigationController?.setNavigationBarHidden(false, animated: true)
 	}
 	
-	// MARK: - Layout
-	
-	private func setupLayout() {
-		addChildViewController(pageViewController)
-		view.addSubview(pageViewController.view)
-		
-		NSLayoutConstraint.activate([
-			pageViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
-			pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-			])
-		
-		pageViewController.setViewControllers([typeController], direction: .forward, animated: true)
-		pageViewController.didMove(toParentViewController: self)
-	}
-	
 	// MARK: - Actions
 	
-	@objc func clientTapped() {
-		type = 0
-		parameters["type"] = 0
-		
-		nextToAccount()
+	func goToAccount(_ direction: UIPageViewControllerNavigationDirection) {
+		pageViewController.setViewControllers([accountController], direction: direction, animated: true)
 	}
 	
-	@objc func coachTapped() {
-		type = 2
-		parameters["type"] = 2
-		
-		nextToAccount()
-	}
-	
-	func nextToAccount() {
-		pageViewController.setViewControllers([accountController], direction: .forward, animated: true)
-	}
-	
-	@objc func nextToDetails() {
-		
-		// Check the existence of every field
-		
-		guard let mail = accountController.mailTextField.text, mail != "" else {
-			present(UIAlertController.simpleAlert(title: "mail_missing_title".localized, message: nil), animated: true)
-			return
-		}
-		parameters["mail"] = mail
-		
-		guard let password = accountController.passwordTextField.text, password != "" else {
-			present(UIAlertController.simpleAlert(title: "password_missing_title".localized, message: nil), animated: true)
-			return
-		}
-		parameters["password"] = password.sha256()
-		
-		guard let confirmPassword = accountController.confirmPasswordTextField.text, password == confirmPassword else {
-			present(UIAlertController.simpleAlert(title: "confirmPassword_error_title".localized, message: nil), animated: true)
-			return
-		}
-		
-		pageViewController.setViewControllers([detailsController], direction: .forward, animated: true)
+	func goToDetails(_ direction: UIPageViewControllerNavigationDirection) {
+		pageViewController.setViewControllers([detailsController], direction: direction, animated: true)
 	}
 	
 	@objc func register() {
+		// Once every field is checked, we make the API call
 		
-		// Check the existence of every field
-		
-		guard let firstName = detailsController.firstNameTextField.text, firstName != "" else {
-			present(UIAlertController.simpleAlert(title: "firstName_missing_title".localized, message: nil), animated: true)
-			return
-		}
-		parameters["firstName"] = firstName
-		
-		guard let lastName = detailsController.lastNameTextField.text, lastName != "" else {
-			present(UIAlertController.simpleAlert(title: "lastName_missing_title".localized, message: nil), animated: true)
-			return
-		}
-		parameters["lastName"] = lastName
-		
-		guard let city = detailsController.cityTextField.text, city != "" else {
-			present(UIAlertController.simpleAlert(title: "city_missing_title".localized, message: nil), animated: true)
-			return
-		}
-		parameters["city"] = city
-		
-		guard let phoneNumber = detailsController.phoneNumberTextField.text, phoneNumber != "" else {
-			present(UIAlertController.simpleAlert(title: "phoneNumber_missing_title".localized, message: nil), animated: true)
-			return
-		}
-		parameters["phoneNumber"] = phoneNumber
-		
-		if type == 2 {
-			guard let address = detailsController.addressTextField.text, address != "" else {
-				present(UIAlertController.simpleAlert(title: "address_missing_title".localized, message: nil), animated: true)
-				return
-			}
-			parameters["address"] = address
-		} else {
+		Network.register(with: registerBox.parameters) { [weak self] data, response, _ in
+			guard let data = data else { return }
 			
-			// TEMPORARY
-//			let dateFormatter = DateFormatter()
-//			dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//			let birthDate = dateFormatter.string(from: detailsController.birthDatePicker.date)
-			
-			guard let birthDate = detailsController.birthDateTextField.text, birthDate != "" else {
-				present(UIAlertController.simpleAlert(title: "birthDate_missing_title".localized, message: nil), animated: true)
-				return
-			}
-			parameters["birthDate"] = birthDate
-		}
-		
-		// Make the network call
-		
-		Network.register(with: parameters) { [weak self] data, response, _ in
-			guard let response = response as? HTTPURLResponse,
-				let data = data else { return }
-			
-			// Print the HTTP status code
-			print("Status code:", response.statusCode)
-			
-			// Creating the JSON decoder
-			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-			
-			// If the register is a success
-			if response.statusCode == 201 {
-				// Decode JSON
-				guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []),
-					let json = unserializedJSON as? [String: Int],
-					let userId = json["id"] else { return }
+			if Network.isSuccess(response: response, successCode: 201) {
+				guard let userId = self?.unserialize(data) else { return }
 				print(userId)
 				
-				guard let parameters = self?.parameters else { return }
+				guard let registerBox = self?.registerBox else { return }
 				
 				// Creating user info
-				let user = User(id: userId,
-								type: parameters["type"] as? Int ?? 0,
-								mail: parameters["mail"] as? String ?? "",
-								firstName: firstName,
-								lastName: lastName,
-								city: city,
-								phoneNumber: phoneNumber)
+				let user = User(id: userId, type: registerBox.type, mail: registerBox.mail,
+								firstName: registerBox.firstName, lastName: registerBox.lastName,
+								city: registerBox.city, phoneNumber: registerBox.phoneNumber)
 				
-				user.address = parameters["address"] as? String
-				user.birthDate = dateFormatter.date(from: parameters["birthDate"] as? String ?? "")
+				user.address = registerBox.address
+				
+				if let birthDate = registerBox.birthDate {
+					let dateFormatter = DateFormatter()
+					dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+					
+					user.birthDate = dateFormatter.date(from: birthDate)
+				}
 				
 				// Save user info
 				Database().createOrUpdate(model: user, with: UserObject.init)
 				UserDefaults.standard.set(user.userID, forKey: "userID")
 				
 				// Present the current controller for the user
-				let tabBarController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
+				let tabBarController = UITabBarController.getRootViewController(for: user)
 				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
@@ -196,15 +87,16 @@ class RegisterController: UIViewController {
 					}
 				}
 			} else {
-				let decoder = JSONDecoder()
-				guard let errorMessage = try? decoder.decode(ErrorMessage.self, from: data) else { return }
-				
-				let alertController = UIAlertController.simpleAlert(title: "error".localized, message: errorMessage.message.localized)
-				
-				DispatchQueue.main.async {
-					self?.present(alertController, animated: true)
-				}
+				Network.displayError(self, from: data)
 			}
 		}
+	}
+	
+	private func unserialize(_ data: Data) -> Int? {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+		guard let json = unserializedJSON as? [String: Int] else { return nil }
+		guard let userId = json["id"] else { return nil }
+		
+		return userId
 	}
 }

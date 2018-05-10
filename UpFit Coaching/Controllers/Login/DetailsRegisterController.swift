@@ -10,41 +10,83 @@ import UIKit
 
 class DetailsRegisterController: UIViewController {
 	
-	lazy var firstNameTextField = UI.firstNameTextField()
-	lazy var lastNameTextField = UI.lastNameTextField()
-	lazy var cityTextField = UI.cityTextField()
-	lazy var phoneNumberTextField = UI.phoneNumberTextField()
-	lazy var birthDateTextField = UI.birthDateTextField()
-	lazy var addressTextField = UI.addressTextField()
-	lazy var registerButton = UI.registerButton(registerController, action: #selector(RegisterController.register))
+	var firstNameTextField: UITextField!
+	var lastNameTextField: UITextField!
+	var cityTextField: UITextField!
+	var phoneNumberTextField: UITextField!
+	var birthDateTextField: UITextField!
+	var addressTextField: UITextField!
+	var registerButton: UIButton!
 
 	weak var registerController: RegisterController?
 	var type: Int?
 	
 	convenience init(registerController: RegisterController?, type: Int?) {
 		self.init()
+		
 		self.registerController = registerController
 		self.type = type
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		setupLayout()
 	}
 	
-	private func setupLayout() {
-		view.addSubview(firstNameTextField)
-		view.addSubview(lastNameTextField)
-		view.addSubview(cityTextField)
-		view.addSubview(phoneNumberTextField)
-		view.addSubview(registerButton)
+	@objc func register(_ sender: Any?) {
+		
+		// Verifiy if the first name field is empty
+		guard let firstName = firstNameTextField.text, firstName != "" else {
+			registerController?.presentAlert(title: "firstName_missing_title".localized, message: nil)
+			return
+		}
+		registerController?.registerBox.firstName = firstName
+		
+		// Verifiy if the last name field is empty
+		guard let lastName = lastNameTextField.text, lastName != "" else {
+			registerController?.presentAlert(title: "lastName_missing_title".localized, message: nil)
+			return
+		}
+		registerController?.registerBox.lastName = lastName
+		
+		// Verifiy if the city field is empty
+		guard let city = cityTextField.text, city != "" else {
+			registerController?.presentAlert(title: "city_missing_title".localized, message: nil)
+			return
+		}
+		registerController?.registerBox.city = city
+		
+		// Verifiy if the phone number field is empty
+		guard let phoneNumber = phoneNumberTextField.text, phoneNumber != "" else {
+			registerController?.presentAlert(title: "phoneNumber_missing_title".localized, message: nil)
+			return
+		}
+		registerController?.registerBox.phoneNumber = phoneNumber
 		
 		if type == 2 {
-			view.addSubview(addressTextField)
+			
+			guard let address = addressTextField.text, address != "" else {
+				registerController?.presentAlert(title: "address_missing_title".localized, message: nil)
+				return
+			}
+			registerController?.registerBox.address = address
+			
 		} else {
-			view.addSubview(birthDateTextField)
+			// TEMPORARY
+//			let dateFormatter = DateFormatter()
+//			dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//			let birthDate = dateFormatter.string(from: detailsController.birthDatePicker.date)
+			
+			guard let birthDate = birthDateTextField.text, birthDate != "" else {
+				registerController?.presentAlert(title: "birthDate_missing_title".localized, message: nil)
+				return
+			}
+			registerController?.registerBox.birthDate = birthDate
+			
 		}
 		
-		NSLayoutConstraint.activate(getConstraints())
+		registerController?.register()
 	}
 }

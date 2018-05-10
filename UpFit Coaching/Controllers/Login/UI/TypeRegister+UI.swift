@@ -10,19 +10,21 @@ import UIKit
 
 extension TypeRegisterController {
 	class UI {
-		class func clientButton(_ target: Any?, action: Selector) -> UIButton {
+		class func clientButton() -> UIButton {
 			let view = UIButton(type: .system)
 			view.translatesAutoresizingMaskIntoConstraints = false
+			
 			view.setTitle("Client", for: .normal)
-			view.addTarget(target, action: action, for: .touchUpInside)
+
 			return view
 		}
 		
-		class func coachButton(_ target: Any?, action: Selector) -> UIButton {
+		class func coachButton() -> UIButton {
 			let view = UIButton(type: .system)
 			view.translatesAutoresizingMaskIntoConstraints = false
+			
 			view.setTitle("Coach", for: .normal)
-			view.addTarget(target, action: action, for: .touchUpInside)
+
 			return view
 		}
 	}
@@ -35,5 +37,22 @@ extension TypeRegisterController {
 			coachButton.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 10.0),
 			coachButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 		]
+	}
+	
+	func setUIComponents() {
+		clientButton = UI.clientButton()
+		clientButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
+		
+		coachButton = UI.coachButton()
+		coachButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
+	}
+	
+	func setupLayout() {
+		setUIComponents()
+		
+		view.addSubview(clientButton)
+		view.addSubview(coachButton)
+		
+		NSLayoutConstraint.activate(getConstraints())
 	}
 }

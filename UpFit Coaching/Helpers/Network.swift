@@ -6,7 +6,7 @@
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Network {
 	
@@ -97,5 +97,21 @@ class Network {
 		]
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
+	
+	class func isSuccess(response: URLResponse?, successCode: Int) -> Bool {
+		guard let response = response as? HTTPURLResponse else { return false }
+		print("Status code:", response.statusCode)
+		
+		return response.statusCode == successCode
+	}
+	
+	class func displayError(_ controller: UIViewController?, from data: Data) {
+		let decoder = JSONDecoder()
+		guard let errorMessage = try? decoder.decode(ErrorMessage.self, from: data) else { return }
+				
+		DispatchQueue.main.async {
+			controller?.presentAlert(title: "error".localized, message: errorMessage.message.localized)
+		}
 	}
 }

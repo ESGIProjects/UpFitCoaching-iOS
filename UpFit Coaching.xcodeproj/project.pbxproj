@@ -37,12 +37,13 @@
 		D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */; };
 		D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */; };
 		D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */; };
+		D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014920A4D5DF0078BEA4 /* RegisterBox.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
 		D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D773DD54203362DE001520CA /* LaunchScreen.storyboard */; };
 		D7811948207D3E72001762D4 /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811947207D3E72001762D4 /* Codables.swift */; };
-		D781194A207D3F2D001762D4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811949207D3F2D001762D4 /* Helpers.swift */; };
+		D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */; };
 		D781194E207D4392001762D4 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781194D207D4392001762D4 /* SettingsController.swift */; };
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
@@ -98,13 +99,14 @@
 		D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+DataSource.swift"; sourceTree = "<group>"; };
 		D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		D744014920A4D5DF0078BEA4 /* RegisterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBox.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
 		D773DD52203362DE001520CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D773DD57203362DE001520CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7811947207D3E72001762D4 /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
-		D7811949207D3F2D001762D4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Controllers+Helpers.swift"; sourceTree = "<group>"; };
 		D781194D207D4392001762D4 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789201420544E890020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				D7EF961E20860EBB002E0A9B /* User.swift */,
+				D744014920A4D5DF0078BEA4 /* RegisterBox.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,7 +372,7 @@
 				D7DAA23F20554E7F007F3011 /* Colors.swift */,
 				D789201620544FAD0020C703 /* String+Localization.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
-				D7811949207D3F2D001762D4 /* Helpers.swift */,
+				D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */,
 				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
 			);
 			path = Extensions;
@@ -547,7 +550,7 @@
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
 				1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */,
 				D702D2FA209F7DC200970081 /* DetailsRegisterController.swift in Sources */,
-				D781194A207D3F2D001762D4 /* Helpers.swift in Sources */,
+				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				D702D300209F800800970081 /* DetailsRegister+UI.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
@@ -555,6 +558,7 @@
 				D702D302209F8D4000970081 /* Chart.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,
+				D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */,
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */,

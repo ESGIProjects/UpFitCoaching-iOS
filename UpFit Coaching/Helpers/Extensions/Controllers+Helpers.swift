@@ -1,5 +1,5 @@
 //
-//  Helpers.swift
+//  Controllers.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 10/04/2018.
@@ -17,8 +17,7 @@ extension UIAlertController {
 }
 
 extension UITabBarController {
-	class func coachController() -> UITabBarController {
-		
+	class func getRootViewController(for user: User) -> UITabBarController {
 		var viewControllers = [UIViewController]()
 		
 		// Calendar
@@ -26,37 +25,18 @@ extension UITabBarController {
 		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 0)
 		viewControllers.append(calendarController)
 		
-		// Conversation List
-		let conversationListController = ConversationListController()
-		conversationListController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
-		viewControllers.append(conversationListController)
-		
-		// Settings
-		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
-		viewControllers.append(settingsController)
-		
-		// Creating the tab bar controller
-		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
-		
-		let tabBarController = UITabBarController()
-		tabBarController.setViewControllers(viewControllers, animated: true)
-		return tabBarController
-	}
-	
-	class func clientController() -> UITabBarController {
-		var viewControllers = [UIViewController]()
-		
-		// Calendar
-		let calendarController = CalendarController()
-		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 1)
-		viewControllers.append(calendarController)
-		
-		// Conversation
-		if let user = Database().getCurrentUser(), let otherUser = user.coach {
+		// Messages
+		if user.type == 2 {
+			// Conversation List
+			let conversationListController = ConversationListController()
+			conversationListController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
+			viewControllers.append(conversationListController)
+		} else if let otherUser = user.coach {
+			// Conversation with coach
 			let conversationController = ConversationController()
-			conversationController.title = "\(otherUser.firstName) \(otherUser.lastName)"
 			conversationController.otherUser = otherUser
+			conversationController.title = "\(otherUser.firstName) \(otherUser.lastName)"
+			
 			conversationController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 0)
 			viewControllers.append(conversationController)
 		}
@@ -74,8 +54,17 @@ extension UITabBarController {
 		return tabBarController
 	}
 }
-
 extension UIViewController {
+
+	func presentAlert(title: String?, message: String?) {
+		
+		let alert = UIAlertController.simpleAlert(title: title, message: message)
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.present(alert, animated: true)
+		}
+	}
+	
 	// swiftlint:disable large_tuple
 	func getAnchors() -> (top: NSLayoutYAxisAnchor, bottom: NSLayoutYAxisAnchor, leading: NSLayoutXAxisAnchor, trailing: NSLayoutXAxisAnchor) {
 		
@@ -91,4 +80,5 @@ extension UIViewController {
 					view.trailingAnchor)
 		}
 	}
+	// swiftlint: enable large_tuple
 }

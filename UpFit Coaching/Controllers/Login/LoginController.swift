@@ -14,13 +14,13 @@ class LoginController: UIViewController {
 	
 	// MARK: - UI
 	
-	lazy var scrollView = UI.scrollView()
-	lazy var contentView = UI.contentView()
-	lazy var titleLabel = UI.titleLabel()
-	lazy var mailTextField = UI.mailTextField()
-	lazy var passwordTextField = UI.passwordTextField()
-	lazy var loginButton = UI.loginButton(self, action: #selector(signIn(_:)))
-	lazy var signUpButton = UI.signUpButton(self, action: #selector(signUp(_:)))
+	var scrollView: UIScrollView!
+	var contentView: UIView!
+	var titleLabel: UILabel!
+	var mailTextField: UITextField!
+	var passwordTextField: UITextField!
+	var loginButton: UIButton!
+	var signUpButton: UIButton!
 	
 	// MARK: - UIViewController
 	
@@ -37,22 +37,6 @@ class LoginController: UIViewController {
 		navigationController?.setNavigationBarHidden(true, animated: true)
 	}
 	
-	// MARK: - Helpers
-	
-	private func setupLayout() {
-		view.addSubview(scrollView)
-		scrollView.addSubview(contentView)
-		
-		contentView.addSubview(titleLabel)
-		contentView.addSubview(mailTextField)
-		contentView.addSubview(passwordTextField)
-		contentView.addSubview(loginButton)
-		contentView.addSubview(signUpButton)
-		
-		let constraints = UI.getConstraints(for: self)
-		NSLayoutConstraint.activate(constraints)
-	}
-	
 	// MARK: - Actions
 	
 	@objc func signIn(_ sender: UIButton) {
@@ -60,34 +44,28 @@ class LoginController: UIViewController {
 		// Check if the form is complete
 		
 		guard let mailValue = mailTextField.text, mailValue != "" else {
-			present(UIAlertController.simpleAlert(title: "mail_missing_title".localized, message: nil), animated: true)
+			presentAlert(title: "mail_missing_title".localized, message: nil)
 			return
 		}
 		
 		guard let passwordValue = passwordTextField.text, passwordValue != "" else {
-			present(UIAlertController.simpleAlert(title: "password_missing_title".localized, message: nil), animated: true)
+			presentAlert(title: "password_missing_title".localized, message: nil)
 			return
 		}
 		
 		// Perform the network call
 		
 		Network.login(mail: mailValue, password: passwordValue.sha256()) { [weak self] data, response, _ in
+			guard let data = data else { return }
 			
-			guard let response = response as? HTTPURLResponse,
-				let data = data else { return }
-			
-			// Print the HTTP status code
-			print("Status code:", response.statusCode)
-			
-			// Creating the JSON decoder
-			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-			
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .formatted(dateFormatter)
-			
-			// If the login is a success
-			if response.statusCode == 200 {
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Creating the JSON decoder
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+				
+				let decoder = JSONDecoder()
+				decoder.dateDecodingStrategy = .formatted(dateFormatter)
+				
 				// Decode user data
 				guard let user = try? decoder.decode(User.self, from: data) else { return }
 				print(user)
@@ -97,7 +75,7 @@ class LoginController: UIViewController {
 				UserDefaults.standard.set(user.userID, forKey: "userID")
 				
 				// Present the correct controller for the user
-				let tabBarController = user.type == 2 ? UITabBarController.coachController() : UITabBarController.clientController()
+				let tabBarController = UITabBarController.getRootViewController(for: user)
 				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
@@ -106,14 +84,7 @@ class LoginController: UIViewController {
 					}
 				}
 			} else {
-				// Display the error sent by the server
-				guard let errorMessage = try? decoder.decode(ErrorMessage.self, from: data) else { return }
-				
-				let alertController = UIAlertController.simpleAlert(title: "error".localized, message: errorMessage.message.localized)
-				
-				DispatchQueue.main.async {
-					self?.present(alertController, animated: true)
-				}
+				Network.displayError(self, from: data)
 			}
 		}
 	}

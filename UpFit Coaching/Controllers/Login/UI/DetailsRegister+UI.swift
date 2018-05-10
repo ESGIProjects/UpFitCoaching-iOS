@@ -13,73 +13,86 @@ extension DetailsRegisterController {
 		class func firstNameTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
+			
 			textField.borderStyle = .roundedRect
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
 			textField.placeholder = "firstName_placeholder".localized
+			
 			return textField
 		}
 		
 		class func lastNameTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
+			
 			textField.borderStyle = .roundedRect
 			textField.keyboardType = .emailAddress
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
 			textField.placeholder = "lastName_placeholder".localized
+			
 			return textField
 		}
 		
 		class func cityTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
+			
 			textField.borderStyle = .roundedRect
 			textField.keyboardType = .emailAddress
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
 			textField.placeholder = "city_placeholder".localized
+			
 			return textField
 		}
 		
 		class func phoneNumberTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
+			
 			textField.borderStyle = .roundedRect
 			textField.keyboardType = .emailAddress
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
 			textField.placeholder = "phoneNumber_placeholder".localized
+			
 			return textField
 		}
 		
 		class func birthDateTextField() -> UITextField { // temporary
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
+			
 			textField.borderStyle = .roundedRect
 			textField.keyboardType = .emailAddress
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
 			textField.placeholder = "birthDate_placeholder".localized
+			
 			return textField
 		}
 		
 		class func addressTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)
 			textField.translatesAutoresizingMaskIntoConstraints = false
+			
 			textField.borderStyle = .roundedRect
 			textField.keyboardType = .emailAddress
 			textField.returnKeyType = .next
 			textField.autocorrectionType = .no
 			textField.placeholder = "address_placeholder".localized
+			
 			return textField
 		}
 		
-		class func registerButton(_ target: Any?, action: Selector) -> UIButton {
+		class func registerButton() -> UIButton {
 			let view = UIButton(type: .system)
 			view.translatesAutoresizingMaskIntoConstraints = false
+			
 			view.setTitle("Register", for: .normal)
-			view.addTarget(target, action: action, for: .touchUpInside)
+			
 			return view
 		}
 	}
@@ -126,5 +139,39 @@ extension DetailsRegisterController {
 		}
 	
 		return constraints
+	}
+	
+	func setUIComponents() {
+		firstNameTextField = UI.firstNameTextField()
+		lastNameTextField = UI.lastNameTextField()
+		cityTextField = UI.cityTextField()
+		phoneNumberTextField = UI.phoneNumberTextField()
+		
+		if type == 2 {
+			addressTextField = UI.addressTextField()
+		} else {
+			birthDateTextField = UI.birthDateTextField()
+		}
+		
+		registerButton = UI.registerButton()
+		registerButton.addTarget(self, action: #selector(register(_:)), for: .touchUpInside)
+	}
+	
+	func setupLayout() {
+		setUIComponents()
+		
+		view.addSubview(firstNameTextField)
+		view.addSubview(lastNameTextField)
+		view.addSubview(cityTextField)
+		view.addSubview(phoneNumberTextField)
+		view.addSubview(registerButton)
+		
+		if type == 2 {
+			view.addSubview(addressTextField)
+		} else {
+			view.addSubview(birthDateTextField)
+		}
+		
+		NSLayoutConstraint.activate(getConstraints())
 	}
 }

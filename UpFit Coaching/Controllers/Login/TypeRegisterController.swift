@@ -10,8 +10,8 @@ import UIKit
 
 class TypeRegisterController: UIViewController {
 	
-	lazy var clientButton = UI.clientButton(registerController, action: #selector(RegisterController.clientTapped))
-	lazy var coachButton = UI.coachButton(registerController, action: #selector(RegisterController.coachTapped))
+	var clientButton: UIButton!
+	var coachButton: UIButton!
 	
 	weak var registerController: RegisterController?
 	
@@ -22,13 +22,19 @@ class TypeRegisterController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		setupLayout()
 	}
 	
-	private func setupLayout() {
-		view.addSubview(clientButton)
-		view.addSubview(coachButton)
+	@objc func next(_ sender: UIButton) {
+		if sender == clientButton {
+			registerController?.type = 0
+			registerController?.registerBox.type = 0
+		} else {
+			registerController?.type = 2
+			registerController?.registerBox.type = 2
+		}
 		
-		NSLayoutConstraint.activate(getConstraints())
+		registerController?.goToAccount(.forward)
 	}
 }
