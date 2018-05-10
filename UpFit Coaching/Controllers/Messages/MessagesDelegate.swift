@@ -49,4 +49,18 @@ class MessagesDelegate {
 		let request = UNNotificationRequest(identifier: "message", content: content, trigger: nil)
 		UNUserNotificationCenter.current().add(request)
 	}
+	
+	class func decode(from text: String) -> Message? {
+		// Setting up JSON decoder
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .formatted(dateFormatter)
+		
+		guard let json = text.data(using: .utf8) else { return nil }
+		guard let message = try? decoder.decode(Message.self, from: json) else { return nil }
+		
+		return message
+	}
 }

@@ -88,18 +88,18 @@ class MessageBarView: UIView {
 		textView.layer.masksToBounds = true
 		
 		// Add constraints
-		textFieldHeightConstraint = textView.heightAnchor.constraint(equalToConstant: 35)
+		textFieldHeightConstraint = textView.heightAnchor.constraint(equalToConstant: 35.0)
 		textFieldHeightConstraint.isActive = true
 		
 		NSLayoutConstraint.activate([
-			textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-			textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8),
-			button.heightAnchor.constraint(equalToConstant: 35),
-			button.widthAnchor.constraint(equalToConstant: 65),
-			button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+			textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
+			textView.topAnchor.constraint(equalTo: topAnchor, constant: 8.0),
+			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
+			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8.0),
+			button.heightAnchor.constraint(equalToConstant: 35.0),
+			button.widthAnchor.constraint(equalToConstant: 65.0),
+			button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
+			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0)
 			])
 	}
 }

@@ -10,21 +10,18 @@ import UIKit
 
 extension ConversationController {
 	class UI {
-		class func collectionView(delegate: UICollectionViewDelegate?, dataSource: UICollectionViewDataSource?, layoutDelegate: ConversationLayoutDelegate?) -> UICollectionView {
-			let collectionViewLayout = ConversationLayout()
-			collectionViewLayout.delegate = layoutDelegate
-			
-			let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+		class func collectionView(layout: UICollectionViewLayout) -> UICollectionView {
+			let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 			collectionView.translatesAutoresizingMaskIntoConstraints = false
+			
 			collectionView.backgroundColor = .white
-			collectionView.delegate = delegate
-			collectionView.dataSource = dataSource
 			collectionView.keyboardDismissMode = .onDrag
 			collectionView.alwaysBounceVertical = true
+			
 			return collectionView
 		}
 		
-		class func messageBarView(_ target: Any?, action: Selector) -> MessageBarView {
+		class func messageBarView() -> MessageBarView {
 			let messageBarView = MessageBarView()
 			messageBarView.translatesAutoresizingMaskIntoConstraints = false
 			
@@ -33,38 +30,53 @@ extension ConversationController {
 			messageBarView.button.setTitle("sendMessage_button".localized, for: .normal)
 			messageBarView.button.setTitleColor(.main, for: .normal)
 			messageBarView.button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
-			messageBarView.button.addTarget(target, action: action, for: .touchUpInside)
+			
 			return messageBarView
 		}
+	}
+	
+	func getConstraints() -> [NSLayoutConstraint] {
+		let anchors = getAnchors()
 		
-		class func getConstraints(for controller: ConversationController) -> [NSLayoutConstraint] {
-			var constraints = [NSLayoutConstraint]()
-			
-			if #available(iOS 11.0, *) {
-				constraints += [
-					// Collection view
-					controller.collectionView.topAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.topAnchor),
-					controller.collectionView.bottomAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.bottomAnchor),
-					controller.collectionView.leadingAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.leadingAnchor),
-					controller.collectionView.trailingAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.trailingAnchor),
-					// Message bar view
-					controller.messageBarView.leadingAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.leadingAnchor),
-					controller.messageBarView.trailingAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.trailingAnchor)
-				]
-			} else {
-				constraints += [
-					// Collection view
-					controller.collectionView.topAnchor.constraint(equalTo: controller.view.topAnchor),
-					controller.collectionView.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor),
-					controller.collectionView.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor),
-					controller.collectionView.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor),
-					// Message bar view
-					controller.messageBarView.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor),
-					controller.messageBarView.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor)
-				]
-			}
-			
-			return constraints
-		}
-	}	
+		return [
+			collectionView.topAnchor.constraint(equalTo: anchors.top),
+			collectionView.bottomAnchor.constraint(equalTo: anchors.bottom),
+			collectionView.leadingAnchor.constraint(equalTo: anchors.leading),
+			collectionView.trailingAnchor.constraint(equalTo: anchors.trailing),
+
+			messageBarView.leadingAnchor.constraint(equalTo: anchors.leading),
+			messageBarView.trailingAnchor.constraint(equalTo: anchors.trailing)
+		]
+	}
+	
+	func setUIComponents() {
+		let conversationLayout = ConversationLayout()
+		conversationLayout.delegate = self
+		
+		collectionView = UI.collectionView(layout: conversationLayout)
+		collectionView.dataSource = self
+		
+		messageBarView = UI.messageBarView()
+		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
+	}
+	
+	func setupLayout() {
+		view.addSubview(collectionView)
+		view.addSubview(messageBarView)
+		
+		messageBarViewBottomConstraint = messageBarView.bottomAnchor.constraint(equalTo: getAnchors().bottom)
+		
+		NSLayoutConstraint.activate(getConstraints())
+		messageBarViewBottomConstraint.isActive = true
+		
+		// Update scroll view insets
+		messageBarView.setNeedsLayout()
+		messageBarView.layoutIfNeeded()
+		
+		collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageBarView.frame.height, right: 0)
+		collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: messageBarView.frame.height, right: 0)
+		
+		// Scroll to bottom
+		scrollToBottom(animated: false)
+	}
 }

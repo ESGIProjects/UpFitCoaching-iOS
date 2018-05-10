@@ -16,18 +16,17 @@ protocol ConversationLayoutDelegate: class {
 
 class ConversationLayout: UICollectionViewLayout {
 	
-	weak var delegate: ConversationLayoutDelegate!
+	weak var delegate: ConversationLayoutDelegate?
 	
-	fileprivate var xPadding: CGFloat = 10
-	fileprivate var yPadding: CGFloat = 5
+	private var cache = [UICollectionViewLayoutAttributes]()
 	
-	fileprivate var cache = [UICollectionViewLayoutAttributes]()
+	private var xPadding: CGFloat = 10.0
+	private var yPadding: CGFloat = 5.0
 	
-	fileprivate var contentHeight: CGFloat = 0
-	fileprivate var contentWidth: CGFloat {
-		guard let collectionView = collectionView else {
-			return 0
-		}
+	private var contentHeight: CGFloat = 0.0
+	private var contentWidth: CGFloat {
+		guard let collectionView = collectionView else { return 0 }
+		
 		let insets = collectionView.contentInset
 		return collectionView.bounds.width - (insets.left + insets.right)
 	}
@@ -37,40 +36,39 @@ class ConversationLayout: UICollectionViewLayout {
 	}
 	
 	override func prepare() {		
-		guard cache.isEmpty == true, let collectionView = collectionView else {
-			return
-		}
+		guard cache.isEmpty == true, let collectionView = collectionView else { return }
 		
-		let maxMessageWidth = contentWidth * 0.7
+		let maxCellWidth = contentWidth * 0.7
 		var yPosition: CGFloat = 0.0
 		
+		// Iterate through every items
 		for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
 			let indexPath = IndexPath(item: item, section: 0)
 			
+			// Get info from delegate
+			guard let delegate = delegate else { return }
 			let isFromUser = delegate.collectionView(collectionView, isMessageFromUserFor: indexPath)
 			let text = delegate.collectionView(collectionView, textAt: indexPath)
 			let font = delegate.collectionView(collectionView, fontAt: indexPath)
 			
-			// Text size
-			let maxRect = CGSize(width: maxMessageWidth, height: .greatestFiniteMagnitude)
-			
+			// Determine text area
+			let maxRect = CGSize(width: maxCellWidth, height: .greatestFiniteMagnitude)
 			let boundingRect = text.boundingRect(with: maxRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
-			
 			let textWidth = ceil(boundingRect.width)
 			let textHeight = ceil(boundingRect.height)
 			
-			// Bubble
+			// Calculate cell frame
 			let width = textWidth + xPadding * 4
 			let height = textHeight + yPadding * 4
 			let xPosition = isFromUser ? contentWidth - width : 0.0
 			let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
 			
-			// Attributes
+			// Set cell attributes
 			let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 			attributes.frame = frame.insetBy(dx: xPadding, dy: yPadding)
 			cache.append(attributes)
 			
-			// Update collection view height
+			// Update collectionView height
 			contentHeight = max(contentHeight, frame.maxY)
 			yPosition += height
 		}
@@ -87,6 +85,7 @@ class ConversationLayout: UICollectionViewLayout {
 	override func invalidateLayout() {
 		cache.removeAll(keepingCapacity: true)
 		contentHeight = 0
+		
 		super.invalidateLayout()
 	}
 }

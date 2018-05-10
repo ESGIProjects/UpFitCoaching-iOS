@@ -13,31 +13,39 @@ class ConversationListCell: UITableViewCell {
 	lazy var photoImageView: UIImageView = {
 		let photoImageView = UIImageView(frame: .zero)
 		photoImageView.translatesAutoresizingMaskIntoConstraints = false
+		
 		photoImageView.layer.masksToBounds = true
 		photoImageView.backgroundColor = .red
+		
 		return photoImageView
 	}()
 	
 	lazy var nameLabel: UILabel = {
 		let nameLabel = UILabel()
 		nameLabel.translatesAutoresizingMaskIntoConstraints = false
+		
 		nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+		
 		return nameLabel
 	}()
 	
 	lazy var messageLabel: UILabel = {
 		let messageLabel = UILabel()
 		messageLabel.translatesAutoresizingMaskIntoConstraints = false
+		
 		messageLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
 		messageLabel.numberOfLines = 2
 		messageLabel.textColor = .gray
+		
 		return messageLabel
 	}()
 	
 	lazy var dateLabel: UILabel = {
 		let dateLabel = UILabel()
 		dateLabel.translatesAutoresizingMaskIntoConstraints = false
+		
 		dateLabel.textColor = .gray
+		
 		return dateLabel
 	}()
 	
@@ -70,12 +78,8 @@ class ConversationListCell: UITableViewCell {
 		aCoder.encode(dateLabel, forKey: "dateLabel")
 	}
 	
-	private func setupLayout() {
-		contentView.addSubview(photoImageView)
-		contentView.addSubview(nameLabel)
-		contentView.addSubview(messageLabel)
-		
-		NSLayoutConstraint.activate([
+	private func getConstraints() -> [NSLayoutConstraint] {
+		return [
 			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
 			photoImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
 			photoImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
@@ -90,7 +94,15 @@ class ConversationListCell: UITableViewCell {
 			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
 			messageLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
 			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
-			])
+		]
+	}
+	
+	private func setupLayout() {
+		contentView.addSubview(photoImageView)
+		contentView.addSubview(nameLabel)
+		contentView.addSubview(messageLabel)
+		
+		NSLayoutConstraint.activate(getConstraints())
 		
 		photoImageView.layer.cornerRadius = 25.0
 	}
