@@ -16,7 +16,12 @@ struct Conversation {
 		var conversations = [Conversation]()
 		
 		// Get users from messages
-		let users = messages.map { $0.receiver == currentUser ? $0.sender : $0.receiver }
+		var users = messages.map { $0.receiver == currentUser ? $0.sender : $0.receiver }
+		
+		// Adds the coach if he exists
+		if let coachUser = currentUser.coach {
+			users.append(coachUser)
+		}
 		
 		// Get unique list of users
 		var uniqueUsers = [User]()

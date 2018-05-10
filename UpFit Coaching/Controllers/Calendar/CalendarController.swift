@@ -61,8 +61,10 @@ class CalendarController: UIViewController {
 			let firstDate = Date()
 			let secondDate = firstDate.addingTimeInterval(60 * 60 * 24 * 2)
 			
-			let firstEvent = Event(eventID: 1, name: "Premier rendez-vous", type: 0, client: currentUser, coach: currentUser, start: firstDate, end: firstDate.addingTimeInterval(3600), created: firstDate, createdBy: currentUser, updated: firstDate, updatedBy: currentUser)
-			let secondEvent = Event(eventID: 2, name: "Second rendez-vous", type: 0, client: currentUser, coach: currentUser, start: secondDate, end: secondDate.addingTimeInterval(3600*2), created: firstDate, createdBy: currentUser, updated: firstDate, updatedBy: currentUser)
+			let firstEvent = Event(name: "Premier rendez-vous", type: 0, client: currentUser, coach: currentUser, start: firstDate, end: firstDate.addingTimeInterval(3600), createdBy: currentUser, updatedBy: currentUser)
+			let secondEvent = Event(name: "Second rendez-vous", type: 0, client: currentUser, coach: currentUser, start: secondDate, end: secondDate.addingTimeInterval(3600*2), createdBy: currentUser, updatedBy: currentUser)
+			firstEvent.eventID = 1
+			secondEvent.eventID = 2
 			
 			let database = Database()
 			database.createOrUpdate(model: firstEvent, with: EventObject.init)

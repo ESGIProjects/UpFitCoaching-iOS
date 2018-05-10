@@ -138,11 +138,10 @@ class AddEventController: UIViewController {
 //		guard let otherUser = otherUser else { return }
 		let otherUser = currentUser // temp
 		
-		let now = Date()
 		let database = Database()
 		
-		let eventID = database.next(type: EventObject.self, of: "eventID") + 1
-		let event = Event(eventID: eventID, name: eventTitle, type: 0, client: currentUser, coach: otherUser, start: startDate, end: endDate, created: now, createdBy: currentUser, updated: now, updatedBy: currentUser)
+		let event = Event(name: eventTitle, type: 0, client: currentUser, coach: otherUser, start: startDate, end: endDate, createdBy: currentUser, updatedBy: currentUser)
+		event.eventID = database.next(type: EventObject.self, of: "eventID") + 1
 		
 		// ... api call ...
 		

@@ -13,12 +13,16 @@ final class EventObject: Object {
 	@objc dynamic var eventID = 0
 	@objc dynamic var name = ""
 	@objc dynamic var type = 0
+	
 	@objc dynamic var client: UserObject!
 	@objc dynamic var coach: UserObject!
+	
 	@objc dynamic var start = Date()
 	@objc dynamic var end = Date()
+	
 	@objc dynamic var created = Date()
 	@objc dynamic var createdBy: UserObject!
+	
 	@objc dynamic var updated = Date()
 	@objc dynamic var updatedBy: UserObject!
 	
@@ -32,28 +36,36 @@ final class EventObject: Object {
 		eventID = event.eventID ?? 0
 		name = event.name
 		type = event.type
+		
 		client = UserObject(user: event.client)
 		coach = UserObject(user: event.coach)
+		
 		start = event.start
 		end = event.end
+		
 		created = event.created
 		createdBy = UserObject(user: event.createdBy)
+		
 		updated = event.updated
 		updatedBy = UserObject(user: event.updatedBy)
 	}
 }
 
-struct Event: Codable {
+class Event: NSObject, Codable {
 	enum CodingKeys: String, CodingKey {
 		case eventID = "id"
 		case name
 		case type
+		
 		case client
 		case coach
+		
 		case start
 		case end
+		
 		case created
 		case createdBy
+		
 		case updated
 		case updatedBy
 	}
@@ -63,27 +75,50 @@ struct Event: Codable {
 	var eventID: Int?
 	var name: String
 	var type: Int
+	
 	var client: User
 	var coach: User
+	
 	var start: Date
 	var end: Date
+	
 	var created: Date
 	var createdBy: User
+	
 	var updated: Date
 	var updatedBy: User
-}
-
-extension Event {
+	
+	init(name: String, type: Int, client: User, coach: User, start: Date, end: Date, createdBy: User, updatedBy: User) {
+		self.name = name
+		self.type = type
+		
+		self.client = client
+		self.coach = coach
+		
+		self.start = start
+		self.end = end
+		
+		self.created = Date()
+		self.createdBy = createdBy
+		
+		self.updated = Date()
+		self.updatedBy = updatedBy
+	}
+	
 	init(object: EventObject) {
 		eventID = object.eventID
 		name = object.name
 		type = object.type
+		
 		client = User(object: object.client)
 		coach = User(object: object.coach)
+		
 		start = object.start
 		end = object.end
+		
 		created = object.created
 		createdBy = User(object: object.createdBy)
+		
 		updated = object.updated
 		updatedBy = User(object: object.updatedBy)
 	}

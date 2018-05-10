@@ -137,7 +137,7 @@ class ConversationController: UIViewController {
 		guard let otherUser = otherUser else { return }
 		
 		if let messageText = messageBarView.textView.text {
-			var message = Message(messageID: nil, sender: currentUser, receiver: otherUser, date: Date(), content: messageText)
+			let message = Message(sender: currentUser, receiver: otherUser, date: Date(), content: messageText)
 			messages.append(message)
 			
 			// Send through socket

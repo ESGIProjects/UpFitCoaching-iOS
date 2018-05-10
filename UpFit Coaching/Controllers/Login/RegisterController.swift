@@ -172,15 +172,16 @@ class RegisterController: UIViewController {
 				guard let parameters = self?.parameters else { return }
 				
 				// Creating user info
-				let user = User(userID: userId,
+				let user = User(id: userId,
 								type: parameters["type"] as? Int ?? 0,
 								mail: parameters["mail"] as? String ?? "",
 								firstName: firstName,
 								lastName: lastName,
 								city: city,
-								phoneNumber: phoneNumber,
-								address: parameters["address"] as? String,
-								birthDate: dateFormatter.date(from: parameters["birthDate"] as? String ?? ""))
+								phoneNumber: phoneNumber)
+				
+				user.address = parameters["address"] as? String
+				user.birthDate = dateFormatter.date(from: parameters["birthDate"] as? String ?? "")
 				
 				// Save user info
 				Database().createOrUpdate(model: user, with: UserObject.init)

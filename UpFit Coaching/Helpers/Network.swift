@@ -81,7 +81,7 @@ class Network {
 			"userId": user.userID
 		]
 		
-//		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
 	}
 	
 	class func addEvent(_ event: Event, completion: @escaping NetworkCallback) {
@@ -96,6 +96,6 @@ class Network {
 			"updated": event.updated
 		]
 		
-//		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 }
