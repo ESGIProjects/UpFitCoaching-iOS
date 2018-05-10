@@ -14,19 +14,20 @@ class AddEventController: UIViewController {
 		case start, end, none
 	}
 	
-	// MARK: - UI Elements
+	// MARK: - UI
 	
-	lazy var tableView = UI.tableView(delegate: self, dataSource: self)
-	lazy var titleTextField = UI.titleTextField()
-	lazy var startLabel = UI.startLabel()
-	lazy var startValueLabel = UI.startValueLabel()
-	lazy var endLabel = UI.endLabel()
-	lazy var endValueLabel = UI.endValueLabel()
-	lazy var datePicker = UI.datePicker()
+	var tableView: UITableView!
+	var titleTextField: UITextField!
+	var startLabel: UILabel!
+	var startValueLabel: UILabel!
+	var endLabel: UILabel!
+	var endValueLabel: UILabel!
+	var datePicker: UIDatePicker!
 	
 	// MARK: - UI Logic
 	
 	var startIndexPath = IndexPath(row: 0, section: 1)
+	
 	var endIndexPath: IndexPath {
 		if currentPicker == .start {
 			return IndexPath(row: 2, section: 1)
@@ -78,10 +79,10 @@ class AddEventController: UIViewController {
 	// MARK: - Data
 	
 	let currentUser = Database().getCurrentUser()
+	var otherUser: User?
 	
 	var startDate = Date()
 	var endDate = Date().addingTimeInterval(60 * 60)
-	var otherUser: User?
 	
 	// MARK: - UIViewController
 	
@@ -97,6 +98,7 @@ class AddEventController: UIViewController {
 		
 		// Layout
 		title = "addEvent_title".localized
+		setupLayout()
 		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add_button".localized, style: .done, target: self, action: #selector(add))
@@ -108,21 +110,6 @@ class AddEventController: UIViewController {
 		// Observes value changes
 		titleTextField.addTarget(self, action: #selector(editTitle), for: .editingChanged)
 		datePicker.addTarget(self, action: #selector(changeDate), for: .valueChanged)
-		
-		setupLayout()
-	}
-	
-	// MARK: - Layout
-	
-	private func setupLayout() {
-		view.addSubview(tableView)
-		
-		NSLayoutConstraint.activate([
-			tableView.topAnchor.constraint(equalTo: view.topAnchor),
-			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-			])
 	}
 	
 	// MARK: - Actions
@@ -155,18 +142,33 @@ class AddEventController: UIViewController {
 	}
 	
 	@objc private func changeDate() {
+		
+		// Configure formatter
+		dateFormatter.dateStyle = .long
+		dateFormatter.timeStyle = .short
+		
+		// Updates dates
 		if currentPicker == .start {
 			startDate = datePicker.date
 			startValueLabel.text = dateFormatter.string(from: startDate)
-			
-			if startDate > endDate {
-				endDate = startDate
-				endValueLabel.text = startValueLabel.text
-			}
-			
-		} else if currentPicker == .end {
+		} else {
 			endDate = datePicker.date
-			endValueLabel.text = dateFormatter.string(from: endDate)
+		}
+		
+		// Updates end value
+		if Calendar.current.isDate(startDate, inSameDayAs: endDate) {
+			dateFormatter.dateStyle = .none
+			dateFormatter.timeStyle = .short
+		}
+		
+		let endValue = dateFormatter.string(from: endDate)
+		
+		if startDate > endDate {
+			let attributedString = NSMutableAttributedString(string: endValue)
+			attributedString.addAttribute(.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributedString.length))
+			endValueLabel.attributedText = attributedString
+		} else {
+			endValueLabel.text = endValue
 		}
 	}
 }
