@@ -53,10 +53,10 @@ extension UITabBarController {
 		viewControllers.append(calendarController)
 		
 		// Conversation
-		if let user = Database().getCurrentUser() {
+		if let user = Database().getCurrentUser(), let otherUser = user.coach {
 			let conversationController = ConversationController()
-			conversationController.title = "\(user.firstName) \(user.lastName)"
-			conversationController.otherUser = user
+			conversationController.title = "\(otherUser.firstName) \(otherUser.lastName)"
+			conversationController.otherUser = otherUser
 			conversationController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 0)
 			viewControllers.append(conversationController)
 		}
