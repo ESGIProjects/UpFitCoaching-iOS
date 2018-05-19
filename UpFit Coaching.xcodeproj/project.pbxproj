@@ -53,6 +53,7 @@
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
 		D789201720544FAD0020C703 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Localization.swift */; };
+		D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
 		D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */; };
@@ -121,6 +122,7 @@
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789201420544E890020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D789201620544FAD0020C703 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helper.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
 		D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+UI.swift"; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
 				D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */,
 				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
+				D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */,
 				D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */,
 				D702D2F4209F599500970081 /* Register+UI.swift in Sources */,
+				D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */,
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
 				D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,

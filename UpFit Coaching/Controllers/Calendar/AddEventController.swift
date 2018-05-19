@@ -90,15 +90,28 @@ class AddEventController: UIViewController {
 //		guard let otherUser = otherUser else { return }
 		let otherUser = currentUser // temp
 		
-		let database = Database()
+//		let database =
 		
 		let event = Event(name: eventTitle, type: 0, client: currentUser, coach: otherUser, start: startDate, end: endDate, createdBy: currentUser, updatedBy: currentUser)
-		event.eventID = database.next(type: EventObject.self, of: "eventID") + 1
+		event.eventID = Database().next(type: EventObject.self, of: "eventID") + 1
 		
-		// ... api call ...
-		
-		database.createOrUpdate(model: event, with: EventObject.init)
-		navigationController?.dismiss(animated: true)
+		Network.addEvent(event, by: currentUser) { [weak self] data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 201) {
+				// Creating the JSON decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode new event
+				guard let newEvent = try? decoder.decode(Event.self, from: data) else { return }
+				
+				// Save event
+				Database().createOrUpdate(model: newEvent, with: EventObject.init)
+				
+				// Dismiss controller
+				self?.navigationController?.dismiss(animated: true)
+			}
+		}
 	}
 	
 	@objc func editTitle() {

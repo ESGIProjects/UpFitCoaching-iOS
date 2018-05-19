@@ -35,10 +35,8 @@ class ConversationController: UIViewController {
 	}()
 	
 	// Formatters
-	
-	let dateFormatter = DateFormatter()
-	let decoder = JSONDecoder()
-	let encoder = JSONEncoder()
+	let decoder = JSONDecoder.withDate
+	let encoder = JSONEncoder.withDate
 	
 	// MARK: - UIViewController
 	
@@ -56,10 +54,6 @@ class ConversationController: UIViewController {
 		// Setting up
 		setUIComponents()
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
-		
-		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-		decoder.dateDecodingStrategy = .formatted(dateFormatter)
-		encoder.dateEncodingStrategy = .formatted(dateFormatter)
 		
 		setupLayout()
 		addObservers()

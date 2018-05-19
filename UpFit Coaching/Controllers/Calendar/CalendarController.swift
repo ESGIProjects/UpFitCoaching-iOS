@@ -114,14 +114,8 @@ class CalendarController: UIViewController {
 			guard let data = data else { return }
 			
 			if Network.isSuccess(response: response, successCode: 200) {
-				// Creating the JSON decoder
-				let networkDateFormatter = DateFormatter()
-				networkDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-				
-				let decoder = JSONDecoder()
-				decoder.dateDecodingStrategy = .formatted(networkDateFormatter)
-				
 				// Decode events list
+				let decoder = JSONDecoder.withDate
 				guard let events = try? decoder.decode([Event].self, from: data) else { return }
 				
 				// Save events

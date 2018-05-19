@@ -84,16 +84,20 @@ class Network {
 		call(url, httpMethod: .get, parameters: parameters, completion: completion)
 	}
 	
-	class func addEvent(_ event: Event, completion: @escaping NetworkCallback) {
+	class func addEvent(_ event: Event, by user: User, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/events/")
+		
+		let dateFormatter = DateFormatter.network
+		
 		let parameters: [String: Any] = [
 			"name": event.name,
 			"type": event.type,
 			"client": event.client.userID,
 			"coach": event.coach.userID,
-			"start": event.start,
-			"end": event.end,
-			"created": event.created
+			"start": dateFormatter.string(from: event.start),
+			"end": dateFormatter.string(from: event.end),
+			"created": dateFormatter.string(from: event.created),
+			"createdBy": user.userID
 		]
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)

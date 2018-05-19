@@ -52,12 +52,9 @@ class MessagesDelegate {
 	
 	class func decode(from text: String) -> Message? {
 		// Setting up JSON decoder
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		let decoder = JSONDecoder.withDate
 		
-		let decoder = JSONDecoder()
-		decoder.dateDecodingStrategy = .formatted(dateFormatter)
-		
+		// Decode JSON message
 		guard let json = text.data(using: .utf8) else { return nil }
 		guard let message = try? decoder.decode(Message.self, from: json) else { return nil }
 		

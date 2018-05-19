@@ -68,14 +68,8 @@ class ConversationListController: UIViewController {
 			guard let data = data else { return }
 			
 			if Network.isSuccess(response: response, successCode: 200) {
-				// Creating the JSON decoder
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-				
-				let decoder = JSONDecoder()
-				decoder.dateDecodingStrategy = .formatted(dateFormatter)
-				
 				// Decode messages list
+				let decoder = JSONDecoder.withDate				
 				guard let messages = try? decoder.decode([Message].self, from: data) else { return }
 				
 				// Save messages
