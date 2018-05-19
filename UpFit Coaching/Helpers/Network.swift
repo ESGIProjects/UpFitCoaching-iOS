@@ -88,12 +88,12 @@ class Network {
 		let url = baseURL.appending("/events/")
 		let parameters: [String: Any] = [
 			"name": event.name,
+			"type": event.type,
 			"client": event.client.userID,
 			"coach": event.coach.userID,
 			"start": event.start,
 			"end": event.end,
-			"created": event.created,
-			"updated": event.updated
+			"created": event.created
 		]
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)

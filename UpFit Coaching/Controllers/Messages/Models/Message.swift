@@ -50,11 +50,11 @@ class Message: NSObject, Codable {
 	
 	var messageID: Int?
 	
-	let sender: User
-	let receiver: User
+	var sender: User
+	var receiver: User
 	
-	let date: Date
-	let content: String
+	var date: Date
+	var content: String
 	
 	init(sender: User, receiver: User, date: Date, content: String) {
 		self.sender = sender

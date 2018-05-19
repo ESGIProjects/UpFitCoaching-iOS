@@ -10,4 +10,5 @@ import Foundation
 
 extension Notification.Name {
 	static let messagesDownloaded = Notification.Name("messagesDownloaded")
+	static let eventsDownloaded = Notification.Name("eventsDownloaded")
 }

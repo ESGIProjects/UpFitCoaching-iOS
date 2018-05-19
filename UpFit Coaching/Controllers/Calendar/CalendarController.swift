@@ -43,9 +43,10 @@ class CalendarController: UIViewController {
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent))
 		
-		// Register cells
+		// Register cells and notification
 		calendarView.register(CalendarCell.self, forCellWithReuseIdentifier: "CalendarCell")
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CalendarTableCell")
+		NotificationCenter.default.addObserver(self, selector: #selector(eventsDownloaded), name: .eventsDownloaded, object: nil)
 		
 		// Display the correct month
 		calendarView.visibleDates(updateMonthLabel)
@@ -54,6 +55,9 @@ class CalendarController: UIViewController {
 		currentDate = Date()
 		calendarView.selectDates([currentDate])
 		calendarView.scrollToDate(currentDate, animateScroll: false)
+		
+		// Download all events
+		downloadEvents()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -97,13 +101,47 @@ class CalendarController: UIViewController {
 		present(UINavigationController(rootViewController: addEventController), animated: true)
 	}
 	
+	@objc func eventsDownloaded() {
+		reloadEvents()
+	}
+	
 	// MARK: - Helpers
+	
+	func downloadEvents() {
+		guard let currentUser = currentUser else { return }
+		
+		Network.getEvents(for: currentUser) { data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Creating the JSON decoder
+				let networkDateFormatter = DateFormatter()
+				networkDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+				
+				let decoder = JSONDecoder()
+				decoder.dateDecodingStrategy = .formatted(networkDateFormatter)
+				
+				// Decode events list
+				guard let events = try? decoder.decode([Event].self, from: data) else { return }
+				
+				// Save events
+				let database = Database()
+				database.deleteAll(of: EventObject.self)
+				database.createOrUpdate(models: events, with: EventObject.init)
+				
+				// Post a notification telling its done
+				NotificationCenter.default.post(name: .eventsDownloaded, object: nil)
+			}
+		}
+	}
 	
 	func reloadEvents() {
 		events = Database().fetch(using: Event.all)
 		todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
 		
-		calendarView.reloadData()
-		tableView.reloadData()
+		DispatchQueue.main.async { [weak self] in
+			self?.calendarView.reloadData()
+			self?.tableView.reloadData()
+		}
 	}
 }

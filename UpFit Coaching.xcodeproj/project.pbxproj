@@ -332,10 +332,10 @@
 			isa = PBXGroup;
 			children = (
 				D773DD4B203362DE001520CA /* AppDelegate.swift */,
+				D773DD57203362DE001520CA /* Info.plist */,
 				1A9E194C207E37040091FABB /* Controllers */,
 				D7EFFF31204FDE08004694EC /* Helpers */,
 				D789201520544F7E0020C703 /* Supporting Files */,
-				D773DD57203362DE001520CA /* Info.plist */,
 			);
 			path = "UpFit Coaching";
 			sourceTree = "<group>";
