@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension AccountRegisterController {
+extension OldAccountRegisterController {
 	class UI {
 		class func mailTextField() -> UITextField {
 			let textField = UITextField(frame: .zero)

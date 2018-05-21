@@ -3,17 +3,19 @@ PODS:
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
   - CryptoSwift (0.9.0)
+  - Eureka (4.1.1)
   - JTAppleCalendar (7.1.5)
-  - Realm (3.4.0):
-    - Realm/Headers (= 3.4.0)
-  - Realm/Headers (3.4.0)
-  - RealmSwift (3.4.0):
-    - Realm (= 3.4.0)
+  - Realm (3.5.0):
+    - Realm/Headers (= 3.5.0)
+  - Realm/Headers (3.5.0)
+  - RealmSwift (3.5.0):
+    - Realm (= 3.5.0)
   - Starscream (3.0.5)
 
 DEPENDENCIES:
   - Charts
   - CryptoSwift
+  - Eureka
   - JTAppleCalendar
   - RealmSwift
   - Starscream
@@ -22,6 +24,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Charts
     - CryptoSwift
+    - Eureka
     - JTAppleCalendar
     - Realm
     - RealmSwift
@@ -30,11 +33,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
-  Realm: 9527c7baa2260f3a3aad6823d2d71cafff9b046b
-  RealmSwift: f40a747beaea1cadde7dcef41ee5a34b3001677b
+  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
+  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: 34e57a920944ba6a305ad7ea5e4fbaefe62fdcf7
+PODFILE CHECKSUM: 7472d5f1c88891e7c8be915f923c13e2a83671d9
 
 COCOAPODS: 1.5.0

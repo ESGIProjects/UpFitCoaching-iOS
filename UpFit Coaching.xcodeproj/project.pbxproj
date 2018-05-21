@@ -56,6 +56,8 @@
 		D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
+		D7B3C32D20B3184300CE3D7A /* NewAccountRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32C20B3184300CE3D7A /* NewAccountRegisterController.swift */; };
+		D7B3C32F20B328C400CE3D7A /* NewDetailsRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32E20B328C400CE3D7A /* NewDetailsRegisterController.swift */; };
 		D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */; };
 		D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */; };
 		D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* Login+UI.swift */; };
@@ -125,6 +127,8 @@
 		D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helper.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
+		D7B3C32C20B3184300CE3D7A /* NewAccountRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountRegisterController.swift; sourceTree = "<group>"; };
+		D7B3C32E20B328C400CE3D7A /* NewDetailsRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDetailsRegisterController.swift; sourceTree = "<group>"; };
 		D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBFA20541E7300B755CD /* Login+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+UI.swift"; sourceTree = "<group>"; };
@@ -166,7 +170,9 @@
 				D702D2F1209F598C00970081 /* RegisterController.swift */,
 				D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */,
 				D702D2F7209F7DAF00970081 /* AccountRegisterController.swift */,
+				D7B3C32C20B3184300CE3D7A /* NewAccountRegisterController.swift */,
 				D702D2F9209F7DC200970081 /* DetailsRegisterController.swift */,
+				D7B3C32E20B328C400CE3D7A /* NewDetailsRegisterController.swift */,
 				1A9E1951207E40630091FABB /* UI */,
 				D7EF961D20860E99002E0A9B /* Models */,
 			);
@@ -485,6 +491,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -494,6 +501,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -582,11 +590,13 @@
 				D702D2FA209F7DC200970081 /* DetailsRegisterController.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
+				D7B3C32D20B3184300CE3D7A /* NewAccountRegisterController.swift in Sources */,
 				D744015320A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift in Sources */,
 				D702D300209F800800970081 /* DetailsRegister+UI.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
+				D7B3C32F20B328C400CE3D7A /* NewDetailsRegisterController.swift in Sources */,
 				D702D302209F8D4000970081 /* Chart.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,

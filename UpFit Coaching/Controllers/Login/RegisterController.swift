@@ -16,7 +16,7 @@ class RegisterController: UIViewController {
 	var pageViewController: UIPageViewController!
 	var typeController: TypeRegisterController!
 	var accountController: AccountRegisterController!
-	var detailsController: DetailsRegisterController!
+	var detailsController: NewDetailsRegisterController!
 	
 	// MARK: - Data
 	

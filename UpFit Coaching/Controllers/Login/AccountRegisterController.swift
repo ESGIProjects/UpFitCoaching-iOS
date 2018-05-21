@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountRegisterController: UIViewController {
+class OldAccountRegisterController: UIViewController {
 	
 	var mailTextField: UITextField!
 	var passwordTextField: UITextField!

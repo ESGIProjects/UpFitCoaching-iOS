@@ -33,7 +33,7 @@ extension RegisterController {
 		pageViewController = UI.pageViewController()
 		typeController = TypeRegisterController(registerController: self)
 		accountController = AccountRegisterController(registerController: self)
-		detailsController = DetailsRegisterController(registerController: self, type: type)
+		detailsController = NewDetailsRegisterController(registerController: self, type: type)
 	}
 	
 	func setupLayout() {
