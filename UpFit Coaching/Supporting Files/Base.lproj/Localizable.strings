@@ -69,10 +69,11 @@
 "sunday_short" = "S";
 
 // Add Event
-"addEvent_title" = "New Event";
+"addEventController_title" = "New Event";
+
 "eventTitle_placeholder" = "Title";
-"eventStart_label" = "Starts";
-"eventEnd_label" = "Ends";
+"startDate_fieldTitle" = "Starts";
+"endDate_fieldTitle" = "Ends";
 
 // Settings
 "settingsController_title" = "Settings";
