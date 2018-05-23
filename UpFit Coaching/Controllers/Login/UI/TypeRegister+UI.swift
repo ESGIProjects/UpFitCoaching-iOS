@@ -14,7 +14,7 @@ extension TypeRegisterController {
 			let view = UIButton(type: .system)
 			view.translatesAutoresizingMaskIntoConstraints = false
 			
-			view.setTitle("Client", for: .normal)
+			view.setTitle("clientButton".localized, for: .normal)
 
 			return view
 		}
@@ -23,13 +23,13 @@ extension TypeRegisterController {
 			let view = UIButton(type: .system)
 			view.translatesAutoresizingMaskIntoConstraints = false
 			
-			view.setTitle("Coach", for: .normal)
+			view.setTitle("coachButton".localized, for: .normal)
 
 			return view
 		}
 	}
 	
-	func getConstraints() -> [NSLayoutConstraint] {
+	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		return [
 			clientButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			clientButton.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -10.0),
@@ -39,7 +39,7 @@ extension TypeRegisterController {
 		]
 	}
 	
-	func setUIComponents() {
+	fileprivate func setUIComponents() {
 		clientButton = UI.clientButton()
 		clientButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
 		

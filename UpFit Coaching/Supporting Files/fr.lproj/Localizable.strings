@@ -9,31 +9,49 @@
 // Common labels
 "app_name" = "UpFit Coaching";
 "error" = "Erreur";
-"OK_button" = "OK";
-"add_button" = "Ajouter";
+"OKButton" = "OK";
+"addButton" = "Ajouter";
+"nextButton" = "Suivant";
 
 // Login
-"login_title" = "Connexion";
-"signUpController_title" = "Inscription";
-
-"login_is_coach" = "Je suis un coach";
-"login_is_client" = "Je suis un client";
+"loginController_title" = "Connexion";
 
 "mail_placeholder" = "Adresse e-mail";
 "password_placeholder" = "Mot de passe";
-"confirmPassword_placeholder" = "Confirmez votre mot de passe";
-"firstName_placeholder" = "Prénom";
-"lastName_placeholder" = "Nom";
 
-"mail_missing_title" = "Adresse e-mail manquante";
-"password_missing_title" = "Mot de passe manquant";
-"firstName_missing_title" = "Prénom manquant";
-"lastName_missing_title" = "Nom manquant";
-"confirmPassword_error_title" = "Vous devez entrer le même mot de passe deux fois.";
+"mail_fieldTitle" = "Adresse e-mail";
+"password_fieldTitle" = "Mot de passe";
 
-"login_button" = "Se connecter";
-"signUp_button" = "S'inscrire";
-"signUp_long_button" = "Pas encore de compte ? Inscrivez-vous.";
+"mail_missingTitle" = "Adresse e-mail manquante";
+"password_missingTitle" = "Mot de passe manquant";
+
+"loginButton" = "Se connecter";
+"signUpButton_long" = "Pas encore de compte ? Inscrivez-vous.";
+
+// Sign Up
+"signUpController_title" = "Inscription";
+
+"clientButton" = "Je suis un client";
+"coachButton" = "Je suis un coach";
+
+"confirmPassword_fieldTitle" = "Confirmer le mot de passe";
+"firstName_fieldTitle" = "Prénom";
+"lastName_fieldTitle" = "Nom";
+"city_fieldTitle" = "Ville";
+"phoneNumber_fieldTitle" = "Numéro de téléphone";
+"birthDate_fieldTitle" = "Date de naissance";
+"address_fieldTitle" = "Adresse";
+
+"requiredField" = "Obligatoire";
+
+"firstName_missingTitle" = "Prénom manquant";
+"lastName_missingTitle" = "Nom manquant";
+"confirmPassword_errorTitle" = "Vous devez entrer le même mot de passe deux fois.";
+"city_missingTitle" = "Ville manquante";
+"phoneNumber_missingTitle" = "Numéro de téléphone manquant";
+"address_missingTitle" = "Adresse manquante";
+
+"signUpButton_short" = "S'inscrire";
 
 // Messages
 "conversationList_title" = "Messages";
@@ -58,7 +76,7 @@
 
 // Settings
 "settings_title" = "Réglages";
-"signOut_button" = "Déconnexion";
+"signOutButton" = "Déconnexion";
 
 // Network messages
 "user_already_exists" = "Cet utilisateur existe déjà.";

@@ -18,7 +18,7 @@ extension RegisterController {
 		}
 	}
 	
-	func getConstraints() -> [NSLayoutConstraint] {
+	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
 		return [
@@ -29,7 +29,7 @@ extension RegisterController {
 		]
 	}
 	
-	func setUIComponents() {
+	fileprivate func setUIComponents() {
 		pageViewController = UI.pageViewController()
 		typeController = TypeRegisterController(registerController: self)
 		accountController = AccountRegisterController(registerController: self)

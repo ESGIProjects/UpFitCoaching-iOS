@@ -65,7 +65,7 @@ extension LoginController {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
 			
-			button.setTitle("login_button".localized, for: .normal)
+			button.setTitle("loginButton".localized, for: .normal)
 			button.setTitleColor(.main, for: .normal)
 			
 			return button
@@ -75,7 +75,7 @@ extension LoginController {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
 			
-			let attributedString = NSAttributedString(string: "signUp_long_button".localized, attributes: [
+			let attributedString = NSAttributedString(string: "signUpButton_long".localized, attributes: [
 				.font: UIFont.systemFont(ofSize: 15),
 				.foregroundColor: UIColor.main
 				])
@@ -85,7 +85,7 @@ extension LoginController {
 		}
 	}
 	
-	func getConstraints() -> [NSLayoutConstraint] {
+	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
 		return [
@@ -123,7 +123,7 @@ extension LoginController {
 		]
 	}
 	
-	func setUIComponents() {
+	fileprivate func setUIComponents() {
 		scrollView = UI.scrollView()
 		contentView = UI.contentView()
 		titleLabel = UI.titleLabel()

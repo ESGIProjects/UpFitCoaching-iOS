@@ -91,7 +91,7 @@ extension DetailsRegisterController {
 		}
 		
 		registerRow = ButtonRow {
-			$0.title = "registerButton".localized
+			$0.title = "signUpButton_short".localized
 			$0.onCellSelection { [unowned self] _, _ in
 				self.register()
 			}

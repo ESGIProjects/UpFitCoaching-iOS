@@ -21,7 +21,7 @@ extension SettingsController {
 		class func signOutButton(_ target: Any?, action: Selector) -> UIButton {
 			let button = UIButton()
 			button.translatesAutoresizingMaskIntoConstraints = false
-			button.setTitle("signOut_button".localized, for: .normal)
+			button.setTitle("signOutButton".localized, for: .normal)
 			button.setTitleColor(.red, for: .normal)
 			button.addTarget(target, action: action, for: .touchUpInside)
 			return button

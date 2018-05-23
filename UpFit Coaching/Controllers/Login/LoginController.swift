@@ -27,7 +27,7 @@ class LoginController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "login_title".localized
+		title = "loginController_title".localized
 		edgesForExtendedLayout = []
 		
 		setupLayout()
@@ -44,12 +44,12 @@ class LoginController: UIViewController {
 		// Check if the form is complete
 		
 		guard let mailValue = mailTextField.text, mailValue != "" else {
-			presentAlert(title: "mail_missing_title".localized, message: nil)
+			presentAlert(title: "mail_missingTitle".localized, message: nil)
 			return
 		}
 		
 		guard let passwordValue = passwordTextField.text, passwordValue != "" else {
-			presentAlert(title: "password_missing_title".localized, message: nil)
+			presentAlert(title: "password_missingTitle".localized, message: nil)
 			return
 		}
 		

@@ -11,7 +11,7 @@ import UIKit
 extension UIAlertController {
 	class func simpleAlert(title: String?, message: String?) -> UIAlertController {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK_button".localized, style: .default))
+		alert.addAction(UIAlertAction(title: "OKButton".localized, style: .default))
 		return alert
 	}
 }

@@ -9,31 +9,49 @@
 // Common labels
 "app_name" = "UpFit Coaching";
 "error" = "Error";
-"OK_button" = "OK";
-"add_button" = "Add";
+"OKButton" = "OK";
+"addButton" = "Add";
+"nextButton" = "Next";
 
 // Login
-"login_title" = "Login";
-"signUpController_title" = "Sign Up";
-
-"login_is_coach" = "I am a coach";
-"login_is_client" = "I am a client";
+"loginController_title" = "Login";
 
 "mail_placeholder" = "Mail";
 "password_placeholder" = "Password";
-"confirmPassword_placeholder" = "Confirm Password";
-"firstName_placeholder" = "First name";
-"lastName_placeholder" = "Last name";
 
-"mail_missing_title" = "Mail missing";
-"password_missing_title" = "Password missing";
-"firstName_missing_title" = "First name missing";
-"lastName_missing_title" = "Last name missing";
-"confirmPassword_error_title" = "You must enter the same password twice.";
+"mail_fieldTitle" = "Mail";
+"password_fieldTitle" = "Password";
 
-"login_button" = "Sign In";
-"signUp_button" = "Sign Up";
-"signUp_long_button" = "No account yet? Sign Up.";
+"mail_missingTitle" = "Mail missing";
+"password_missingTitle" = "Password missing";
+
+"loginButton" = "Sign In";
+"signUpButton_long" = "No account yet? Sign Up.";
+
+// Sign Up
+"signUpController_title" = "Sign Up";
+
+"clientButton" = "I am a client";
+"coachButton" = "I am a coach";
+
+"confirmPassword_fieldTitle" = "Confirm Password";
+"firstName_fieldTitle" = "First Name";
+"lastName_fieldTitle" = "Last Name";
+"city_fieldTitle" = "City";
+"phoneNumber_fieldTitle" = "Phone Number";
+"birthDate_fieldTitle" = "Birth Date";
+"address_fieldTitle" = "Address";
+
+"requiredField" = "Required";
+
+"firstName_missingTitle" = "First name missing";
+"lastName_missingTitle" = "Last name missing";
+"confirmPassword_errorTitle" = "You must enter the same password twice.";
+"city_missingTitle" = "City missing";
+"phoneNumber_missingTitle" = "Phone Number missing";
+"address_missingTitle" = "Address missing";
+
+"signUpButton_short" = "Sign Up";
 
 // Messages
 "conversationList_title" = "Messages";
@@ -58,7 +76,7 @@
 
 // Settings
 "settings_title" = "Settings";
-"signOut_button" = "Sign Out";
+"signOutButton" = "Sign Out";
 
 // Network messages
 "user_already_exists" = "This user already exists.";
