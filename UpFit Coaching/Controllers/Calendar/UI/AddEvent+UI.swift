@@ -23,9 +23,25 @@ extension AddEventController {
 		}
 		
 		if currentUser?.type == 2 {
-			otherUserRow = PushRow<String>("otherUser") {
+			otherUserRow = PushRow<User>("otherUser") {
 				$0.title = "Other user"
-				$0.options = ["Jason Pierna", "Kévin Le", "Maëva Malih"]
+				$0.value = otherUser
+				
+				var users = Database().fetch(using: User.all)
+				
+				guard let currentUser = currentUser,
+					let index = users.index(of: currentUser) else { return }
+				
+				users.remove(at: index)
+				
+				$0.options = users
+				$0.displayValueFor = { value in
+					guard let value = value else { return "" }
+					return "\(value.firstName) \(value.lastName)"
+				}
+				$0.onChange { [unowned self] row in
+					self.otherUser = row.value
+				}
 			}
 		}
 		

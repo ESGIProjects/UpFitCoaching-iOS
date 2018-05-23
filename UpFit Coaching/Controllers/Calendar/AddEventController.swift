@@ -12,7 +12,7 @@ import Eureka
 class AddEventController: FormViewController {
 	
 	var titleRow: TextRow!
-	var otherUserRow: PushRow<String>?
+	var otherUserRow: PushRow<User>?
 	var startDateRow: DateTimeInlineRow!
 	var endDateRow: DateTimeInlineRow!
 	
