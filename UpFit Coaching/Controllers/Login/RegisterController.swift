@@ -16,7 +16,7 @@ class RegisterController: UIViewController {
 	var pageViewController: UIPageViewController!
 	var typeController: TypeRegisterController!
 	var accountController: AccountRegisterController!
-	var detailsController: NewDetailsRegisterController!
+	var detailsController: DetailsRegisterController!
 	
 	// MARK: - Data
 	
@@ -42,6 +42,7 @@ class RegisterController: UIViewController {
 	
 	func goToAccount(_ direction: UIPageViewControllerNavigationDirection) {
 		pageViewController.setViewControllers([accountController], direction: direction, animated: true)
+		detailsController.type = registerBox.type
 	}
 	
 	func goToDetails(_ direction: UIPageViewControllerNavigationDirection) {

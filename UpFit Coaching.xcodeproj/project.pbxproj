@@ -14,16 +14,14 @@
 		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
 		1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */; };
 		1AB9EA1320A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9EA1220A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift */; };
+		1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */; };
 		1AFD971D2097207700289FB3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD971C2097207700289FB3 /* Event.swift */; };
 		84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */; };
 		D702D2F2209F598C00970081 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F1209F598C00970081 /* RegisterController.swift */; };
 		D702D2F4209F599500970081 /* Register+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F3209F599500970081 /* Register+UI.swift */; };
 		D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */; };
-		D702D2F8209F7DAF00970081 /* AccountRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F7209F7DAF00970081 /* AccountRegisterController.swift */; };
-		D702D2FA209F7DC200970081 /* DetailsRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F9209F7DC200970081 /* DetailsRegisterController.swift */; };
 		D702D2FC209F7F3200970081 /* TypeRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */; };
 		D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FD209F800100970081 /* AccountRegister+UI.swift */; };
-		D702D300209F800800970081 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FF209F800800970081 /* DetailsRegister+UI.swift */; };
 		D702D302209F8D4000970081 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D301209F8D4000970081 /* Chart.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
 		D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642B208CBDA600EC3F6C /* CalendarCell.swift */; };
@@ -56,8 +54,8 @@
 		D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
-		D7B3C32D20B3184300CE3D7A /* NewAccountRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32C20B3184300CE3D7A /* NewAccountRegisterController.swift */; };
-		D7B3C32F20B328C400CE3D7A /* NewDetailsRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32E20B328C400CE3D7A /* NewDetailsRegisterController.swift */; };
+		D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32C20B3184300CE3D7A /* AccountRegisterController.swift */; };
+		D7B3C32F20B328C400CE3D7A /* DetailsRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32E20B328C400CE3D7A /* DetailsRegisterController.swift */; };
 		D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */; };
 		D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */; };
 		D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* Login+UI.swift */; };
@@ -81,6 +79,7 @@
 		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+UI.swift"; sourceTree = "<group>"; };
 		1AB9EA1220A2FDB3003441F8 /* AddEvent+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
 		1AFD971C2097207700289FB3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.debug.xcconfig"; sourceTree = "<group>"; };
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,11 +88,8 @@
 		D702D2F1209F598C00970081 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D702D2F3209F599500970081 /* Register+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Register+UI.swift"; sourceTree = "<group>"; };
 		D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeRegisterController.swift; sourceTree = "<group>"; };
-		D702D2F7209F7DAF00970081 /* AccountRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterController.swift; sourceTree = "<group>"; };
-		D702D2F9209F7DC200970081 /* DetailsRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRegisterController.swift; sourceTree = "<group>"; };
 		D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TypeRegister+UI.swift"; sourceTree = "<group>"; };
 		D702D2FD209F800100970081 /* AccountRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountRegister+UI.swift"; sourceTree = "<group>"; };
-		D702D2FF209F800800970081 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
 		D702D301209F8D4000970081 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D70C642B208CBDA600EC3F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -127,8 +123,8 @@
 		D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helper.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
-		D7B3C32C20B3184300CE3D7A /* NewAccountRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountRegisterController.swift; sourceTree = "<group>"; };
-		D7B3C32E20B328C400CE3D7A /* NewDetailsRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDetailsRegisterController.swift; sourceTree = "<group>"; };
+		D7B3C32C20B3184300CE3D7A /* AccountRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterController.swift; sourceTree = "<group>"; };
+		D7B3C32E20B328C400CE3D7A /* DetailsRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRegisterController.swift; sourceTree = "<group>"; };
 		D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBFA20541E7300B755CD /* Login+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+UI.swift"; sourceTree = "<group>"; };
@@ -169,10 +165,8 @@
 				D70A3D4F203CB3D9001C491A /* LoginController.swift */,
 				D702D2F1209F598C00970081 /* RegisterController.swift */,
 				D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */,
-				D702D2F7209F7DAF00970081 /* AccountRegisterController.swift */,
-				D7B3C32C20B3184300CE3D7A /* NewAccountRegisterController.swift */,
-				D702D2F9209F7DC200970081 /* DetailsRegisterController.swift */,
-				D7B3C32E20B328C400CE3D7A /* NewDetailsRegisterController.swift */,
+				D7B3C32C20B3184300CE3D7A /* AccountRegisterController.swift */,
+				D7B3C32E20B328C400CE3D7A /* DetailsRegisterController.swift */,
 				1A9E1951207E40630091FABB /* UI */,
 				D7EF961D20860E99002E0A9B /* Models */,
 			);
@@ -221,7 +215,7 @@
 				D702D2F3209F599500970081 /* Register+UI.swift */,
 				D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */,
 				D702D2FD209F800100970081 /* AccountRegister+UI.swift */,
-				D702D2FF209F800800970081 /* DetailsRegister+UI.swift */,
+				1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -573,7 +567,6 @@
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
-				D702D2F8209F7DAF00970081 /* AccountRegisterController.swift in Sources */,
 				1AFD971D2097207700289FB3 /* Event.swift in Sources */,
 				1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */,
 				D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */,
@@ -587,16 +580,15 @@
 				D70C6432208CEFB000EC3F6C /* CalendarTableCell.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
 				1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */,
-				D702D2FA209F7DC200970081 /* DetailsRegisterController.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
-				D7B3C32D20B3184300CE3D7A /* NewAccountRegisterController.swift in Sources */,
+				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
 				D744015320A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift in Sources */,
-				D702D300209F800800970081 /* DetailsRegister+UI.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
+				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
-				D7B3C32F20B328C400CE3D7A /* NewDetailsRegisterController.swift in Sources */,
+				D7B3C32F20B328C400CE3D7A /* DetailsRegisterController.swift in Sources */,
 				D702D302209F8D4000970081 /* Chart.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,

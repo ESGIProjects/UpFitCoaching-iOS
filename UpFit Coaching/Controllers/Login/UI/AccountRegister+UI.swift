@@ -7,94 +7,79 @@
 //
 
 import UIKit
+import Eureka
 
-extension OldAccountRegisterController {
-	class UI {
-		class func mailTextField() -> UITextField {
-			let textField = UITextField(frame: .zero)
-			textField.translatesAutoresizingMaskIntoConstraints = false
+extension AccountRegisterController {
+	fileprivate func setUIComponents() {
+		mailRow = EmailRow("mail") {
+			$0.title = "mail_fieldTitle".localized
+			$0.placeholder = "requiredField".localized
+			$0.value = registerController?.registerBox.mail
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.registerController?.registerBox.mail = value
+				}
+			}
 			
-			textField.borderStyle = .roundedRect
-			textField.keyboardType = .emailAddress
-			textField.returnKeyType = .next
-			textField.autocorrectionType = .no
-			textField.placeholder = "mail_placeholder".localized
-			
-			return textField
+			$0.add(rule: RuleRequired(msg: "mail_missingTitle".localized))
+			$0.validationOptions = .validatesOnChange
+			$0.cellUpdate { cell, row in
+				if !row.isValid {
+					cell.titleLabel?.textColor = .red
+				}
+			}
 		}
 		
-		class func passwordTextField() -> UITextField {
-			let textField = UITextField(frame: .zero)
-			textField.translatesAutoresizingMaskIntoConstraints = false
+		passwordRow = PasswordRow("password") {
+			$0.title = "password_fieldTitle".localized
+			$0.placeholder = "requiredField".localized
+			$0.value = registerController?.registerBox.password
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.registerController?.registerBox.password = value
+				}
+			}
 			
-			textField.borderStyle = .roundedRect
-			textField.isSecureTextEntry = true
-			textField.returnKeyType = .done
-			textField.placeholder = "password_placeholder".localized
-			
-			return textField
+			$0.add(rule: RuleRequired(msg: "password_missingTitle".localized))
+			$0.validationOptions = .validatesOnChange
+			$0.cellUpdate { cell, row in
+				if !row.isValid {
+					cell.titleLabel?.textColor = .red
+				}
+			}
 		}
 		
-		class func confirmPasswordTextField() -> UITextField {
-			let textField = UITextField(frame: .zero)
-			textField.translatesAutoresizingMaskIntoConstraints = false
+		confirmPasswordRow = PasswordRow("confirmPassword") {
+			$0.title = "confirmPassword_fieldTitle".localized
+			$0.placeholder = "requiredField".localized
+			$0.hidden = Condition.function(["password"]) { [unowned self] _ -> Bool in
+				guard let password = self.passwordRow.value else { return true }
+				return password.count == 0
+			}
 			
-			textField.borderStyle = .roundedRect
-			textField.isSecureTextEntry = true
-			textField.returnKeyType = .done
-			textField.placeholder = "confirmPassword_placeholder".localized
-			
-			return textField
+			$0.add(rule: RuleEqualsToRow(form: form, tag: "password", msg: "confirmPassword_errorTitle".localized))
+			$0.validationOptions = .validatesOnChange
+			$0.cellUpdate { cell, row in
+				if !row.isValid {
+					cell.titleLabel?.textColor = .red
+				}
+			}
 		}
 		
-		class func nextButton() -> UIButton {
-			let view = UIButton(type: .system)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.setTitle("Next", for: .normal)
-			
-			return view
+		nextRow = ButtonRow {
+			$0.title = "nextButton".localized
+			$0.onCellSelection { [unowned self] _, _ in
+				self.next()
+			}
 		}
-	}
-	
-	func getConstraints() -> [NSLayoutConstraint] {
-		let anchors = getAnchors()
-		
-		return [
-			mailTextField.topAnchor.constraint(equalTo: anchors.top),
-			mailTextField.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			mailTextField.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
-			
-			passwordTextField.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 10.0),
-			passwordTextField.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			passwordTextField.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
-			
-			confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10.0),
-			confirmPasswordTextField.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			confirmPasswordTextField.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
-			
-			nextButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 10.0),
-			nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-		]
-	}
-	
-	func setUIComponents() {
-		mailTextField = UI.mailTextField()
-		passwordTextField = UI.passwordTextField()
-		confirmPasswordTextField = UI.confirmPasswordTextField()
-		
-		nextButton = UI.nextButton()
-		nextButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
 	}
 	
 	func setupLayout() {
 		setUIComponents()
 		
-		view.addSubview(mailTextField)
-		view.addSubview(passwordTextField)
-		view.addSubview(confirmPasswordTextField)
-		view.addSubview(nextButton)
-		
-		NSLayoutConstraint.activate(getConstraints())
+		form += [
+			Section() <<< mailRow <<< passwordRow <<< confirmPasswordRow,
+			Section() <<< nextRow
+		]
 	}
 }

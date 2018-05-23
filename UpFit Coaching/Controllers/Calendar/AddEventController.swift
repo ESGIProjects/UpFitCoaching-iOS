@@ -90,8 +90,6 @@ class AddEventController: UIViewController {
 //		guard let otherUser = otherUser else { return }
 		let otherUser = currentUser // temp
 		
-//		let database =
-		
 		let event = Event(name: eventTitle, type: 0, client: currentUser, coach: otherUser, start: startDate, end: endDate, createdBy: currentUser, updatedBy: currentUser)
 		event.eventID = Database().next(type: EventObject.self, of: "eventID") + 1
 		

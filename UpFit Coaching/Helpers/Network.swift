@@ -87,7 +87,7 @@ class Network {
 	class func addEvent(_ event: Event, by user: User, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/events/")
 		
-		let dateFormatter = DateFormatter.network
+		let dateFormatter = DateFormatter.time
 		
 		let parameters: [String: Any] = [
 			"name": event.name,
