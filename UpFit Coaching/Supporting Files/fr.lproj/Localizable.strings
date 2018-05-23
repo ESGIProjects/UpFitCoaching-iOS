@@ -75,7 +75,7 @@
 "eventEnd_label" = "Fin";
 
 // Settings
-"settings_title" = "Réglages";
+"settingsController_title" = "Réglages";
 "signOutButton" = "Déconnexion";
 
 // Network messages

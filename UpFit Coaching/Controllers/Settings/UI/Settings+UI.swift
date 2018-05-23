@@ -7,35 +7,26 @@
 //
 
 import UIKit
+import Eureka
 
-extension SettingsController {
-	class UI {
-		class func tableView(delegate: UITableViewDelegate? = nil, dataSource: UITableViewDataSource? = nil) -> UITableView {
-			let view = UITableView(frame: .zero, style: .grouped)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			view.delegate = delegate
-			view.dataSource = dataSource
-			return view
-		}
-		
-		class func signOutButton(_ target: Any?, action: Selector) -> UIButton {
-			let button = UIButton()
-			button.translatesAutoresizingMaskIntoConstraints = false
-			button.setTitle("signOutButton".localized, for: .normal)
-			button.setTitleColor(.red, for: .normal)
-			button.addTarget(target, action: action, for: .touchUpInside)
-			return button
+extension SettingsController {	
+	fileprivate func setUIComponents() {
+		signOutRow = ButtonRow("") {
+			$0.title = "signOutButton".localized
+			$0.cellUpdate { cell, _ in
+				cell.textLabel?.tintColor = .red
+				cell.textLabel?.textColor = .red
+				
+			}
+			$0.onCellSelection { [unowned self] _, _ in
+				self.signOut()
+			}
 		}
 	}
 	
-	func getConstraints(for controller: SettingsController) -> [NSLayoutConstraint] {
-		let anchors = controller.getAnchors()
+	func setupLayout() {
+		setUIComponents()
 		
-		return [
-			tableView.topAnchor.constraint(equalTo: anchors.top),
-			tableView.bottomAnchor.constraint(equalTo: anchors.bottom),
-			tableView.leadingAnchor.constraint(equalTo: anchors.leading),
-			tableView.trailingAnchor.constraint(equalTo: anchors.trailing)
-		]
+		form +++ Section() <<< signOutRow
 	}
 }
