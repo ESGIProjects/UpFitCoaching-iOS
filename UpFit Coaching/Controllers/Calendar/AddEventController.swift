@@ -35,6 +35,8 @@ class AddEventController: FormViewController {
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "addButton".localized, style: .done, target: self, action: #selector(add))
 		toggleAddButton()
+		
+		otherUser = currentUser?.coach
 	}
 	
 	// MARK: - Actions
@@ -45,14 +47,11 @@ class AddEventController: FormViewController {
 	
 	@objc func add() {
 		guard let currentUser = currentUser else { return }
-//		guard let otherUser = otherUser else { return }
-		let otherUser = currentUser // temp
+		guard let otherUser = otherUser else { return }
 		
 		let event = Event(name: eventTitle, type: 0, client: currentUser, coach: otherUser, start: startDate, end: endDate, createdBy: currentUser, updatedBy: currentUser)
 		event.eventID = Database().next(type: EventObject.self, of: "eventID") + 1
-		
-		print(event)
-		
+				
 		Network.addEvent(event, by: currentUser) { [weak self] data, response, _ in
 			guard let data = data else { return }
 

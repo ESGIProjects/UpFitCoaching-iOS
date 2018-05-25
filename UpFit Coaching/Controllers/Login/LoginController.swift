@@ -62,7 +62,8 @@ class LoginController: UIViewController {
 				// Decode user data
 				let decoder = JSONDecoder.withDate
 				guard let user = try? decoder.decode(User.self, from: data) else { return }
-				print(user)
+				
+				print("User ID", user.userID)
 				
 				// Save user info
 				Database().createOrUpdate(model: user, with: UserObject.init)
