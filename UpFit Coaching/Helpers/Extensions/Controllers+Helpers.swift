@@ -43,7 +43,7 @@ extension UITabBarController {
 		
 		// Settings
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settings_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
+		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
 		viewControllers.append(settingsController)
 		
 		// Creating the tab bar controller
