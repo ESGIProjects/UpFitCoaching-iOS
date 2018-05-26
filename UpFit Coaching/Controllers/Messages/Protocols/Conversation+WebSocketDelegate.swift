@@ -19,10 +19,7 @@ extension ConversationController: WebSocketDelegate {
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-		print(text)
-		
-		guard let json = text.data(using: .utf8) else { return }
-		guard let message = try? decoder.decode(Message.self, from: json), message.messageID != nil else { return }
+		guard let message = MessagesDelegate.decode(from: text) else { return }
 		
 		Database().createOrUpdate(model: message, with: MessageObject.init)
 		

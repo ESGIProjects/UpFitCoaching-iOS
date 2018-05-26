@@ -72,6 +72,9 @@ class LoginController: UIViewController {
 				// Present the correct controller for the user
 				let tabBarController = UITabBarController.getRootViewController(for: user)
 				
+				// Start websocket
+				MessagesDelegate.instance.connect()
+				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
 						self?.mailTextField.text = ""

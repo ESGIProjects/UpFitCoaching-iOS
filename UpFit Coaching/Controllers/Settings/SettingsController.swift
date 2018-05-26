@@ -27,6 +27,7 @@ class SettingsController: FormViewController {
 	func signOut() {
 		Database().deleteAll()
 		UserDefaults.standard.removeObject(forKey: "userID")
+		MessagesDelegate.instance.disconnect()
 		
 		if tabBarController?.presentingViewController != nil {
 			tabBarController?.dismiss(animated: true)

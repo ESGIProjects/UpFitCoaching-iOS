@@ -51,12 +51,14 @@ class MessagesDelegate {
 	}
 	
 	class func decode(from text: String) -> Message? {
+		print(text)
+		
 		// Setting up JSON decoder
 		let decoder = JSONDecoder.withDate
 		
 		// Decode JSON message
-		guard let json = text.data(using: .utf8) else { return nil }
-		guard let message = try? decoder.decode(Message.self, from: json) else { return nil }
+		guard let json = text.data(using: .utf8) else { print("MessagesDelegate", "text to data error"); return nil }
+		guard let message = try? decoder.decode(Message.self, from: json) else { print("MessagesDelegate", "data to class error"); return nil }
 		
 		return message
 	}

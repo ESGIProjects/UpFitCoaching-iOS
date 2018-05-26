@@ -82,6 +82,9 @@ class RegisterController: UIViewController {
 				// Present the current controller for the user
 				let tabBarController = UITabBarController.getRootViewController(for: user)
 				
+				// Start socket
+				MessagesDelegate.instance.connect()
+				
 				DispatchQueue.main.async {
 					self?.present(tabBarController, animated: true) {
 						self?.navigationController?.popToRootViewController(animated: false)
