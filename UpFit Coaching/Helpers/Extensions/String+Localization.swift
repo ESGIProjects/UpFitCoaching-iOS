@@ -16,4 +16,8 @@ extension String {
 	func localized(with arguments: CVarArg...) -> String {
 		return String(format: localized, arguments: arguments)
 	}
+	
+	func capitalizingFirstLetter() -> String {
+		return prefix(1).uppercased() + dropFirst()
+	}
 }

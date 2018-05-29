@@ -73,7 +73,7 @@ class CalendarController: UIViewController {
 		formatter.timeZone = Calendar.current.timeZone
 		formatter.locale = Calendar.current.locale
 		
-		monthLabel.text = formatter.string(from: date)
+		monthLabel.text = formatter.string(from: date).capitalizingFirstLetter()
 	}
 	
 	func handleCell(cell: JTAppleCell?, cellState: CellState) {
