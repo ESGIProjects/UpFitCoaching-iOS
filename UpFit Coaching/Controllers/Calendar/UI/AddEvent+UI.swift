@@ -24,7 +24,7 @@ extension AddEventController {
 		
 		if currentUser?.type == 2 {
 			otherUserRow = PushRow<User>("otherUser") {
-				$0.title = "Other user"
+				$0.title = "otherUser_fieldTitle".localized
 				$0.value = otherUser
 				
 				var users = Database().fetch(using: User.all)

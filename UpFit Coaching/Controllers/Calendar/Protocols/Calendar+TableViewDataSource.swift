@@ -18,7 +18,7 @@ extension CalendarController: UITableViewDataSource {
 		}
 		
 		let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-		messageLabel.text = "Nothing scheduled this day"
+		messageLabel.text = "nothingThisDay".localized
 		messageLabel.textColor = .gray
 		messageLabel.numberOfLines = 0
 		messageLabel.textAlignment = .center

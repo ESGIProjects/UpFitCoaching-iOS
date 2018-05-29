@@ -55,6 +55,8 @@
 
 // Messages
 "conversationList_title" = "Messages";
+"noMessagesYet" = "You have no messages yet.\nGet clients to register!";
+
 "message_placeholder" = "Message";
 "sendMessage_button" = "Send";
 
@@ -68,10 +70,13 @@
 "saturday_short" = "S";
 "sunday_short" = "S";
 
+"nothingThisDay" = "Nothing scheduled this day";
+
 // Add Event
 "addEventController_title" = "New Event";
 
 "eventTitle_placeholder" = "Title";
+"otherUser_fieldTitle" = "Client";
 "startDate_fieldTitle" = "Starts";
 "endDate_fieldTitle" = "Ends";
 

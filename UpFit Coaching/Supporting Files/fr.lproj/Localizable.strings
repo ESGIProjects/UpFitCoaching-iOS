@@ -55,6 +55,8 @@
 
 // Messages
 "conversationList_title" = "Messages";
+"noMessagesYet" = "Aucun message.\nDites à vos clients de s'inscrire!";
+
 "message_placeholder" = "Message";
 "sendMessage_button" = "Envoyer";
 
@@ -68,11 +70,15 @@
 "saturday_short" = "S";
 "sunday_short" = "D";
 
+"nothingThisDay" = "Rien de prévu aujourd'hui";
+
 // Add Event
-"addEvent_title" = "Nouvel événement";
+"addEventController_title" = "Nouvel événement";
+
 "eventTitle_placeholder" = "Titre";
-"eventStart_label" = "Début";
-"eventEnd_label" = "Fin";
+"otherUser_fieldTitle" = "Client";
+"startDate_fieldTitle" = "Début";
+"endDate_fieldTitle" = "Fin";
 
 // Settings
 "settingsController_title" = "Réglages";

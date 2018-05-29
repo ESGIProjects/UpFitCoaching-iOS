@@ -17,7 +17,7 @@ extension ConversationListController: UITableViewDataSource {
 			return 1
 		} else {
 			let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-			messageLabel.text = "You have no messages yet.\nStart a conversation!"
+			messageLabel.text = "noMessagesYet".localized
 			messageLabel.textColor = .gray
 			messageLabel.numberOfLines = 0
 			messageLabel.textAlignment = .center
