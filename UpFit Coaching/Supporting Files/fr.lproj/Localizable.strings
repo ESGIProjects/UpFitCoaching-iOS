@@ -34,6 +34,9 @@
 "clientButton" = "Je suis un client";
 "coachButton" = "Je suis un coach";
 
+"mail_duplicateError_title" = "Cette adresse e-mail est déjà utilisée";
+"mail_duplicateError_message" = "Utilisez une adresse différente.";
+
 "confirmPassword_fieldTitle" = "Confirmer le mot de passe";
 "firstName_fieldTitle" = "Prénom";
 "lastName_fieldTitle" = "Nom";

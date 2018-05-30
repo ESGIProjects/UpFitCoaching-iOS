@@ -36,7 +36,16 @@ class AccountRegisterController: FormViewController {
 		let validationErrors = form.validate()
 		
 		if validationErrors.isEmpty {
-			registerController?.goToDetails(.forward)
+			
+			guard let mail = registerController?.registerBox.mail else { return }
+			
+			Network.isMailExists(mail: mail) { [weak self] _, response, _ in
+				if Network.isSuccess(response: response, successCode: 200) {
+					self?.registerController?.goToDetails(.forward)
+				} else {
+					self?.presentAlert(title: "mail_duplicateError_title".localized, message: "mail_duplicateError_message".localized)
+				}
+			}
 		} else {
 			guard let error = validationErrors.first else { return }
 			presentAlert(title: error.msg, message: nil)

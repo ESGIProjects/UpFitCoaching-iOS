@@ -57,6 +57,15 @@ class Network {
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
+	class func isMailExists(mail: String, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/checkmail/")
+		let parameters: [String: Any] = [
+			"mail": mail
+		]
+		
+		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
+	
 	class func register(with parameters: [String: Any], completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signup/")
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
