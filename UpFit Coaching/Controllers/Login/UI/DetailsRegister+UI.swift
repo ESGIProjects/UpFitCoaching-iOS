@@ -119,10 +119,10 @@ extension DetailsRegisterController {
 		} else {
 			birthDateRow = DateInlineRow("birthDate") {
 				$0.title = "birthDate_fieldTitle".localized
-				$0.value = Date()
+				$0.value = registerController?.registerBox.birthDate
 				$0.onChange { [unowned self] row in
 					if let value = row.value {
-						self.registerController?.registerBox.birthDate = DateFormatter.date.string(from: value)
+						self.registerController?.registerBox.birthDate = value
 					}
 				}
 				

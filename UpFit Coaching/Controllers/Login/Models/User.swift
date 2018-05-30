@@ -114,6 +114,28 @@ class User: NSObject, Codable {
 		}
 	}
 	
+	init(json: [String: Any]) {
+		userID = json["id"] as? Int ?? 0
+		type = json["type"] as? Int ?? 0
+		mail = json["mail"] as? String ?? ""
+		
+		firstName = json["firstName"] as? String ?? ""
+		lastName = json["lastName"] as? String ?? ""
+		
+		city = json["city"] as? String ?? ""
+		phoneNumber = json["phoneNumber"] as? String ?? ""
+		
+		address = json["address"] as? String
+		
+		if let birthDate = json["birthDate"] as? String {
+			self.birthDate = DateFormatter.date.date(from: birthDate)
+		}
+		
+		if let coach = json["coach"] as? [String: Any] {
+			self.coach = User(json: coach)
+		}
+	}
+	
 	override func isEqual(_ object: Any?) -> Bool {
 		return userID == (object as? User)?.userID
 	}

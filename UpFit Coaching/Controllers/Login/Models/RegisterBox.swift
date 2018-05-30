@@ -91,9 +91,9 @@ class RegisterBox {
 		}
 	}
 	
-	var birthDate: String? {
+	var birthDate: Date? {
 		get {
-			guard let value = parameters["birthDate"] as? String? else { return nil }
+			guard let value = parameters["birthDate"] as? Date? else { return nil }
 			return value
 		}
 		set {

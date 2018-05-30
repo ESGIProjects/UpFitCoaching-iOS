@@ -52,13 +52,18 @@ class RegisterController: UIViewController {
 	@objc func register() {
 		// Once every field is checked, we make the API call
 		
-		Network.register(with: registerBox.parameters) { [weak self] data, response, _ in
+		var parameters = registerBox.parameters
+		if let birthDate = parameters["birthDate"] {
+			parameters["birthDate"] = DateFormatter.date.string(for: birthDate)
+		}
+		
+		Network.register(with: parameters) { [weak self] data, response, _ in
 			guard let data = data else { return }
 			
 			if Network.isSuccess(response: response, successCode: 201) {
-				guard let userId = self?.unserialize(data) else { return }
-				print(userId)
+				let unserializedData = self?.unserialize(data)
 				
+				guard let userId = unserializedData?.0 else { return }
 				guard let registerBox = self?.registerBox else { return }
 				
 				// Creating user info
@@ -67,13 +72,8 @@ class RegisterController: UIViewController {
 								city: registerBox.city, phoneNumber: registerBox.phoneNumber)
 				
 				user.address = registerBox.address
-				
-				if let birthDate = registerBox.birthDate {
-					let dateFormatter = DateFormatter()
-					dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-					
-					user.birthDate = dateFormatter.date(from: birthDate)
-				}
+				user.birthDate = registerBox.birthDate
+				user.coach = unserializedData?.1
 				
 				// Save user info
 				Database().createOrUpdate(model: user, with: UserObject.init)
@@ -96,11 +96,16 @@ class RegisterController: UIViewController {
 		}
 	}
 	
-	private func unserialize(_ data: Data) -> Int? {
-		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
-		guard let json = unserializedJSON as? [String: Int] else { return nil }
-		guard let userId = json["id"] else { return nil }
+	private func unserialize(_ data: Data) -> (Int?, User?) {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return (nil, nil) }
+		guard let json = unserializedJSON as? [String: Any] else { return (nil, nil) }
+		guard let userId = json["id"] as? Int else { return (nil, nil) }
 		
-		return userId
+		if let coachJson = json["coach"] as? [String: Any] {
+			print(coachJson)
+			return (userId, User(json: coachJson))
+		}
+		
+		return (userId, nil)
 	}
 }
