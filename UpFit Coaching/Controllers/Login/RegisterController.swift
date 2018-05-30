@@ -14,7 +14,7 @@ class RegisterController: UIViewController {
 	// MARK: - UI
 	
 	var pageViewController: UIPageViewController!
-	var typeController: TypeRegisterController!
+//	var typeController: TypeRegisterController!
 	var accountController: AccountRegisterController!
 	var detailsController: DetailsRegisterController!
 	
@@ -32,6 +32,8 @@ class RegisterController: UIViewController {
 		title = "signUpController_title".localized
 		view.backgroundColor = .white
 		setupLayout()
+		
+		type = 0
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {

@@ -31,7 +31,7 @@ extension RegisterController {
 	
 	fileprivate func setUIComponents() {
 		pageViewController = UI.pageViewController()
-		typeController = TypeRegisterController(registerController: self)
+//		typeController = TypeRegisterController(registerController: self)
 		accountController = AccountRegisterController(registerController: self)
 		detailsController = DetailsRegisterController(registerController: self)
 	}
@@ -44,7 +44,8 @@ extension RegisterController {
 		
 		NSLayoutConstraint.activate(getConstraints())
 		
-		pageViewController.setViewControllers([typeController], direction: .forward, animated: true)
+//		pageViewController.setViewControllers([typeController], direction: .forward, animated: true)
+		pageViewController.setViewControllers([accountController], direction: .forward, animated: true)
 		pageViewController.didMove(toParentViewController: self)
 	}
 }
