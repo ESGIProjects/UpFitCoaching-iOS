@@ -12,10 +12,12 @@ import RealmSwift
 final class EventObject: Object {
 	@objc dynamic var eventID = 0
 	@objc dynamic var name = ""
-	@objc dynamic var type = 0
 	
-	@objc dynamic var client: UserObject!
-	@objc dynamic var coach: UserObject!
+	@objc dynamic var type = 0
+	@objc dynamic var status = 0
+	
+	@objc dynamic var firstUser: UserObject!
+	@objc dynamic var secondUser: UserObject!
 	
 	@objc dynamic var start = Date()
 	@objc dynamic var end = Date()
@@ -35,10 +37,12 @@ final class EventObject: Object {
 		
 		eventID = event.eventID ?? 0
 		name = event.name
-		type = event.type
 		
-		client = UserObject(user: event.client)
-		coach = UserObject(user: event.coach)
+		type = event.type
+		status = event.status
+		
+		firstUser = UserObject(user: event.firstUser)
+		secondUser = UserObject(user: event.secondUser)
 		
 		start = event.start
 		end = event.end
@@ -55,10 +59,12 @@ class Event: NSObject, Codable {
 	enum CodingKeys: String, CodingKey {
 		case eventID = "id"
 		case name
-		case type
 		
-		case client
-		case coach
+		case type
+		case status
+		
+		case firstUser
+		case secondUser
 		
 		case start
 		case end
@@ -74,10 +80,12 @@ class Event: NSObject, Codable {
 	
 	var eventID: Int?
 	var name: String
-	var type: Int
 	
-	var client: User
-	var coach: User
+	var type: Int
+	var status: Int
+	
+	var firstUser: User
+	var secondUser: User
 	
 	var start: Date
 	var end: Date
@@ -88,12 +96,14 @@ class Event: NSObject, Codable {
 	var updated: Date
 	var updatedBy: User
 	
-	init(name: String, type: Int, client: User, coach: User, start: Date, end: Date, createdBy: User, updatedBy: User) {
+	init(name: String, type: Int, firstUser: User, secondUser: User, start: Date, end: Date, createdBy: User, updatedBy: User) {
 		self.name = name
-		self.type = type
 		
-		self.client = client
-		self.coach = coach
+		self.type = type
+		self.status = 0
+		
+		self.firstUser = firstUser
+		self.secondUser = secondUser
 		
 		self.start = start
 		self.end = end
@@ -108,10 +118,12 @@ class Event: NSObject, Codable {
 	init(object: EventObject) {
 		eventID = object.eventID
 		name = object.name
-		type = object.type
 		
-		client = User(object: object.client)
-		coach = User(object: object.coach)
+		type = object.type
+		status = object.status
+		
+		firstUser = User(object: object.firstUser)
+		secondUser = User(object: object.secondUser)
 		
 		start = object.start
 		end = object.end

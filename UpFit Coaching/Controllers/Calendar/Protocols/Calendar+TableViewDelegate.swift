@@ -11,5 +11,12 @@ import UIKit
 extension CalendarController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
+		
+		let event = todayEvents[indexPath.row]
+		let addEventController = AddEventController()
+		addEventController.editionMode = .edit
+		addEventController.event = event
+		
+		present(UINavigationController(rootViewController: addEventController), animated: true)
 	}
 }

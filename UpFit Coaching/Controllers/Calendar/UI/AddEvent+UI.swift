@@ -17,7 +17,7 @@ extension AddEventController {
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.eventTitle = value
-					self.toggleAddButton()
+					self.toggleConfirmationButton()
 				}
 			}
 		}
@@ -52,7 +52,7 @@ extension AddEventController {
 				if let value = row.value {
 					self.startDate = value
 					self.validateDates()
-					self.toggleAddButton()
+					self.toggleConfirmationButton()
 				}
 			}
 		}
@@ -64,7 +64,7 @@ extension AddEventController {
 				if let value = row.value {
 					self.endDate = value
 					self.validateDates()
-					self.toggleAddButton()
+					self.toggleConfirmationButton()
 				}
 			}
 		}

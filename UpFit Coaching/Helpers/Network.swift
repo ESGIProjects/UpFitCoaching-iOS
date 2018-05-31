@@ -13,6 +13,7 @@ class Network {
 	enum HTTPMethod: String {
 		case get	= "GET"
 		case post	= "POST"
+		case put	= "PUT"
 	}
 	
 	// MARK: - Perform call
@@ -33,10 +34,14 @@ class Network {
 		case .get:
 			guard let url = URL(string: stringUrl.appending("?").appending(parameterString)) else { return }
 			request = URLRequest(url: url)
-		case .post:
+		case .post, .put:
 			guard let url = URL(string: stringUrl) else { return }
 			request = URLRequest(url: url)
 			request.httpBody = parameterString.data(using: .utf8)
+		}
+		
+		if httpMethod == .put {
+			request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 		}
 		
 		request.httpMethod = httpMethod.rawValue
@@ -93,7 +98,7 @@ class Network {
 		call(url, httpMethod: .get, parameters: parameters, completion: completion)
 	}
 	
-	class func addEvent(_ event: Event, by user: User, completion: @escaping NetworkCallback) {
+	class func addEvent(_ event: Event, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/events/")
 		
 		let dateFormatter = DateFormatter.time
@@ -101,15 +106,34 @@ class Network {
 		let parameters: [String: Any] = [
 			"name": event.name,
 			"type": event.type,
-			"client": event.client.userID,
-			"coach": event.coach.userID,
+			"firstUser": event.firstUser.userID,
+			"secondUser": event.secondUser.userID,
 			"start": dateFormatter.string(from: event.start),
 			"end": dateFormatter.string(from: event.end),
 			"created": dateFormatter.string(from: event.created),
-			"createdBy": user.userID
+			"createdBy": event.createdBy.userID
 		]
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
+	
+	class func updateEvent(_ event: Event, completion: @escaping NetworkCallback) {
+		guard let eventId = event.eventID else { return }
+		
+		let url = baseURL.appending("/events/")
+		
+		let dateFormatter = DateFormatter.time
+		
+		let parameters: [String: Any] = [
+			"eventId": eventId,
+			"name": event.name,
+			"start": dateFormatter.string(from: event.start),
+			"end": dateFormatter.string(from: event.end),
+			"updated": dateFormatter.string(from: event.updated),
+			"updatedBy": event.updatedBy.userID
+		]
+		
+		call(url, httpMethod: .put, parameters: parameters, completion: completion)
 	}
 	
 	class func isSuccess(response: URLResponse?, successCode: Int) -> Bool {
