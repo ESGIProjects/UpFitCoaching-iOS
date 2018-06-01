@@ -13,10 +13,11 @@ extension CalendarController: UITableViewDelegate {
 		tableView.deselectRow(at: indexPath, animated: true)
 		
 		let event = todayEvents[indexPath.row]
-		let addEventController = AddEventController()
-		addEventController.editionMode = .edit
-		addEventController.event = event
+//		let addEventController = AddEventController()
+//		addEventController.editionMode = .edit
+//		addEventController.event = event
 		
-		present(UINavigationController(rootViewController: addEventController), animated: true)
+//		present(UINavigationController(rootViewController: EventController()), animated: true)
+		navigationController?.pushViewController(EventController(), animated: true)
 	}
 }

@@ -55,6 +55,13 @@ class RegisterController: UIViewController {
 		// Once every field is checked, we make the API call
 		
 		var parameters = registerBox.parameters
+		
+		// Hash the password
+		if let password = parameters["password"] as? String {
+			parameters["password"] = password.sha256()
+		}
+		
+		// Parse birth date
 		if let birthDate = parameters["birthDate"] {
 			parameters["birthDate"] = DateFormatter.date.string(for: birthDate)
 		}

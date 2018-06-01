@@ -13,6 +13,7 @@
 		1AB9E9E3209C6E13003441F8 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* AddEventController.swift */; };
 		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
 		1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */; };
+		1AD6A51F20C1509400146F31 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6A51E20C1509400146F31 /* EventController.swift */; };
 		1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */; };
 		1AFD971D2097207700289FB3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD971C2097207700289FB3 /* Event.swift */; };
 		84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */; };
@@ -48,7 +49,7 @@
 		D781194E207D4392001762D4 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781194D207D4392001762D4 /* SettingsController.swift */; };
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
-		D789201720544FAD0020C703 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Localization.swift */; };
+		D789201720544FAD0020C703 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Helpers.swift */; };
 		D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
@@ -76,6 +77,7 @@
 		1AB9E9E2209C6E13003441F8 /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+UI.swift"; sourceTree = "<group>"; };
+		1AD6A51E20C1509400146F31 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
 		1AFD971C2097207700289FB3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +117,7 @@
 		D781194D207D4392001762D4 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789201420544E890020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D789201620544FAD0020C703 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		D789201620544FAD0020C703 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 		D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helper.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				D71D60CA208CB2B700F143CA /* CalendarController.swift */,
+				1AD6A51E20C1509400146F31 /* EventController.swift */,
 				1AB9E9E2209C6E13003441F8 /* AddEventController.swift */,
 				D70C6430208CCEF700EC3F6C /* UI */,
 				1AFD971B2097206500289FB3 /* Models */,
@@ -389,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				D7DAA23F20554E7F007F3011 /* Colors.swift */,
-				D789201620544FAD0020C703 /* String+Localization.swift */,
+				D789201620544FAD0020C703 /* String+Helpers.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
 				D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */,
 				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
@@ -549,7 +552,7 @@
 				D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */,
-				D789201720544FAD0020C703 /* String+Localization.swift in Sources */,
+				D789201720544FAD0020C703 /* String+Helpers.swift in Sources */,
 				D744015520A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift in Sources */,
 				D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
@@ -557,6 +560,7 @@
 				D702D2F2209F598C00970081 /* RegisterController.swift in Sources */,
 				D7811948207D3E72001762D4 /* Codables.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
+				1AD6A51F20C1509400146F31 /* EventController.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
 				1AFD971D2097207700289FB3 /* Event.swift in Sources */,

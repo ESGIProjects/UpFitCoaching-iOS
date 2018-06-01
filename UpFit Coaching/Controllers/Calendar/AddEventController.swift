@@ -122,7 +122,6 @@ class AddEventController: FormViewController {
 	}
 	
 	func update(_ event: Event) {
-		print(#function)
 		Network.updateEvent(event) { [weak self] data, response, _ in
 			guard let data = data else { return }
 			
@@ -140,6 +139,10 @@ class AddEventController: FormViewController {
 				self?.navigationController?.dismiss(animated: true)
 			}
 		}
+	}
+	
+	func delete(_ event: Event) {
+		
 	}
 	
 	func toggleConfirmationButton() {
