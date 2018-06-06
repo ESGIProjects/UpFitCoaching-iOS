@@ -10,9 +10,9 @@
 		1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A0199208DCC610005C60A /* Notification+Names.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
-		1AB9E9E3209C6E13003441F8 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* AddEventController.swift */; };
+		1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* EditEventController.swift */; };
 		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
-		1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */; };
+		1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */; };
 		1AD6A51F20C1509400146F31 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6A51E20C1509400146F31 /* EventController.swift */; };
 		1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */; };
 		1AFD971D2097207700289FB3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD971C2097207700289FB3 /* Event.swift */; };
@@ -30,6 +30,7 @@
 		D7108AFA2083B1C700AB6260 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7108AF92083B1C700AB6260 /* Database.swift */; };
 		D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */; };
 		D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60CA208CB2B700F143CA /* CalendarController.swift */; };
+		D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D736E3F920C6DD93000A147E /* GoogleService-Info.plist */; };
 		D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */; };
 		D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */; };
 		D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */; };
@@ -75,9 +76,9 @@
 		1A9E1948207E0F480091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		1AA3973A203C50520020092D /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
-		1AB9E9E2209C6E13003441F8 /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
+		1AB9E9E2209C6E13003441F8 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
 		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
-		1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+UI.swift"; sourceTree = "<group>"; };
+		1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEvent+UI.swift"; sourceTree = "<group>"; };
 		1AD6A51E20C1509400146F31 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
 		1AFD971C2097207700289FB3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -98,6 +99,8 @@
 		D7108AF92083B1C700AB6260 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDelegate.swift; sourceTree = "<group>"; };
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		D736E3F920C6DD93000A147E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UpFit Coaching.entitlements"; sourceTree = "<group>"; };
 		D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Delegate.swift"; sourceTree = "<group>"; };
 		D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+DataSource.swift"; sourceTree = "<group>"; };
 		D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -281,7 +284,7 @@
 			children = (
 				D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */,
 				D7D399D920C88CEA0058EA0A /* Event+UI.swift */,
-				1AB9E9E7209C85A9003441F8 /* AddEvent+UI.swift */,
+				1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -291,7 +294,7 @@
 			children = (
 				D71D60CA208CB2B700F143CA /* CalendarController.swift */,
 				1AD6A51E20C1509400146F31 /* EventController.swift */,
-				1AB9E9E2209C6E13003441F8 /* AddEventController.swift */,
+				1AB9E9E2209C6E13003441F8 /* EditEventController.swift */,
 				D70C6430208CCEF700EC3F6C /* UI */,
 				1AFD971B2097206500289FB3 /* Models */,
 				D70C642D208CCED500EC3F6C /* Views */,
@@ -333,8 +336,10 @@
 		D773DD4A203362DE001520CA /* UpFit Coaching */ = {
 			isa = PBXGroup;
 			children = (
+				D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */,
 				D773DD4B203362DE001520CA /* AppDelegate.swift */,
 				D773DD57203362DE001520CA /* Info.plist */,
+				D736E3F920C6DD93000A147E /* GoogleService-Info.plist */,
 				1A9E194C207E37040091FABB /* Controllers */,
 				D7EFFF31204FDE08004694EC /* Helpers */,
 				D789201520544F7E0020C703 /* Supporting Files */,
@@ -440,6 +445,11 @@
 					D773DD47203362DE001520CA = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -468,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */,
+				D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */,
 				D789201120544E860020C703 /* Localizable.strings in Resources */,
 				D773DD53203362DE001520CA /* Assets.xcassets in Resources */,
 			);
@@ -486,20 +497,26 @@
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -547,7 +564,7 @@
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */,
-				1AB9E9E3209C6E13003441F8 /* AddEventController.swift in Sources */,
+				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
 				D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */,
 				D744014D20A4E8450078BEA4 /* ConversationList+TableViewDelegate.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
@@ -578,7 +595,7 @@
 				D702D2FC209F7F3200970081 /* TypeRegister+UI.swift in Sources */,
 				D70C6432208CEFB000EC3F6C /* CalendarTableCell.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
-				1AB9E9E8209C85A9003441F8 /* AddEvent+UI.swift in Sources */,
+				1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
@@ -743,6 +760,7 @@
 			baseConfigurationReference = 1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "UpFit Coaching/UpFit Coaching.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7CXWF46ZWD;
@@ -762,6 +780,7 @@
 			baseConfigurationReference = 7BB9226391226412543F80BB /* Pods-UpFit Coaching.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "UpFit Coaching/UpFit Coaching.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7CXWF46ZWD;

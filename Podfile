@@ -11,4 +11,6 @@ target 'UpFit Coaching' do
   pod 'Charts'
   pod 'CryptoSwift'
   pod 'Eureka'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end
