@@ -12,10 +12,14 @@ import MapKit
 class EventController: UIViewController {
 	
 	var headerTitle: UILabel!
+	var clientLabel: UILabel!
 	var dateLabel: UILabel!
 	var addressLabel: UILabel!
 	var mapView: MKMapView!
 	var deleteButton: UIBarButtonItem!
+	
+	var event: Event?
+	var currentUser = Database().getCurrentUser()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,120 +28,60 @@ class EventController: UIViewController {
 		view.backgroundColor = .white
 		setupLayout()
 		
-		headerTitle.text = "Bilan mensuel"
-		dateLabel.text = "Lundi 4 juin 2018\nde 19:00 à 21:00"
-		addressLabel.text = "242, rue du Faubourg St-Antoine\n75011 Paris"
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "editButton".localized, style: .plain, target: self, action: #selector(edit))
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		guard let currentUser = currentUser,
+			let event = event else { return }
+		
+		// Récupération du client si coach
+		if currentUser.type == 2 {
+			let client = currentUser == event.firstUser ? event.secondUser : event.firstUser
+			clientLabel.text = "clientName %@".localized(with: "\(client.firstName) \(client.lastName)")
+		}
+		
+		// Construction de la date
+		var dateLabelString: String
+		let dateFormatter = DateFormatter()
+		
+		if Calendar.current.isDate(event.start, inSameDayAs: event.end) {
+			dateFormatter.dateFormat = "EEEE d MMMM YYYY"
+			let date = dateFormatter.string(from: event.start)
+			
+			dateFormatter.dateFormat = "HH:mm"
+			let startTime = dateFormatter.string(from: event.start)
+			let endTime = dateFormatter.string(from: event.end)
+			
+			dateLabelString = "eventDate_simple %@ %@ %@".localized(with: date, startTime, endTime)
+		} else {
+			dateFormatter.dateFormat = "EEEE d MMMM YYYY"
+			let startDate = dateFormatter.string(from: event.start)
+			let endDate = dateFormatter.string(from: event.end)
+			
+			dateFormatter.dateFormat = "HH:mm"
+			let startTime = dateFormatter.string(from: event.start)
+			let endTime = dateFormatter.string(from: event.end)
+			
+			dateLabelString = "eventDate_multiple %@ %@ %@ %@".localized(with: startDate, startTime, endDate, endTime)
+		}
+		
+		headerTitle.text = event.name
+		dateLabel.text = dateLabelString
+		addressLabel.text = event.firstUser.address ?? event.secondUser.address
 	}
 	
 	@objc func tap() {
 		print("Map tapped")
 	}
-}
-
-extension EventController {
-	class UI {
-		class func headerTitle() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .title1)
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func dateLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .headline)
-			label.textColor = .gray
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func addressLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .body)
-			label.textColor = .gray
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func mapView() -> MKMapView {
-			let view = MKMapView(frame: .zero)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.layer.borderColor = UIColor.lightGray.cgColor
-			view.layer.borderWidth = 1.0
-			view.layer.cornerRadius = 5.0
-			view.layer.masksToBounds = true
-			
-			view.isScrollEnabled = false
-			view.isZoomEnabled = false
-			
-			return view
-		}
-		
-		class func deleteButton() -> UIBarButtonItem {
-			let button = UIBarButtonItem(title: "deleteButton".localized, style: .plain, target: nil, action: nil)
-			button.tintColor = .red
-			
-			return button
-		}
-	}
 	
-	fileprivate func getConstraints() -> [NSLayoutConstraint] {
-		let anchors = getAnchors()
+	@objc func edit() {
+		let addEventController = AddEventController()
+		addEventController.editionMode = .edit
+		addEventController.event = event
 		
-		return [
-			headerTitle.topAnchor.constraint(equalTo: anchors.top, constant: 15.0),
-			headerTitle.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			headerTitle.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
-			
-			dateLabel.topAnchor.constraint(equalTo: headerTitle.bottomAnchor, constant: 15.0),
-			dateLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			dateLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
-			
-			addressLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 15.0),
-			addressLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			addressLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
-			
-			mapView.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 15.0),
-			mapView.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			mapView.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
-			mapView.heightAnchor.constraint(equalToConstant: 160.0)
-		]
-	}
-	
-	fileprivate func setUIComponents() {
-		headerTitle = UI.headerTitle()
-		dateLabel = UI.dateLabel()
-		addressLabel = UI.addressLabel()
-		mapView = UI.mapView()
-		deleteButton = UI.deleteButton()
-		
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-		mapView.addGestureRecognizer(tapGestureRecognizer)
-		
-		navigationController?.isToolbarHidden = false
-		
-		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		toolbarItems = [flexibleSpace, deleteButton, flexibleSpace]
-	}
-	
-	func setupLayout() {
-		setUIComponents()
-		
-		view.addSubview(headerTitle)
-		view.addSubview(dateLabel)
-		view.addSubview(addressLabel)
-		view.addSubview(mapView)
-		
-		NSLayoutConstraint.activate(getConstraints())
+		present(UINavigationController(rootViewController: addEventController), animated: true)
 	}
 }

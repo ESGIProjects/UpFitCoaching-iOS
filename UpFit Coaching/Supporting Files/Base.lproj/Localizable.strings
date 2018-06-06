@@ -12,6 +12,7 @@
 "OKButton" = "OK";
 "addButton" = "Add";
 "nextButton" = "Next";
+"editButton" = "Edit";
 
 // Login
 "loginController_title" = "Login";
@@ -75,8 +76,17 @@
 
 "nothingThisDay" = "Nothing scheduled this day";
 
+// Event
+"eventController_title" = "Event Details";
+
+"clientName %@" = "With %@";
+"eventDate_simple %@ %@ %@" = "%@\nfrom %@ to %@";
+"eventDate_multiple %@ %@ %@ %@" = "From %@ at %@\nto %@ at %@";
+"cancelEventButton" = "Cancel event";
+
 // Add Event
-"addEventController_title" = "New Event";
+"editEventController_addTitle" = "New Event";
+"editEventController_editTitle" = "Edit Event";
 
 "eventTitle_placeholder" = "Title";
 "otherUser_fieldTitle" = "Client";

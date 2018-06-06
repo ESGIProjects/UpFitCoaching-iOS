@@ -35,7 +35,7 @@ class AddEventController: FormViewController {
 		super.viewDidLoad()
 		
 		if editionMode == .add {
-			title = "addEventController_title".localized
+			title = "editEventController_addTitle".localized
 			
 			eventTitle = ""
 			startDate = Date()
@@ -44,7 +44,7 @@ class AddEventController: FormViewController {
 			
 			navigationItem.rightBarButtonItem = UIBarButtonItem(title: "addButton".localized, style: .done, target: self, action: #selector(confirm))
 		} else {
-			title = "Edit Event".localized
+			title = "editEventController_editTitle".localized
 			
 			guard let currentUser = currentUser else { return }
 			guard let event = event else { return }
