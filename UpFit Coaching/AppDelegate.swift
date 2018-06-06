@@ -8,8 +8,10 @@
 
 import UIKit
 import UserNotifications
+
 import RealmSwift
 import Starscream
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,8 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		
 //		window?.rootViewController = Chart()
-//		window?.rootViewController = NewAccountRegisterController()
 		window?.makeKeyAndVisible()
+		
+		// Configure Firebase
+		FirebaseApp.configure()
+		Messaging.messaging().delegate = self
+		application.registerForRemoteNotifications()
 		
 		return true
 	}
@@ -77,10 +83,29 @@ extension AppDelegate: WebSocketDelegate {
 // MARK: - UNUserNotificationCenterDelegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-		if notification.request.identifier == "message" {
-			completionHandler([.alert, .sound, .badge])
+		let userInfo = notification.request.content.userInfo
+				
+		if let aps = userInfo["aps"] as? [String: Any],
+			let type = aps["type"] as? String,
+			type == "message",
+			MessagesDelegate.instance.displayMode == .hide {
+			completionHandler([.sound, .badge])
 		} else {
-			completionHandler([.alert, .sound])
+			completionHandler([.alert, .sound, .badge])
 		}
+	}
+}
+
+// MARK: - MessagingDelegate
+extension AppDelegate: MessagingDelegate {
+	func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+		print("Firebase registration token: \(fcmToken)")
+		
+		// Send token to server here
+		
+	}
+	
+	func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+		print("Received data message: \(remoteMessage.appData)")
 	}
 }

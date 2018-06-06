@@ -11,9 +11,14 @@ import UserNotifications
 
 class MessagesDelegate {
 	
+	enum MessageDisplayMode {
+		case display, hide
+	}
+	
 	static var instance = MessagesDelegate()
 	
 	var socket: WebSocket?
+	var displayMode = MessageDisplayMode.display
 	var delegate: WebSocketDelegate? {
 		get {
 			return socket?.delegate
@@ -39,15 +44,15 @@ class MessagesDelegate {
 	}
 	
 	class func fireNotification(message: Message) {
-		// Create a local notification
-		let content = UNMutableNotificationContent()
-		content.title = "\(message.sender.firstName) \(message.sender.lastName)"
-		content.body = message.content
-		content.sound = UNNotificationSound.default()
-		
-		// Add the notification to the queue, for immediate firing
-		let request = UNNotificationRequest(identifier: "message", content: content, trigger: nil)
-		UNUserNotificationCenter.current().add(request)
+//		// Create a local notification
+//		let content = UNMutableNotificationContent()
+//		content.title = "\(message.sender.firstName) \(message.sender.lastName)"
+//		content.body = message.content
+//		content.sound = UNNotificationSound.default()
+//
+//		// Add the notification to the queue, for immediate firing
+//		let request = UNNotificationRequest(identifier: "message", content: content, trigger: nil)
+//		UNUserNotificationCenter.current().add(request)
 	}
 	
 	class func decode(from text: String) -> Message? {
