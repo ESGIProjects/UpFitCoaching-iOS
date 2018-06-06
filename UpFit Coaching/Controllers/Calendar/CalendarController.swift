@@ -97,7 +97,7 @@ class CalendarController: UIViewController {
 	// MARK: - Actions
 	
 	@objc func addEvent() {
-		let addEventController = AddEventController()
+		let addEventController = EditEventController()
 		present(UINavigationController(rootViewController: addEventController), animated: true)
 	}
 	

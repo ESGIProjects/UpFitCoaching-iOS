@@ -1,5 +1,5 @@
 //
-//  AddEventController.swift
+//  EditEventController.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 04/05/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class AddEventController: FormViewController {
+class EditEventController: FormViewController {
 	
 	enum EditionMode {
 		case add, edit

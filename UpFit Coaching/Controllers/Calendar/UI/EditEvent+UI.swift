@@ -1,5 +1,5 @@
 //
-//  AddEvent+UI.swift
+//  EditEvent+UI.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 04/05/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-extension AddEventController {
+extension EditEventController {
 	fileprivate func setUIComponents() {
 		titleRow = TextRow("title") {
 			$0.placeholder = "eventTitle_placeholder".localized

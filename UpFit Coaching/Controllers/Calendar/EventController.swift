@@ -78,7 +78,7 @@ class EventController: UIViewController {
 	}
 	
 	@objc func edit() {
-		let addEventController = AddEventController()
+		let addEventController = EditEventController()
 		addEventController.editionMode = .edit
 		addEventController.event = event
 		
