@@ -41,6 +41,11 @@
 		D744015120A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015020A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift */; };
 		D744015320A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015220A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift */; };
 		D744015520A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015420A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift */; };
+		D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE420C9848100FC5320 /* CreateThreadController.swift */; };
+		D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE620C9D46900FC5320 /* Forum+UI.swift */; };
+		D744FEE920C9D47600FC5320 /* CreateThread+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */; };
+		D744FEED20C9D4C200FC5320 /* Forum+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEC20C9D4C200FC5320 /* Forum+TableViewDataSource.swift */; };
+		D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEE20C9DB0A00FC5320 /* Post.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -61,6 +66,9 @@
 		D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* Login+UI.swift */; };
 		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
 		D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399D920C88CEA0058EA0A /* Event+UI.swift */; };
+		D7D399DE20C941980058EA0A /* ForumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399DD20C941980058EA0A /* ForumController.swift */; };
+		D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399E020C9668E0058EA0A /* ForumThread.swift */; };
+		D7D399E320C968B20058EA0A /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399E220C968B20058EA0A /* Forum.swift */; };
 		D7DAA24020554E7F007F3011 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA23F20554E7F007F3011 /* Colors.swift */; };
 		D7DAA24220554F7C007F3011 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DAA24120554F7C007F3011 /* Message.swift */; };
 		D7EF961F20860EBB002E0A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF961E20860EBB002E0A9B /* User.swift */; };
@@ -111,6 +119,11 @@
 		D744015020A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+WebSocketDelegate.swift"; sourceTree = "<group>"; };
 		D744015220A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		D744015420A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+WebSocketDelegate.swift"; sourceTree = "<group>"; };
+		D744FEE420C9848100FC5320 /* CreateThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadController.swift; sourceTree = "<group>"; };
+		D744FEE620C9D46900FC5320 /* Forum+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+UI.swift"; sourceTree = "<group>"; };
+		D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateThread+UI.swift"; sourceTree = "<group>"; };
+		D744FEEC20C9D4C200FC5320 /* Forum+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+TableViewDataSource.swift"; sourceTree = "<group>"; };
+		D744FEEE20C9DB0A00FC5320 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -132,6 +145,9 @@
 		D7B9CBFA20541E7300B755CD /* Login+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+UI.swift"; sourceTree = "<group>"; };
 		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
 		D7D399D920C88CEA0058EA0A /* Event+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+UI.swift"; sourceTree = "<group>"; };
+		D7D399DD20C941980058EA0A /* ForumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumController.swift; sourceTree = "<group>"; };
+		D7D399E020C9668E0058EA0A /* ForumThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumThread.swift; sourceTree = "<group>"; };
+		D7D399E220C968B20058EA0A /* Forum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
 		D7DAA23F20554E7F007F3011 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D7DAA24120554F7C007F3011 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D7EF961E20860EBB002E0A9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -204,9 +220,10 @@
 			children = (
 				1A9E1949207E30730091FABB /* Login */,
 				1A9E194B207E30A40091FABB /* Messages */,
+				D7D399DB20C939A10058EA0A /* Follow up */,
 				D71D60C9208CB29D00F143CA /* Calendar */,
+				D7D399DC20C939C10058EA0A /* Forum */,
 				1A9E194A207E30900091FABB /* Settings */,
-				D702D301209F8D4000970081 /* Chart.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -315,6 +332,23 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		D744FEEA20C9D47A00FC5320 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D744FEE620C9D46900FC5320 /* Forum+UI.swift */,
+				D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D744FEEB20C9D4B300FC5320 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D744FEEC20C9D4C200FC5320 /* Forum+TableViewDataSource.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		D773DD3F203362DD001520CA = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +408,36 @@
 				D7AA4E91205481F3004A0986 /* ConversationLayout.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		D7D399DB20C939A10058EA0A /* Follow up */ = {
+			isa = PBXGroup;
+			children = (
+				D702D301209F8D4000970081 /* Chart.swift */,
+			);
+			path = "Follow up";
+			sourceTree = "<group>";
+		};
+		D7D399DC20C939C10058EA0A /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				D7D399DD20C941980058EA0A /* ForumController.swift */,
+				D744FEE420C9848100FC5320 /* CreateThreadController.swift */,
+				D744FEEA20C9D47A00FC5320 /* UI */,
+				D7D399DF20C966830058EA0A /* Models */,
+				D744FEEB20C9D4B300FC5320 /* Protocols */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		D7D399DF20C966830058EA0A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D7D399E020C9668E0058EA0A /* ForumThread.swift */,
+				D7D399E220C968B20058EA0A /* Forum.swift */,
+				D744FEEE20C9DB0A00FC5320 /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D7EF961D20860E99002E0A9B /* Models */ = {
@@ -563,6 +627,7 @@
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
+				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
 				D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */,
 				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
 				D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */,
@@ -571,6 +636,7 @@
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
 				D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
+				D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */,
 				D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */,
 				D789201720544FAD0020C703 /* String+Helpers.swift in Sources */,
 				D744015520A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift in Sources */,
@@ -596,15 +662,21 @@
 				D70C6432208CEFB000EC3F6C /* CalendarTableCell.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
 				1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */,
+				D744FEE920C9D47600FC5320 /* CreateThread+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
+				D744FEED20C9D4C200FC5320 /* Forum+TableViewDataSource.swift in Sources */,
+				D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */,
+				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,
 				D744015320A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
+				D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */,
+				D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */,
 				D7B3C32F20B328C400CE3D7A /* DetailsRegisterController.swift in Sources */,
 				D702D302209F8D4000970081 /* Chart.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,

@@ -32,4 +32,14 @@ extension Database {
 		
 		return fetch(using: fetchRequest)
 	}
+	
+	func getThreads(for forumId: Int) -> [ForumThread] {
+		
+		// Creating the fetch request
+		let fetchRequest = FetchRequest<[ForumThread], ForumThreadObject>(predicate: NSPredicate(format: "forum.forumID == %d", forumId),
+																		  sortDescriptors: [],
+																		  transformer: { $0.map(ForumThread.init) })
+		
+		return fetch(using: fetchRequest)
+	}
 }

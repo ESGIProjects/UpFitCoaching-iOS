@@ -136,6 +136,31 @@ class Network {
 		call(url, httpMethod: .put, parameters: parameters, completion: completion)
 	}
 	
+	class func getThreads(for forumId: Int, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/threads/")
+		let parameters: [String: Any] = [
+			"forumId": forumId
+		]
+		
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
+	
+	class func createThread(_ thread: ForumThread, with post: Post, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/thread/")
+		
+		let dateFormatter = DateFormatter.time
+		
+		let parameters: [String: Any] = [
+			"title": thread.title,
+			"date": dateFormatter.string(from: post.date),
+			"content": post.content,
+			"forumId": thread.forum.forumID,
+			"userId": post.user.userID
+		]
+		
+		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
+	
 	class func isSuccess(response: URLResponse?, successCode: Int) -> Bool {
 		guard let response = response as? HTTPURLResponse else { return false }
 		print("Status code:", response.statusCode)

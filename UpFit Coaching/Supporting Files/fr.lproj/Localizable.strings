@@ -93,6 +93,13 @@
 "startDate_fieldTitle" = "Début";
 "endDate_fieldTitle" = "Fin";
 
+// Forum
+"forumController_title" = "Forum";
+"createThreadController_title" = "Nouveau fil de discussion";
+
+"threadTitle_placeholder" = "Titre";
+"postContent_placeholder" = "Votre message…";
+
 // Settings
 "settingsController_title" = "Réglages";
 "signOutButton" = "Déconnexion";

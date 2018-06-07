@@ -93,6 +93,13 @@
 "startDate_fieldTitle" = "Starts";
 "endDate_fieldTitle" = "Ends";
 
+// Forum
+"forumController_title" = "Forum";
+"createThreadController_title" = "Create Thread";
+
+"threadTitle_placeholder" = "Title";
+"postContent_placeholder" = "Your message…";
+
 // Settings
 "settingsController_title" = "Settings";
 "signOutButton" = "Sign Out";

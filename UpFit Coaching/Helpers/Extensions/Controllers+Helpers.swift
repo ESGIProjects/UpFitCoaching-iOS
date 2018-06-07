@@ -37,13 +37,18 @@ extension UITabBarController {
 			conversationController.otherUser = otherUser
 			conversationController.title = "\(otherUser.firstName) \(otherUser.lastName)"
 			
-			conversationController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 0)
+			conversationController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
 			viewControllers.append(conversationController)
 		}
 		
+		// Forum
+		let forumController = ForumController()
+		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 2)
+		viewControllers.append(forumController)
+		
 		// Settings
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 2)
+		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 3)
 		viewControllers.append(settingsController)
 		
 		// Creating the tab bar controller
