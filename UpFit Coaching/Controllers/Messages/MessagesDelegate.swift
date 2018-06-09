@@ -33,6 +33,17 @@ class MessagesDelegate {
 		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)") else { return }
 		
 		socket = WebSocket(url: url)
+		
+		// Observers
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToBackground), name: .UIApplicationWillResignActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToBackground), name: .UIApplicationWillTerminate, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationWillEnterForeground, object: nil)
+	}
+	
+	deinit {
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillTerminate, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
 	}
 	
 	func connect() {
@@ -41,6 +52,14 @@ class MessagesDelegate {
 	
 	func disconnect() {
 		socket?.disconnect()
+	}
+	
+	@objc private func moveToBackground() {
+		disconnect()
+	}
+	
+	@objc private func moveToForeground() {
+		connect()
 	}
 	
 	class func decode(from text: String) -> Message? {
