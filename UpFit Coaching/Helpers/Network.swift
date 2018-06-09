@@ -63,7 +63,7 @@ class Network {
 			parameters["oldToken"] = oldToken
 		}
 		
-		call(url, httpMethod: .post, parameters: parameters) { _, response, _ in
+		call(url, httpMethod: .put, parameters: parameters) { _, response, _ in
 			_ = Network.isSuccess(response: response, successCode: 201)
 		}
 	}

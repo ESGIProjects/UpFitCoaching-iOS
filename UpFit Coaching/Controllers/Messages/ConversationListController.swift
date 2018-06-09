@@ -70,11 +70,11 @@ class ConversationListController: UIViewController {
 			
 			if Network.isSuccess(response: response, successCode: 200) {
 				// Decode messages list
-				let decoder = JSONDecoder.withDate				
+				let decoder = JSONDecoder.withDate
 				guard let messages = try? decoder.decode([Message].self, from: data) else { return }
 				
 				// Save messages
-				let database = Database()
+				let database = Database()				
 				database.deleteAll(of: MessageObject.self)
 				database.createOrUpdate(models: messages, with: MessageObject.init)
 				
