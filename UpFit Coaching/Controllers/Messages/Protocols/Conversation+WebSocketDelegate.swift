@@ -11,11 +11,11 @@ import Starscream
 
 extension ConversationController: WebSocketDelegate {
 	func websocketDidConnect(socket: WebSocketClient) {
-		print(#function)
+		MessagesDelegate.instance.websocketDidConnect(socket: socket)
 	}
 	
 	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		print(#function, error ?? "", error?.localizedDescription ?? "")
+		MessagesDelegate.instance.websocketDidDisconnect(socket: socket, error: error)
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
@@ -32,12 +32,10 @@ extension ConversationController: WebSocketDelegate {
 				self?.collectionView.reloadData()
 				self?.scrollToBottom(animated: true)
 			}
-		} else {
-			MessagesDelegate.fireNotification(message: message)
 		}
 	}
 	
 	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-		
+		MessagesDelegate.instance.websocketDidReceiveData(socket: socket, data: data)
 	}
 }

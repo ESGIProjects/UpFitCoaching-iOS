@@ -24,7 +24,7 @@ class MessagesDelegate {
 			return socket?.delegate
 		}
 		set {
-			socket?.delegate = newValue
+			socket?.delegate = newValue ?? self
 		}
 	}
 	
@@ -43,18 +43,6 @@ class MessagesDelegate {
 		socket?.disconnect()
 	}
 	
-	class func fireNotification(message: Message) {
-//		// Create a local notification
-//		let content = UNMutableNotificationContent()
-//		content.title = "\(message.sender.firstName) \(message.sender.lastName)"
-//		content.body = message.content
-//		content.sound = UNNotificationSound.default()
-//
-//		// Add the notification to the queue, for immediate firing
-//		let request = UNNotificationRequest(identifier: "message", content: content, trigger: nil)
-//		UNUserNotificationCenter.current().add(request)
-	}
-	
 	class func decode(from text: String) -> Message? {
 		print(text)
 		
@@ -66,5 +54,28 @@ class MessagesDelegate {
 		guard let message = try? decoder.decode(Message.self, from: json) else { print("MessagesDelegate", "data to class error"); return nil }
 		
 		return message
+	}
+}
+
+extension MessagesDelegate: WebSocketDelegate {
+	func websocketDidConnect(socket: WebSocketClient) {
+		print(#function)
+	}
+	
+	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+		print(#function, error?.localizedDescription ?? "")
+	}
+	
+	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+		print(#function)
+		
+		guard let message = MessagesDelegate.decode(from: text), message.messageID != nil else { return }
+		
+		// Save message
+		Database().createOrUpdate(model: message, with: MessageObject.init)
+	}
+	
+	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+		print(#function)
 	}
 }

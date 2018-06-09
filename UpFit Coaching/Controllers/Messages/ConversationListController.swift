@@ -35,7 +35,7 @@ class ConversationListController: UIViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		// Updates websocket delegate
-		MessagesDelegate.instance.delegate = UIApplication.shared.delegate as? AppDelegate
+		MessagesDelegate.instance.delegate = nil
 	}
 	
 	override func viewDidLoad() {
@@ -49,7 +49,6 @@ class ConversationListController: UIViewController {
 			navigationController?.navigationBar.prefersLargeTitles = true
 			navigationItem.largeTitleDisplayMode = .always
 		}
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(startConversation))
 		
 		// Register cell and notification
 		tableView.register(ConversationListCell.self, forCellReuseIdentifier: "ConversationListCell")
@@ -98,9 +97,5 @@ class ConversationListController: UIViewController {
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
 		}
-	}
-	
-	@objc func startConversation() {
-		print("Start conversation !!")
 	}
 }

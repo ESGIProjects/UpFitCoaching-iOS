@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			window?.rootViewController = UITabBarController.getRootViewController(for: user)
 			
 			// Starts websocket
-			MessagesDelegate.instance.delegate = self
 			MessagesDelegate.instance.connect()
 		} else {
 			// Show login screen
@@ -42,32 +41,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window?.makeKeyAndVisible()
 		
 		return true
-	}
-}
-
-// MARK: - WebSocketDelegate
-extension AppDelegate: WebSocketDelegate {
-	func websocketDidConnect(socket: WebSocketClient) {
-		print(#function)
-	}
-	
-	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		print(#function, error ?? "", error?.localizedDescription ?? "")
-	}
-	
-	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-		print(#function)
-		
-		guard let message = MessagesDelegate.decode(from: text), message.messageID != nil else { return }
-		
-		// Save message
-		Database().createOrUpdate(model: message, with: MessageObject.init)
-
-		// Fire notification
-		MessagesDelegate.fireNotification(message: message)
-	}
-	
-	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-		print(#function)
 	}
 }

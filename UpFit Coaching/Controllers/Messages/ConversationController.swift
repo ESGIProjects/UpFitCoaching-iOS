@@ -72,7 +72,7 @@ class ConversationController: UIViewController {
 		removeObservers()
 		
 		// Updates websocket delegate
-		MessagesDelegate.instance.delegate = UIApplication.shared.delegate as? AppDelegate
+		MessagesDelegate.instance.delegate = nil
 	}
 	
 	// MARK: - Helpers
