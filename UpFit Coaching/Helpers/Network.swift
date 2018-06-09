@@ -52,6 +52,22 @@ class Network {
 	
 	// MARK: - User management
 	
+	class func registerToken(_ token: String, oldToken: String? = nil, for user: User) {
+		let url = baseURL.appending("/token/")
+		var parameters: [String: Any] = [
+			"token": token,
+			"userId": user.userID
+		]
+		
+		if let oldToken = oldToken {
+			parameters["oldToken"] = oldToken
+		}
+		
+		call(url, httpMethod: .post, parameters: parameters) { _, response, _ in
+			_ = Network.isSuccess(response: response, successCode: 201)
+		}
+	}
+	
 	class func login(mail: String, password: String, completion: @escaping NetworkCallback) {
 		let url = baseURL.appending("/signin/")
 		let parameters: [String: Any] = [

@@ -47,6 +47,7 @@
 		D744FEED20C9D4C200FC5320 /* Forum+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEC20C9D4C200FC5320 /* Forum+TableView.swift */; };
 		D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEE20C9DB0A00FC5320 /* Post.swift */; };
 		D744FEF120CADDDE00FC5320 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEF020CADDDE00FC5320 /* ThreadController.swift */; };
+		D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEF320CC216800FC5320 /* AppDelegate+Notifications.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -126,6 +127,7 @@
 		D744FEEC20C9D4C200FC5320 /* Forum+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+TableView.swift"; sourceTree = "<group>"; };
 		D744FEEE20C9DB0A00FC5320 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D744FEF020CADDDE00FC5320 /* ThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
+		D744FEF320CC216800FC5320 /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		D744FEF220CC214800FC5320 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D773DD4B203362DE001520CA /* AppDelegate.swift */,
+				D744FEF320CC216800FC5320 /* AppDelegate+Notifications.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
 		D773DD3F203362DD001520CA = {
 			isa = PBXGroup;
 			children = (
@@ -373,7 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */,
-				D773DD4B203362DE001520CA /* AppDelegate.swift */,
+				D744FEF220CC214800FC5320 /* AppDelegate */,
 				D773DD57203362DE001520CA /* Info.plist */,
 				D736E3F920C6DD93000A147E /* GoogleService-Info.plist */,
 				1A9E194C207E37040091FABB /* Controllers */,
@@ -687,6 +698,7 @@
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,
 				D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */,
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
+				D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,

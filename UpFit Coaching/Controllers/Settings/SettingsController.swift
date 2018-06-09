@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import Eureka
 
 class SettingsController: FormViewController {
@@ -27,6 +28,9 @@ class SettingsController: FormViewController {
 	func signOut() {
 		Database().deleteAll()
 		UserDefaults.standard.removeObject(forKey: "userID")
+		UserDefaults.standard.removeObject(forKey: "firebaseToken")
+		
+		// Disconnect from webscoket
 		MessagesDelegate.instance.disconnect()
 		
 		if tabBarController?.presentingViewController != nil {

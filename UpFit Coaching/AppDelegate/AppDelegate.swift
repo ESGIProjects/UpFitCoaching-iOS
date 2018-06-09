@@ -11,7 +11,6 @@ import UserNotifications
 
 import RealmSwift
 import Starscream
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,24 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
 		
 		if let user = Database().getCurrentUser() {
-			// Show the corresponding tab bar controller
+			// Show the tab bar controller
 			window?.rootViewController = UITabBarController.getRootViewController(for: user)
 			
 			// Starts websocket
 			MessagesDelegate.instance.delegate = self
 			MessagesDelegate.instance.connect()
 		} else {
-			// Show login
+			// Show login screen
 			window?.rootViewController = UINavigationController(rootViewController: LoginController())
 		}
 		
-//		window?.rootViewController = Chart()
+		configureFirebase(application)
 		window?.makeKeyAndVisible()
-		
-		// Configure Firebase
-		FirebaseApp.configure()
-		Messaging.messaging().delegate = self
-		application.registerForRemoteNotifications()
 		
 		return true
 	}
@@ -77,35 +71,5 @@ extension AppDelegate: WebSocketDelegate {
 	
 	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
 		print(#function)
-	}
-}
-
-// MARK: - UNUserNotificationCenterDelegate
-extension AppDelegate: UNUserNotificationCenterDelegate {
-	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-		let userInfo = notification.request.content.userInfo
-				
-		if let aps = userInfo["aps"] as? [String: Any],
-			let type = aps["type"] as? String,
-			type == "message",
-			MessagesDelegate.instance.displayMode == .hide {
-			completionHandler([.sound, .badge])
-		} else {
-			completionHandler([.alert, .sound, .badge])
-		}
-	}
-}
-
-// MARK: - MessagingDelegate
-extension AppDelegate: MessagingDelegate {
-	func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-		print("Firebase registration token: \(fcmToken)")
-		
-		// Send token to server here
-		
-	}
-	
-	func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-		print("Received data message: \(remoteMessage.appData)")
 	}
 }
