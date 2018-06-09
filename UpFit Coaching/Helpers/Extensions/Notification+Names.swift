@@ -12,4 +12,5 @@ extension Notification.Name {
 	static let messagesDownloaded = Notification.Name("messagesDownloaded")
 	static let eventsDownloaded = Notification.Name("eventsDownloaded")
 	static let threadsDownloaded = Notification.Name("threadsDownloaded")
+	static let postsDownloaded = Notification.Name("postsDownloaded")
 }

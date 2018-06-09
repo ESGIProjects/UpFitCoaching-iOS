@@ -21,7 +21,7 @@ final class ForumThreadObject: Object {
 	convenience init(thread: ForumThread) {
 		self.init()
 		
-		threadID = thread.threadID ?? 0
+		threadID = thread.threadID
 		title = thread.title
 		forum = ForumObject(forum: thread.forum)
 	}
@@ -34,11 +34,12 @@ class ForumThread: NSObject, Codable {
 		case forum
 	}
 	
-	var threadID: Int?
+	var threadID: Int
 	var title: String
 	var forum: Forum
 	
-	init(title: String, forum: Forum) {
+	init(id: Int = 0, title: String, forum: Forum) {
+		threadID = id
 		self.title = title
 		self.forum = forum
 	}

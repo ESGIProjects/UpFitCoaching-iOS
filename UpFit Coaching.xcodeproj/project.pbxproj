@@ -44,8 +44,9 @@
 		D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE420C9848100FC5320 /* CreateThreadController.swift */; };
 		D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE620C9D46900FC5320 /* Forum+UI.swift */; };
 		D744FEE920C9D47600FC5320 /* CreateThread+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */; };
-		D744FEED20C9D4C200FC5320 /* Forum+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEC20C9D4C200FC5320 /* Forum+TableViewDataSource.swift */; };
+		D744FEED20C9D4C200FC5320 /* Forum+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEC20C9D4C200FC5320 /* Forum+TableView.swift */; };
 		D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEE20C9DB0A00FC5320 /* Post.swift */; };
+		D744FEF120CADDDE00FC5320 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEF020CADDDE00FC5320 /* ThreadController.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -122,8 +123,9 @@
 		D744FEE420C9848100FC5320 /* CreateThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadController.swift; sourceTree = "<group>"; };
 		D744FEE620C9D46900FC5320 /* Forum+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+UI.swift"; sourceTree = "<group>"; };
 		D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateThread+UI.swift"; sourceTree = "<group>"; };
-		D744FEEC20C9D4C200FC5320 /* Forum+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+TableViewDataSource.swift"; sourceTree = "<group>"; };
+		D744FEEC20C9D4C200FC5320 /* Forum+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+TableView.swift"; sourceTree = "<group>"; };
 		D744FEEE20C9DB0A00FC5320 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D744FEF020CADDDE00FC5320 /* ThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -344,7 +346,7 @@
 		D744FEEB20C9D4B300FC5320 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D744FEEC20C9D4C200FC5320 /* Forum+TableViewDataSource.swift */,
+				D744FEEC20C9D4C200FC5320 /* Forum+TableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -423,6 +425,7 @@
 			children = (
 				D7D399DD20C941980058EA0A /* ForumController.swift */,
 				D744FEE420C9848100FC5320 /* CreateThreadController.swift */,
+				D744FEF020CADDDE00FC5320 /* ThreadController.swift */,
 				D744FEEA20C9D47A00FC5320 /* UI */,
 				D7D399DF20C966830058EA0A /* Models */,
 				D744FEEB20C9D4B300FC5320 /* Protocols */,
@@ -648,6 +651,7 @@
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				1AD6A51F20C1509400146F31 /* EventController.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
+				D744FEF120CADDDE00FC5320 /* ThreadController.swift in Sources */,
 				1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */,
 				1AFD971D2097207700289FB3 /* Event.swift in Sources */,
 				1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */,
@@ -666,7 +670,7 @@
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
-				D744FEED20C9D4C200FC5320 /* Forum+TableViewDataSource.swift in Sources */,
+				D744FEED20C9D4C200FC5320 /* Forum+TableView.swift in Sources */,
 				D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */,
 				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,

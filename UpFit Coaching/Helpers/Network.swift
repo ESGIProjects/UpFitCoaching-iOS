@@ -29,7 +29,7 @@ class Network {
 			callParameters.append("\(key)=\(value)")
 		}
 		let parameterString = callParameters.map({ String($0) }).joined(separator: "&")
-		
+				
 		switch httpMethod {
 		case .get:
 			guard let url = URL(string: stringUrl.appending("?").appending(parameterString)) else { return }
@@ -155,6 +155,30 @@ class Network {
 			"date": dateFormatter.string(from: post.date),
 			"content": post.content,
 			"forumId": thread.forum.forumID,
+			"userId": post.user.userID
+		]
+		
+		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
+	
+	class func getPosts(for thread: ForumThread, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/thread/")
+		let parameters: [String: Any] = [
+			"threadId": thread.threadID
+		]
+		
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
+	
+	class func addPost(_ post: Post, to thread: ForumThread, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/post/")
+		
+		let dateFormatter = DateFormatter.time
+		
+		let parameters: [String: Any] = [
+			"threadId": thread.threadID,
+			"date": dateFormatter.string(from: post.date),
+			"content": post.content,
 			"userId": post.user.userID
 		]
 		

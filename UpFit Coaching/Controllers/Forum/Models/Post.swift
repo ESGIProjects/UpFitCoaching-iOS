@@ -25,7 +25,7 @@ final class PostObject: Object {
 	convenience init(post: Post) {
 		self.init()
 		
-		postID = post.postID ?? 0
+		postID = post.postID
 		
 		thread = ForumThreadObject(thread: post.thread)
 		user = UserObject(user: post.user)
@@ -47,7 +47,7 @@ class Post: NSObject, Codable {
 		case content
 	}
 	
-	var postID: Int?
+	var postID: Int
 	
 	var thread: ForumThread
 	var user: User
@@ -55,7 +55,8 @@ class Post: NSObject, Codable {
 	var date: Date
 	var content: String
 	
-	init(thread: ForumThread, user: User, date: Date, content: String) {
+	init(id: Int = 0, thread: ForumThread, user: User, date: Date, content: String) {
+		postID = id
 		self.thread = thread
 		self.user = user
 		self.date = date

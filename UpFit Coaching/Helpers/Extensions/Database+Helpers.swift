@@ -42,4 +42,13 @@ extension Database {
 		
 		return fetch(using: fetchRequest)
 	}
+	
+	func getPosts(for thread: ForumThread) -> [Post] {
+		// Creating the fetch request
+		let fetchRequest = FetchRequest<[Post], PostObject>(predicate: NSPredicate(format: "thread.threadID == %d", thread.threadID),
+															sortDescriptors: [SortDescriptor(keyPath: "date")],
+															transformer: { $0.map(Post.init) })
+		
+		return fetch(using: fetchRequest)
+	}
 }

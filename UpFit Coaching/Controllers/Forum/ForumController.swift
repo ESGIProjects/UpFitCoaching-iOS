@@ -18,11 +18,13 @@ class ForumController: UIViewController {
 	
 	static var forumID = 1
 	var forum: Forum?
-	var threads = [ForumThread]()// = Database().getThreads(for: ForumController.forumID)
+	var threads = [ForumThread]()
 	
 	// MARK: - UIViewController
 	
 	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
 		threadsDownloaded()
 	}
 	

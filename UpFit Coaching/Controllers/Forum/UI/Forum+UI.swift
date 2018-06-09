@@ -32,6 +32,7 @@ extension ForumController {
 	fileprivate func setUIComponents() {
 		tableView = UI.tableView()
 		tableView.dataSource = self
+		tableView.delegate = self
 	}
 	
 	func setupLayout() {
