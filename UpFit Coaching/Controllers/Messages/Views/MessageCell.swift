@@ -10,28 +10,35 @@ import UIKit
 
 class MessageCell: UICollectionViewCell {
 	
-	var messageLabel: UILabel = {
-		let label = UILabel()
-		label.translatesAutoresizingMaskIntoConstraints = false
-		label.numberOfLines = 0
-		label.lineBreakMode = .byWordWrapping
-		return label
-	}()
+	var messageLabel: UILabel!
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
-		contentView.layer.cornerRadius = 15.0
-		contentView.layer.masksToBounds = true
-		
 		setupLayout()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(coder: aDecoder)
+		
+		if let messageLabel = aDecoder.decodeObject(forKey: "messageLabel") as? UILabel {
+			self.messageLabel = messageLabel
+		}
+	}
+	
+	override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
+		aCoder.encode(messageLabel, forKey: "messageLabel")
 	}
 	
 	func setupLayout() {
+		contentView.layer.cornerRadius = 15.0
+		contentView.layer.masksToBounds = true
+		
+		messageLabel = UILabel()
+		messageLabel.translatesAutoresizingMaskIntoConstraints = false
+		messageLabel.numberOfLines = 0
+		messageLabel.lineBreakMode = .byWordWrapping
+		
 		contentView.addSubview(messageLabel)
 
 		NSLayoutConstraint.activate([

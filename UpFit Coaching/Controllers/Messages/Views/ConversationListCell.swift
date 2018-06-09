@@ -10,48 +10,13 @@ import UIKit
 
 class ConversationListCell: UITableViewCell {
 	
-	lazy var photoImageView: UIImageView = {
-		let photoImageView = UIImageView(frame: .zero)
-		photoImageView.translatesAutoresizingMaskIntoConstraints = false
-		
-		photoImageView.layer.masksToBounds = true
-		photoImageView.backgroundColor = .red
-		
-		return photoImageView
-	}()
-	
-	lazy var nameLabel: UILabel = {
-		let nameLabel = UILabel()
-		nameLabel.translatesAutoresizingMaskIntoConstraints = false
-		
-		nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-		
-		return nameLabel
-	}()
-	
-	lazy var messageLabel: UILabel = {
-		let messageLabel = UILabel()
-		messageLabel.translatesAutoresizingMaskIntoConstraints = false
-		
-		messageLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-		messageLabel.numberOfLines = 2
-		messageLabel.textColor = .gray
-		
-		return messageLabel
-	}()
-	
-	lazy var dateLabel: UILabel = {
-		let dateLabel = UILabel()
-		dateLabel.translatesAutoresizingMaskIntoConstraints = false
-		
-		dateLabel.textColor = .gray
-		
-		return dateLabel
-	}()
+	var photoImageView: UIImageView!
+	var nameLabel: UILabel!
+	var messageLabel: UILabel!
+	var dateLabel: UILabel!
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
-
 		setupLayout()
 	}
 	
@@ -78,13 +43,15 @@ class ConversationListCell: UITableViewCell {
 		aCoder.encode(dateLabel, forKey: "dateLabel")
 	}
 	
+	// MARK: - Layout
+	
 	private func getConstraints() -> [NSLayoutConstraint] {
 		return [
 			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
 			photoImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
 			photoImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
-			photoImageView.heightAnchor.constraint(equalToConstant: 50),
-			photoImageView.widthAnchor.constraint(equalToConstant: 50),
+			photoImageView.heightAnchor.constraint(equalToConstant: 50.0),
+			photoImageView.widthAnchor.constraint(equalToConstant: 50.0),
 			
 			nameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor),
 			nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
@@ -97,13 +64,35 @@ class ConversationListCell: UITableViewCell {
 		]
 	}
 	
+	private func setUIComponents() {
+		photoImageView = UIImageView(frame: .zero)
+		photoImageView.translatesAutoresizingMaskIntoConstraints = false
+		photoImageView.layer.masksToBounds = true
+		photoImageView.backgroundColor = tintColor
+		photoImageView.layer.cornerRadius = 25.0
+		
+		nameLabel = UILabel()
+		nameLabel.translatesAutoresizingMaskIntoConstraints = false
+		nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+		
+		messageLabel = UILabel()
+		messageLabel.translatesAutoresizingMaskIntoConstraints = false
+		messageLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+		messageLabel.numberOfLines = 2
+		messageLabel.textColor = .gray
+		
+		dateLabel = UILabel()
+		dateLabel.translatesAutoresizingMaskIntoConstraints = false
+		dateLabel.textColor = .gray
+	}
+	
 	private func setupLayout() {
+		setUIComponents()
+		
 		contentView.addSubview(photoImageView)
 		contentView.addSubview(nameLabel)
 		contentView.addSubview(messageLabel)
 		
 		NSLayoutConstraint.activate(getConstraints())
-		
-		photoImageView.layer.cornerRadius = 25.0
 	}
 }
