@@ -17,7 +17,7 @@ class ConversationController: UIViewController {
 	var messageBarView: MessageBarView!
 	var messageBarViewBottomConstraint: NSLayoutConstraint!
 	
-	// MARK: - User info
+	// MARK: - Data
 	
 	let currentUser = Database().getCurrentUser()
 	var otherUser: User? {
@@ -56,11 +56,12 @@ class ConversationController: UIViewController {
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
 		
 		setupLayout()
-		addObservers()
 	}
 	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		addObservers()
 		
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = self
@@ -150,7 +151,6 @@ class ConversationController: UIViewController {
 		guard let userInfo = notification.userInfo else { return }
 		guard let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
 		guard let keyboardEndFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
-		guard let tabBar = tabBarController?.tabBar else { return }
 		
 		// Determines keyboard height
 		var keyboardHeight = keyboardEndFrame.cgRectValue.height
@@ -160,10 +160,10 @@ class ConversationController: UIViewController {
 		}
 		
 		// Removes tab bar height if not hidden
-		if tabBar.isHidden {
-			messageBarViewBottomConstraint.constant = -keyboardHeight
-		} else {
+		if let tabBar = tabBarController?.tabBar, !tabBar.isHidden {
 			messageBarViewBottomConstraint.constant = -keyboardHeight + tabBar.bounds.height
+		} else {
+			messageBarViewBottomConstraint.constant = -keyboardHeight
 		}
 		
 		// Insets the collection view
