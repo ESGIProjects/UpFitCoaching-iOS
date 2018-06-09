@@ -201,9 +201,9 @@ class Network {
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
-	class func isSuccess(response: URLResponse?, successCode: Int) -> Bool {
+	class func isSuccess(response: URLResponse?, successCode: Int, caller: String = #function) -> Bool {
 		guard let response = response as? HTTPURLResponse else { return false }
-		print("Status code:", response.statusCode)
+		print(caller, "Status code:", response.statusCode)
 		
 		return response.statusCode == successCode
 	}
