@@ -64,6 +64,7 @@ class ConversationController: UIViewController {
 		
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = self
+		MessagesDelegate.instance.displayMode = .hide
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -73,6 +74,7 @@ class ConversationController: UIViewController {
 		
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = nil
+		MessagesDelegate.instance.displayMode = .display
 	}
 	
 	// MARK: - Helpers
