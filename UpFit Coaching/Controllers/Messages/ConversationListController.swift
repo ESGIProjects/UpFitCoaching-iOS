@@ -78,7 +78,7 @@ class ConversationListController: UIViewController {
 				database.deleteAll(of: MessageObject.self)
 				database.createOrUpdate(models: messages, with: MessageObject.init)
 				
-				// Post a notification telling its done
+				// Post a notification telling it's done
 				NotificationCenter.default.post(name: .messagesDownloaded, object: nil, userInfo: nil)
 			}
 		}

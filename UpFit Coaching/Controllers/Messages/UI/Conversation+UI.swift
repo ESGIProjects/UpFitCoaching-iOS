@@ -35,7 +35,7 @@ extension ConversationController {
 		}
 	}
 	
-	func getConstraints() -> [NSLayoutConstraint] {
+	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
 		return [
@@ -49,7 +49,7 @@ extension ConversationController {
 		]
 	}
 	
-	func setUIComponents() {
+	fileprivate func setUIComponents() {
 		let conversationLayout = ConversationLayout()
 		conversationLayout.delegate = self
 		
@@ -61,6 +61,8 @@ extension ConversationController {
 	}
 	
 	func setupLayout() {
+		setUIComponents()
+		
 		view.addSubview(collectionView)
 		view.addSubview(messageBarView)
 		

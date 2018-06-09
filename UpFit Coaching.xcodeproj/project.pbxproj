@@ -36,11 +36,10 @@
 		D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */; };
 		D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */; };
 		D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014920A4D5DF0078BEA4 /* RegisterBox.swift */; };
-		D744014D20A4E8450078BEA4 /* ConversationList+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014C20A4E8450078BEA4 /* ConversationList+TableViewDelegate.swift */; };
-		D744014F20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014E20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift */; };
-		D744015120A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015020A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift */; };
-		D744015320A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015220A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift */; };
-		D744015520A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015420A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift */; };
+		D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */; };
+		D744015120A4E8780078BEA4 /* ConversationList+WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */; };
+		D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015220A4ED600078BEA4 /* Conversation+TableView.swift */; };
+		D744015520A4ED6F0078BEA4 /* Conversation+WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015420A4ED6F0078BEA4 /* Conversation+WebSocket.swift */; };
 		D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE420C9848100FC5320 /* CreateThreadController.swift */; };
 		D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE620C9D46900FC5320 /* Forum+UI.swift */; };
 		D744FEE920C9D47600FC5320 /* CreateThread+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */; };
@@ -116,11 +115,10 @@
 		D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		D744014920A4D5DF0078BEA4 /* RegisterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBox.swift; sourceTree = "<group>"; };
-		D744014C20A4E8450078BEA4 /* ConversationList+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+TableViewDelegate.swift"; sourceTree = "<group>"; };
-		D744014E20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+TableViewDataSource.swift"; sourceTree = "<group>"; };
-		D744015020A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+WebSocketDelegate.swift"; sourceTree = "<group>"; };
-		D744015220A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
-		D744015420A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+WebSocketDelegate.swift"; sourceTree = "<group>"; };
+		D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+TableView.swift"; sourceTree = "<group>"; };
+		D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+WebSocket.swift"; sourceTree = "<group>"; };
+		D744015220A4ED600078BEA4 /* Conversation+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+TableView.swift"; sourceTree = "<group>"; };
+		D744015420A4ED6F0078BEA4 /* Conversation+WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+WebSocket.swift"; sourceTree = "<group>"; };
 		D744FEE420C9848100FC5320 /* CreateThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadController.swift; sourceTree = "<group>"; };
 		D744FEE620C9D46900FC5320 /* Forum+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+UI.swift"; sourceTree = "<group>"; };
 		D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateThread+UI.swift"; sourceTree = "<group>"; };
@@ -327,11 +325,10 @@
 		D744014B20A4E81C0078BEA4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D744014C20A4E8450078BEA4 /* ConversationList+TableViewDelegate.swift */,
-				D744014E20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift */,
-				D744015020A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift */,
-				D744015220A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift */,
-				D744015420A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift */,
+				D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */,
+				D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */,
+				D744015220A4ED600078BEA4 /* Conversation+TableView.swift */,
+				D744015420A4ED6F0078BEA4 /* Conversation+WebSocket.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -645,7 +642,6 @@
 				D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */,
 				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
 				D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */,
-				D744014D20A4E8450078BEA4 /* ConversationList+TableViewDelegate.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
 				D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */,
@@ -653,7 +649,7 @@
 				D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */,
 				D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */,
 				D789201720544FAD0020C703 /* String+Helpers.swift in Sources */,
-				D744015520A4ED6F0078BEA4 /* Conversation+WebSocketDelegate.swift in Sources */,
+				D744015520A4ED6F0078BEA4 /* Conversation+WebSocket.swift in Sources */,
 				D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
 				D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */,
@@ -672,7 +668,7 @@
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
 				D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,
-				D744015120A4E8780078BEA4 /* ConversationList+WebSocketDelegate.swift in Sources */,
+				D744015120A4E8780078BEA4 /* ConversationList+WebSocket.swift in Sources */,
 				D702D2FC209F7F3200970081 /* TypeRegister+UI.swift in Sources */,
 				D70C6432208CEFB000EC3F6C /* CalendarTableCell.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
@@ -685,8 +681,8 @@
 				D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */,
 				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,
-				D744015320A4ED600078BEA4 /* Conversation+CollectionViewDataSource.swift in Sources */,
-				D744014F20A4E85C0078BEA4 /* ConversationList+TableViewDataSource.swift in Sources */,
+				D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */,
+				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,

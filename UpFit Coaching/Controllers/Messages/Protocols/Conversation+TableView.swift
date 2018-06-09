@@ -1,5 +1,5 @@
 //
-//  Conversation+CollectionViewDataSource.swift
+//  Conversation+TableView.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 10/05/2018.

@@ -20,21 +20,9 @@ class ConversationController: UIViewController {
 	// MARK: - Data
 	
 	let currentUser = Database().getCurrentUser()
-	var otherUser: User? {
-		didSet {
-			guard let otherUser = otherUser else { return }
-			title = "\(otherUser.firstName) \(otherUser.lastName)"
-		}
-	}
+	var otherUser: User?
 	
-	lazy var messages: [Message] = {
-		guard let currentUser = currentUser else { return [] }
-		guard let otherUser = otherUser else { return [] }
-		
-		return Database().getMessages(between: currentUser, and: otherUser)
-	}()
-	
-	// Formatters
+	var messages = [Message]()
 	let decoder = JSONDecoder.withDate
 	let encoder = JSONEncoder.withDate
 	
@@ -43,25 +31,68 @@ class ConversationController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Layout
-		view.backgroundColor = .white
+		guard let otherUser = otherUser else { return }
+		
+		// Setting up layout
+		title = "\(otherUser.firstName) \(otherUser.lastName)"
 		edgesForExtendedLayout = []
+		//view.backgroundColor = .white
+		setupLayout()
 		
 		if #available(iOS 11.0, *) {
 			navigationItem.largeTitleDisplayMode = .never
 		}
 		
-		// Setting up
-		setUIComponents()
+		// Register cell and notification
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
+		NotificationCenter.default.addObserver(self, selector: #selector(loadMessages), name: .messagesDownloaded, object: nil)
 		
-		setupLayout()
+		// If client, download messages
+		if currentUser?.type == 0 || currentUser?.type == 1 {
+			downloadMessages()
+		} else {
+			loadMessages()
+		}
+	}
+	
+	@objc func loadMessages() {
+		guard let currentUser = currentUser else { return }
+		guard let otherUser = otherUser else { return }
+		
+		messages = Database().getMessages(between: currentUser, and: otherUser)
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.collectionView.reloadData()
+			self?.scrollToBottom(animated: false)
+		}
+	}
+	
+	func downloadMessages() {
+		guard let currentUser = currentUser else { return }
+		
+		Network.getMessages(for: currentUser) { data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Decode messages list
+				let decoder = JSONDecoder.withDate
+				guard let messages = try? decoder.decode([Message].self, from: data) else { return }
+				
+				// Save messages
+				let database = Database()
+				database.deleteAll(of: MessageObject.self)
+				database.createOrUpdate(models: messages, with: MessageObject.init)
+				
+				// Post a notification telling it's done
+				NotificationCenter.default.post(name: .messagesDownloaded, object: nil, userInfo: nil)
+			}
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		addObservers()
+		addKeyboardObservers()
 		
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = self
@@ -71,7 +102,7 @@ class ConversationController: UIViewController {
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
-		removeObservers()
+		removeKeyboardObservers()
 		
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = nil
@@ -84,44 +115,30 @@ class ConversationController: UIViewController {
 		collectionView.setNeedsLayout()
 		collectionView.layoutIfNeeded()
 		
-		if animated {
-			let bottomOffset = CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1)
-			collectionView.scrollRectToVisible(bottomOffset, animated: true)
-		} else {
-			let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height)
-			collectionView.setContentOffset(bottomOffset, animated: true)
-		}
+		let bottomOffset = CGRect(x: 0, y: collectionView.contentSize.height - 1, width: collectionView.contentSize.width, height: 1)
+		collectionView.scrollRectToVisible(bottomOffset, animated: animated)
 	}
 	
-	func addObservers() {
-		// Keyboard observers
+	func addKeyboardObservers() {
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
-		
-		// Orientaton observer
-		NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
 	}
 	
-	func removeObservers() {
-		// Remove every observers
+	func removeKeyboardObservers() {
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
-		NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
 	}
 	
 	// MARK: - Actions
 	
-	@objc func orientationDidChange() {
-		collectionView.collectionViewLayout.invalidateLayout()
-	}
-	
 	@objc func sendButtonTapped(_ sender: UIButton) {
-		// Check if the message is not empty
-		guard !messageBarView.isMessageEmpty else { print("Message empty"); return }
 		guard let currentUser = currentUser else { return }
 		guard let otherUser = otherUser else { return }
+		
+		// Check if the message is not empty
+		guard !messageBarView.isMessageEmpty else { return }
 		
 		if let messageText = messageBarView.textView.text {
 			let message = Message(sender: currentUser, receiver: otherUser, date: Date(), content: messageText)
@@ -146,6 +163,8 @@ class ConversationController: UIViewController {
 		collectionView.reloadData()
 		scrollToBottom(animated: true)
 	}
+	
+	// MARK: - Keyboard management
 	
 	@objc func keyboardWillShow(notification: NSNotification) {
 		guard let userInfo = notification.userInfo else { return }

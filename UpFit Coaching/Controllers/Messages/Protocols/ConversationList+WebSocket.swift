@@ -1,5 +1,5 @@
 //
-//  ConversationList+WebSocketDelegate.swift
+//  ConversationList+WebSocket.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 10/05/2018.
