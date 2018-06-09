@@ -21,8 +21,9 @@ class MessageBarView: UIView {
 		}
 	}
 	
+	private var isEditing = false
 	var isMessageEmpty: Bool {
-		return textView.text == "" || textView.text == placeholder
+		return textView.text == "" || textView.text == placeholder && !isEditing
 	}
 	
 	private var textFieldHeightConstraint: NSLayoutConstraint!
@@ -58,40 +59,8 @@ class MessageBarView: UIView {
 		aCoder.encode(placeholder, forKey: "placeholder")
 	}
 	
-	private func setupLayout() {
-		// Add a blur effect
-		let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-		blurEffectView.frame = bounds
-		
-		blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		addSubview(blurEffectView)
-		
-		// Initialize Text View
-		textView = UITextView()
-		textView.delegate = self
-		textView.translatesAutoresizingMaskIntoConstraints = false
-		textView.font = UIFont.systemFont(ofSize: 16)
-		textView.isScrollEnabled = false
-		
-		// Initialize Button
-		button = UIButton()
-		button.translatesAutoresizingMaskIntoConstraints = false
-		
-		// Add elements to the view
-		addSubview(textView)
-		addSubview(button)
-		
-		// Customize Text View
-		textView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-		textView.layer.borderWidth = 1.0
-		textView.layer.cornerRadius = 15.0
-		textView.layer.masksToBounds = true
-		
-		// Add constraints
-		textFieldHeightConstraint = textView.heightAnchor.constraint(equalToConstant: 35.0)
-		textFieldHeightConstraint.isActive = true
-		
-		NSLayoutConstraint.activate([
+	private func getConstraints() -> [NSLayoutConstraint] {
+		return [
 			textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
 			textView.topAnchor.constraint(equalTo: topAnchor, constant: 8.0),
 			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
@@ -100,13 +69,53 @@ class MessageBarView: UIView {
 			button.widthAnchor.constraint(equalToConstant: 65.0),
 			button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
 			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0)
-			])
+		]
+	}
+	
+	private func setUIComponents() {
+		// Initialize Text View
+		textView = UITextView()
+		textView.delegate = self
+		textView.translatesAutoresizingMaskIntoConstraints = false
+		textView.font = UIFont.systemFont(ofSize: 16)
+		textView.isScrollEnabled = false
+		
+		// Customize Text View
+		textView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+		textView.layer.borderWidth = 1.0
+		textView.layer.cornerRadius = 15.0
+		textView.layer.masksToBounds = true
+		
+		// Initialize Button
+		button = UIButton()
+		button.translatesAutoresizingMaskIntoConstraints = false
+	}
+	
+	private func setupLayout() {
+		setUIComponents()
+		
+		// Add a blur effect
+		let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+		blurEffectView.frame = bounds
+		
+		blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		addSubview(blurEffectView)
+		
+		// Add elements to the view
+		addSubview(textView)
+		addSubview(button)
+		
+		// Add constraints
+		textFieldHeightConstraint = textView.heightAnchor.constraint(equalToConstant: 35.0)
+		textFieldHeightConstraint.isActive = true
+		
+		NSLayoutConstraint.activate(getConstraints())
 	}
 }
 
 extension MessageBarView: UITextViewDelegate {
 	func textViewDidBeginEditing(_ textView: UITextView) {
-		guard let placeholder = placeholder else { return }
+		isEditing = true
 		
 		if textView.text == placeholder {
 			textView.text = ""
@@ -115,16 +124,16 @@ extension MessageBarView: UITextViewDelegate {
 	}
 
 	func textViewDidEndEditing(_ textView: UITextView) {
-		guard let placeholder = placeholder else { return }
+		isEditing = false
 		
-		if textView.text == "" {
+		if textView.text == "" || textView.text == placeholder {
 			textView.text = placeholder
 			textView.textColor = .lightGray
 		}
 	}
 	
 	func textViewDidChange(_ textView: UITextView) {
-		let maxHeight = UIScreen.main.bounds.height/3
+		let maxHeight = UIScreen.main.bounds.height / 3
 		
 		let size = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: maxHeight))
 		textFieldHeightConstraint.constant = CGFloat.minimum(size.height, maxHeight)
