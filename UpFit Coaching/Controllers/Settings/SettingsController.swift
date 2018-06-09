@@ -26,13 +26,24 @@ class SettingsController: FormViewController {
 	// MARK: - Actions
 	
 	func signOut() {
+		// Clear database
 		Database().deleteAll()
+		
+		// Clear preferences
 		UserDefaults.standard.removeObject(forKey: "userID")
 		UserDefaults.standard.removeObject(forKey: "firebaseToken")
 		
 		// Disconnect from webscoket
 		MessagesDelegate.instance.disconnect()
 		
+		// Reset Firebase ID
+		InstanceID.instanceID().deleteID { error in
+			if let error = error {
+				print(error.localizedDescription)
+			}
+		}
+		
+		// Go back to thee login screen
 		if tabBarController?.presentingViewController != nil {
 			tabBarController?.dismiss(animated: true)
 		} else {

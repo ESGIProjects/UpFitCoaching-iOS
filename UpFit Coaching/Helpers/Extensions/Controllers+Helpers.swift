@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 extension UIAlertController {
 	class func simpleAlert(title: String?, message: String?) -> UIAlertController {
@@ -60,7 +61,6 @@ extension UITabBarController {
 	}
 }
 extension UIViewController {
-
 	func presentAlert(title: String?, message: String?) {
 		
 		let alert = UIAlertController.simpleAlert(title: title, message: message)
@@ -86,4 +86,26 @@ extension UIViewController {
 		}
 	}
 	// swiftlint: enable large_tuple
+	
+	func processLogin(for user: User, completion: (() -> Void)? = nil) {
+		// Save user info
+		Database().createOrUpdate(model: user, with: UserObject.init)
+		UserDefaults.standard.set(user.userID, forKey: "userID")
+		
+		// Present the correct controller for the user
+		let tabBarController = UITabBarController.getRootViewController(for: user)
+		
+		// Start notifications
+		(UIApplication.shared.delegate as? AppDelegate)?.requestFirebaseToken()
+		
+		// Start websocket
+		MessagesDelegate.instance.connect()
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.present(tabBarController, animated: true) {
+				completion?()
+				UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+			}
+		}
+	}
 }

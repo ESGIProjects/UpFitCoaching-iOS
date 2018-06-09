@@ -84,20 +84,8 @@ class RegisterController: UIViewController {
 				user.birthDate = registerBox.birthDate
 				user.coach = unserializedData?.1
 				
-				// Save user info
-				Database().createOrUpdate(model: user, with: UserObject.init)
-				UserDefaults.standard.set(user.userID, forKey: "userID")
-				
-				// Present the current controller for the user
-				let tabBarController = UITabBarController.getRootViewController(for: user)
-				
-				// Start socket
-				MessagesDelegate.instance.connect()
-				
-				DispatchQueue.main.async {
-					self?.present(tabBarController, animated: true) {
-						self?.navigationController?.popToRootViewController(animated: false)
-					}
+				self?.processLogin(for: user) {
+					self?.navigationController?.popToRootViewController(animated: false)
 				}
 			} else {
 				Network.displayError(self, from: data)

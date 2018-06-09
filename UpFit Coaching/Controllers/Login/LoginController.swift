@@ -65,21 +65,9 @@ class LoginController: UIViewController {
 				
 				print("User ID", user.userID)
 				
-				// Save user info
-				Database().createOrUpdate(model: user, with: UserObject.init)
-				UserDefaults.standard.set(user.userID, forKey: "userID")
-				
-				// Present the correct controller for the user
-				let tabBarController = UITabBarController.getRootViewController(for: user)
-				
-				// Start websocket
-				MessagesDelegate.instance.connect()
-				
-				DispatchQueue.main.async {
-					self?.present(tabBarController, animated: true) {
-						self?.mailTextField.text = ""
-						self?.passwordTextField.text = ""
-					}
+				self?.processLogin(for: user) {
+					self?.mailTextField.text = ""
+					self?.passwordTextField.text = ""
 				}
 			} else {
 				Network.displayError(self, from: data)

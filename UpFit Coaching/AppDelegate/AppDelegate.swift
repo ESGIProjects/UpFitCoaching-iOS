@@ -16,7 +16,6 @@ import Starscream
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	let center = UNUserNotificationCenter.current()
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
@@ -24,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white
 		
-		// Request notifications authorization
-		center.delegate = self
-		center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+		// Set UserNotificationCenter delegate
+		UNUserNotificationCenter.current().delegate = self
 		
 		if let user = Database().getCurrentUser() {
 			// Show the tab bar controller
