@@ -221,9 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				1A9E1949207E30730091FABB /* Login */,
-				1A9E194B207E30A40091FABB /* Messages */,
 				D7D399DB20C939A10058EA0A /* Follow up */,
 				D71D60C9208CB29D00F143CA /* Calendar */,
+				1A9E194B207E30A40091FABB /* Messages */,
 				D7D399DC20C939C10058EA0A /* Forum */,
 				1A9E194A207E30900091FABB /* Settings */,
 			);

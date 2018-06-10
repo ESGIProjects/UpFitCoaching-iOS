@@ -13,6 +13,8 @@
 "addButton" = "Add";
 "nextButton" = "Next";
 "editButton" = "Edit";
+"noButton" = "No";
+"yesButton" = "Yes";
 
 // Login
 "loginController_title" = "Login";
@@ -83,6 +85,7 @@
 "eventDate_simple %@ %@ %@" = "%@\nfrom %@ to %@";
 "eventDate_multiple %@ %@ %@ %@" = "From %@ at %@\nto %@ at %@";
 "cancelEventButton" = "Cancel event";
+"cancelEvent_message" = "Are you sure to cancel this event?";
 
 // Add Event
 "editEventController_addTitle" = "New Event";

@@ -120,7 +120,10 @@ extension EventController {
 		dateLabel = UI.dateLabel()
 		addressLabel = UI.addressLabel()
 		mapView = UI.mapView()
+		
 		deleteButton = UI.deleteButton()
+		deleteButton.target = self
+		deleteButton.action = #selector(cancel)
 		
 		if currentUser?.type == 2 {
 			clientLabel = UI.clientLabel()
@@ -128,9 +131,7 @@ extension EventController {
 		
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
 		mapView.addGestureRecognizer(tapGestureRecognizer)
-		
-		navigationController?.isToolbarHidden = false
-		
+				
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 		toolbarItems = [flexibleSpace, deleteButton, flexibleSpace]
 	}
