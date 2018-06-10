@@ -85,7 +85,7 @@
 "eventDate_simple %@ %@ %@" = "%@\nde %@ à %@";
 "eventDate_multiple %@ %@ %@ %@" = "Du %@ à %@\nau %@ à %@";
 "cancelEventButton" = "Annuler l'événement";
-"cancelEvent_message" = "Êtes-vous sûr d'annuler cet événement ?";
+"cancelEvent_message" = "Êtes-vous sûr d'annuler cet événement ? Nous préviendrons votre correspondant.";
 
 // Add Event
 "editEventController_addTitle" = "Nouvel événement";

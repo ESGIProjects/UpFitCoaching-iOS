@@ -85,7 +85,7 @@
 "eventDate_simple %@ %@ %@" = "%@\nfrom %@ to %@";
 "eventDate_multiple %@ %@ %@ %@" = "From %@ at %@\nto %@ at %@";
 "cancelEventButton" = "Cancel event";
-"cancelEvent_message" = "Are you sure to cancel this event?";
+"cancelEvent_message" = "Are you sure to cancel this event? We will alert the other person.";
 
 // Add Event
 "editEventController_addTitle" = "New Event";
