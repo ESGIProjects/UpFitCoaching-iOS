@@ -35,7 +35,7 @@ class ConversationListController: UIViewController {
 		MessagesDelegate.instance.displayMode = .hide
 		
 		// Set foreground observer
-		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationWillEnterForeground, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -44,7 +44,7 @@ class ConversationListController: UIViewController {
 		MessagesDelegate.instance.displayMode = .display
 		
 		// Remove foreground observer
-		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	override func viewDidLoad() {

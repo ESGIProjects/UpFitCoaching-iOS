@@ -28,29 +28,32 @@ class MessagesDelegate {
 		}
 	}
 	
+	private var userInitiatedDisconnect = false
+	
 	private init() {
 		guard let userID = UserDefaults.standard.object(forKey: "userID") as? Int else { return }
 		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)") else { return }
 		
 		socket = WebSocket(url: url)
+		socket?.delegate = self
 		
 		// Observers
 		NotificationCenter.default.addObserver(self, selector: #selector(moveToBackground), name: .UIApplicationWillResignActive, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(moveToBackground), name: .UIApplicationWillTerminate, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationWillEnterForeground, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	deinit {
 		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive, object: nil)
-		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillTerminate, object: nil)
-		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	func connect() {
+		userInitiatedDisconnect = false
 		socket?.connect()
 	}
 	
 	func disconnect() {
+		userInitiatedDisconnect = true
 		socket?.disconnect()
 	}
 	
@@ -83,6 +86,15 @@ extension MessagesDelegate: WebSocketDelegate {
 	
 	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
 		print(#function, error?.localizedDescription ?? "")
+		
+		if !userInitiatedDisconnect {
+			Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
+				if !socket.isConnected {
+					self?.connect()
+					timer.invalidate()
+				}
+			}
+		}
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
