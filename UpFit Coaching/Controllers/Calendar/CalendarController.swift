@@ -82,7 +82,7 @@ class CalendarController: UIViewController {
 		guard let cell = cell as? CalendarCell else { return }
 		
 		// Show or hide background
-		cell.selectedBackground.isHidden = !cellState.isSelected || cellState.dateBelongsTo != .thisMonth		
+		cell.selectedBackground.isHidden = !cellState.isSelected || cellState.dateBelongsTo != .thisMonth
 		
 		// Show or hide dot
 		let isBusyDay = events.contains { Calendar.current.isDate($0.start, inSameDayAs: cellState.date) }

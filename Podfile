@@ -13,4 +13,5 @@ target 'UpFit Coaching' do
   pod 'Eureka'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'PKHUD'
 end

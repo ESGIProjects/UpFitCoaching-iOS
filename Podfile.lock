@@ -37,6 +37,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - PKHUD (5.0.0)
   - Protobuf (3.5.0)
   - Realm (3.5.0):
     - Realm/Headers (= 3.5.0)
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - JTAppleCalendar
+  - PKHUD
   - RealmSwift
   - Starscream
 
@@ -68,6 +70,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - JTAppleCalendar
     - nanopb
+    - PKHUD
     - Protobuf
     - Realm
     - RealmSwift
@@ -85,11 +88,12 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: d57f289bc59e16375a2d8d3c7b60c9fffb51d3cb
+PODFILE CHECKSUM: c92b6b5881343a8900bcfdcd628fae82e45bba11
 
 COCOAPODS: 1.5.0
