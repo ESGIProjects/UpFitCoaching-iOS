@@ -31,10 +31,8 @@
 		D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */; };
 		D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60CA208CB2B700F143CA /* CalendarController.swift */; };
 		D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D736E3F920C6DD93000A147E /* GoogleService-Info.plist */; };
-		D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */; };
-		D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */; };
-		D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */; };
-		D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */; };
+		D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */; };
+		D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableView.swift */; };
 		D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014920A4D5DF0078BEA4 /* RegisterBox.swift */; };
 		D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */; };
 		D744015120A4E8780078BEA4 /* ConversationList+WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */; };
@@ -110,10 +108,8 @@
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		D736E3F920C6DD93000A147E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UpFit Coaching.entitlements"; sourceTree = "<group>"; };
-		D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Delegate.swift"; sourceTree = "<group>"; };
-		D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+DataSource.swift"; sourceTree = "<group>"; };
-		D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDataSource.swift"; sourceTree = "<group>"; };
-		D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+JTAppleCalendar.swift"; sourceTree = "<group>"; };
+		D744014720A4C9760078BEA4 /* Calendar+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableView.swift"; sourceTree = "<group>"; };
 		D744014920A4D5DF0078BEA4 /* RegisterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBox.swift; sourceTree = "<group>"; };
 		D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+TableView.swift"; sourceTree = "<group>"; };
 		D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+WebSocket.swift"; sourceTree = "<group>"; };
@@ -253,10 +249,8 @@
 		1AB9EA1120A2FD67003441F8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D744014120A4C9560078BEA4 /* Calendar+Delegate.swift */,
-				D744014320A4C9600078BEA4 /* Calendar+DataSource.swift */,
-				D744014720A4C9760078BEA4 /* Calendar+TableViewDelegate.swift */,
-				D744014520A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift */,
+				D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */,
+				D744014720A4C9760078BEA4 /* Calendar+TableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -639,12 +633,10 @@
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
-				D744014620A4C96A0078BEA4 /* Calendar+TableViewDataSource.swift in Sources */,
 				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
-				D744014820A4C9760078BEA4 /* Calendar+TableViewDelegate.swift in Sources */,
+				D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
-				D744014220A4C9560078BEA4 /* Calendar+Delegate.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */,
 				D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */,
@@ -696,7 +688,7 @@
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
 				D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
-				D744014420A4C9600078BEA4 /* Calendar+DataSource.swift in Sources */,
+				D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 				D7EF961F20860EBB002E0A9B /* User.swift in Sources */,
 			);
