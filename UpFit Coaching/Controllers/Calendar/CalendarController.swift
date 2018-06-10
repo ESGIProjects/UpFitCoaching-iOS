@@ -39,6 +39,7 @@ class CalendarController: UIViewController {
 		
 		// Setting up layout
 		title = "calendar_title".localized
+		view.backgroundColor = .white
 		setupLayout()
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent))

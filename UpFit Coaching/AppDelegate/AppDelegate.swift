@@ -11,6 +11,7 @@ import UserNotifications
 
 import RealmSwift
 import Starscream
+import PKHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		configureFirebase(application)
 		window?.makeKeyAndVisible()
+		
+		// Setting up PKHUD
+		PKHUD.sharedHUD.dimsBackground = false
+		PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = true
 		
 		return true
 	}

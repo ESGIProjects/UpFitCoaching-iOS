@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import CryptoSwift
+import PKHUD
 
 class LoginController: UIViewController {
 	
@@ -54,6 +55,7 @@ class LoginController: UIViewController {
 		}
 		
 		// Perform the network call
+		HUD.show(.progress)
 		
 		Network.login(mail: mailValue, password: passwordValue.sha256()) { [weak self] data, response, _ in
 			guard let data = data else { return }
@@ -72,6 +74,8 @@ class LoginController: UIViewController {
 			} else {
 				Network.displayError(self, from: data)
 			}
+			
+			HUD.hide()
 		}
 	}
 	
