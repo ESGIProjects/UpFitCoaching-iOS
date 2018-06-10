@@ -11,7 +11,14 @@ import Eureka
 
 extension SettingsController {	
 	fileprivate func setUIComponents() {
-		signOutRow = ButtonRow("") {
+		editProfileRow = ButtonRow("editProfile") {
+			$0.title = "editProfileButton".localized
+			$0.onCellSelection { [unowned self] _, _ in
+				self.editProfile()
+			}
+		}
+		
+		signOutRow = ButtonRow("signOut") {
 			$0.title = "signOutButton".localized
 			$0.cellUpdate { cell, _ in
 				cell.textLabel?.tintColor = .red
@@ -27,6 +34,7 @@ extension SettingsController {
 	func setupLayout() {
 		setUIComponents()
 		
-		form +++ Section() <<< signOutRow
+		form +++ Section() <<< editProfileRow
+		form +++ Section("signOutButton".localized) <<< signOutRow
 	}
 }

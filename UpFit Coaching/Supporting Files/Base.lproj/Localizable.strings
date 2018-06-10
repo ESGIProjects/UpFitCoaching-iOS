@@ -105,7 +105,14 @@
 
 // Settings
 "settingsController_title" = "Settings";
+"editProfileButton" = "Edit Profile";
 "signOutButton" = "Sign Out";
+
+// Edit Profile
+"editProfileController_title" = "Edit Profile";
+"personalInfo_sectionTitle" = "Personal info";
+"miscellaneous_sectionTitle" = "Miscellaneous";
+"optionalField" = "Optional";
 
 // Network messages
 "user_already_exists" = "This user already exists.";

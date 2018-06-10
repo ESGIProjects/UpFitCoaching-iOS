@@ -12,6 +12,7 @@ import Eureka
 
 class SettingsController: FormViewController {
 	
+	var editProfileRow: ButtonRow!
 	var signOutRow: ButtonRow!
 	
 	// MARK: - UIViewController
@@ -24,6 +25,10 @@ class SettingsController: FormViewController {
 	}
 	
 	// MARK: - Actions
+	
+	func editProfile() {
+		self.present(UINavigationController(rootViewController: EditProfileController()), animated: true)
+	}
 	
 	func signOut() {
 		// Clear database
