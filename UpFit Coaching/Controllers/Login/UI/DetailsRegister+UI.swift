@@ -34,10 +34,10 @@ extension DetailsRegisterController {
 		lastNameRow = NameRow("lastName") {
 			$0.title = "lastName_fieldTitle".localized
 			$0.placeholder = "requiredField".localized
-			$0.value = registerController?.registerBox.firstName
+			$0.value = registerController?.registerBox.lastName
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
-					self.registerController?.registerBox.firstName = value
+					self.registerController?.registerBox.lastName = value
 				}
 			}
 			
