@@ -6,6 +6,9 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
+"betaFeature_alertTitle" = "Fonctionnalité bêta";
+"betaFeature_alertMessage" = "Cette fonctionnalité est encore en bêta et ne fonctionnera probablement pas.\nRevenez après une prochaine mise à jour !";
+
 // Common labels
 "app_name" = "UpFit Coaching";
 "error" = "Erreur";
@@ -60,14 +63,14 @@
 "signUpButton_short" = "S'inscrire";
 
 // Messages
-"conversationList_title" = "Messages";
+"conversationListController_title" = "Messages";
 "noMessagesYet" = "Aucun message.\nDites à vos clients de s'inscrire!";
 
 "message_placeholder" = "Message";
 "sendMessage_button" = "Envoyer";
 
 // Calendar
-"calendar_title" = "Calendrier";
+"calendarController_title" = "Calendrier";
 "monday_short" = "L";
 "tuesday_short" = "M";
 "wednesday_short" = "M";
@@ -103,6 +106,8 @@
 "threadTitle_placeholder" = "Titre";
 "postContent_placeholder" = "Votre message…";
 
+"addPostController_title" = "Ajouter un message";
+
 // Settings
 "settingsController_title" = "Réglages";
 "editProfileButton" = "Modifier le profil";
@@ -113,6 +118,9 @@
 "personalInfo_sectionTitle" = "Informations personnelles";
 "miscellaneous_sectionTitle" = "Autres informations";
 "optionalField" = "Optionnel";
+
+// Follow Up
+"followUpController_title" = "Suivi";
 
 // Network messages
 "user_already_exists" = "Cet utilisateur existe déjà.";

@@ -22,7 +22,7 @@
 		D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */; };
 		D702D2FC209F7F3200970081 /* TypeRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */; };
 		D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2FD209F800100970081 /* AccountRegister+UI.swift */; };
-		D702D302209F8D4000970081 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D301209F8D4000970081 /* Chart.swift */; };
+		D702D302209F8D4000970081 /* FollowUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D301209F8D4000970081 /* FollowUpController.swift */; };
 		D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A3D4F203CB3D9001C491A /* LoginController.swift */; };
 		D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642B208CBDA600EC3F6C /* CalendarCell.swift */; };
 		D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */; };
@@ -32,6 +32,7 @@
 		D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60CA208CB2B700F143CA /* CalendarController.swift */; };
 		D724AB8620CD69260074164C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8520CD69260074164C /* EditProfileController.swift */; };
 		D724AB8820CD77B70074164C /* EditProfile+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8720CD77B70074164C /* EditProfile+UI.swift */; };
+		D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8A20CD825B0074164C /* FollowUp+UI.swift */; };
 		D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D736E3F920C6DD93000A147E /* GoogleService-Info.plist */; };
 		D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */; };
 		D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableView.swift */; };
@@ -100,7 +101,7 @@
 		D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeRegisterController.swift; sourceTree = "<group>"; };
 		D702D2FB209F7F3200970081 /* TypeRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TypeRegister+UI.swift"; sourceTree = "<group>"; };
 		D702D2FD209F800100970081 /* AccountRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountRegister+UI.swift"; sourceTree = "<group>"; };
-		D702D301209F8D4000970081 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
+		D702D301209F8D4000970081 /* FollowUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpController.swift; sourceTree = "<group>"; };
 		D70A3D4F203CB3D9001C491A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D70C642B208CBDA600EC3F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		D70C642E208CCEF200EC3F6C /* Calendar+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+UI.swift"; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		D724AB8520CD69260074164C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		D724AB8720CD77B70074164C /* EditProfile+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfile+UI.swift"; sourceTree = "<group>"; };
+		D724AB8A20CD825B0074164C /* FollowUp+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FollowUp+UI.swift"; sourceTree = "<group>"; };
 		D736E3F920C6DD93000A147E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UpFit Coaching.entitlements"; sourceTree = "<group>"; };
 		D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+JTAppleCalendar.swift"; sourceTree = "<group>"; };
@@ -322,6 +324,14 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		D724AB8920CD82510074164C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D724AB8A20CD825B0074164C /* FollowUp+UI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		D744014B20A4E81C0078BEA4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,7 +433,8 @@
 		D7D399DB20C939A10058EA0A /* Follow up */ = {
 			isa = PBXGroup;
 			children = (
-				D702D301209F8D4000970081 /* Chart.swift */,
+				D702D301209F8D4000970081 /* FollowUpController.swift */,
+				D724AB8920CD82510074164C /* UI */,
 			);
 			path = "Follow up";
 			sourceTree = "<group>";
@@ -683,6 +694,7 @@
 				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,
 				D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */,
+				D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
@@ -690,7 +702,7 @@
 				D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */,
 				D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */,
 				D7B3C32F20B328C400CE3D7A /* DetailsRegisterController.swift in Sources */,
-				D702D302209F8D4000970081 /* Chart.swift in Sources */,
+				D702D302209F8D4000970081 /* FollowUpController.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,
 				D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */,

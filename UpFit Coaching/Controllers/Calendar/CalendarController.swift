@@ -39,7 +39,7 @@ class CalendarController: UIViewController {
 		super.viewDidLoad()
 		
 		// Setting up layout
-		title = "calendar_title".localized
+		title = "calendarController_title".localized
 		view.backgroundColor = .white
 		setupLayout()
 		

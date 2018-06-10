@@ -6,6 +6,9 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
+"betaFeature_alertTitle" = "Beta feature";
+"betaFeature_alertMessage" = "This feature is beta and probably won't work.\nCome back after a future update!";
+
 // Common labels
 "app_name" = "UpFit Coaching";
 "error" = "Error";
@@ -60,14 +63,14 @@
 "signUpButton_short" = "Sign Up";
 
 // Messages
-"conversationList_title" = "Messages";
+"conversationListController_title" = "Messages";
 "noMessagesYet" = "You have no messages yet.\nGet clients to register!";
 
 "message_placeholder" = "Message";
 "sendMessage_button" = "Send";
 
 // Calendar
-"calendar_title" = "Calendar";
+"calendarController_title" = "Calendar";
 "monday_short" = "M";
 "tuesday_short" = "T";
 "wednesday_short" = "W";
@@ -103,6 +106,8 @@
 "threadTitle_placeholder" = "Title";
 "postContent_placeholder" = "Your message…";
 
+"addPostController_title" = "Add message";
+
 // Settings
 "settingsController_title" = "Settings";
 "editProfileButton" = "Edit Profile";
@@ -113,6 +118,9 @@
 "personalInfo_sectionTitle" = "Personal info";
 "miscellaneous_sectionTitle" = "Miscellaneous";
 "optionalField" = "Optional";
+
+// Follow Up
+"followUpController_title" = "Follow Up";
 
 // Network messages
 "user_already_exists" = "This user already exists.";

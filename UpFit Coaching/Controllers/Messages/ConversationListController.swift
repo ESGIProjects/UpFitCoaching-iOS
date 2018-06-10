@@ -51,7 +51,7 @@ class ConversationListController: UIViewController {
 		super.viewDidLoad()
 		
 		// Setup layout
-		title = "conversationList_title".localized
+		title = "conversationListController_title".localized
 		setupLayout()
 		
 		if #available(iOS 11.0, *) {

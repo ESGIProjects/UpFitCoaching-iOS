@@ -1,5 +1,5 @@
 //
-//  Chart.swift
+//  FollowUpController.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 06/05/2018.
@@ -9,29 +9,25 @@
 import UIKit
 import Charts
 
-class Chart: UIViewController {
+class FollowUpController: UIViewController {
 	
-	var lineChartView = LineChartView()
-	var dates = [Date(), Date().addingTimeInterval(60 * 5)]
-	var numbers = [8.0, 10.0]
+	var lineChartView: LineChartView!
+	var dates = [Date]()
+	var numbers = [Double]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		lineChartView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(lineChartView)
+		title = "followUpController_title".localized
+		view.backgroundColor = .white
 		
-		let anchors = getAnchors()
-		NSLayoutConstraint.activate([
-			lineChartView.topAnchor.constraint(equalTo: anchors.top),
-			lineChartView.bottomAnchor.constraint(equalTo: anchors.bottom),
-			lineChartView.leadingAnchor.constraint(equalTo: anchors.leading),
-			lineChartView.trailingAnchor.constraint(equalTo: anchors.trailing)
-			])
+		dates = [Date(), Date().addingTimeInterval(60 * 60 * 24)]
+		numbers = [8.0, 10.0]
 		
-		lineChartView.noDataText = "Nothing to display"
-		
+		setupLayout()
 		setChart()
+		
+		presentAlert(title: "betaFeature_alertTitle".localized, message: "betaFeature_alertMessage".localized)
 	}
 	
 	func setChart() {

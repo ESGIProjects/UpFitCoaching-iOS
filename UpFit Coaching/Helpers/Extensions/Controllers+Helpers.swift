@@ -21,16 +21,21 @@ extension UITabBarController {
 	class func getRootViewController(for user: User) -> UITabBarController {
 		var viewControllers = [UIViewController]()
 		
+		// Follow Up
+		let followUpController = FollowUpController()
+		followUpController.tabBarItem = UITabBarItem(title: "followUpController_title".localized, image: #imageLiteral(resourceName: "followUp"), tag: 0)
+		viewControllers.append(followUpController)
+		
 		// Calendar
 		let calendarController = CalendarController()
-		calendarController.tabBarItem = UITabBarItem(title: "calendar_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 0)
+		calendarController.tabBarItem = UITabBarItem(title: "calendarController_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 1)
 		viewControllers.append(calendarController)
 		
 		// Messages
 		if user.type == 2 {
 			// Conversation List
 			let conversationListController = ConversationListController()
-			conversationListController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
+			conversationListController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 2)
 			viewControllers.append(conversationListController)
 		} else if let otherUser = user.coach {
 			// Conversation with coach
@@ -38,18 +43,18 @@ extension UITabBarController {
 			conversationController.otherUser = otherUser
 			conversationController.title = "\(otherUser.firstName) \(otherUser.lastName)"
 			
-			conversationController.tabBarItem = UITabBarItem(title: "conversationList_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 1)
+			conversationController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 2)
 			viewControllers.append(conversationController)
 		}
 		
 		// Forum
 		let forumController = ForumController()
-		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 2)
+		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 3)
 		viewControllers.append(forumController)
 		
 		// Settings
 		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 3)
+		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 4)
 		viewControllers.append(settingsController)
 		
 		// Creating the tab bar controller
@@ -57,6 +62,7 @@ extension UITabBarController {
 		
 		let tabBarController = UITabBarController()
 		tabBarController.setViewControllers(viewControllers, animated: true)
+		tabBarController.selectedIndex = 1
 		return tabBarController
 	}
 }
