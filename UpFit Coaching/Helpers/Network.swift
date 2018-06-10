@@ -201,6 +201,15 @@ class Network {
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
 	
+	class func updateProfile(for user: User, values: [String: String], completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/users/")
+		
+		var parameters = values as [String: Any]
+		parameters["userId"] = user.userID
+		
+		call(url, httpMethod: .put, parameters: parameters, completion: completion)
+	}
+	
 	class func isSuccess(response: URLResponse?, successCode: Int, caller: String = #function) -> Bool {
 		guard let response = response as? HTTPURLResponse else { return false }
 		print(caller, "Status code:", response.statusCode)

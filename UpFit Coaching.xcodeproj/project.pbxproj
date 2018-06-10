@@ -31,6 +31,7 @@
 		D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */; };
 		D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71D60CA208CB2B700F143CA /* CalendarController.swift */; };
 		D724AB8620CD69260074164C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8520CD69260074164C /* EditProfileController.swift */; };
+		D724AB8820CD77B70074164C /* EditProfile+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8720CD77B70074164C /* EditProfile+UI.swift */; };
 		D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D736E3F920C6DD93000A147E /* GoogleService-Info.plist */; };
 		D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */; };
 		D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableView.swift */; };
@@ -108,6 +109,7 @@
 		D71D60C7208BB5CD00F143CA /* MessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDelegate.swift; sourceTree = "<group>"; };
 		D71D60CA208CB2B700F143CA /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		D724AB8520CD69260074164C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		D724AB8720CD77B70074164C /* EditProfile+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfile+UI.swift"; sourceTree = "<group>"; };
 		D736E3F920C6DD93000A147E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UpFit Coaching.entitlements"; sourceTree = "<group>"; };
 		D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+JTAppleCalendar.swift"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				1AB9E9E5209C843D003441F8 /* Settings+UI.swift */,
+				D724AB8720CD77B70074164C /* EditProfile+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
 				D71D60CB208CB2B700F143CA /* CalendarController.swift in Sources */,
 				D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */,
+				D724AB8820CD77B70074164C /* EditProfile+UI.swift in Sources */,
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
 				D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
