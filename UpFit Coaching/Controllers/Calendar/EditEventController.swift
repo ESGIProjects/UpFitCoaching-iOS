@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class EditEventController: FormViewController {
 	
@@ -125,6 +126,10 @@ class EditEventController: FormViewController {
 		Network.updateEvent(event) { [weak self] data, response, _ in
 			guard let data = data else { return }
 			
+			DispatchQueue.main.async {
+				HUD.show(.progress)
+			}
+			
 			if Network.isSuccess(response: response, successCode: 200) {
 				// Creating the JSON decoder
 				let decoder = JSONDecoder.withDate
@@ -137,6 +142,10 @@ class EditEventController: FormViewController {
 				
 				// Dismiss controller
 				self?.navigationController?.dismiss(animated: true)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}

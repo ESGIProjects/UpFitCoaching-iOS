@@ -8,6 +8,7 @@
 
 import UIKit
 import CryptoSwift
+import PKHUD
 
 class RegisterController: UIViewController {
 	
@@ -66,6 +67,10 @@ class RegisterController: UIViewController {
 			parameters["birthDate"] = DateFormatter.date.string(for: birthDate)
 		}
 		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.register(with: parameters) { [weak self] data, response, _ in
 			guard let data = data else { return }
 			
@@ -89,6 +94,10 @@ class RegisterController: UIViewController {
 				}
 			} else {
 				Network.displayError(self, from: data)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}

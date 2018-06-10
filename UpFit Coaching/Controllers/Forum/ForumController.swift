@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class ForumController: UIViewController {
 	
@@ -47,6 +48,10 @@ class ForumController: UIViewController {
 	// MARK: - Helpers
 	
 	func downloadThreads() {
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.getThreads(for: ForumController.forumID) { data, response, _ in
 			guard let data = data else { return }
 			
@@ -62,6 +67,10 @@ class ForumController: UIViewController {
 				
 				// Post a notification telling its done
 				NotificationCenter.default.post(name: .threadsDownloaded, object: nil)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}

@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class AccountRegisterController: FormViewController {
 	
@@ -39,11 +40,19 @@ class AccountRegisterController: FormViewController {
 			
 			guard let mail = registerController?.registerBox.mail else { return }
 			
+			DispatchQueue.main.async {
+				HUD.show(.progress)
+			}
+			
 			Network.isMailExists(mail: mail) { [weak self] _, response, _ in
 				if Network.isSuccess(response: response, successCode: 200) {
 					self?.registerController?.goToDetails(.forward)
 				} else {
 					self?.presentAlert(title: "mail_duplicateError_title".localized, message: "mail_duplicateError_message".localized)
+				}
+				
+				DispatchQueue.main.async {
+					HUD.hide()
 				}
 			}
 		} else {

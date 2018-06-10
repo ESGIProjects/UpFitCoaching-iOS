@@ -8,6 +8,7 @@
 
 import UIKit
 import Starscream
+import PKHUD
 
 class ConversationController: UIViewController {
 	
@@ -70,6 +71,10 @@ class ConversationController: UIViewController {
 	func downloadMessages() {
 		guard let currentUser = currentUser else { return }
 		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.getMessages(for: currentUser) { data, response, _ in
 			guard let data = data else { return }
 			
@@ -85,6 +90,10 @@ class ConversationController: UIViewController {
 				
 				// Post a notification telling it's done
 				NotificationCenter.default.post(name: .messagesDownloaded, object: nil, userInfo: nil)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}

@@ -55,7 +55,9 @@ class LoginController: UIViewController {
 		}
 		
 		// Perform the network call
-		HUD.show(.progress)
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
 		
 		Network.login(mail: mailValue, password: passwordValue.sha256()) { [weak self] data, response, _ in
 			guard let data = data else { return }
@@ -75,7 +77,9 @@ class LoginController: UIViewController {
 				Network.displayError(self, from: data)
 			}
 			
-			HUD.hide()
+			DispatchQueue.main.async {
+				HUD.hide()
+			}
 		}
 	}
 	

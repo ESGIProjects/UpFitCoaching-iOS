@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import PKHUD
 
 class CalendarController: UIViewController {
 	
@@ -117,6 +118,10 @@ class CalendarController: UIViewController {
 	func downloadEvents() {
 		guard let currentUser = currentUser else { return }
 		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.getEvents(for: currentUser) { data, response, _ in
 			guard let data = data else { return }
 			
@@ -132,6 +137,10 @@ class CalendarController: UIViewController {
 				
 				// Post a notification telling its done
 				NotificationCenter.default.post(name: .eventsDownloaded, object: nil)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}

@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Setting up PKHUD
 		PKHUD.sharedHUD.dimsBackground = false
-		PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = true
 		
 		return true
 	}

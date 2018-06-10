@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class CreateThreadController: FormViewController {
 	
@@ -45,6 +46,10 @@ class CreateThreadController: FormViewController {
 		let thread = ForumThread(title: threadTitle, forum: forum)
 		let post = Post(thread: thread, user: currentUser, date: Date(), content: postContent)
 
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.createThread(thread, with: post) { [weak self] data, response, _ in
 			guard let data = data else { return }
 
@@ -63,6 +68,10 @@ class CreateThreadController: FormViewController {
 
 				// Dismiss controller
 				self?.navigationController?.dismiss(animated: true)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}

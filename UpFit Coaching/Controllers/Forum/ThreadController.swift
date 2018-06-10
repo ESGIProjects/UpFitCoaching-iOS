@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class ThreadController: UIViewController {
 	
@@ -49,6 +50,10 @@ class ThreadController: UIViewController {
 	func downloadPosts() {
 		guard let thread = thread else { return }
 		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.getPosts(for: thread) { data, response, _ in
 			guard let data = data else { return }
 			
@@ -64,6 +69,10 @@ class ThreadController: UIViewController {
 				
 				// Post a notification telling its done
 				NotificationCenter.default.post(name: .postsDownloaded, object: nil)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
 			}
 		}
 	}
