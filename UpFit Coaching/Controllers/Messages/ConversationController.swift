@@ -106,6 +106,9 @@ class ConversationController: UIViewController {
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = self
 		MessagesDelegate.instance.displayMode = .hide
+		
+		// Set foreground observer
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationWillEnterForeground, object: nil)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +119,9 @@ class ConversationController: UIViewController {
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = nil
 		MessagesDelegate.instance.displayMode = .display
+		
+		// Remove foreground observer
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
 	}
 	
 	// MARK: - Helpers
@@ -171,6 +177,10 @@ class ConversationController: UIViewController {
 		// Reload UI
 		collectionView.reloadData()
 		scrollToBottom(animated: true)
+	}
+	
+	@objc func moveToForeground() {
+		downloadMessages()
 	}
 	
 	// MARK: - Keyboard management

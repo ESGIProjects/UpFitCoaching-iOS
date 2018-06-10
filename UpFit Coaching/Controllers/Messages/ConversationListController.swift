@@ -33,12 +33,18 @@ class ConversationListController: UIViewController {
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = self
 		MessagesDelegate.instance.displayMode = .hide
+		
+		// Set foreground observer
+		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationWillEnterForeground, object: nil)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = nil
 		MessagesDelegate.instance.displayMode = .display
+		
+		// Remove foreground observer
+		NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
 	}
 	
 	override func viewDidLoad() {
@@ -108,5 +114,9 @@ class ConversationListController: UIViewController {
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
 		}
+	}
+	
+	@objc func moveToForeground() {
+		downloadMessages()
 	}
 }
