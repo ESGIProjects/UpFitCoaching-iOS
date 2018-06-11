@@ -46,4 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		return true
 	}
+	
+	func applicationDidBecomeActive(_ application: UIApplication) {
+		application.applicationIconBadgeNumber = 0
+		UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+	}
 }
