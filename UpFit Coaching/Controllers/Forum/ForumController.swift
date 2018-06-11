@@ -83,7 +83,7 @@ class ForumController: UIViewController {
 	}
 	
 	@objc func threadsDownloaded() {
-		threads = Database().getThreads(for: ForumController.forumID)
+		threads = Database().getThreads(for: ForumController.forumID).sorted { $0.lastUpdated > $1.lastUpdated }
 		
 		if let thread = threads.first {
 			forum = thread.forum

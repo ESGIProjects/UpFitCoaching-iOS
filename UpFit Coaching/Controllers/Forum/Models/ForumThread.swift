@@ -14,8 +14,8 @@ final class ForumThreadObject: Object {
 	@objc dynamic var title = ""
 	@objc dynamic var forum: ForumObject!
 	
-	@objc dynamic var lastUpdated: Date?
-	@objc dynamic var lastUser: UserObject?
+	@objc dynamic var lastUpdated: Date!
+	@objc dynamic var lastUser: UserObject!
 	
 	override static func primaryKey() -> String? {
 		return "threadID"
@@ -29,10 +29,7 @@ final class ForumThreadObject: Object {
 		forum = ForumObject(forum: thread.forum)
 		
 		lastUpdated = thread.lastUpdated
-
-		if let lastUser = thread.lastUser {
-			self.lastUser = UserObject(user: lastUser)
-		}
+		lastUser = UserObject(user: thread.lastUser)
 	}
 }
 
@@ -50,8 +47,8 @@ class ForumThread: NSObject, Codable {
 	var title: String
 	var forum: Forum
 	
-	var lastUpdated: Date?
-	var lastUser: User?
+	var lastUpdated: Date!
+	var lastUser: User!
 	
 	init(id: Int = 0, title: String, forum: Forum) {
 		threadID = id
@@ -65,9 +62,6 @@ class ForumThread: NSObject, Codable {
 		forum = Forum(object: object.forum)
 		
 		lastUpdated = object.lastUpdated
-		
-		if let lastUser = object.lastUser {
-			self.lastUser = User(object: lastUser)
-		}
+		lastUser = User(object: object.lastUser)
 	}
 }
