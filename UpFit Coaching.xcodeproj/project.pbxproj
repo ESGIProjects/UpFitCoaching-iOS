@@ -62,13 +62,12 @@
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
 		D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D773DD54203362DE001520CA /* LaunchScreen.storyboard */; };
-		D7811948207D3E72001762D4 /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811947207D3E72001762D4 /* Codables.swift */; };
 		D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */; };
 		D781194E207D4392001762D4 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781194D207D4392001762D4 /* SettingsController.swift */; };
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
 		D789201720544FAD0020C703 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Helpers.swift */; };
-		D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */; };
+		D7A5414920B0A87C003C9338 /* Decoding+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helpers.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
 		D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B3C32C20B3184300CE3D7A /* AccountRegisterController.swift */; };
@@ -153,13 +152,12 @@
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
 		D773DD52203362DE001520CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D773DD57203362DE001520CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7811947207D3E72001762D4 /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 		D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Controllers+Helpers.swift"; sourceTree = "<group>"; };
 		D781194D207D4392001762D4 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789201420544E890020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D789201620544FAD0020C703 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
-		D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helper.swift"; sourceTree = "<group>"; };
+		D7A5414820B0A87C003C9338 /* Decoding+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helpers.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
 		D7B3C32C20B3184300CE3D7A /* AccountRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterController.swift; sourceTree = "<group>"; };
@@ -521,8 +519,8 @@
 		D7EFFF31204FDE08004694EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D7811947207D3E72001762D4 /* Codables.swift */,
 				D7108AF92083B1C700AB6260 /* Database.swift */,
+				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
 				D7F8ED062087E0260049B385 /* Extensions */,
 			);
 			path = Helpers;
@@ -533,10 +531,9 @@
 			children = (
 				D7DAA23F20554E7F007F3011 /* Colors.swift */,
 				D789201620544FAD0020C703 /* String+Helpers.swift */,
-				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
 				D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */,
 				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
-				D7A5414820B0A87C003C9338 /* Decoding+Helper.swift */,
+				D7A5414820B0A87C003C9338 /* Decoding+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -716,7 +713,6 @@
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
 				D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */,
 				D702D2F2209F598C00970081 /* RegisterController.swift in Sources */,
-				D7811948207D3E72001762D4 /* Codables.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
 				1AD6A51F20C1509400146F31 /* EventController.swift in Sources */,
 				D789200D20542CF60020C703 /* Conversation.swift in Sources */,
@@ -726,7 +722,7 @@
 				1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */,
 				D70C642C208CBDA600EC3F6C /* CalendarCell.swift in Sources */,
 				D702D2F4209F599500970081 /* Register+UI.swift in Sources */,
-				D7A5414920B0A87C003C9338 /* Decoding+Helper.swift in Sources */,
+				D7A5414920B0A87C003C9338 /* Decoding+Helpers.swift in Sources */,
 				D7108AFA2083B1C700AB6260 /* Database.swift in Sources */,
 				D70C642F208CCEF200EC3F6C /* Calendar+UI.swift in Sources */,
 				D773DD4E203362DE001520CA /* ConversationController.swift in Sources */,

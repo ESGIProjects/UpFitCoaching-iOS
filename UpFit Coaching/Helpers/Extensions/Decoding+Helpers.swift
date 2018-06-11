@@ -1,5 +1,5 @@
 //
-//  Decoding+Helper.swift
+//  Decoding+Helpers.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 19/05/2018.
@@ -7,6 +7,10 @@
 //
 
 import Foundation
+
+struct ErrorMessage: Codable {
+	var message: String
+}
 
 extension DateFormatter {
 	static var time: DateFormatter {
