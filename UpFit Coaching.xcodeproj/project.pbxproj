@@ -14,6 +14,8 @@
 		1AB1D86F20CE6333002B1B06 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D86E20CE6333002B1B06 /* PostCell.swift */; };
 		1AB1D87120CE6C9C002B1B06 /* Thread+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87020CE6C9C002B1B06 /* Thread+TableView.swift */; };
 		1AB1D87320CE6CB5002B1B06 /* Thread+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87220CE6CB5002B1B06 /* Thread+UI.swift */; };
+		1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87620CE7A60002B1B06 /* AddPostController.swift */; };
+		1AB1D87920CE7AC4002B1B06 /* AddPost+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87820CE7AC4002B1B06 /* AddPost+UI.swift */; };
 		1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* EditEventController.swift */; };
 		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
 		1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */; };
@@ -94,6 +96,8 @@
 		1AB1D86E20CE6333002B1B06 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		1AB1D87020CE6C9C002B1B06 /* Thread+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+TableView.swift"; sourceTree = "<group>"; };
 		1AB1D87220CE6CB5002B1B06 /* Thread+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+UI.swift"; sourceTree = "<group>"; };
+		1AB1D87620CE7A60002B1B06 /* AddPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostController.swift; sourceTree = "<group>"; };
+		1AB1D87820CE7AC4002B1B06 /* AddPost+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPost+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E2209C6E13003441F8 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
 		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEvent+UI.swift"; sourceTree = "<group>"; };
@@ -366,6 +370,7 @@
 				D744FEE620C9D46900FC5320 /* Forum+UI.swift */,
 				D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */,
 				1AB1D87220CE6CB5002B1B06 /* Thread+UI.swift */,
+				1AB1D87820CE7AC4002B1B06 /* AddPost+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				D7D399DD20C941980058EA0A /* ForumController.swift */,
 				D744FEE420C9848100FC5320 /* CreateThreadController.swift */,
 				D744FEF020CADDDE00FC5320 /* ThreadController.swift */,
+				1AB1D87620CE7A60002B1B06 /* AddPostController.swift */,
 				D744FEEA20C9D47A00FC5320 /* UI */,
 				D7D399DF20C966830058EA0A /* Models */,
 				1AB1D86B20CE6303002B1B06 /* Views */,
@@ -670,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
+				1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
 				D724AB8620CD69260074164C /* EditProfileController.swift in Sources */,
@@ -721,6 +728,7 @@
 				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
+				1AB1D87920CE7AC4002B1B06 /* AddPost+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
 				D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */,
 				D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */,

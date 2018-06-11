@@ -85,41 +85,9 @@ class ThreadController: UIViewController {
 	}
 	
 	@objc func addPost() {
-		guard let currentUser = currentUser else { return }
-		guard let thread = thread else { return }
-		
-		let alertController = UIAlertController(title: "addPostController_title".localized, message: nil, preferredStyle: .alert)
-		alertController.addTextField { textField in
-			textField.placeholder = "postContent_placeholder".localized
-		}
-		
-		alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-		alertController.addAction(UIAlertAction(title: "OKButton".localized, style: .default, handler: { _ in
-			guard let textField = alertController.textFields?[0],
-			let postContent = textField.text, postContent != "" else { return }
-			
-			let post = Post(thread: thread, user: currentUser, date: Date(), content: postContent)
-			
-			Network.addPost(post, to: thread) { [weak self] data, response, _ in
-				guard let data = data else { return }
-				
-				if Network.isSuccess(response: response, successCode: 201) {
-					// Unserialize post id
-					guard let postID = self?.unserialize(data) else { return }
-					
-					// Set post id
-					post.postID = postID
-					
-					// Save object
-					Database().createOrUpdate(model: post, with: PostObject.init)
-					
-					// Reload posts
-					self?.postsDownloaded()
-				}
-			}
-		}))
-		
-		present(alertController, animated: true)
+		let addPostController = AddPostController()
+		addPostController.thread = thread
+		present(UINavigationController(rootViewController: addPostController), animated: true)
 	}
 	
 	private func unserialize(_ data: Data) -> Int? {
