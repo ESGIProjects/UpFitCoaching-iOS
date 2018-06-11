@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A13093E20CEC276009B608B /* Network+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13093D20CEC276009B608B /* Network+User.swift */; };
+		1A13094020CEC8CA009B608B /* Network+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13093F20CEC8CA009B608B /* Network+Messages.swift */; };
+		1A13094220CEC8EA009B608B /* Network+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13094120CEC8EA009B608B /* Network+Events.swift */; };
+		1A13094420CEC902009B608B /* Network+Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13094320CEC902009B608B /* Network+Forum.swift */; };
 		1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A0199208DCC610005C60A /* Notification+Names.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
@@ -86,6 +90,10 @@
 
 /* Begin PBXFileReference section */
 		040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpFit_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A13093D20CEC276009B608B /* Network+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+User.swift"; sourceTree = "<group>"; };
+		1A13093F20CEC8CA009B608B /* Network+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Messages.swift"; sourceTree = "<group>"; };
+		1A13094120CEC8EA009B608B /* Network+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Events.swift"; sourceTree = "<group>"; };
+		1A13094320CEC902009B608B /* Network+Forum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Forum.swift"; sourceTree = "<group>"; };
 		1A9A0199208DCC610005C60A /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
 		1A9E1946207E0EFB0091FABB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -184,6 +192,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A13093C20CEC22D009B608B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFFF32204FDE47004694EC /* Network.swift */,
+				1A13093D20CEC276009B608B /* Network+User.swift */,
+				1A13093F20CEC8CA009B608B /* Network+Messages.swift */,
+				1A13094120CEC8EA009B608B /* Network+Events.swift */,
+				1A13094320CEC902009B608B /* Network+Forum.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		1A8A18E6203AFD11006D2183 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +439,7 @@
 				D773DD57203362DE001520CA /* Info.plist */,
 				D736E3F920C6DD93000A147E /* GoogleService-Info.plist */,
 				1A9E194C207E37040091FABB /* Controllers */,
+				1A13093C20CEC22D009B608B /* Network */,
 				D7EFFF31204FDE08004694EC /* Helpers */,
 				D789201520544F7E0020C703 /* Supporting Files */,
 			);
@@ -500,7 +521,6 @@
 		D7EFFF31204FDE08004694EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D7EFFF32204FDE47004694EC /* Network.swift */,
 				D7811947207D3E72001762D4 /* Codables.swift */,
 				D7108AF92083B1C700AB6260 /* Database.swift */,
 				D7F8ED062087E0260049B385 /* Extensions */,
@@ -676,10 +696,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
+				1A13093E20CEC276009B608B /* Network+User.swift in Sources */,
 				1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
 				D724AB8620CD69260074164C /* EditProfileController.swift in Sources */,
+				1A13094420CEC902009B608B /* Network+Forum.swift in Sources */,
 				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
 				D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
@@ -712,6 +734,7 @@
 				D702D2FC209F7F3200970081 /* TypeRegister+UI.swift in Sources */,
 				D70C6432208CEFB000EC3F6C /* CalendarTableCell.swift in Sources */,
 				D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */,
+				1A13094020CEC8CA009B608B /* Network+Messages.swift in Sources */,
 				1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */,
 				D744FEE920C9D47600FC5320 /* CreateThread+UI.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
@@ -732,6 +755,7 @@
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
 				D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */,
 				D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */,
+				1A13094220CEC8EA009B608B /* Network+Events.swift in Sources */,
 				D7B3C32F20B328C400CE3D7A /* DetailsRegisterController.swift in Sources */,
 				D702D302209F8D4000970081 /* FollowUpController.swift in Sources */,
 				D7DAA24220554F7C007F3011 /* Message.swift in Sources */,
