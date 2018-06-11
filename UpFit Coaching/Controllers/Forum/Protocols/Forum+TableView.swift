@@ -10,17 +10,28 @@ import UIKit
 
 extension ForumController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		var cell: ThreadCell
 		
-		let cell = tableView.dequeueReusableCell(withIdentifier: "ThreadCell", for: indexPath)
+		if let threadCell = tableView.dequeueReusableCell(withIdentifier: "ThreadCell", for: indexPath) as? ThreadCell {
+			cell = threadCell
+		} else {
+			cell = ThreadCell(style: .default, reuseIdentifier: "ThreadCell")
+		}
 		
 		let thread = threads[indexPath.row]
-		cell.textLabel?.text = thread.title
+		
+		cell.titleLabel.text = thread.title
+		cell.infoLabel.text = "Dernier message hier, 20:10 par Jason Pierna"
 		
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return threads.count
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
 	}
 }
 

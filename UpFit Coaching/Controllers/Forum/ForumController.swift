@@ -38,7 +38,7 @@ class ForumController: UIViewController {
 		setupLayout()
 		
 		// Register cell and notification
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ThreadCell")
+		tableView.register(ThreadCell.self, forCellReuseIdentifier: "ThreadCell")
 		NotificationCenter.default.addObserver(self, selector: #selector(threadsDownloaded), name: .threadsDownloaded, object: nil)
 		
 		// Download all threads

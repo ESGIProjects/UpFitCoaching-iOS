@@ -34,6 +34,7 @@ extension ForumController {
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.tableFooterView = UIView(frame: .zero)
+		tableView.estimatedRowHeight = 50.0
 	}
 	
 	func setupLayout() {
