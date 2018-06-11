@@ -10,6 +10,10 @@
 		1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A0199208DCC610005C60A /* Notification+Names.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
+		1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D86C20CE632B002B1B06 /* ThreadCell.swift */; };
+		1AB1D86F20CE6333002B1B06 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D86E20CE6333002B1B06 /* PostCell.swift */; };
+		1AB1D87120CE6C9C002B1B06 /* Thread+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87020CE6C9C002B1B06 /* Thread+TableView.swift */; };
+		1AB1D87320CE6CB5002B1B06 /* Thread+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87220CE6CB5002B1B06 /* Thread+UI.swift */; };
 		1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* EditEventController.swift */; };
 		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
 		1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */; };
@@ -86,6 +90,10 @@
 		1A9E1948207E0F480091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1AA39738203C1BA10020092D /* ConversationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListController.swift; sourceTree = "<group>"; };
 		1AA3973A203C50520020092D /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
+		1AB1D86C20CE632B002B1B06 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
+		1AB1D86E20CE6333002B1B06 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		1AB1D87020CE6C9C002B1B06 /* Thread+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+TableView.swift"; sourceTree = "<group>"; };
+		1AB1D87220CE6CB5002B1B06 /* Thread+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E2209C6E13003441F8 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
 		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEvent+UI.swift"; sourceTree = "<group>"; };
@@ -245,6 +253,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		1AB1D86B20CE6303002B1B06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1AB1D86C20CE632B002B1B06 /* ThreadCell.swift */,
+				1AB1D86E20CE6333002B1B06 /* PostCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1AB9E9E4209C842C003441F8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +365,7 @@
 			children = (
 				D744FEE620C9D46900FC5320 /* Forum+UI.swift */,
 				D744FEE820C9D47600FC5320 /* CreateThread+UI.swift */,
+				1AB1D87220CE6CB5002B1B06 /* Thread+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -356,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				D744FEEC20C9D4C200FC5320 /* Forum+TableView.swift */,
+				1AB1D87020CE6C9C002B1B06 /* Thread+TableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -447,6 +466,7 @@
 				D744FEF020CADDDE00FC5320 /* ThreadController.swift */,
 				D744FEEA20C9D47A00FC5320 /* UI */,
 				D7D399DF20C966830058EA0A /* Models */,
+				1AB1D86B20CE6303002B1B06 /* Views */,
 				D744FEEB20C9D4B300FC5320 /* Protocols */,
 			);
 			path = Forum;
@@ -656,6 +676,7 @@
 				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
 				D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
+				1AB1D87120CE6C9C002B1B06 /* Thread+TableView.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
 				D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */,
@@ -690,12 +711,14 @@
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
 				D744FEED20C9D4C200FC5320 /* Forum+TableView.swift in Sources */,
+				1AB1D86F20CE6333002B1B06 /* PostCell.swift in Sources */,
 				D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */,
 				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,
 				D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */,
 				D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
+				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
 				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
@@ -709,6 +732,7 @@
 				D724AB8820CD77B70074164C /* EditProfile+UI.swift in Sources */,
 				D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */,
 				D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */,
+				1AB1D87320CE6CB5002B1B06 /* Thread+UI.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,

@@ -21,6 +21,8 @@ class ThreadController: UIViewController {
 	var thread: ForumThread?
 	var posts = [Post]()
 	
+	let dateFormatter = DateFormatter()
+	
 	// MARK: - UIViewController
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +39,13 @@ class ThreadController: UIViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPost))
 		setupLayout()
 		
+		// Setup formatter
+		dateFormatter.timeStyle = .short
+		dateFormatter.dateStyle = .short
+		dateFormatter.doesRelativeDateFormatting = true
+		
 		// Register cell and notification
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PostCell")
+		tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
 		NotificationCenter.default.addObserver(self, selector: #selector(postsDownloaded), name: .postsDownloaded, object: nil)
 		
 		// Download all posts
@@ -132,54 +139,5 @@ class ThreadController: UIViewController {
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
 		}
-	}
-}
-
-extension ThreadController {
-	class UI {
-		class func tableView() -> UITableView {
-			let view = UITableView(frame: .zero)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			return view
-		}
-	}
-	
-	fileprivate func getConstraints() -> [NSLayoutConstraint] {
-		let anchors = getAnchors()
-		
-		return [
-			tableView.topAnchor.constraint(equalTo: anchors.top),
-			tableView.bottomAnchor.constraint(equalTo: anchors.bottom),
-			tableView.leadingAnchor.constraint(equalTo: anchors.leading),
-			tableView.trailingAnchor.constraint(equalTo: anchors.trailing)
-		]
-	}
-	
-	fileprivate func setUIComponents() {
-		tableView = UI.tableView()
-		tableView.dataSource = self
-	}
-	
-	func setupLayout() {
-		setUIComponents()
-		
-		view.addSubview(tableView)
-		NSLayoutConstraint.activate(getConstraints())
-	}
-}
-
-extension ThreadController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return posts.count
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-		
-		let post = posts[indexPath.row]
-		cell.textLabel?.text = post.content
-		
-		return cell
 	}
 }
