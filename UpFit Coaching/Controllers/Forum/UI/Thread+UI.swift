@@ -33,6 +33,7 @@ extension ThreadController {
 		tableView = UI.tableView()
 		tableView.dataSource = self
 		tableView.delegate = self
+		tableView.tableFooterView = UIView(frame: .zero)
 	}
 	
 	func setupLayout() {
