@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension ForumController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -21,7 +22,11 @@ extension ForumController: UITableViewDataSource {
 		let thread = threads[indexPath.row]
 		
 		cell.titleLabel.text = thread.title
-		cell.infoLabel.text = "Dernier message hier, 20:10 par Jason Pierna"
+		
+		if let lastUpdated = thread.lastUpdated,
+			let lastUser = thread.lastUser {
+			cell.infoLabel.text = "thread_subtitle %@ %@ %@".localized(with: dateFormatter.string(from: lastUpdated), lastUser.firstName, lastUser.lastName)
+		}
 		
 		return cell
 	}

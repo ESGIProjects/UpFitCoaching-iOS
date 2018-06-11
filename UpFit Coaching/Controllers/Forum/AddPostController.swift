@@ -52,8 +52,10 @@ class AddPostController: FormViewController {
 				// Unserialize post id
 				guard let postID = self?.unserialize(data) else { return }
 				
-				// Set post id
+				// Set post id and update thread object
 				post.postID = postID
+				thread.lastUser = post.user
+				thread.lastUpdated = post.date
 				
 				// Save object
 				Database().createOrUpdate(model: post, with: PostObject.init)

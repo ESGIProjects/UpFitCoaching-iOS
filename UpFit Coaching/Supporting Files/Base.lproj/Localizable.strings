@@ -101,8 +101,9 @@
 
 // Forum
 "forumController_title" = "Forum";
-"createThreadController_title" = "Create Thread";
+"thread_subtitle %@ %@ %@" = "Last message: %@ by %@ %@";
 
+"createThreadController_title" = "Create Thread";
 "threadTitle_placeholder" = "Title";
 "postContent_placeholder" = "Your message…";
 

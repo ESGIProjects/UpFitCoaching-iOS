@@ -45,6 +45,8 @@ class CreateThreadController: FormViewController {
 		
 		let thread = ForumThread(title: threadTitle, forum: forum)
 		let post = Post(thread: thread, user: currentUser, date: Date(), content: postContent)
+		thread.lastUser = post.user
+		thread.lastUpdated = post.date
 
 		DispatchQueue.main.async {
 			HUD.show(.progress)

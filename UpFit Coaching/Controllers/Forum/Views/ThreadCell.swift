@@ -43,7 +43,7 @@ class ThreadCell: UITableViewCell {
 		infoLabel = UILabel(frame: .zero)
 		infoLabel.translatesAutoresizingMaskIntoConstraints = false
 		infoLabel.numberOfLines = 2
-		infoLabel.font = UIFont.systemFont(ofSize: 15)
+		infoLabel.font = UIFont.systemFont(ofSize: 14)
 		infoLabel.textColor = .gray
 	}
 	

@@ -21,6 +21,8 @@ class ForumController: UIViewController {
 	var forum: Forum?
 	var threads = [ForumThread]()
 	
+	let dateFormatter = DateFormatter()
+	
 	// MARK: - UIViewController
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +38,11 @@ class ForumController: UIViewController {
 		title = "forumController_title".localized
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addThread))
 		setupLayout()
+		
+		// Setup dateformatter
+		dateFormatter.dateStyle = .short
+		dateFormatter.timeStyle = .short
+		dateFormatter.doesRelativeDateFormatting = true
 		
 		// Register cell and notification
 		tableView.register(ThreadCell.self, forCellReuseIdentifier: "ThreadCell")
