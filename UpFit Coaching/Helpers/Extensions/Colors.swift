@@ -21,6 +21,10 @@ extension UIColor {
 	
 	// Colors by element
 	// Those colors should be defined by the main colors
+	static let followUpBMILine: UIColor					= UIColor(red: 244.0/255.0, green: 67.0/255.0, blue: 54.0/255.0, alpha: 1.0)
+	static let followUpBFPLine: UIColor					= UIColor(red: 0, green: 150.0/255.0, blue: 136.0/255.0, alpha: 1.0)
+	static let followUpWeightLine: UIColor				= UIColor(red: 33.0/255.0, green: 150.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+	
 	static let messageReceivedBackground: UIColor		= UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 234.0/255.0, alpha: 1.0)
 	static let messageReceivedText: UIColor				= .black
 	static let messageSentBackground: UIColor			= UIColor(red: 43.0/255.0, green: 149.0/255.0, blue: 245.0/255.0, alpha: 1.0)

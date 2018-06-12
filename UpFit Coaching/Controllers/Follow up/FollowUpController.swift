@@ -11,45 +11,80 @@ import Charts
 
 class FollowUpController: UIViewController {
 	
-	var lineChartView: LineChartView!
-	var dates = [Date]()
-	var numbers = [Double]()
+	var weightTitleLabel: UILabel!
+	var weightChartView: LineChartView!
+	var bodyTitleLabel: UILabel!
+	var bodyChartView: LineChartView!
+	var BMILabel: UILabel!
+	var currentBMILabel: UILabel!
+	var BFPLabel: UILabel!
+	var currentBFPLabel: UILabel!
+	
+	var weightChartData: LineChartData!
+	var bodyChartData: LineChartData!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		title = "followUpController_title".localized
 		view.backgroundColor = .white
-		
-		dates = [Date(), Date().addingTimeInterval(60 * 60 * 24)]
-		numbers = [8.0, 10.0]
-		
 		setupLayout()
-		setChart()
 		
 		presentAlert(title: "betaFeature_alertTitle".localized, message: "betaFeature_alertMessage".localized)
 	}
 	
-	func setChart() {
+	func generateBMI() {
 		var entries = [ChartDataEntry]()
-		var strDates = [String]()
 		
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "HH:mm"
+		entries.append(ChartDataEntry(x: 1.0, y: 19.0))
+		entries.append(ChartDataEntry(x: 3.0, y: 18.2))
+		entries.append(ChartDataEntry(x: 6.0, y: 18.8))
+		entries.append(ChartDataEntry(x: 10.0, y: 19.1))
 		
-		for (index, date) in dates.enumerated() {
-			let entry = ChartDataEntry(x: Double(index), y: numbers[index])
-			entries.append(entry)
-			strDates.append(dateFormatter.string(from: date))
-		}
+		let dataSet = LineChartDataSet(values: entries, label: "IMC")
+		dataSet.setColor(.followUpBMILine)
+		dataSet.circleRadius = 5.0
+		dataSet.drawValuesEnabled = false
+		dataSet.mode = .horizontalBezier
+		dataSet.axisDependency = .right
 		
-		// Creating the data set
-		let dataSet = LineChartDataSet(values: entries, label: "Nombres")
-		dataSet.drawCirclesEnabled = false
-		dataSet.colors = [.red]
+		bodyChartData.addDataSet(dataSet)
+	}
+	
+	func generateBFP() {
+		var entries = [ChartDataEntry]()
 		
-		// Creating the data from data set
-		let data = LineChartData(dataSet: dataSet)
-		lineChartView.data = data
+		entries.append(ChartDataEntry(x: 1.0, y: 22.0))
+		entries.append(ChartDataEntry(x: 3.0, y: 23.3))
+		entries.append(ChartDataEntry(x: 6.0, y: 21.0))
+		entries.append(ChartDataEntry(x: 10.0, y: 20.3))
+		
+		let dataSet = LineChartDataSet(values: entries, label: "IMG")
+		dataSet.setColor(.followUpBFPLine)
+		dataSet.circleRadius = 5.0
+		dataSet.drawValuesEnabled = false
+		dataSet.mode = .horizontalBezier
+		dataSet.axisDependency = .right
+		
+		bodyChartData.addDataSet(dataSet)
+	}
+	
+	func generateWeight() {
+		var entries = [ChartDataEntry]()
+		
+		entries.append(ChartDataEntry(x: 1.0, y: 61.2))
+		entries.append(ChartDataEntry(x: 3.0, y: 62.3))
+		entries.append(ChartDataEntry(x: 6.0, y: 62.0))
+		entries.append(ChartDataEntry(x: 10.0, y: 57.3))
+		
+		let dataSet = LineChartDataSet(values: entries, label: "Poids")
+		dataSet.setColor(.followUpWeightLine)
+		dataSet.circleRadius = 5.0
+		dataSet.drawValuesEnabled = false
+		dataSet.drawFilledEnabled = true
+		dataSet.mode = .horizontalBezier
+		dataSet.axisDependency = .right
+		
+		weightChartData.addDataSet(dataSet)
 	}
 }
