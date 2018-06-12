@@ -122,6 +122,13 @@
 
 // Follow Up
 "followUpController_title" = "Follow Up";
+"weightChart_title" = "Weight";
+"bodyValuesChart_title" = "Body values";
+"currentBmi_label" = "Current BMI";
+"currentBfp_label" = "Current BFP";
+"bmi_label" = "BMI";
+"bfp_label" = "BFP";
+"weight_label" = "Weight";
 
 // Network messages
 "user_already_exists" = "This user already exists.";

@@ -14,7 +14,7 @@ extension FollowUpController {
 		class func weightTitleLabel() -> UILabel {
 			let label = UILabel()
 			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "Poids"
+			label.text = "weightChart_title".localized
 			label.font = UIFont.boldSystemFont(ofSize: 20)
 			return label
 		}
@@ -37,7 +37,7 @@ extension FollowUpController {
 		class func bodyTitleLabel() -> UILabel {
 			let label = UILabel()
 			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "Indices corporels"
+			label.text = "bodyValuesChart_title".localized
 			label.font = UIFont.boldSystemFont(ofSize: 20)
 			return label
 		}
@@ -61,7 +61,7 @@ extension FollowUpController {
 		class func BMILabel() -> UILabel {
 			let label = UILabel()
 			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "IMC actuel"
+			label.text = "currentBmi_label".localized
 			label.textAlignment = .center
 			label.font = UIFont.boldSystemFont(ofSize: 19)
 			return label
@@ -80,7 +80,7 @@ extension FollowUpController {
 		class func BFPLabel() -> UILabel {
 			let label = UILabel()
 			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "IMG actuel"
+			label.text = "currentBfp_label".localized
 			label.textAlignment = .center
 			label.font = UIFont.boldSystemFont(ofSize: 19)
 			return label

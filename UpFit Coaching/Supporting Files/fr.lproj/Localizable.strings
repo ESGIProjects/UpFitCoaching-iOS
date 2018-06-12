@@ -122,6 +122,13 @@
 
 // Follow Up
 "followUpController_title" = "Suivi";
+"weightChart_title" = "Poids";
+"bodyValuesChart_title" = "Indices corporels";
+"currentBmi_label" = "IMC actuel";
+"currentBfp_label" = "IMG actuel";
+"bmi_label" = "IMC";
+"bfp_label" = "IMG";
+"weight_label" = "Poids";
 
 // Network messages
 "user_already_exists" = "Cet utilisateur existe déjà.";

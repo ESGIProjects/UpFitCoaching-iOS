@@ -41,7 +41,7 @@ class FollowUpController: UIViewController {
 		entries.append(ChartDataEntry(x: 6.0, y: 18.8))
 		entries.append(ChartDataEntry(x: 10.0, y: 19.1))
 		
-		let dataSet = LineChartDataSet(values: entries, label: "IMC")
+		let dataSet = LineChartDataSet(values: entries, label: "bmi_label".localized)
 		dataSet.setColor(.followUpBMILine)
 		dataSet.circleRadius = 5.0
 		dataSet.drawValuesEnabled = false
@@ -59,7 +59,7 @@ class FollowUpController: UIViewController {
 		entries.append(ChartDataEntry(x: 6.0, y: 21.0))
 		entries.append(ChartDataEntry(x: 10.0, y: 20.3))
 		
-		let dataSet = LineChartDataSet(values: entries, label: "IMG")
+		let dataSet = LineChartDataSet(values: entries, label: "bfp_label".localized)
 		dataSet.setColor(.followUpBFPLine)
 		dataSet.circleRadius = 5.0
 		dataSet.drawValuesEnabled = false
@@ -77,7 +77,7 @@ class FollowUpController: UIViewController {
 		entries.append(ChartDataEntry(x: 6.0, y: 62.0))
 		entries.append(ChartDataEntry(x: 10.0, y: 57.3))
 		
-		let dataSet = LineChartDataSet(values: entries, label: "Poids")
+		let dataSet = LineChartDataSet(values: entries, label: "weight_label".localized)
 		dataSet.setColor(.followUpWeightLine)
 		dataSet.circleRadius = 5.0
 		dataSet.drawValuesEnabled = false
