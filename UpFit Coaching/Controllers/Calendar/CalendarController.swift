@@ -93,12 +93,12 @@ class CalendarController: UIViewController {
 		// Select text color
 		if cellState.dateBelongsTo == .thisMonth {
 			if cellState.isSelected {
-				cell.dateLabel.textColor = .selectedDate
+				cell.dateLabel.textColor = .calendarSelectedDayText
 			} else {
-				cell.dateLabel.textColor = .currentMonthDates
+				cell.dateLabel.textColor = .calendarDaysOfMonthText
 			}
 		} else {
-			cell.dateLabel.textColor = .outsideMonthDates
+			cell.dateLabel.textColor = .calendarDaysOutsideOfMonthText
 		}
 	}
 	

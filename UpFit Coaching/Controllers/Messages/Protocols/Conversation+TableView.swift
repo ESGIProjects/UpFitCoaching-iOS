@@ -25,11 +25,11 @@ extension ConversationController: UICollectionViewDataSource {
 		cell.messageLabel.text = message.content
 		
 		if message.sender != currentUser {
-			cell.messageLabel.textColor = .receivedBubbleText
-			cell.contentView.backgroundColor = .receivedBubbleBackground
+			cell.messageLabel.textColor = .messageReceivedText
+			cell.contentView.backgroundColor = .messageReceivedBackground
 		} else {
-			cell.messageLabel.textColor = .sentBubbleText
-			cell.contentView.backgroundColor = .sentBubbleBackground
+			cell.messageLabel.textColor = .messageSentText
+			cell.contentView.backgroundColor = .messageSentBackground
 		}
 		
 		return cell

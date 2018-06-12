@@ -17,8 +17,8 @@ extension CalendarController {
 			
 			label.font = UIFont.boldSystemFont(ofSize: 24.0)
 			label.textAlignment = .center
-			label.textColor = .white
-			label.backgroundColor = #colorLiteral(red: 0.2666666667, green: 0.8117647059, blue: 0.831372549, alpha: 1)
+			label.textColor = .calendarMonthText
+			label.backgroundColor = .calendarMonthBackground
 			
 			return label
 		}
@@ -44,7 +44,7 @@ extension CalendarController {
 			
 			for label in labels {
 				label.textAlignment = .center
-				label.textColor = .gray
+				label.textColor = .disabled
 			}
 			
 			let view = UIStackView(arrangedSubviews: labels)
@@ -67,7 +67,7 @@ extension CalendarController {
 			view.isPagingEnabled = true
 			
 			// Layout
-			view.backgroundColor = .white
+			view.backgroundColor = .background
 			
 			return view
 		}
