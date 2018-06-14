@@ -75,7 +75,7 @@ extension CalendarController {
 		class func tableView() -> UITableView {
 			let view = UITableView(frame: .zero)
 			view.translatesAutoresizingMaskIntoConstraints = false
-			
+			view.separatorInset = .zero
 			return view
 		}
 	}

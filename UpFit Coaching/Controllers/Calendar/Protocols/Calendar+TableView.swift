@@ -19,6 +19,14 @@ extension CalendarController: UITableViewDelegate {
 		
 		navigationController?.pushViewController(eventController, animated: true)
 	}
+	
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let view = UIView()
+		view.backgroundColor = tableView.separatorColor?.withAlphaComponent(0.3)
+		view.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+		
+		return view
+	}
 }
 
 extension CalendarController: UITableViewDataSource {
@@ -57,9 +65,16 @@ extension CalendarController: UITableViewDataSource {
 			cell = CalendarTableCell(style: .default, reuseIdentifier: "CalendarTableCell")
 		}
 		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = .none
+		dateFormatter.timeStyle = .short
+		
 		let event = todayEvents[indexPath.row]
 		
-		cell.textLabel?.text = event.name
+		cell.titleLabel.text = event.name
+		cell.infoLabel.text = event.address()
+		cell.startTimeLabel.text = dateFormatter.string(from: event.start)
+		cell.endTimeLabel.text = dateFormatter.string(from: event.end)
 		
 		return cell
 	}

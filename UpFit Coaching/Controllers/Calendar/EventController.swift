@@ -19,9 +19,7 @@ class EventController: UIViewController {
 	var deleteButton: UIBarButtonItem!
 	
 	var event: Event?
-	var currentUser = Database().getCurrentUser()
-	
-	var address: String?
+	var currentUser = Database().getCurrentUser()	
 	var annotation: MKPointAnnotation?
 	
 	override func viewDidLoad() {
@@ -47,9 +45,6 @@ class EventController: UIViewController {
 			let client = currentUser == event.firstUser ? event.secondUser : event.firstUser
 			clientLabel.text = "clientName %@".localized(with: "\(client.firstName) \(client.lastName)")
 		}
-		
-		// Get address
-		address = event.firstUser.address ?? event.secondUser.address
 		
 		// Build dates
 		var dateLabelString: String
@@ -79,7 +74,7 @@ class EventController: UIViewController {
 		// Set labels text
 		headerTitle.text = event.name
 		dateLabel.text = dateLabelString
-		addressLabel.text = address
+		addressLabel.text = event.address(.twoLines)
 		
 		setupMapKit()
 	}
@@ -93,7 +88,7 @@ class EventController: UIViewController {
 	// MARK: - Helpers
 	
 	func setupMapKit() {
-		guard let address = address else {
+		guard let address = event?.address() else {
 			mapView.isHidden = true
 			return
 		}

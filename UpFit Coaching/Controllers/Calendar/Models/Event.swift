@@ -134,4 +134,22 @@ class Event: NSObject, Codable {
 		updated = object.updated
 		updatedBy = User(object: object.updatedBy)
 	}
+	
+	enum Address {
+		case singleLine, twoLines
+	}
+	
+	func address(_ mode: Address = .singleLine) -> String? {
+		let separator = mode == .singleLine ? ", " : "\n"		
+		
+		if let userAddress = firstUser.address {
+			return userAddress.appending(separator).appending(firstUser.city)
+		}
+		
+		if let userAddress = secondUser.address {
+			return userAddress.appending(separator).appending(secondUser.city)
+		}
+		
+		return nil
+	}
 }
