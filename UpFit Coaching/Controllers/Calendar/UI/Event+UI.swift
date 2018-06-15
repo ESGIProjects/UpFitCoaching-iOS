@@ -65,6 +65,8 @@ extension EventController {
 			view.isScrollEnabled = false
 			view.isZoomEnabled = false
 			
+			view.isHidden = true
+			
 			return view
 		}
 		

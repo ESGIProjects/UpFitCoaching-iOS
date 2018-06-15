@@ -93,8 +93,6 @@ class EventController: UIViewController {
 			return
 		}
 		
-		mapView.isHidden = false
-		
 		CLGeocoder().geocodeAddressString(address) { [weak self] placemarks, error in
 			guard let mapView = self?.mapView else { return }
 			
@@ -102,6 +100,7 @@ class EventController: UIViewController {
 				print(error.localizedDescription)
 				mapView.isHidden = true
 			} else {
+				mapView.isHidden = false
 				guard let topResult = placemarks?.first else { return }
 				guard let coordinates = topResult.location?.coordinate else { return }
 				

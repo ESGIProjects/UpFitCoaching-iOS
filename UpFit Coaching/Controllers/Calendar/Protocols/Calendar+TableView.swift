@@ -71,10 +71,15 @@ extension CalendarController: UITableViewDataSource {
 		
 		let event = todayEvents[indexPath.row]
 		
+		var infoLabelText = "eventDate".localized(with: dateFormatter.string(from: event.start), dateFormatter.string(from: event.end))
+		
+		if let address = event.address() {
+			infoLabelText.append("\n\(address)")
+		}
+		
+		cell.iconImageView.backgroundColor = event.status == 0 ? .red : .blue
 		cell.titleLabel.text = event.name
-		cell.infoLabel.text = event.address()
-		cell.startTimeLabel.text = dateFormatter.string(from: event.start)
-		cell.endTimeLabel.text = dateFormatter.string(from: event.end)
+		cell.infoLabel.text = infoLabelText
 		
 		return cell
 	}
