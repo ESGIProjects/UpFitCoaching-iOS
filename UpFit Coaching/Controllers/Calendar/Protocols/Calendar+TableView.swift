@@ -71,7 +71,7 @@ extension CalendarController: UITableViewDataSource {
 		
 		let event = todayEvents[indexPath.row]
 		
-		var infoLabelText = "eventDate".localized(with: dateFormatter.string(from: event.start), dateFormatter.string(from: event.end))
+		var infoLabelText = "eventTime".localized(with: dateFormatter.string(from: event.start), dateFormatter.string(from: event.end))
 		
 		if let address = event.address() {
 			infoLabelText.append("\n\(address)")

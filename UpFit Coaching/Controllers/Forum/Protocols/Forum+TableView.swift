@@ -25,7 +25,7 @@ extension ForumController: UITableViewDataSource {
 		
 		if let lastUpdated = thread.lastUpdated,
 			let lastUser = thread.lastUser {
-			cell.infoLabel.text = "thread_subtitle %@ %@ %@".localized(with: dateFormatter.string(from: lastUpdated), lastUser.firstName, lastUser.lastName)
+			cell.infoLabel.text = "thread_subtitle".localized(with: dateFormatter.string(from: lastUpdated), lastUser.firstName, lastUser.lastName)
 		}
 		
 		return cell

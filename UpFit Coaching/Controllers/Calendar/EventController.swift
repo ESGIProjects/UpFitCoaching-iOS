@@ -43,7 +43,7 @@ class EventController: UIViewController {
 		// If coach, retrieve client
 		if currentUser.type == 2 {
 			let client = currentUser == event.firstUser ? event.secondUser : event.firstUser
-			clientLabel.text = "clientName %@".localized(with: "\(client.firstName) \(client.lastName)")
+			clientLabel.text = "clientName".localized(with: "\(client.firstName) \(client.lastName)")
 		}
 		
 		// Build dates
@@ -58,7 +58,7 @@ class EventController: UIViewController {
 			let startTime = dateFormatter.string(from: event.start)
 			let endTime = dateFormatter.string(from: event.end)
 			
-			dateLabelString = "eventDate_simple %@ %@ %@".localized(with: date, startTime, endTime)
+			dateLabelString = "eventDate_simple".localized(with: date, startTime, endTime)
 		} else {
 			dateFormatter.dateFormat = "EEEE d MMMM YYYY"
 			let startDate = dateFormatter.string(from: event.start)
@@ -68,7 +68,7 @@ class EventController: UIViewController {
 			let startTime = dateFormatter.string(from: event.start)
 			let endTime = dateFormatter.string(from: event.end)
 			
-			dateLabelString = "eventDate_multiple %@ %@ %@ %@".localized(with: startDate, startTime, endDate, endTime)
+			dateLabelString = "eventDate_multiple".localized(with: startDate, startTime, endDate, endTime)
 		}
 		
 		// Set labels text

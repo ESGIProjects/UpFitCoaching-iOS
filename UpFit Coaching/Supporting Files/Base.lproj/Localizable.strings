@@ -80,13 +80,14 @@
 "sunday_short" = "S";
 
 "nothingThisDay" = "Nothing scheduled this day";
+"eventTime" = "from %@ to %@";
 
 // Event
 "eventController_title" = "Event Details";
 
-"clientName %@" = "With %@";
-"eventDate_simple %@ %@ %@" = "%@\nfrom %@ to %@";
-"eventDate_multiple %@ %@ %@ %@" = "From %@ at %@\nto %@ at %@";
+"clientName" = "With %@";
+"eventDate_simple" = "%@\nfrom %@ to %@";
+"eventDate_multiple" = "From %@ at %@\nto %@ at %@";
 "cancelEventButton" = "Cancel event";
 "cancelEvent_message" = "Are you sure to cancel this event? We will alert the other person.";
 
@@ -101,7 +102,7 @@
 
 // Forum
 "forumController_title" = "Forum";
-"thread_subtitle %@ %@ %@" = "Last message: %@ by %@ %@";
+"thread_subtitle" = "Last message: %@ by %@ %@";
 
 "createThreadController_title" = "Create Thread";
 "threadTitle_placeholder" = "Title";
