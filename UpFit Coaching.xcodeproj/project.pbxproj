@@ -75,6 +75,11 @@
 		D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */; };
 		D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */; };
 		D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* Login+UI.swift */; };
+		D7C16C1520D58609004D6EA9 /* ClientsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1420D58609004D6EA9 /* ClientsListController.swift */; };
+		D7C16C1720D58618004D6EA9 /* ClientsList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */; };
+		D7C16C1A20D5937B004D6EA9 /* ClientsList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1920D5937B004D6EA9 /* ClientsList+TableView.swift */; };
+		D7C16C1C20D5939A004D6EA9 /* ClientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1B20D5939A004D6EA9 /* ClientController.swift */; };
+		D7C16C1E20D593A5004D6EA9 /* Client+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */; };
 		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
 		D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399D920C88CEA0058EA0A /* Event+UI.swift */; };
 		D7D399DE20C941980058EA0A /* ForumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399DD20C941980058EA0A /* ForumController.swift */; };
@@ -165,6 +170,11 @@
 		D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBFA20541E7300B755CD /* Login+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+UI.swift"; sourceTree = "<group>"; };
+		D7C16C1420D58609004D6EA9 /* ClientsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsListController.swift; sourceTree = "<group>"; };
+		D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientsList+UI.swift"; sourceTree = "<group>"; };
+		D7C16C1920D5937B004D6EA9 /* ClientsList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientsList+TableView.swift"; sourceTree = "<group>"; };
+		D7C16C1B20D5939A004D6EA9 /* ClientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientController.swift; sourceTree = "<group>"; };
+		D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+UI.swift"; sourceTree = "<group>"; };
 		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
 		D7D399D920C88CEA0058EA0A /* Event+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+UI.swift"; sourceTree = "<group>"; };
 		D7D399DD20C941980058EA0A /* ForumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumController.swift; sourceTree = "<group>"; };
@@ -230,8 +240,11 @@
 			isa = PBXGroup;
 			children = (
 				D781194D207D4392001762D4 /* MoreController.swift */,
+				D7C16C1420D58609004D6EA9 /* ClientsListController.swift */,
 				D724AB8520CD69260074164C /* EditProfileController.swift */,
+				D7C16C1B20D5939A004D6EA9 /* ClientController.swift */,
 				1AB9E9E4209C842C003441F8 /* UI */,
+				D7C16C1820D5934D004D6EA9 /* Protocols */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -288,7 +301,9 @@
 			isa = PBXGroup;
 			children = (
 				1AB9E9E5209C843D003441F8 /* More+UI.swift */,
+				D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */,
 				D724AB8720CD77B70074164C /* EditProfile+UI.swift */,
+				D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -471,6 +486,14 @@
 				D7AA4E91205481F3004A0986 /* ConversationLayout.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		D7C16C1820D5934D004D6EA9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D7C16C1920D5937B004D6EA9 /* ClientsList+TableView.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		D7D399DB20C939A10058EA0A /* Follow up */ = {
@@ -694,13 +717,16 @@
 			files = (
 				D70A3D50203CB3D9001C491A /* LoginController.swift in Sources */,
 				1A13093E20CEC276009B608B /* Network+User.swift in Sources */,
+				D7C16C1E20D593A5004D6EA9 /* Client+UI.swift in Sources */,
 				1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
 				D724AB8620CD69260074164C /* EditProfileController.swift in Sources */,
 				1A13094420CEC902009B608B /* Network+Forum.swift in Sources */,
 				1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */,
+				D7C16C1720D58618004D6EA9 /* ClientsList+UI.swift in Sources */,
 				D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */,
+				D7C16C1A20D5937B004D6EA9 /* ClientsList+TableView.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
 				1AB1D87120CE6C9C002B1B06 /* Thread+TableView.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
@@ -711,6 +737,7 @@
 				D744015520A4ED6F0078BEA4 /* Conversation+WebSocket.swift in Sources */,
 				D71D60C8208BB5CD00F143CA /* MessagesDelegate.swift in Sources */,
 				D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */,
+				D7C16C1C20D5939A004D6EA9 /* ClientController.swift in Sources */,
 				D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */,
 				D702D2F2209F598C00970081 /* RegisterController.swift in Sources */,
 				D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */,
@@ -738,6 +765,7 @@
 				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
 				D744FEED20C9D4C200FC5320 /* Forum+TableView.swift in Sources */,
 				1AB1D86F20CE6333002B1B06 /* PostCell.swift in Sources */,
+				D7C16C1520D58609004D6EA9 /* ClientsListController.swift in Sources */,
 				D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */,
 				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,

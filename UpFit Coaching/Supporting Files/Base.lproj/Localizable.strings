@@ -18,6 +18,8 @@
 "editButton" = "Edit";
 "noButton" = "No";
 "yesButton" = "Yes";
+"sex_0" = "Man";
+"sex_1" = "Woman";
 
 // Login
 "loginController_title" = "Login";
@@ -122,6 +124,17 @@
 "personalInfo_sectionTitle" = "Personal info";
 "miscellaneous_sectionTitle" = "Miscellaneous";
 "optionalField" = "Optional";
+
+// Clients List
+"clientsListController_title" = "Clients";
+
+// Client file
+"clientController_title" = "Client";
+"clientName_titleLabel" = "%@ %@ (%@ years old)";
+"sexAndBirthDate_label" = "%@\nborn on %@";
+"city_label" = "Lives in %@";
+"callButton" = "Call";
+"sendMailButton" = "Send mail";
 
 // Follow Up
 "followUpController_title" = "Follow Up";

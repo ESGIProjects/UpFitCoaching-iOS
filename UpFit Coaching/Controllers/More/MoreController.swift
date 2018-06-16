@@ -30,11 +30,11 @@ class MoreController: FormViewController {
 	// MARK: - Actions
 	
 	func clients() {
-		
+		navigationController?.pushViewController(ClientsListController(), animated: true)
 	}
 	
 	func editProfile() {
-		self.present(UINavigationController(rootViewController: EditProfileController()), animated: true)
+		present(UINavigationController(rootViewController: EditProfileController()), animated: true)
 	}
 	
 	func signOut() {
