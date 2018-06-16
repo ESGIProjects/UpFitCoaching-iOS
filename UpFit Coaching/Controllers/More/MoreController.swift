@@ -1,5 +1,5 @@
 //
-//  SettingsController.swift
+//  MoreController.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 10/04/2018.
@@ -10,21 +10,28 @@ import UIKit
 import Firebase
 import Eureka
 
-class SettingsController: FormViewController {
+class MoreController: FormViewController {
 	
+	var clientsRow: ButtonRow!
 	var editProfileRow: ButtonRow!
 	var signOutRow: ButtonRow!
+	
+	let currentUser = Database().getCurrentUser()
 	
 	// MARK: - UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "settingsController_title".localized
+		title = "moreController_title".localized
 		setupLayout()
 	}
 	
 	// MARK: - Actions
+	
+	func clients() {
+		
+	}
 	
 	func editProfile() {
 		self.present(UINavigationController(rootViewController: EditProfileController()), animated: true)

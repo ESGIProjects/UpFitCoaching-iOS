@@ -52,10 +52,10 @@ extension UITabBarController {
 		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 3)
 		viewControllers.append(forumController)
 		
-		// Settings
-		let settingsController = SettingsController()
-		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settings"), tag: 4)
-		viewControllers.append(settingsController)
+		// More
+		let moreController = MoreController()
+		moreController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+		viewControllers.append(moreController)
 		
 		// Creating the tab bar controller
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }

@@ -110,8 +110,10 @@
 
 "addPostController_title" = "Add message";
 
-// Settings
-"settingsController_title" = "Settings";
+// More
+"moreController_title" = "More";
+"clientsRowButton" = "Clients";
+"accountManagement_sectionTitle" = "Account management";
 "editProfileButton" = "Edit Profile";
 "signOutButton" = "Sign Out";
 
