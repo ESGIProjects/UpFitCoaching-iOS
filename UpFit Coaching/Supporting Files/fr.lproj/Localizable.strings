@@ -113,7 +113,7 @@
 "addPostController_title" = "Ajouter un message";
 
 // More
-"moreController_title" = "Autres";
+"moreController_title" = "Autre";
 "clientsRowButton" = "Clients";
 "accountManagement_sectionTitle" = "Gestion du compte";
 "editProfileButton" = "Modifier le profil";
