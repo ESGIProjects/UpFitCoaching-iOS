@@ -77,6 +77,18 @@ class ClientController: UIViewController {
 			presentAlert(title: "mailAppMissing_title", message: "mailAppMissing_message")
 		}
 	}
+	
+	@objc func newAppraisal() {
+		present(UINavigationController(rootViewController: EditAppraisalController()), animated: true)
+	}
+	
+	@objc func showAppraisal() {
+		
+	}
+	
+	@objc func updateMeasurements() {
+		present(UINavigationController(rootViewController: AddMeasurementsController()), animated: true)
+	}
 }
 
 // MARK: - MFMailComposeViewControllerDelegate

@@ -167,7 +167,11 @@ extension ClientController {
 		
 		followUpButton = UI.followUpButton()
 		appraisalButton = UI.appraisalButton()
+		appraisalButton.addTarget(self, action: #selector(newAppraisal), for: .touchUpInside)
+		
 		measurementsButton = UI.measurementsButton()
+		measurementsButton.addTarget(self, action: #selector(updateMeasurements), for: .touchUpInside)
+		
 		testButton = UI.testButton()
 	}
 	

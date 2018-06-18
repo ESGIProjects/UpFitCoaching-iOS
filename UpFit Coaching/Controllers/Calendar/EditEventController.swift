@@ -10,11 +10,11 @@ import UIKit
 import Eureka
 import PKHUD
 
+enum EditionMode {
+	case add, edit
+}
+
 class EditEventController: FormViewController {
-	
-	enum EditionMode {
-		case add, edit
-	}
 	
 	var titleRow: TextRow!
 	var otherUserRow: PushRow<User>?
@@ -96,10 +96,6 @@ class EditEventController: FormViewController {
 		navigationController?.dismiss(animated: true)
 	}
 	
-	@objc func delete() {
-		
-	}
-	
 	// MARK: - Helpers
 	
 	func add(_ event: Event) {
@@ -148,10 +144,6 @@ class EditEventController: FormViewController {
 				HUD.hide()
 			}
 		}
-	}
-	
-	func delete(_ event: Event) {
-		
 	}
 	
 	func toggleConfirmationButton() {
