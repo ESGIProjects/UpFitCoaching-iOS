@@ -16,9 +16,16 @@ class ClientController: UIViewController {
 	var cityLabel: UILabel!
 	var callButton: UIButton!
 	var mailButton: UIButton!
-	var bilanButton: UIButton!
+	var followUpButton: UIButton!
+	var appraisalButton: UIButton!
+	var measurementsButton: UIButton!
+	var testButton: UIButton!
+	
+	var appraisalTopConstraint: NSLayoutConstraint!
 	
 	var client: User?
+	
+	// MARK: - UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,7 +37,6 @@ class ClientController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		refreshLayout()
 		
 		guard let client = client,
 			let birthDate = client.birthDate else { return }
@@ -48,11 +54,13 @@ class ClientController: UIViewController {
 		cityLabel.text = "city_label".localized(with: client.city)
 	}
 	
+	// MARK: - Actions
+	
 	@objc func call() {
 		guard let client = client else { return }
 		guard let callURL = URL(string: "tel://\(client.phoneNumber)"),
 			UIApplication.shared.canOpenURL(callURL) else { return }
-		
+
 		UIApplication.shared.open(callURL, options: [:])
 	}
 	
@@ -71,6 +79,7 @@ class ClientController: UIViewController {
 	}
 }
 
+// MARK: - MFMailComposeViewControllerDelegate
 extension ClientController: MFMailComposeViewControllerDelegate {
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
 		controller.dismiss(animated: true)

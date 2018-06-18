@@ -63,11 +63,43 @@ extension ClientController {
 			return button
 		}
 		
-		class func bilanButton() -> UIButton {
+		class func followUpButton() -> UIButton {
 			let button = UIButton(frame: .zero)
 			button.translatesAutoresizingMaskIntoConstraints = false
 			
-			button.setTitle("nouvelle_fiche_bilan", for: .normal)
+			button.setTitle("showFollowUpButton".localized, for: .normal)
+			button.backgroundColor = .main
+			button.layer.cornerRadius = 5.0
+			
+			return button
+		}
+		
+		class func appraisalButton() -> UIButton {
+			let button = UIButton(frame: .zero)
+			button.translatesAutoresizingMaskIntoConstraints = false
+			
+			button.backgroundColor = .main
+			button.layer.cornerRadius = 5.0
+			
+			return button
+		}
+		
+		class func measurementsButton() -> UIButton {
+			let button = UIButton(frame: .zero)
+			button.translatesAutoresizingMaskIntoConstraints = false
+			
+			button.setTitle("measurementsButton".localized, for: .normal)
+			button.backgroundColor = .main
+			button.layer.cornerRadius = 5.0
+			
+			return button
+		}
+		
+		class func testButton() -> UIButton {
+			let button = UIButton(frame: .zero)
+			button.translatesAutoresizingMaskIntoConstraints = false
+			
+			button.setTitle("newTestButton".localized, for: .normal)
 			button.backgroundColor = .main
 			button.layer.cornerRadius = 5.0
 			
@@ -99,9 +131,26 @@ extension ClientController {
 			mailButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
 			mailButton.widthAnchor.constraint(equalTo: callButton.widthAnchor),
 			
-			bilanButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 30.0),
-			bilanButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			bilanButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
+			appraisalButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			appraisalButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
+		]
+	}
+	
+	fileprivate func getAppraisalConstraints() -> [NSLayoutConstraint] {
+		let anchors = getAnchors()
+		
+		return [
+			followUpButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0),
+			followUpButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			followUpButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			measurementsButton.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 15.0),
+			measurementsButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			measurementsButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			testButton.topAnchor.constraint(equalTo: measurementsButton.bottomAnchor, constant: 15.0),
+			testButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			testButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
 		]
 	}
 	
@@ -116,7 +165,10 @@ extension ClientController {
 		mailButton = UI.mailButton()
 		mailButton.addTarget(self, action: #selector(mail), for: .touchUpInside)
 		
-		bilanButton = UI.bilanButton()
+		followUpButton = UI.followUpButton()
+		appraisalButton = UI.appraisalButton()
+		measurementsButton = UI.measurementsButton()
+		testButton = UI.testButton()
 	}
 	
 	func setupLayout() {
@@ -127,12 +179,56 @@ extension ClientController {
 		view.addSubview(cityLabel)
 		view.addSubview(callButton)
 		view.addSubview(mailButton)
-		view.addSubview(bilanButton)
+		view.addSubview(appraisalButton)
 		
-		NSLayoutConstraint.activate(getConstraints())
+		var constraints = getConstraints()
+		
+		if true {
+			view.addSubview(followUpButton)
+			view.addSubview(measurementsButton)
+			view.addSubview(testButton)
+			
+			appraisalButton.setTitle("showAppraisalButton".localized, for: .normal)
+			
+			constraints += getAppraisalConstraints()
+			appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 45.0)
+
+		} else {
+			appraisalButton.setTitle("newAppraisalButton".localized, for: .normal)
+			appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0)
+		}
+		
+		constraints.append(appraisalTopConstraint)
+		NSLayoutConstraint.activate(constraints)
 	}
 	
 	func refreshLayout() {
 		// Manipulate what should be removed and added on viewWillAppear
+		guard let secondAnchor = appraisalTopConstraint.secondAnchor else { return }
+		
+		appraisalTopConstraint.isActive = false
+		
+		if secondAnchor == callButton.bottomAnchor {
+			view.addSubview(followUpButton)
+			view.addSubview(measurementsButton)
+			view.addSubview(testButton)
+			
+			appraisalButton.setTitle("showAppraisalButton".localized, for: .normal)
+			
+			appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 45.0)
+			NSLayoutConstraint.activate(getAppraisalConstraints())
+		} else {
+			NSLayoutConstraint.deactivate(getAppraisalConstraints())
+			
+			followUpButton.removeFromSuperview()
+			measurementsButton.removeFromSuperview()
+			testButton.removeFromSuperview()
+			
+			appraisalButton.setTitle("newAppraisalButton".localized, for: .normal)
+			
+			appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0)
+		}
+		
+		appraisalTopConstraint.isActive = true
 	}
 }

@@ -135,6 +135,13 @@
 "city_label" = "Lives in %@";
 "callButton" = "Call";
 "sendMailButton" = "Send mail";
+"mailAppMissing_title" = "Mail app not installed";
+"mailAppMissing_message" = "You need the Apple Mail app installed to send mails.";
+"newAppraisalButton" = "New Appraisal";
+"showFollowUpButton" = "Show Follow Up";
+"showAppraisalButton" = "Show Appraisal";
+"measurementsButton" = "Update measurements";
+"newTestButton" = "New test";
 
 // Follow Up
 "followUpController_title" = "Follow Up";

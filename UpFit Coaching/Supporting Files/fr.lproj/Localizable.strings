@@ -135,6 +135,13 @@
 "city_label" = "Habite à %@";
 "callButton" = "Appeler";
 "sendMailButton" = "Envoyer un mail";
+"mailAppMissing_title" = "Application Mail absente";
+"mailAppMissing_message" = "Vous avez besoin de l'application Mail d'Apple installée pour envoyer des mails.";
+"newAppraisalButton" = "Nouvelle fiche bilan";
+"showFollowUpButton" = "Afficher le suivi";
+"showAppraisalButton" = "Consulter la fiche bilan";
+"measurementsButton" = "Mettre à jour les mensurations";
+"newTestButton" = "Effectuer un test";
 
 // Follow Up
 "followUpController_title" = "Suivi";
