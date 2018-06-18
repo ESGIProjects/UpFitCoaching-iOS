@@ -46,10 +46,14 @@ class ConversationListCell: UITableViewCell {
 	// MARK: - Layout
 	
 	private func getConstraints() -> [NSLayoutConstraint] {
+		let heightConstraint = contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 66.0)
+		heightConstraint.priority = UILayoutPriority(rawValue: 999)
+		
 		return [
+			heightConstraint,
+			
+			photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
-			photoImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8.0),
-			photoImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
 			photoImageView.heightAnchor.constraint(equalToConstant: 50.0),
 			photoImageView.widthAnchor.constraint(equalToConstant: 50.0),
 			
@@ -58,9 +62,9 @@ class ConversationListCell: UITableViewCell {
 			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
 			
 			messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2.0),
-			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0),
 			messageLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
-			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
+			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
+			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0)
 		]
 	}
 	
