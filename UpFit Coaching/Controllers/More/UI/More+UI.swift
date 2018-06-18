@@ -10,21 +10,7 @@ import UIKit
 import Eureka
 
 extension MoreController {
-	fileprivate func setUIComponents() {
-		if currentUser?.type == 2 {
-			clientsRow = ButtonRow("clientsRow") {
-				$0.title = "clientsRowButton".localized
-				$0.cellUpdate { cell, _ in
-					cell.textLabel?.textColor = .mainText
-					cell.textLabel?.textAlignment = .left
-					cell.accessoryType = .disclosureIndicator
-				}
-				$0.onCellSelection { [unowned self] _, _ in
-					self.clients()
-				}
-			}
-		}
-		
+	fileprivate func setUIComponents() {		
 		editProfileRow = ButtonRow("editProfile") {
 			$0.title = "editProfileButton".localized
 			$0.cellUpdate { cell, _ in
@@ -51,10 +37,6 @@ extension MoreController {
 	
 	func setupLayout() {
 		setUIComponents()
-		
-		if currentUser?.type == 2 {
-			form +++ Section() <<< clientsRow
-		}
 		
 		form +++ Section("accountManagement_sectionTitle".localized) <<< editProfileRow
 		form +++ Section("signOutButton".localized) <<< signOutRow

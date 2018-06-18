@@ -212,6 +212,26 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		1A34F8DB20D7AC88008ED2A2 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				D7C16C1420D58609004D6EA9 /* ClientsListController.swift */,
+				D7C16C1B20D5939A004D6EA9 /* ClientController.swift */,
+				1A34F8DC20D7AC9C008ED2A2 /* UI */,
+				D7C16C1820D5934D004D6EA9 /* Protocols */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		1A34F8DC20D7AC9C008ED2A2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */,
+				D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		1A8A18E6203AFD11006D2183 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,11 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				D781194D207D4392001762D4 /* MoreController.swift */,
-				D7C16C1420D58609004D6EA9 /* ClientsListController.swift */,
 				D724AB8520CD69260074164C /* EditProfileController.swift */,
-				D7C16C1B20D5939A004D6EA9 /* ClientController.swift */,
 				1AB9E9E4209C842C003441F8 /* UI */,
-				D7C16C1820D5934D004D6EA9 /* Protocols */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -267,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9E1949207E30730091FABB /* Login */,
+				1A34F8DB20D7AC88008ED2A2 /* Clients */,
 				D7D399DB20C939A10058EA0A /* Follow up */,
 				D71D60C9208CB29D00F143CA /* Calendar */,
 				1A9E194B207E30A40091FABB /* Messages */,
@@ -301,9 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				1AB9E9E5209C843D003441F8 /* More+UI.swift */,
-				D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */,
 				D724AB8720CD77B70074164C /* EditProfile+UI.swift */,
-				D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

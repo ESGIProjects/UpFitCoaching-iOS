@@ -12,11 +12,8 @@ import Eureka
 
 class MoreController: FormViewController {
 	
-	var clientsRow: ButtonRow!
 	var editProfileRow: ButtonRow!
 	var signOutRow: ButtonRow!
-	
-	let currentUser = Database().getCurrentUser()
 	
 	// MARK: - UIViewController
 	
@@ -28,10 +25,6 @@ class MoreController: FormViewController {
 	}
 	
 	// MARK: - Actions
-	
-	func clients() {
-		navigationController?.pushViewController(ClientsListController(), animated: true)
-	}
 	
 	func editProfile() {
 		present(UINavigationController(rootViewController: EditProfileController()), animated: true)
