@@ -41,7 +41,7 @@ extension UITabBarController {
 			viewControllers.insert(conversationListController, at: 1)
 			
 			let clientsListController = ClientsListController()
-			clientsListController.tabBarItem = UITabBarItem(title: "clientsListController_title".localized, image: nil, tag: 4)
+			clientsListController.tabBarItem = UITabBarItem(title: "clientsListController_title".localized, image: #imageLiteral(resourceName: "clients"), tag: 4)
 			viewControllers.insert(clientsListController, at: 0)
 		} else if let otherUser = user.coach {
 			let conversationController = ConversationController()
