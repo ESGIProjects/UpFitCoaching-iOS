@@ -21,48 +21,49 @@ extension UITabBarController {
 	class func getRootViewController(for user: User) -> UITabBarController {
 		var viewControllers = [UIViewController]()
 		
-		// Follow Up
-		let followUpController = FollowUpController()
-		followUpController.tabBarItem = UITabBarItem(title: "followUpController_title".localized, image: #imageLiteral(resourceName: "followUp"), tag: 0)
-		viewControllers.append(followUpController)
-		
-		// Calendar
+		// Common controllers
 		let calendarController = CalendarController()
-		calendarController.tabBarItem = UITabBarItem(title: "calendarController_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 1)
+		calendarController.tabBarItem = UITabBarItem(title: "calendarController_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 0)
 		viewControllers.append(calendarController)
 		
-		// Messages
-		if user.type == 2 {
-			// Conversation List
-			let conversationListController = ConversationListController()
-			conversationListController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 2)
-			viewControllers.append(conversationListController)
-		} else if let otherUser = user.coach {
-			// Conversation with coach
-			let conversationController = ConversationController()
-			conversationController.otherUser = otherUser
-			conversationController.title = "\(otherUser.firstName) \(otherUser.lastName)"
-			
-			conversationController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 2)
-			viewControllers.append(conversationController)
-		}
-		
-		// Forum
 		let forumController = ForumController()
-		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 3)
+		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 1)
 		viewControllers.append(forumController)
 		
-		// More
 		let moreController = MoreController()
-		moreController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+		moreController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
 		viewControllers.append(moreController)
 		
+		// User-type specific views
+		if user.type == 2 {
+			let conversationListController = ConversationListController()
+			conversationListController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 3)
+			viewControllers.insert(conversationListController, at: 1)
+			
+			let clientsListController = ClientsListController()
+			clientsListController.tabBarItem = UITabBarItem(title: "clientsListController_title".localized, image: nil, tag: 4)
+			viewControllers.insert(clientsListController, at: 0)
+		} else if let otherUser = user.coach {
+			let conversationController = ConversationController()
+			conversationController.otherUser = otherUser
+			conversationController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 3)
+			viewControllers.insert(conversationController, at: 1)
+		}
+		
+		// Follow Up
+		if user.type == 0 || user.type == 1 {
+			let followUpController = FollowUpController()
+			followUpController.tabBarItem = UITabBarItem(title: "followUpController_title".localized, image: #imageLiteral(resourceName: "followUp"), tag: 4)
+			viewControllers.insert(followUpController, at: 0)
+		}
+		
 		// Creating the tab bar controller
+		let selectedIndex = viewControllers.index(of: calendarController) ?? 0
 		viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
 		
 		let tabBarController = UITabBarController()
 		tabBarController.setViewControllers(viewControllers, animated: true)
-		tabBarController.selectedIndex = 1
+		tabBarController.selectedIndex = selectedIndex
 		return tabBarController
 	}
 }
