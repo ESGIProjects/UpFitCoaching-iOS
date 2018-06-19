@@ -18,6 +18,7 @@ final class UserObject: Object {
 	@objc dynamic var lastName = ""
 	
 	@objc dynamic var city = ""
+	@objc dynamic var sex = 0
 	@objc dynamic var phoneNumber = ""
 	
 	@objc dynamic var address: String?
@@ -39,6 +40,7 @@ final class UserObject: Object {
 		lastName = user.lastName
 		
 		city = user.city
+		sex = user.sex
 		phoneNumber = user.phoneNumber
 		
 		address = user.address
@@ -60,6 +62,7 @@ class User: NSObject, Codable {
 		case lastName
 		
 		case city
+		case sex
 		case phoneNumber
 		
 		case address
@@ -75,6 +78,7 @@ class User: NSObject, Codable {
 	var lastName: String
 	
 	var city: String
+	var sex: Int
 	var phoneNumber: String
 	
 	var address: String?
@@ -92,6 +96,7 @@ class User: NSObject, Codable {
 		self.lastName = lastName
 		
 		self.city = city
+		sex = 0
 		self.phoneNumber = phoneNumber
 	}
 	
@@ -104,6 +109,7 @@ class User: NSObject, Codable {
 		lastName = object.lastName
 		
 		city = object.city
+		sex = object.sex
 		phoneNumber = object.phoneNumber
 		
 		address = object.address
@@ -123,6 +129,7 @@ class User: NSObject, Codable {
 		lastName = json["lastName"] as? String ?? ""
 		
 		city = json["city"] as? String ?? ""
+		sex = json["sex"] as? Int ?? 0
 		phoneNumber = json["phoneNumber"] as? String ?? ""
 		
 		address = json["address"] as? String

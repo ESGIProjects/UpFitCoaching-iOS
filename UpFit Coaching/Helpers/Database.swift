@@ -20,6 +20,8 @@ final class Database {
 	
 	init() {
 		do {
+			Database.migrations()
+			
 			realm = try Realm()
 		} catch {
 			fatalError(error.localizedDescription)

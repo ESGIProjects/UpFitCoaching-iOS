@@ -49,6 +49,7 @@
 		D724AB8620CD69260074164C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8520CD69260074164C /* EditProfileController.swift */; };
 		D724AB8820CD77B70074164C /* EditProfile+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8720CD77B70074164C /* EditProfile+UI.swift */; };
 		D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8A20CD825B0074164C /* FollowUp+UI.swift */; };
+		D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D731446920D989660077AFEC /* Database+Migrations.swift */; };
 		D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D736E3F920C6DD93000A147E /* GoogleService-Info.plist */; };
 		D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */; };
 		D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableView.swift */; };
@@ -148,6 +149,7 @@
 		D724AB8520CD69260074164C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		D724AB8720CD77B70074164C /* EditProfile+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfile+UI.swift"; sourceTree = "<group>"; };
 		D724AB8A20CD825B0074164C /* FollowUp+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FollowUp+UI.swift"; sourceTree = "<group>"; };
+		D731446920D989660077AFEC /* Database+Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Migrations.swift"; sourceTree = "<group>"; };
 		D736E3F920C6DD93000A147E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UpFit Coaching.entitlements"; sourceTree = "<group>"; };
 		D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+JTAppleCalendar.swift"; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				D7108AF92083B1C700AB6260 /* Database.swift */,
+				D731446920D989660077AFEC /* Database+Migrations.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
 				D7F8ED062087E0260049B385 /* Extensions */,
 			);
@@ -808,6 +811,7 @@
 				D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
 				1A34F8DE20D7F211008ED2A2 /* EditAppraisalController.swift in Sources */,
+				D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */,
 				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,
 				1AB9E9E6209C843D003441F8 /* More+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
