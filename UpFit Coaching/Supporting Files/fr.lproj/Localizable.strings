@@ -16,6 +16,7 @@
 "addButton" = "Ajouter";
 "nextButton" = "Suivant";
 "editButton" = "Modifier";
+"updateButton" = "Mettre à jour";
 "noButton" = "Non";
 "yesButton" = "Oui";
 "sex_0" = "Homme";
@@ -142,6 +143,53 @@
 "showAppraisalButton" = "Consulter la fiche bilan";
 "measurementsButton" = "Mettre à jour les mensurations";
 "newTestButton" = "Effectuer un test";
+
+// Edit Appraisal
+"editAppraisalController_title" = "Nouvelle fiche bilan";
+
+"appraisalGoal_fieldTitle" = "Objectif";
+"appraisalSessionsByWeek_fieldTitle" = "Nombre de séances par semaine";
+"appraisalContraindication_fieldTitle" = "Contre indication";
+"appraisalSportsAntecedents_fieldTitle" = "Antécédents sportifs";
+"appraisalHelpNeeded_fieldTitle" = "Aide nécessaire";
+"appraisalHasNutritionist_fieldTitle" = "Suivi par un nutritionniste";
+"appraisalComments_placeholder" = "Commentaires";
+
+// Add measurements
+"addMeasurementsController_title" = "Mensurations";
+
+"addMeasurementsWeight_fieldTitle" = "Poids";
+"addMeasurementsHeight_fieldTitle" = "Taille";
+"addMeasurementsHipCircumference_fieldTitle" = "Tour de hanche";
+"addMeasurementsWaistCircumference_fieldTitle" = "Tour de ventre";
+"addMeasurementsThighCircumference_fieldTitle" = "Tour de cuisse";
+"addMeasurementsArmCircumference_fieldTitle" = "Tour de bras";
+
+"cm_placeholder" = "en cm";
+
+// New test
+"newTestController_title" = "Nouveau test";
+
+"newTestVVO2max_sectionTitle" = "VMA";
+"newTestWarmUp_fieldTitle" = "Échauffement";
+"newTestStartSpeed_fieldTitle" = "Vitesse de début";
+"newTestIncrease_fieldTitle" = "Augmentation";
+"newTestFrequency_fieldTitle" = "Fréquence";
+
+"newTestFlexibility_sectionTitle" = "Souplesse";
+"newTestKneeFlexibility_fieldTitle" = "Genoux";
+"newTestShinFlexibility_fieldTitle" = "Mi-Tibia";
+"newTestHitFootFlexibility_fieldTitle" = "Coup de pied";
+"newTestClosedFistGroundFlexibility_fieldTitle" = "Sol poing fermé";
+"newTestHandFlatGroundFlexibility_fieldTitle" = "Sol main à plat";
+
+"km/h_placeholder" = "en km/s";
+"seconds_placeholder" = "en secondes";
+
+"flexibilityValue_0" = "Faible";
+"flexibilityValue_1" = "Moyen";
+"flexibilityValue_2" = "Bon";
+"flexibilityValue_3" = "Très bon";
 
 // Follow Up
 "followUpController_title" = "Suivi";

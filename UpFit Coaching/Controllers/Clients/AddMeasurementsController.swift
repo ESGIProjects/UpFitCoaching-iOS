@@ -57,7 +57,7 @@ class AddMeasurementsController: FormViewController {
 	}
 	
 	@objc func cancel() {
-		
+		navigationController?.dismiss(animated: true)
 	}
 	
 	// MARK: - Helpers

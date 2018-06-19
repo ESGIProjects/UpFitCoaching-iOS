@@ -36,8 +36,6 @@ class EditAppraisalController: FormViewController {
 		super.viewDidLoad()
 		
 		if editionMode == .add {
-			title = "editAppraiseController_addTitle".localized
-			
 			goal = ""
 			totalSessionsByWeek = 0
 			contraindication = ""
@@ -48,8 +46,6 @@ class EditAppraisalController: FormViewController {
 			
 			navigationItem.rightBarButtonItem = UIBarButtonItem(title: "addButton".localized, style: .done, target: self, action: #selector(confirm))
 		} else {
-			title = "editAppraiseController_editTitle".localized
-			
 //			guard let appraisal = appraisal else { return }
 			
 			goal = ""
@@ -63,6 +59,7 @@ class EditAppraisalController: FormViewController {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(confirm))
 		}
 		
+		title = "editAppraisalController_title".localized
 		setupLayout()
 		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
@@ -76,7 +73,7 @@ class EditAppraisalController: FormViewController {
 	}
 	
 	@objc func cancel() {
-		
+		navigationController?.dismiss(animated: true)
 	}
 	
 	// MARK: - Helpers

@@ -12,8 +12,8 @@ import Eureka
 extension AddMeasurementsController {
 	fileprivate func setUIComponents() {
 		weightRow = DecimalRow("weight") {
-			$0.title = "addMeasurementsWeight_title".localized
-			$0.placeholder = "addMeasurementsWeight_placeholder".localized
+			$0.title = "addMeasurementsWeight_fieldTitle".localized
+			$0.placeholder = "cm_placeholder".localized
 			$0.value = weight
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -24,8 +24,8 @@ extension AddMeasurementsController {
 		}
 		
 		heightRow = DecimalRow("height") {
-			$0.title = "addMeasurementsHeight_title".localized
-			$0.placeholder = "addMeasurementsHeight_placeholder".localized
+			$0.title = "addMeasurementsHeight_fieldTitle".localized
+			$0.placeholder = "cm_placeholder".localized
 			$0.value = height
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -36,8 +36,8 @@ extension AddMeasurementsController {
 		}
 		
 		hipCircumferenceRow = DecimalRow("hipCircumference") {
-			$0.title = "addMeasurementsHipCircumference_title".localized
-			$0.placeholder = "addMeasurementsHipCircumference_placeholder".localized
+			$0.title = "addMeasurementsHipCircumference_fieldTitle".localized
+			$0.placeholder = "cm_placeholder".localized
 			$0.value = hipCircumference
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -48,8 +48,8 @@ extension AddMeasurementsController {
 		}
 		
 		waistCircumferenceRow = DecimalRow("waistCircumference") {
-			$0.title = "addMeasurementsWaistCircumference_title".localized
-			$0.placeholder = "addMeasurementsWaistCircumference_placeholder".localized
+			$0.title = "addMeasurementsWaistCircumference_fieldTitle".localized
+			$0.placeholder = "cm_placeholder".localized
 			$0.value = waistCircumference
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -60,8 +60,8 @@ extension AddMeasurementsController {
 		}
 		
 		thighCircumferenceRow = DecimalRow("thighCircumference") {
-			$0.title = "addMeasurementsThighCircumference_title".localized
-			$0.placeholder = "addMeasurementsThighCircumference_placeholder".localized
+			$0.title = "addMeasurementsThighCircumference_fieldTitle".localized
+			$0.placeholder = "cm_placeholder".localized
 			$0.value = thighCircumference
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -72,8 +72,8 @@ extension AddMeasurementsController {
 		}
 		
 		armCircumferenceRow = DecimalRow("armCircumference") {
-			$0.title = "addMeasurementsArmCircumference_title".localized
-			$0.placeholder = "addMeasurementsArmCircumference_placeholder".localized
+			$0.title = "addMeasurementsArmCircumference_fieldTitle".localized
+			$0.placeholder = "cm_placeholder".localized
 			$0.value = armCircumference
 			$0.onChange { [unowned self] row in
 				if let value = row.value {

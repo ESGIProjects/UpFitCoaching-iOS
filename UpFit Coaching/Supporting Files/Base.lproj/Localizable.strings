@@ -16,6 +16,7 @@
 "addButton" = "Add";
 "nextButton" = "Next";
 "editButton" = "Edit";
+"updateButton" = "Update";
 "noButton" = "No";
 "yesButton" = "Yes";
 "sex_0" = "Man";
@@ -142,6 +143,53 @@
 "showAppraisalButton" = "Show Appraisal";
 "measurementsButton" = "Update measurements";
 "newTestButton" = "New test";
+
+// Edit Appraisal
+"editAppraisalController_title" = "New Appraisal";
+
+"appraisalGoal_fieldTitle" = "Goal";
+"appraisalSessionsByWeek_fieldTitle" = "Number of sessions by week";
+"appraisalContraindication_fieldTitle" = "Contraindication";
+"appraisalSportsAntecedents_fieldTitle" = "Sports antecedents";
+"appraisalHelpNeeded_fieldTitle" = "Help needed";
+"appraisalHasNutritionist_fieldTitle" = "Has a nutritionist";
+"appraisalComments_placeholder" = "Comments";
+
+// Add measurements
+"addMeasurementsController_title" = "Measurements";
+
+"addMeasurementsWeight_fieldTitle" = "Weight";
+"addMeasurementsHeight_fieldTitle" = "Height";
+"addMeasurementsHipCircumference_fieldTitle" = "Hip circumference";
+"addMeasurementsWaistCircumference_fieldTitle" = "Waist circumference";
+"addMeasurementsThighCircumference_fieldTitle" = "Thigh circumference";
+"addMeasurementsArmCircumference_fieldTitle" = "Arm circumference";
+
+"cm_placeholder" = "centimeters";
+
+// New test
+"newTestController_title" = "New test";
+
+"newTestVVO2max_sectionTitle" = "vVO2 max";
+"newTestWarmUp_fieldTitle" = "Warm Up";
+"newTestStartSpeed_fieldTitle" = "Start Speed";
+"newTestIncrease_fieldTitle" = "Increase";
+"newTestFrequency_fieldTitle" = "Frequency";
+
+"newTestFlexibility_sectionTitle" = "Flexibility";
+"newTestKneeFlexibility_fieldTitle" = "Knee";
+"newTestShinFlexibility_fieldTitle" = "Shin";
+"newTestHitFootFlexibility_fieldTitle" = "Hit Foot";
+"newTestClosedFistGroundFlexibility_fieldTitle" = "Closed fist ground";
+"newTestHandFlatGroundFlexibility_fieldTitle" = "Hand flat ground";
+
+"km/h_placeholder" = "km-per-hour";
+"seconds_placeholder" = "seconds";
+
+"flexibilityValue_0" = "Weak";
+"flexibilityValue_1" = "Average";
+"flexibilityValue_2" = "Good";
+"flexibilityValue_3" = "Very good";
 
 // Follow Up
 "followUpController_title" = "Follow Up";

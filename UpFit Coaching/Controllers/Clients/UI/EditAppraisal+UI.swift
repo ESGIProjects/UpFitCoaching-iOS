@@ -12,8 +12,8 @@ import Eureka
 extension EditAppraisalController {
 	fileprivate func setUIComponents() {
 		goalRow = TextRow("goal") {
-			$0.title = "appraisalGoal_title".localized
-			$0.placeholder = "appraisalGoal_placeholder".localized
+			$0.title = "appraisalGoal_fieldTitle".localized
+			$0.placeholder = "requiredField".localized
 			$0.value = goal
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -24,7 +24,7 @@ extension EditAppraisalController {
 		}
 		
 		totalSessionsByWeekRow = StepperRow("totalSessionsByWeek") {
-			$0.title = "appraisalSessionsByWeek_title".localized
+			$0.title = "appraisalSessionsByWeek_fieldTitle".localized
 			$0.value = Double(totalSessionsByWeek)
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -35,8 +35,8 @@ extension EditAppraisalController {
 		}
 		
 		contraindicationRow = TextRow("contraindication") {
-			$0.title = "appraisalContraindication_title".localized
-			$0.placeholder = "appraisalContraindication_placeholder".localized
+			$0.title = "appraisalContraindication_fieldTitle".localized
+			$0.placeholder = "requiredField".localized
 			$0.value = contraindication
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -47,8 +47,8 @@ extension EditAppraisalController {
 		}
 		
 		sportsAntecedentsRow = TextRow("sportsAntecedents") {
-			$0.title = "appraisalSportsAntecedents_title".localized
-			$0.placeholder = "appraisalSportsAntecedents_placeholder".localized
+			$0.title = "appraisalSportsAntecedents_fieldTitle".localized
+			$0.placeholder = "requiredField".localized
 			$0.value = sportsAntecedents
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -59,7 +59,7 @@ extension EditAppraisalController {
 		}
 		
 		helpNeededRow = SwitchRow("helpNeeded") {
-			$0.title = "appraisalHelpNeeded_title".localized
+			$0.title = "appraisalHelpNeeded_fieldTitle".localized
 			$0.value = helpNeeded
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -70,7 +70,7 @@ extension EditAppraisalController {
 		}
 		
 		hasNutritionistRow = SwitchRow("hasNutritionist") {
-			$0.title = "appraisalHasNutritionist_title".localized
+			$0.title = "appraisalHasNutritionist_fieldTitle".localized
 			$0.value = hasNutritionist
 			$0.onChange { [unowned self] row in
 				if let value = row.value {

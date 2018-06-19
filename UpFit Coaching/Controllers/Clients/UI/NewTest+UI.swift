@@ -12,8 +12,8 @@ import Eureka
 extension NewTestController {
 	fileprivate func setUIComponents() {
 		warmUpRow = DecimalRow("warmUp") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+			$0.title = "newTestWarmUp_fieldTitle".localized
+			$0.placeholder = "km/h_placeholder".localized
 			$0.value = warmUp
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -24,8 +24,8 @@ extension NewTestController {
 		}
 		
 		startSpeedRow = DecimalRow("startSpeed") {
-			$0.title = "newTestStartSpeed_title".localized
-			$0.placeholder = "newTestStartSpeed_placeholder".localized
+			$0.title = "newTestStartSpeed_fieldTitle".localized
+			$0.placeholder = "km/h_placeholder".localized
 			$0.value = startSpeed
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -36,8 +36,8 @@ extension NewTestController {
 		}
 		
 		increaseRow = DecimalRow("increase") {
-			$0.title = "newTestIncrease_title".localized
-			$0.placeholder = "newTestIncrease_placeholder".localized
+			$0.title = "newTestIncrease_fieldTitle".localized
+			$0.placeholder = "km/h_placeholder".localized
 			$0.value = increase
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -48,8 +48,8 @@ extension NewTestController {
 		}
 		
 		frequencyRow = DecimalRow("frequency") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+			$0.title = "newTestFrequency_fieldTitle".localized
+			$0.placeholder = "seconds_placeholder".localized
 			$0.value = frequency
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -59,10 +59,14 @@ extension NewTestController {
 			}
 		}
 		
-		kneeFlexibilityRow = DecimalRow("kneeFlexibility") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+		kneeFlexibilityRow = AlertRow<Flexibility>("kneeFlexibility") {
+			$0.title = "newTestKneeFlexibility_fieldTitle".localized
+			$0.options = [.weak, .average, .good, .veryGood]
 			$0.value = kneeFlexibility
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return "flexibilityValue_\(value.rawValue)".localized
+			}
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.kneeFlexibility = value
@@ -71,10 +75,14 @@ extension NewTestController {
 			}
 		}
 		
-		shinFlexibilityRow = DecimalRow("shinFlexibility") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+		shinFlexibilityRow = AlertRow<Flexibility>("shinFlexibility") {
+			$0.title = "newTestShinFlexibility_fieldTitle".localized
+			$0.options = [.weak, .average, .good, .veryGood]
 			$0.value = shinFlexibility
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return "flexibilityValue_\(value.rawValue)".localized
+			}
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.shinFlexibility = value
@@ -83,10 +91,14 @@ extension NewTestController {
 			}
 		}
 		
-		hitFootFlexibilityRow = DecimalRow("hitFootFlexibility") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+		hitFootFlexibilityRow = AlertRow<Flexibility>("hitFootFlexibility") {
+			$0.title = "newTestHitFootFlexibility_fieldTitle".localized
+			$0.options = [.weak, .average, .good, .veryGood]
 			$0.value = hitFootFlexibility
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return "flexibilityValue_\(value.rawValue)".localized
+			}
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.hitFootFlexibility = value
@@ -95,10 +107,14 @@ extension NewTestController {
 			}
 		}
 		
-		closedFistGroundFlexibilityRow = DecimalRow("closedFistGroundFlexibility") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+		closedFistGroundFlexibilityRow = AlertRow<Flexibility>("closedFistGroundFlexibility") {
+			$0.title = "newTestClosedFistGroundFlexibility_fieldTitle".localized
 			$0.value = closedFistGroundFlexibility
+			$0.options = [.weak, .average, .good, .veryGood]
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return "flexibilityValue_\(value.rawValue)".localized
+			}
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.closedFistGroundFlexibility = value
@@ -107,10 +123,14 @@ extension NewTestController {
 			}
 		}
 		
-		handFlatGroundFlexibilityRow = DecimalRow("handFlatGroundFlexibility") {
-			$0.title = "newTestWarmUp_title".localized
-			$0.placeholder = "newTestWarmUp_placeholder".localized
+		handFlatGroundFlexibilityRow = AlertRow<Flexibility>("handFlatGroundFlexibility") {
+			$0.title = "newTestHandFlatGroundFlexibility_fieldTitle".localized
 			$0.value = handFlatGroundFlexibility
+			$0.options = [.weak, .average, .good, .veryGood]
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return "flexibilityValue_\(value.rawValue)".localized
+			}
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.handFlatGroundFlexibility = value
@@ -124,8 +144,8 @@ extension NewTestController {
 		setUIComponents()
 		
 		form += [
-			Section() <<< warmUpRow <<< startSpeedRow <<< increaseRow <<< frequencyRow,
-			Section() <<< kneeFlexibilityRow <<< shinFlexibilityRow <<< closedFistGroundFlexibilityRow <<< handFlatGroundFlexibilityRow
+			Section("newTestVVO2max_sectionTitle".localized) <<< warmUpRow <<< startSpeedRow <<< increaseRow <<< frequencyRow,
+			Section("newTestFlexibility_sectionTitle".localized) <<< kneeFlexibilityRow <<< shinFlexibilityRow <<< closedFistGroundFlexibilityRow <<< handFlatGroundFlexibilityRow
 		]
 	}
 }
