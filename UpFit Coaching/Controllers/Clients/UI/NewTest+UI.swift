@@ -10,55 +10,7 @@ import UIKit
 import Eureka
 
 extension NewTestController {
-	fileprivate func setUIComponents() {
-		warmUpRow = DecimalRow("warmUp") {
-			$0.title = "newTestWarmUp_fieldTitle".localized
-			$0.placeholder = "km/h_placeholder".localized
-			$0.value = warmUp
-			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.warmUp = value
-					self.toggleAddButton()
-				}
-			}
-		}
-		
-		startSpeedRow = DecimalRow("startSpeed") {
-			$0.title = "newTestStartSpeed_fieldTitle".localized
-			$0.placeholder = "km/h_placeholder".localized
-			$0.value = startSpeed
-			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.startSpeed = value
-					self.toggleAddButton()
-				}
-			}
-		}
-		
-		increaseRow = DecimalRow("increase") {
-			$0.title = "newTestIncrease_fieldTitle".localized
-			$0.placeholder = "km/h_placeholder".localized
-			$0.value = increase
-			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.increase = value
-					self.toggleAddButton()
-				}
-			}
-		}
-		
-		frequencyRow = DecimalRow("frequency") {
-			$0.title = "newTestFrequency_fieldTitle".localized
-			$0.placeholder = "seconds_placeholder".localized
-			$0.value = frequency
-			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.frequency = value
-					self.toggleAddButton()
-				}
-			}
-		}
-		
+	fileprivate func flexibilitySection() {
 		kneeFlexibilityRow = AlertRow<Flexibility>("kneeFlexibility") {
 			$0.title = "newTestKneeFlexibility_fieldTitle".localized
 			$0.options = [.weak, .average, .good, .veryGood]
@@ -138,6 +90,61 @@ extension NewTestController {
 				}
 			}
 		}
+	}
+	
+	fileprivate func VMASection() {
+		warmUpRow = DecimalRow("warmUp") {
+			$0.title = "newTestWarmUp_fieldTitle".localized
+			$0.placeholder = "km/h_placeholder".localized
+			$0.value = warmUp
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.warmUp = value
+					self.toggleAddButton()
+				}
+			}
+		}
+		
+		startSpeedRow = DecimalRow("startSpeed") {
+			$0.title = "newTestStartSpeed_fieldTitle".localized
+			$0.placeholder = "km/h_placeholder".localized
+			$0.value = startSpeed
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.startSpeed = value
+					self.toggleAddButton()
+				}
+			}
+		}
+		
+		increaseRow = DecimalRow("increase") {
+			$0.title = "newTestIncrease_fieldTitle".localized
+			$0.placeholder = "km/h_placeholder".localized
+			$0.value = increase
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.increase = value
+					self.toggleAddButton()
+				}
+			}
+		}
+		
+		frequencyRow = DecimalRow("frequency") {
+			$0.title = "newTestFrequency_fieldTitle".localized
+			$0.placeholder = "seconds_placeholder".localized
+			$0.value = frequency
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.frequency = value
+					self.toggleAddButton()
+				}
+			}
+		}
+	}
+	
+	fileprivate func setUIComponents() {
+		VMASection()
+		flexibilitySection()
 	}
 	
 	func setupLayout() {
