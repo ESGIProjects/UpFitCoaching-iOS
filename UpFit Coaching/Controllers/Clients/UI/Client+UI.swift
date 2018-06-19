@@ -173,6 +173,7 @@ extension ClientController {
 		measurementsButton.addTarget(self, action: #selector(updateMeasurements), for: .touchUpInside)
 		
 		testButton = UI.testButton()
+		testButton.addTarget(self, action: #selector(newTest), for: .touchUpInside)
 	}
 	
 	func setupLayout() {

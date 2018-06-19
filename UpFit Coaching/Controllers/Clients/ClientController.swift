@@ -89,6 +89,10 @@ class ClientController: UIViewController {
 	@objc func updateMeasurements() {
 		present(UINavigationController(rootViewController: AddMeasurementsController()), animated: true)
 	}
+	
+	@objc func newTest() {
+		present(UINavigationController(rootViewController: NewTestController()), animated: true)
+	}
 }
 
 // MARK: - MFMailComposeViewControllerDelegate

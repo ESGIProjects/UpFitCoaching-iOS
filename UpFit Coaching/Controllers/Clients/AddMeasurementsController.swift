@@ -41,13 +41,6 @@ class AddMeasurementsController: FormViewController {
 			waistCircumference = 0.0
 			thighCircumference = 0.0
 			armCircumference = 0.0
-		} else {
-			weight = 0.0
-			height = 0.0
-			hipCircumference = 0.0
-			waistCircumference = 0.0
-			thighCircumference = 0.0
-			armCircumference = 0.0
 		}
 		
 		setupLayout()
