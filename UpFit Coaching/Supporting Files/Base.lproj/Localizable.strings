@@ -19,8 +19,8 @@
 "updateButton" = "Update";
 "noButton" = "No";
 "yesButton" = "Yes";
-"sex_0" = "Man";
-"sex_1" = "Woman";
+"sex_0" = "Woman";
+"sex_1" = "Man";
 
 // Login
 "loginController_title" = "Login";
@@ -56,12 +56,13 @@
 
 "requiredField" = "Required";
 
-"firstName_missingTitle" = "First name missing";
-"lastName_missingTitle" = "Last name missing";
+"firstName_missingTitle" = "First name missing.";
+"lastName_missingTitle" = "Last name missing.";
 "confirmPassword_errorTitle" = "You must enter the same password twice.";
-"city_missingTitle" = "City missing";
-"phoneNumber_missingTitle" = "Phone Number missing";
-"address_missingTitle" = "Address missing";
+"city_missingTitle" = "City missing.";
+"phoneNumber_missingTitle" = "Phone Number missing.";
+"birthDate_missingTitle" = "Birth date missing.";
+"address_missingTitle" = "Address missing.";
 
 "signUpButton_short" = "Sign Up";
 

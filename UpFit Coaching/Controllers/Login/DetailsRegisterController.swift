@@ -16,6 +16,7 @@ class DetailsRegisterController: FormViewController {
 	
 	var firstNameRow: NameRow!
 	var lastNameRow: NameRow!
+	var sexRow: SegmentedRow<Int>!
 	var cityRow: TextRow!
 	var phoneNumberRow: PhoneRow!
 	var addressRow: TextRow?
@@ -29,10 +30,7 @@ class DetailsRegisterController: FormViewController {
 	}
 	
 	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		navigationOptions = .Disabled
-		
+		super.viewDidLoad()		
 		setupLayout()
 	}
 	

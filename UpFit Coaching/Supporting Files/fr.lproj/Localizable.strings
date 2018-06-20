@@ -19,8 +19,8 @@
 "updateButton" = "Mettre à jour";
 "noButton" = "Non";
 "yesButton" = "Oui";
-"sex_0" = "Homme";
-"sex_1" = "Femme";
+"sex_0" = "Femme";
+"sex_1" = "Homme";
 
 // Login
 "loginController_title" = "Connexion";
@@ -56,12 +56,13 @@
 
 "requiredField" = "Obligatoire";
 
-"firstName_missingTitle" = "Prénom manquant";
-"lastName_missingTitle" = "Nom manquant";
+"firstName_missingTitle" = "Prénom manquant.";
+"lastName_missingTitle" = "Nom manquant.";
 "confirmPassword_errorTitle" = "Vous devez entrer le même mot de passe deux fois.";
-"city_missingTitle" = "Ville manquante";
+"city_missingTitle" = "Ville manquante.";
 "phoneNumber_missingTitle" = "Numéro de téléphone manquant";
-"address_missingTitle" = "Adresse manquante";
+"birthDate_missingTitle" = "Date de naissance manquante.";
+"address_missingTitle" = "Adresse manquante.";
 
 "signUpButton_short" = "S'inscrire";
 

@@ -27,9 +27,6 @@ class AccountRegisterController: FormViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		navigationOptions = .Disabled
-		
 		setupLayout()
 	}
 	

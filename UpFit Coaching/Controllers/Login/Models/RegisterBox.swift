@@ -61,6 +61,16 @@ class RegisterBox {
 		}
 	}
 	
+	var sex: Int {
+		get {
+			guard let value = parameters["sex"] as? Int else { return 1 }
+			return value
+		}
+		set {
+			parameters["sex"] = newValue
+		}
+	}
+	
 	var city: String {
 		get {
 			guard let value = parameters["city"] as? String else { return "" }

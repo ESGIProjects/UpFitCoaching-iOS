@@ -49,6 +49,29 @@ extension DetailsRegisterController {
 				}
 			}
 		}
+		
+		sexRow = SegmentedRow<Int>("sex") {
+//			$0.title = "sex_fieldTitle".localized
+			$0.options = [1, 0]
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return "sex_\(value)".localized
+			}
+			$0.value = registerController?.registerBox.sex
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.registerController?.registerBox.sex = value
+				}
+			}
+			
+			$0.add(rule: RuleRequired(msg: "sex_missingTitle".localized))
+			$0.validationOptions = .validatesOnChange
+			$0.cellUpdate { cell, row in
+				if !row.isValid {
+					cell.titleLabel?.textColor = .red
+				}
+			}
+		}
 	}
 	
 	fileprivate func setDetailsSectionRows() {
@@ -164,7 +187,7 @@ extension DetailsRegisterController {
 		}
 		
 		form += [
-			Section() <<< firstNameRow <<< lastNameRow,
+			Section() <<< firstNameRow <<< lastNameRow <<< sexRow,
 			section,
 			Section() <<< registerRow
 		]
