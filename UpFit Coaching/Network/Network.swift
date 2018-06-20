@@ -14,6 +14,7 @@ class Network {
 		case get	= "GET"
 		case post	= "POST"
 		case put	= "PUT"
+		case delete	= "DELETE"
 	}
 	
 	// MARK: - Perform call
@@ -31,7 +32,7 @@ class Network {
 		let parameterString = callParameters.map({ String($0) }).joined(separator: "&")
 				
 		switch httpMethod {
-		case .get:
+		case .get, .delete:
 			guard let url = URL(string: stringUrl.appending("?").appending(parameterString)) else { return }
 			request = URLRequest(url: url)
 		case .post, .put:

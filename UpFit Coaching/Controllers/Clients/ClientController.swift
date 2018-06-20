@@ -50,7 +50,7 @@ class ClientController: UIViewController {
 		dateFormatter.dateStyle = .medium
 		dateFormatter.timeStyle = .none
 		
-		birthDateLabel.text = "sexAndBirthDate_label".localized(with: "sex_\(0)".localized, dateFormatter.string(from: birthDate))
+		birthDateLabel.text = "sexAndBirthDate_label".localized(with: "sex_\(client.sex)".localized, dateFormatter.string(from: birthDate))
 		cityLabel.text = "city_label".localized(with: client.city)
 	}
 	

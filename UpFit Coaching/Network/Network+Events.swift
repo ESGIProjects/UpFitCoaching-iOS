@@ -56,4 +56,15 @@ extension Network {
 		
 		call(url, httpMethod: .put, parameters: parameters, completion: completion)
 	}
+	
+	class func cancelEvent(_ event: Event, completion: @escaping NetworkCallback) {
+		guard let eventId = event.eventID else { return }
+		
+		let url = baseURL.appending("/events/")
+		let parameters: [String: Any] = [
+			"eventId": eventId
+		]
+		
+		call(url, httpMethod: .delete, parameters: parameters, completion: completion)
+	}
 }
