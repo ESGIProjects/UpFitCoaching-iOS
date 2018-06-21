@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import PKHUD
 
 class EventController: UIViewController {
 	
@@ -141,14 +142,31 @@ class EventController: UIViewController {
 	}
 	
 	@objc func cancel() {
-		guard let eventID = event?.eventID else { return }
+		guard let event = event,
+			let eventID = event.eventID else { return }
 		
 		let alertController = UIAlertController(title: "cancelEventButton".localized, message: "cancelEvent_message".localized, preferredStyle: .alert)
 		alertController.addAction(UIAlertAction(title: "noButton".localized, style: .cancel))
 		alertController.addAction(UIAlertAction(title: "yesButton".localized, style: .destructive, handler: { [weak self] _ in
-			// Network…
-			Database().delete(type: EventObject.self, with: eventID)
-			self?.navigationController?.popViewController(animated: true)
+			
+			Network.cancelEvent(event) { _, response, _ in
+				
+				DispatchQueue.main.async {
+					HUD.show(.progress)
+				}
+				
+				if Network.isSuccess(response: response, successCode: 200) {
+					Database().delete(type: EventObject.self, with: eventID)
+					
+					DispatchQueue.main.async {
+						self?.navigationController?.popViewController(animated: true)
+					}					
+				}
+				
+				DispatchQueue.main.async {
+					HUD.hide()
+				}
+			}
 		}))
 		
 		present(alertController, animated: true)
