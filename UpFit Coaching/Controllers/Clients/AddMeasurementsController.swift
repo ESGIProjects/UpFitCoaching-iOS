@@ -17,7 +17,7 @@ class AddMeasurementsController: FormViewController {
 	var thighCircumferenceRow: DecimalRow!
 	var armCircumferenceRow: DecimalRow!
 	
-	var oldMeasurement: Int? // type Measurement?
+	var oldMeasurements: Measurements? // type Measurement?
 	
 	var client: User?
 	var weight: Double!
@@ -34,13 +34,13 @@ class AddMeasurementsController: FormViewController {
 		
 		title = "addMeasurementsController_title".localized
 		
-		if let measurement = oldMeasurement {
-			weight = 0.0
-			height = 0.0
-			hipCircumference = 0.0
-			waistCircumference = 0.0
-			thighCircumference = 0.0
-			armCircumference = 0.0
+		if let measurements = oldMeasurements {
+			weight = measurements.weight
+			height = measurements.height
+			hipCircumference = measurements.hipCircumference
+			waistCircumference = measurements.waistCircumference
+			thighCircumference = measurements.thighCircumference
+			armCircumference = measurements.armCircumference
 		}
 		
 		setupLayout()
@@ -53,7 +53,8 @@ class AddMeasurementsController: FormViewController {
 	// MARK: - Actions
 	
 	@objc func update() {
-		
+		guard let client = client else { return }
+		let measurements = Measurements(user: client, date: Date(), weight: weight, height: height, hipCircumference: hipCircumference, waistCircumference: waistCircumference, thighCircumference: thighCircumference, armCircumference: armCircumference)
 	}
 	
 	@objc func cancel() {
@@ -63,6 +64,7 @@ class AddMeasurementsController: FormViewController {
 	// MARK: - Helpers
 	
 	func toggleUpdateButton() {
-		
+		navigationItem.rightBarButtonItem?.isEnabled = weight != nil && height != nil && hipCircumference != nil
+			&& waistCircumference != nil && thighCircumference != nil && armCircumference != nil
 	}
 }

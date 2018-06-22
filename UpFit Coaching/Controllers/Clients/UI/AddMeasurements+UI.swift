@@ -16,10 +16,8 @@ extension AddMeasurementsController {
 			$0.placeholder = "cm_placeholder".localized
 			$0.value = weight
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.weight = value
-					self.toggleUpdateButton()
-				}
+				self.weight = row.value
+				self.toggleUpdateButton()
 			}
 		}
 		
@@ -28,10 +26,8 @@ extension AddMeasurementsController {
 			$0.placeholder = "cm_placeholder".localized
 			$0.value = height
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.height = value
-					self.toggleUpdateButton()
-				}
+				self.height = row.value
+				self.toggleUpdateButton()
 			}
 		}
 		
@@ -40,10 +36,8 @@ extension AddMeasurementsController {
 			$0.placeholder = "cm_placeholder".localized
 			$0.value = hipCircumference
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.hipCircumference = value
-					self.toggleUpdateButton()
-				}
+				self.hipCircumference = row.value
+				self.toggleUpdateButton()
 			}
 		}
 		
@@ -52,10 +46,8 @@ extension AddMeasurementsController {
 			$0.placeholder = "cm_placeholder".localized
 			$0.value = waistCircumference
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.waistCircumference = value
-					self.toggleUpdateButton()
-				}
+				self.waistCircumference = row.value
+				self.toggleUpdateButton()
 			}
 		}
 		
@@ -64,10 +56,8 @@ extension AddMeasurementsController {
 			$0.placeholder = "cm_placeholder".localized
 			$0.value = thighCircumference
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.thighCircumference = value
-					self.toggleUpdateButton()
-				}
+				self.thighCircumference = row.value
+				self.toggleUpdateButton()
 			}
 		}
 		
@@ -76,10 +66,8 @@ extension AddMeasurementsController {
 			$0.placeholder = "cm_placeholder".localized
 			$0.value = armCircumference
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.armCircumference = value
-					self.toggleUpdateButton()
-				}
+				self.armCircumference = row.value
+				self.toggleUpdateButton()
 			}
 		}
 	}

@@ -155,7 +155,7 @@
 "appraisalGoal_fieldTitle" = "Objectif";
 "appraisalSessionsByWeek_fieldTitle" = "Nombre de séances par semaine";
 "appraisalContraindication_fieldTitle" = "Contre indication";
-"appraisalSportsAntecedents_fieldTitle" = "Antécédents sportifs";
+"appraisalSportAntecedents_fieldTitle" = "Antécédents sportifs";
 "appraisalHelpNeeded_fieldTitle" = "Aide nécessaire";
 "appraisalHasNutritionist_fieldTitle" = "Suivi par un nutritionniste";
 "appraisalComments_placeholder" = "Commentaires";

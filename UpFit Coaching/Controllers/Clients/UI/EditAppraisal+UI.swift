@@ -23,12 +23,12 @@ extension EditAppraisalController {
 			}
 		}
 		
-		totalSessionsByWeekRow = StepperRow("totalSessionsByWeek") {
+		sessionsByWeekRow = StepperRow("sessionsByWeek") {
 			$0.title = "appraisalSessionsByWeek_fieldTitle".localized
-			$0.value = Double(totalSessionsByWeek)
+			$0.value = Double(sessionsByWeek)
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
-					self.totalSessionsByWeek = Int(value)
+					self.sessionsByWeek = Int(value)
 					self.toggleConfirmationButton()
 				}
 			}
@@ -36,7 +36,7 @@ extension EditAppraisalController {
 		
 		contraindicationRow = TextRow("contraindication") {
 			$0.title = "appraisalContraindication_fieldTitle".localized
-			$0.placeholder = "requiredField".localized
+			$0.placeholder = "optionalField".localized
 			$0.value = contraindication
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
@@ -46,13 +46,13 @@ extension EditAppraisalController {
 			}
 		}
 		
-		sportsAntecedentsRow = TextRow("sportsAntecedents") {
-			$0.title = "appraisalSportsAntecedents_fieldTitle".localized
-			$0.placeholder = "requiredField".localized
-			$0.value = sportsAntecedents
+		sportAntecedentsRow = TextRow("sportAntecedents") {
+			$0.title = "appraisalSportAntecedents_fieldTitle".localized
+			$0.placeholder = "optionalField".localized
+			$0.value = sportAntecedents
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
-					self.sportsAntecedents = value
+					self.sportAntecedents = value
 					self.toggleConfirmationButton()
 				}
 			}
@@ -96,8 +96,8 @@ extension EditAppraisalController {
 		setUIComponents()
 		
 		form += [
-			Section() <<< goalRow <<< totalSessionsByWeekRow,
-			Section() <<< contraindicationRow <<< sportsAntecedentsRow <<< helpNeededRow <<< hasNutritionistRow <<< commentsRow
+			Section() <<< goalRow <<< sessionsByWeekRow,
+			Section() <<< contraindicationRow <<< sportAntecedentsRow <<< helpNeededRow <<< hasNutritionistRow <<< commentsRow
 		]
 	}
 }

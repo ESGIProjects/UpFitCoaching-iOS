@@ -155,7 +155,7 @@
 "appraisalGoal_fieldTitle" = "Goal";
 "appraisalSessionsByWeek_fieldTitle" = "Number of sessions by week";
 "appraisalContraindication_fieldTitle" = "Contraindication";
-"appraisalSportsAntecedents_fieldTitle" = "Sports antecedents";
+"appraisalSportAntecedents_fieldTitle" = "Sport antecedents";
 "appraisalHelpNeeded_fieldTitle" = "Help needed";
 "appraisalHasNutritionist_fieldTitle" = "Has a nutritionist";
 "appraisalComments_placeholder" = "Comments";

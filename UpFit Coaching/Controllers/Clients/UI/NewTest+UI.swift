@@ -98,10 +98,9 @@ extension NewTestController {
 			$0.placeholder = "km/h_placeholder".localized
 			$0.value = warmUp
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.warmUp = value
-					self.toggleAddButton()
-				}
+				self.warmUp = row.value
+				self.toggleAddButton()
+				
 			}
 		}
 		
@@ -110,10 +109,9 @@ extension NewTestController {
 			$0.placeholder = "km/h_placeholder".localized
 			$0.value = startSpeed
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.startSpeed = value
-					self.toggleAddButton()
-				}
+				self.startSpeed = row.value
+				self.toggleAddButton()
+				
 			}
 		}
 		
@@ -122,10 +120,9 @@ extension NewTestController {
 			$0.placeholder = "km/h_placeholder".localized
 			$0.value = increase
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.increase = value
-					self.toggleAddButton()
-				}
+				self.increase = row.value
+				self.toggleAddButton()
+				
 			}
 		}
 		
@@ -134,10 +131,8 @@ extension NewTestController {
 			$0.placeholder = "seconds_placeholder".localized
 			$0.value = frequency
 			$0.onChange { [unowned self] row in
-				if let value = row.value {
-					self.frequency = value
-					self.toggleAddButton()
-				}
+				self.frequency = row.value
+				self.toggleAddButton()
 			}
 		}
 	}
@@ -152,7 +147,7 @@ extension NewTestController {
 		
 		form += [
 			Section("newTestVVO2max_sectionTitle".localized) <<< warmUpRow <<< startSpeedRow <<< increaseRow <<< frequencyRow,
-			Section("newTestFlexibility_sectionTitle".localized) <<< kneeFlexibilityRow <<< shinFlexibilityRow <<< closedFistGroundFlexibilityRow <<< handFlatGroundFlexibilityRow
+			Section("newTestFlexibility_sectionTitle".localized) <<< kneeFlexibilityRow <<< shinFlexibilityRow <<< hitFootFlexibilityRow <<< closedFistGroundFlexibilityRow <<< handFlatGroundFlexibilityRow
 		]
 	}
 }

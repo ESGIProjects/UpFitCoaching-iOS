@@ -11,21 +11,21 @@ import Eureka
 
 class EditAppraisalController: FormViewController {
 	var goalRow: TextRow!
-	var totalSessionsByWeekRow: StepperRow!
+	var sessionsByWeekRow: StepperRow!
 	var contraindicationRow: TextRow!
-	var sportsAntecedentsRow: TextRow!
+	var sportAntecedentsRow: TextRow!
 	var helpNeededRow: SwitchRow!
 	var hasNutritionistRow: SwitchRow!
 	var commentsRow: TextAreaRow!
 	
 	var editionMode = EditionMode.add
-//	var appraisal: Appraisal?
+	var appraisal: Appraisal?
 	
 	var client: User?
 	var goal: String!
-	var totalSessionsByWeek: Int!
+	var sessionsByWeek: Int!
 	var contraindication: String!
-	var sportsAntecedents: String!
+	var sportAntecedents: String!
 	var helpNeeded: Bool!
 	var hasNutritionist: Bool!
 	var comments: String!
@@ -37,24 +37,24 @@ class EditAppraisalController: FormViewController {
 		
 		if editionMode == .add {
 			goal = ""
-			totalSessionsByWeek = 0
+			sessionsByWeek = 0
 			contraindication = ""
-			sportsAntecedents = ""
+			sportAntecedents = ""
 			helpNeeded = false
 			hasNutritionist = false
 			comments = ""
 			
 			navigationItem.rightBarButtonItem = UIBarButtonItem(title: "addButton".localized, style: .done, target: self, action: #selector(confirm))
 		} else {
-//			guard let appraisal = appraisal else { return }
+			guard let appraisal = appraisal else { return }
 			
-			goal = ""
-			totalSessionsByWeek = 0
-			contraindication = ""
-			sportsAntecedents = ""
-			helpNeeded = false
-			hasNutritionist = false
-			comments = ""
+			goal = appraisal.goal
+			sessionsByWeek = appraisal.sessionsByWeek
+			contraindication = appraisal.contraindication
+			sportAntecedents = appraisal.sportAntecedents
+			helpNeeded = appraisal.helpNeeded
+			hasNutritionist = appraisal.hasNutritionist
+			comments = appraisal.comments
 			
 			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(confirm))
 		}
@@ -69,24 +69,17 @@ class EditAppraisalController: FormViewController {
 	// MARK: - Actions
 	
 	@objc func confirm() {
+		guard let client = client else { return }
+		let appraisal = Appraisal(user: client, date: Date(), goal: goal, sessionsByWeek: sessionsByWeek, contraindication: contraindication, sportAntecedents: sportAntecedents, helpNeeded: helpNeeded, hasNutritionist: hasNutritionist, comments: comments)
 		
+		// Network & save
 	}
 	
 	@objc func cancel() {
 		navigationController?.dismiss(animated: true)
 	}
 	
-	// MARK: - Helpers
-	
-	func add() {
-		
-	}
-	
-	func update() {
-		
-	}
-	
 	func toggleConfirmationButton() {
-		
+		navigationItem.rightBarButtonItem?.isEnabled = goal != ""
 	}
 }
