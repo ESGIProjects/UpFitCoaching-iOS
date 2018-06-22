@@ -17,6 +17,7 @@ enum EditionMode {
 class EditEventController: FormViewController {
 	
 	var titleRow: TextRow!
+	var typeRow: PushRow<Int>!
 	var otherUserRow: PushRow<User>?
 	var startDateRow: DateTimeInlineRow!
 	var endDateRow: DateTimeInlineRow!
@@ -25,6 +26,7 @@ class EditEventController: FormViewController {
 	var event: Event?
 	
 	var eventTitle: String!
+	var type: Int!
 	var startDate: Date!
 	var endDate: Date!
 	let currentUser = Database().getCurrentUser()
@@ -39,6 +41,7 @@ class EditEventController: FormViewController {
 			title = "editEventController_addTitle".localized
 			
 			eventTitle = ""
+			type = 0
 			startDate = Date()
 			endDate = startDate.addingTimeInterval(60 * 60)
 			otherUser = currentUser?.coach
@@ -51,6 +54,7 @@ class EditEventController: FormViewController {
 			guard let event = event else { return }
 			
 			eventTitle = event.name
+			type = event.type
 			startDate = event.start
 			endDate = event.end
 			otherUser = event.firstUser == currentUser ? event.secondUser : event.firstUser
@@ -71,7 +75,7 @@ class EditEventController: FormViewController {
 		guard let otherUser = otherUser else { return }
 		
 		if editionMode == .add {
-			let event = Event(name: eventTitle, type: 0, firstUser: currentUser, secondUser: otherUser, start: startDate, end: endDate, createdBy: currentUser, updatedBy: currentUser)
+			let event = Event(name: eventTitle, type: type, firstUser: currentUser, secondUser: otherUser, start: startDate, end: endDate, createdBy: currentUser, updatedBy: currentUser)
 			event.eventID = Database().next(type: EventObject.self, of: "eventID") + 1
 			
 			add(event)

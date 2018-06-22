@@ -22,6 +22,22 @@ extension EditEventController {
 			}
 		}
 		
+		typeRow = PushRow<Int>("type") {
+			$0.title = "eventType_fieldTitle".localized
+			$0.value = type
+			
+			$0.options = [0, 1]
+			$0.displayValueFor = { value in
+				guard let value = value else { return "" }
+				return value == 0 ? "eventType_appraisal".localized : "eventType_session".localized
+			}
+			$0.onChange { [unowned self] row in
+				if let value = row.value {
+					self.type = value
+				}
+			}
+		}
+		
 		if currentUser?.type == 2 {
 			otherUserRow = PushRow<User>("otherUser") {
 				$0.title = "otherUser_fieldTitle".localized
@@ -74,7 +90,7 @@ extension EditEventController {
 		setUIComponents()
 		
 		let section = Section()
-		section <<< titleRow
+		section <<< titleRow <<< typeRow
 		
 		if let otherUserRow = otherUserRow {
 			section <<< otherUserRow

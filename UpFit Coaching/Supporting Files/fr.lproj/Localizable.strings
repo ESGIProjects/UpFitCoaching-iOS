@@ -100,6 +100,9 @@
 "editEventController_editTitle" = "Modifier l'événement";
 
 "eventTitle_placeholder" = "Titre";
+"eventType_fieldTitle" = "Type";
+"eventType_appraisal" = "Bilan";
+"eventType_session" = "Session";
 "otherUser_fieldTitle" = "Client";
 "startDate_fieldTitle" = "Début";
 "endDate_fieldTitle" = "Fin";
