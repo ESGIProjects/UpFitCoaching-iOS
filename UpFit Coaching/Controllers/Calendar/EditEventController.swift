@@ -103,6 +103,11 @@ class EditEventController: FormViewController {
 	// MARK: - Helpers
 	
 	func add(_ event: Event) {
+		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.addEvent(event) { [weak self] data, response, _ in
 			guard let data = data else { return }
 			
@@ -119,16 +124,21 @@ class EditEventController: FormViewController {
 				// Dismiss controller
 				self?.navigationController?.dismiss(animated: true)
 			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
+			}
 		}
 	}
 	
 	func update(_ event: Event) {
+		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		Network.updateEvent(event) { [weak self] data, response, _ in
-			guard let data = data else { return }
-			
-			DispatchQueue.main.async {
-				HUD.show(.progress)
-			}
+			guard let data = data else { return }			
 			
 			if Network.isSuccess(response: response, successCode: 200) {
 				// Creating the JSON decoder
@@ -151,7 +161,7 @@ class EditEventController: FormViewController {
 	}
 	
 	func toggleConfirmationButton() {
-		var condition = startDate <= endDate && eventTitle != ""
+		var condition = startDate <= endDate && eventTitle != "" && type != nil
 		
 		if currentUser?.type == 2 {
 			condition = condition && otherUser != nil

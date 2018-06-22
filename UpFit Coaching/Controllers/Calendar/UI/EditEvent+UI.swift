@@ -25,7 +25,6 @@ extension EditEventController {
 		typeRow = PushRow<Int>("type") {
 			$0.title = "eventType_fieldTitle".localized
 			$0.value = type
-			
 			$0.options = [0, 1]
 			$0.displayValueFor = { value in
 				guard let value = value else { return "" }
@@ -34,6 +33,7 @@ extension EditEventController {
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.type = value
+					self.toggleConfirmationButton()
 				}
 			}
 		}
@@ -57,6 +57,7 @@ extension EditEventController {
 				}
 				$0.onChange { [unowned self] row in
 					self.otherUser = row.value
+					self.toggleConfirmationButton()
 				}
 			}
 		}
