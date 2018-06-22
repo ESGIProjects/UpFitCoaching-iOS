@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import PKHUD
 
 class ClientController: UIViewController {
 	
@@ -33,6 +34,9 @@ class ClientController: UIViewController {
 		title = "clientController_title".localized
 		view.backgroundColor = .background
 		setupLayout()
+		
+		// Download appraisal
+		downloadAppraisal()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +96,40 @@ class ClientController: UIViewController {
 	
 	@objc func newTest() {
 		present(UINavigationController(rootViewController: NewTestController()), animated: true)
+	}
+	
+	// MARK: - Helpers
+	
+	func downloadAppraisal() {
+		guard let client = client else { return }
+		
+		HUD.show(.progress)
+		
+		Network.getLastAppraisal(for: client) { [weak self] data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode appraisal
+				do {
+					print(try decoder.decode(Appraisal.self, from: data))
+				} catch {
+					print(error, error.localizedDescription)
+				}
+				
+				guard let appraisal = try? decoder.decode(Appraisal.self, from: data) else { return }
+				
+				// Save appraisal
+				Database().createOrUpdate(model: appraisal, with: AppraisalObject.init)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
+				self?.refreshLayout()
+			}
+		}
 	}
 }
 

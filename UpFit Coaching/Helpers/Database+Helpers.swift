@@ -51,4 +51,14 @@ extension Database {
 		
 		return fetch(using: fetchRequest)
 	}
+	
+	func getLastAppraisal(for user: User) -> Appraisal? {
+		
+		// Creating the fetch request
+		let fetchRequest = FetchRequest<[Appraisal], AppraisalObject>(predicate: NSPredicate(format: "user.userID == %d", user.userID),
+																	  sortDescriptors: [SortDescriptor(keyPath: "date")],
+																	  transformer: { $0.map(Appraisal.init) })
+		
+		return fetch(using: fetchRequest).first
+	}
 }

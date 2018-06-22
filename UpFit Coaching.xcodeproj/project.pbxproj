@@ -20,6 +20,7 @@
 		1A34F8EB20DD2184008ED2A2 /* Appraisal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */; };
 		1A34F8ED20DD244B008ED2A2 /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8EC20DD244B008ED2A2 /* Measurements.swift */; };
 		1A34F8EF20DD25FF008ED2A2 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8EE20DD25FF008ED2A2 /* Test.swift */; };
+		1A34F8F120DD4226008ED2A2 /* Network+FollowUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8F020DD4226008ED2A2 /* Network+FollowUp.swift */; };
 		1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A0199208DCC610005C60A /* Notification+Names.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
@@ -117,6 +118,7 @@
 		1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appraisal.swift; sourceTree = "<group>"; };
 		1A34F8EC20DD244B008ED2A2 /* Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurements.swift; sourceTree = "<group>"; };
 		1A34F8EE20DD25FF008ED2A2 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		1A34F8F020DD4226008ED2A2 /* Network+FollowUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+FollowUp.swift"; sourceTree = "<group>"; };
 		1A9A0199208DCC610005C60A /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
 		1A9E1946207E0EFB0091FABB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				1A13093F20CEC8CA009B608B /* Network+Messages.swift */,
 				1A13094120CEC8EA009B608B /* Network+Events.swift */,
 				1A13094320CEC902009B608B /* Network+Forum.swift */,
+				1A34F8F020DD4226008ED2A2 /* Network+FollowUp.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */,
 				1AB1D87320CE6CB5002B1B06 /* Thread+UI.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
+				1A34F8F120DD4226008ED2A2 /* Network+FollowUp.swift in Sources */,
 				D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */,
 				1A34F8E020D7F63F008ED2A2 /* EditAppraisal+UI.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,

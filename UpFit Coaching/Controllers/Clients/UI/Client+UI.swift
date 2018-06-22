@@ -188,7 +188,9 @@ extension ClientController {
 		
 		var constraints = getConstraints()
 		
-		if true {
+		guard let client = client else { return }
+		
+		if Database().getLastAppraisal(for: client) != nil {
 			view.addSubview(followUpButton)
 			view.addSubview(measurementsButton)
 			view.addSubview(testButton)
