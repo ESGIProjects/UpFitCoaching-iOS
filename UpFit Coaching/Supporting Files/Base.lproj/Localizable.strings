@@ -89,7 +89,7 @@
 // Event
 "eventController_title" = "Event Details";
 
-"clientName" = "With %@";
+"clientName" = ", with %@";
 "eventDate_simple" = "%@\nfrom %@ to %@";
 "eventDate_multiple" = "From %@ at %@\nto %@ at %@";
 "cancelEventButton" = "Cancel event";

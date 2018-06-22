@@ -89,7 +89,7 @@
 // Event
 "eventController_title" = "Détails de l'événement";
 
-"clientName" = "Avec %@";
+"clientName" = ", avec %@";
 "eventDate_simple" = "%@\nde %@ à %@";
 "eventDate_multiple" = "Du %@ à %@\nau %@ à %@";
 "cancelEventButton" = "Annuler l'événement";

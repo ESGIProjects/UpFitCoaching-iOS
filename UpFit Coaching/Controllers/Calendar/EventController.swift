@@ -13,7 +13,7 @@ import PKHUD
 class EventController: UIViewController {
 	
 	var headerTitle: UILabel!
-	var clientLabel: UILabel!
+	var typeLabel: UILabel!
 	var dateLabel: UILabel!
 	var addressLabel: UILabel!
 	var mapView: MKMapView!
@@ -41,10 +41,14 @@ class EventController: UIViewController {
 		guard let currentUser = currentUser,
 			let event = event else { return }
 		
+		typeLabel.text = event.type == 0 ? "eventType_appraisal".localized : "eventType_session".localized
+		
 		// If coach, retrieve client
 		if currentUser.type == 2 {
 			let client = currentUser == event.firstUser ? event.secondUser : event.firstUser
-			clientLabel.text = "clientName".localized(with: "\(client.firstName) \(client.lastName)")
+			typeLabel.text?.append("clientName".localized(with: "\(client.firstName) \(client.lastName)"))
+		} else {
+			
 		}
 		
 		// Build dates
