@@ -17,6 +17,9 @@
 		1A34F8E420D80332008ED2A2 /* NewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8E320D80332008ED2A2 /* NewTestController.swift */; };
 		1A34F8E620D8056A008ED2A2 /* AddMeasurements+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8E520D8056A008ED2A2 /* AddMeasurements+UI.swift */; };
 		1A34F8E820D8057B008ED2A2 /* NewTest+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8E720D8057B008ED2A2 /* NewTest+UI.swift */; };
+		1A34F8EB20DD2184008ED2A2 /* Appraisal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */; };
+		1A34F8ED20DD244B008ED2A2 /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8EC20DD244B008ED2A2 /* Measurements.swift */; };
+		1A34F8EF20DD25FF008ED2A2 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A34F8EE20DD25FF008ED2A2 /* Test.swift */; };
 		1A9A019A208DCC610005C60A /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A0199208DCC610005C60A /* Notification+Names.swift */; };
 		1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA39738203C1BA10020092D /* ConversationListController.swift */; };
 		1AA3973B203C50520020092D /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3973A203C50520020092D /* ConversationListCell.swift */; };
@@ -111,6 +114,9 @@
 		1A34F8E320D80332008ED2A2 /* NewTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestController.swift; sourceTree = "<group>"; };
 		1A34F8E520D8056A008ED2A2 /* AddMeasurements+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddMeasurements+UI.swift"; sourceTree = "<group>"; };
 		1A34F8E720D8057B008ED2A2 /* NewTest+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewTest+UI.swift"; sourceTree = "<group>"; };
+		1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appraisal.swift; sourceTree = "<group>"; };
+		1A34F8EC20DD244B008ED2A2 /* Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurements.swift; sourceTree = "<group>"; };
+		1A34F8EE20DD25FF008ED2A2 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		1A9A0199208DCC610005C60A /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
 		1A9E1946207E0EFB0091FABB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A9E1947207E0F3D0091FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 				1A34F8E120D80328008ED2A2 /* AddMeasurementsController.swift */,
 				1A34F8E320D80332008ED2A2 /* NewTestController.swift */,
 				1A34F8DC20D7AC9C008ED2A2 /* UI */,
+				1A34F8E920DD2169008ED2A2 /* Models */,
 				D7C16C1820D5934D004D6EA9 /* Protocols */,
 			);
 			path = Clients;
@@ -250,6 +257,16 @@
 				1A34F8E720D8057B008ED2A2 /* NewTest+UI.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		1A34F8E920DD2169008ED2A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */,
+				1A34F8EC20DD244B008ED2A2 /* Measurements.swift */,
+				1A34F8EE20DD25FF008ED2A2 /* Test.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1A8A18E6203AFD11006D2183 /* Views */ = {
@@ -757,6 +774,7 @@
 				D7C16C1E20D593A5004D6EA9 /* Client+UI.swift in Sources */,
 				1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
+				1A34F8EF20DD25FF008ED2A2 /* Test.swift in Sources */,
 				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
 				D724AB8620CD69260074164C /* EditProfileController.swift in Sources */,
 				1A13094420CEC902009B608B /* Network+Forum.swift in Sources */,
@@ -810,6 +828,7 @@
 				D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */,
 				D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
+				1A34F8ED20DD244B008ED2A2 /* Measurements.swift in Sources */,
 				1A34F8DE20D7F211008ED2A2 /* EditAppraisalController.swift in Sources */,
 				D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */,
 				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,
@@ -837,6 +856,7 @@
 				1A34F8E020D7F63F008ED2A2 /* EditAppraisal+UI.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 				D7EF961F20860EBB002E0A9B /* User.swift in Sources */,
+				1A34F8EB20DD2184008ED2A2 /* Appraisal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

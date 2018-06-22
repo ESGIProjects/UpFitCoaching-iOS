@@ -9,10 +9,6 @@
 import UIKit
 import Eureka
 
-enum Flexibility: Int {
-	case weak, average, good, veryGood
-}
-
 class NewTestController: FormViewController {
 	var warmUpRow: DecimalRow!
 	var startSpeedRow: DecimalRow!
