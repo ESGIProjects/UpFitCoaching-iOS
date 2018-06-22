@@ -88,8 +88,9 @@ class CalendarController: UIViewController {
 		cell.selectedBackground.isHidden = !cellState.isSelected || cellState.dateBelongsTo != .thisMonth
 		
 		// Show or hide dot
-		let isBusyDay = events.contains { Calendar.current.isDate($0.start, inSameDayAs: cellState.date) }
-		cell.eventIndicatorView.isHidden = cellState.dateBelongsTo != .thisMonth || !isBusyDay
+		let hasAppraisal = events.contains { Calendar.current.isDate($0.start, inSameDayAs: cellState.date) && $0.type == 0 } && cellState.dateBelongsTo == .thisMonth
+		let hasSession = events.contains { Calendar.current.isDate($0.start, inSameDayAs: cellState.date) && $0.type == 1 } && cellState.dateBelongsTo == .thisMonth
+		cell.setIndicators(appraisal: hasAppraisal, session: hasSession)
 		
 		// Select text color
 		if cellState.dateBelongsTo == .thisMonth {
