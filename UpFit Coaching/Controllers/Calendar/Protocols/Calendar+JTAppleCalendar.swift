@@ -12,14 +12,18 @@ import JTAppleCalendar
 extension CalendarController: JTAppleCalendarViewDataSource {
 	func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
 		
+		let currentYear = Calendar.current.component(.year, from: Date())
+		let startYear = currentYear - 5
+		let endYear = currentYear + 5
+		
 		formatter.dateFormat = "yyyy-MM-dd"
 		formatter.timeZone = Calendar.current.timeZone
 		formatter.locale = Calendar.current.locale
 		
-		guard let startDate = formatter.date(from: "2018-01-01"), let endDate = formatter.date(from: "2018-12-31") else { fatalError() }
+		guard let startDate = formatter.date(from: "\(startYear)-01-01"),
+			let endDate = formatter.date(from: "\(endYear)-12-31") else { fatalError() }
 		
-		let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: nil, calendar: nil, generateInDates: nil, generateOutDates: nil, firstDayOfWeek: .monday, hasStrictBoundaries: nil)
-		return parameters
+		return ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: nil, calendar: nil, generateInDates: nil, generateOutDates: nil, firstDayOfWeek: .monday, hasStrictBoundaries: nil)
 	}
 }
 

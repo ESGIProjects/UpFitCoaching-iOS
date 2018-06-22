@@ -75,6 +75,7 @@
 
 // Calendar
 "calendarController_title" = "Calendrier";
+"todayButton" = "Aujourd'hui";
 "monday_short" = "L";
 "tuesday_short" = "M";
 "wednesday_short" = "M";

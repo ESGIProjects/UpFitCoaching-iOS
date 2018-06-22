@@ -75,6 +75,7 @@
 
 // Calendar
 "calendarController_title" = "Calendar";
+"todayButton" = "Today";
 "monday_short" = "M";
 "tuesday_short" = "T";
 "wednesday_short" = "W";

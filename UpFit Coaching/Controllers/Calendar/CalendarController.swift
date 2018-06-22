@@ -43,6 +43,7 @@ class CalendarController: UIViewController {
 		view.backgroundColor = .white
 		setupLayout()
 		
+		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "todayButton".localized, style: .plain, target: self, action: #selector(today))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent))
 		
 		// Register cells and notification
@@ -103,6 +104,12 @@ class CalendarController: UIViewController {
 	}
 	
 	// MARK: - Actions
+	
+	@objc func today() {
+		currentDate = Date()
+		calendarView.selectDates([currentDate])
+		calendarView.scrollToDate(currentDate, animateScroll: true)
+	}
 	
 	@objc func addEvent() {
 		let addEventController = EditEventController()
