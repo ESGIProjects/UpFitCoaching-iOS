@@ -37,7 +37,7 @@ class ClientController: UIViewController {
 		setupLayout()
 		
 		// Download appraisal
-		downloadAppraisal()
+		downloadData()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -101,12 +101,35 @@ class ClientController: UIViewController {
 	
 	// MARK: - Helpers
 	
-	func downloadAppraisal() {
+	func downloadData() {
 		guard let client = client else { return }
-		
 		HUD.show(.progress)
 		
-		Network.getLastAppraisal(for: client) { [weak self] data, response, _ in
+		let dispatchGroup = DispatchGroup()
+		
+		// Dowload appraisal
+		dispatchGroup.enter()
+		downloadAppraisal(for: client, in: dispatchGroup)
+		
+		// Download measurements
+		dispatchGroup.enter()
+		downloadMeasurements(for: client, in: dispatchGroup)
+		
+		// Download tests
+		dispatchGroup.enter()
+		downloadTests(for: client, in: dispatchGroup)
+		
+		// Refresh UI when done
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			DispatchQueue.main.async {
+				HUD.hide()
+				self?.refreshLayout()
+			}
+		}
+	}
+	
+	private func downloadAppraisal(for client: User, in dispatch: DispatchGroup? = nil) {
+		Network.getLastAppraisal(for: client) { data, response, _ in
 			guard let data = data else { return }
 			
 			if Network.isSuccess(response: response, successCode: 200) {
@@ -114,22 +137,50 @@ class ClientController: UIViewController {
 				let decoder = JSONDecoder.withDate
 				
 				// Decode appraisal
-				do {
-					print(try decoder.decode(Appraisal.self, from: data))
-				} catch {
-					print(error, error.localizedDescription)
-				}
-				
 				guard let appraisal = try? decoder.decode(Appraisal.self, from: data) else { return }
 				
 				// Save appraisal
 				Database().createOrUpdate(model: appraisal, with: AppraisalObject.init)
 			}
+			dispatch?.leave()
+		}
+	}
+	
+	private func downloadMeasurements(for client: User, in dispatch: DispatchGroup? = nil) {
+		Network.getMeasurements(for: client) { data, response, _ in
+			guard let data = data else { return }
 			
-			DispatchQueue.main.async {
-				HUD.hide()
-				self?.refreshLayout()
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode measurements
+				guard let measurements = try? decoder.decode([Measurements].self, from: data) else { return }
+				
+				// Save appraisal
+				Database().createOrUpdate(models: measurements, with: MeasurementsObject.init)
 			}
+			dispatch?.leave()
+		}
+	}
+	
+	private func downloadTests(for client: User, in dispatch: DispatchGroup? = nil) {
+		Network.getTests(for: client) { data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode tests
+				guard let tests = try? decoder.decode([Test].self, from: data) else { return }
+				
+				print(tests)
+				
+				// Save appraisal
+				Database().createOrUpdate(models: tests, with: TestObject.init)
+			}
+			dispatch?.leave()
 		}
 	}
 }

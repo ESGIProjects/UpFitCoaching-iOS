@@ -17,4 +17,22 @@ extension Network {
 		
 		call(url, httpMethod: .get, parameters: parameters, completion: completion)
 	}
+	
+	class func getMeasurements(for user: User, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/measurements/")
+		let parameters: [String: Any] = [
+			"userId": user.userID
+		]
+		
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
+	
+	class func getTests(for user: User, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/tests/")
+		let parameters: [String: Any] = [
+			"userId": user.userID
+		]
+		
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
 }
