@@ -23,6 +23,7 @@ class ClientController: UIViewController {
 	var testButton: UIButton!
 	
 	var appraisalTopConstraint: NSLayoutConstraint!
+	var showsFullLayout = false
 	
 	var client: User?
 	

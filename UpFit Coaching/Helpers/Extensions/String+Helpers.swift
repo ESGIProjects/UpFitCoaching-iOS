@@ -6,7 +6,7 @@
 //  Copyright © 2018 Jason Pierna. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension String {
 	var localized: String {
@@ -19,5 +19,16 @@ extension String {
 	
 	func capitalizingFirstLetter() -> String {
 		return prefix(1).uppercased() + dropFirst()
+	}
+}
+
+extension UIButton {
+	var titleText: String? {
+		get {
+			return titleLabel?.text
+		}
+		set {
+			setTitle(newValue, for: .normal)
+		}
 	}
 }
