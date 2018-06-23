@@ -9,14 +9,6 @@
 import UIKit
 
 extension ClientsListController {
-	class UI {
-		class func tableView() -> UITableView {
-			let view = UITableView(frame: .zero)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			return view
-		}
-	}
-	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -29,7 +21,7 @@ extension ClientsListController {
 	}
 	
 	fileprivate func setUIComponents() {
-		tableView = UI.tableView()
+		tableView = UI.genericTableView
 		tableView.dataSource = self
 		tableView.delegate = self
 	}

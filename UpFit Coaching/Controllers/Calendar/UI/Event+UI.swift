@@ -10,74 +10,6 @@ import UIKit
 import MapKit
 
 extension EventController {
-	class UI {
-		class func headerTitle() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .title1)
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func typeLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .headline)
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func dateLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .headline)
-			label.textColor = .gray
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func addressLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.font = UIFont.preferredFont(forTextStyle: .body)
-			label.textColor = .gray
-			label.numberOfLines = 0
-			
-			return label
-		}
-		
-		class func mapView() -> MKMapView {
-			let view = MKMapView(frame: .zero)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.layer.borderColor = UIColor.lightGray.cgColor
-			view.layer.borderWidth = 1.0
-			view.layer.cornerRadius = 5.0
-			view.layer.masksToBounds = true
-			
-			view.isScrollEnabled = false
-			view.isZoomEnabled = false
-			
-			view.isHidden = true
-			
-			return view
-		}
-		
-		class func deleteButton() -> UIBarButtonItem {
-			let button = UIBarButtonItem(title: "cancelEventButton".localized, style: .plain, target: nil, action: nil)
-			button.tintColor = .red
-			
-			return button
-		}
-	}
-	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -106,20 +38,31 @@ extension EventController {
 	}
 	
 	fileprivate func setUIComponents() {
-		headerTitle = UI.headerTitle()
-		dateLabel = UI.dateLabel()
-		addressLabel = UI.addressLabel()
-		mapView = UI.mapView()
+		// Labels
+		headerTitle = UI.titleLabel
+		headerTitle.numberOfLines = 0
 		
-		deleteButton = UI.deleteButton()
-		deleteButton.target = self
-		deleteButton.action = #selector(cancel)
+		typeLabel = UI.headlineLabel
+		typeLabel.textColor = .black
+		typeLabel.numberOfLines = 0
 		
-		typeLabel = UI.typeLabel()
+		dateLabel = UI.headlineLabel
+		dateLabel.numberOfLines = 0
+		
+		addressLabel = UI.bodyLabel
+		addressLabel.textColor = .gray
+		addressLabel.numberOfLines = 0
+		
+		// Map View
+		mapView = UI.eventMap
 		
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
 		mapView.addGestureRecognizer(tapGestureRecognizer)
-				
+		
+		// Toolbar
+		deleteButton = UIBarButtonItem(title: "cancelEventButton".localized, style: .plain, target: self, action: #selector(cancel))
+		deleteButton.tintColor = .red
+		
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 		toolbarItems = [flexibleSpace, deleteButton, flexibleSpace]
 	}

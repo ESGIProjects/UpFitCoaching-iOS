@@ -92,6 +92,8 @@
 		D7C16C1C20D5939A004D6EA9 /* ClientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1B20D5939A004D6EA9 /* ClientController.swift */; };
 		D7C16C1E20D593A5004D6EA9 /* Client+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */; };
 		D7C5A1572039D1F400389AEB /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5A1562039D1F400389AEB /* MessageBarView.swift */; };
+		D7C8AA8E20DE406100427F89 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C8AA8D20DE406100427F89 /* UI.swift */; };
+		D7C8AA9020DE570300427F89 /* UIButton+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C8AA8F20DE570300427F89 /* UIButton+Custom.swift */; };
 		D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399D920C88CEA0058EA0A /* Event+UI.swift */; };
 		D7D399DE20C941980058EA0A /* ForumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399DD20C941980058EA0A /* ForumController.swift */; };
 		D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D399E020C9668E0058EA0A /* ForumThread.swift */; };
@@ -198,6 +200,8 @@
 		D7C16C1B20D5939A004D6EA9 /* ClientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientController.swift; sourceTree = "<group>"; };
 		D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+UI.swift"; sourceTree = "<group>"; };
 		D7C5A1562039D1F400389AEB /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
+		D7C8AA8D20DE406100427F89 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		D7C8AA8F20DE570300427F89 /* UIButton+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Custom.swift"; sourceTree = "<group>"; };
 		D7D399D920C88CEA0058EA0A /* Event+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+UI.swift"; sourceTree = "<group>"; };
 		D7D399DD20C941980058EA0A /* ForumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumController.swift; sourceTree = "<group>"; };
 		D7D399E020C9668E0058EA0A /* ForumThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumThread.swift; sourceTree = "<group>"; };
@@ -598,6 +602,7 @@
 		D7EFFF31204FDE08004694EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D7C8AA8D20DE406100427F89 /* UI.swift */,
 				D7108AF92083B1C700AB6260 /* Database.swift */,
 				D731446920D989660077AFEC /* Database+Migrations.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
@@ -614,6 +619,7 @@
 				D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */,
 				1A9A0199208DCC610005C60A /* Notification+Names.swift */,
 				D7A5414820B0A87C003C9338 /* Decoding+Helpers.swift */,
+				D7C8AA8F20DE570300427F89 /* UIButton+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -778,6 +784,7 @@
 				1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */,
 				D7DAA24020554E7F007F3011 /* Colors.swift in Sources */,
 				1A34F8EF20DD25FF008ED2A2 /* Test.swift in Sources */,
+				D7C8AA9020DE570300427F89 /* UIButton+Custom.swift in Sources */,
 				D7D399E320C968B20058EA0A /* Forum.swift in Sources */,
 				D724AB8620CD69260074164C /* EditProfileController.swift in Sources */,
 				1A13094420CEC902009B608B /* Network+Forum.swift in Sources */,
@@ -855,6 +862,7 @@
 				D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */,
 				1AB1D87320CE6CB5002B1B06 /* Thread+UI.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
+				D7C8AA8E20DE406100427F89 /* UI.swift in Sources */,
 				1A34F8F120DD4226008ED2A2 /* Network+FollowUp.swift in Sources */,
 				D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */,
 				1A34F8E020D7F63F008ED2A2 /* EditAppraisal+UI.swift in Sources */,

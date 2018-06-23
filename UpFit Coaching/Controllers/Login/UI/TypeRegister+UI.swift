@@ -8,27 +8,7 @@
 
 import UIKit
 
-extension TypeRegisterController {
-	class UI {
-		class func clientButton() -> UIButton {
-			let view = UIButton(type: .system)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.setTitle("clientButton".localized, for: .normal)
-
-			return view
-		}
-		
-		class func coachButton() -> UIButton {
-			let view = UIButton(type: .system)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.setTitle("coachButton".localized, for: .normal)
-
-			return view
-		}
-	}
-	
+extension TypeRegisterController {	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		return [
 			clientButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -40,11 +20,13 @@ extension TypeRegisterController {
 	}
 	
 	fileprivate func setUIComponents() {
-		clientButton = UI.clientButton()
+		clientButton = UI.genericButton
 		clientButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
+		clientButton.titleText = "clientButton".localized
 		
-		coachButton = UI.coachButton()
+		coachButton = UI.genericButton
 		coachButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
+		coachButton.titleText = "coachButton".localized
 	}
 	
 	func setupLayout() {

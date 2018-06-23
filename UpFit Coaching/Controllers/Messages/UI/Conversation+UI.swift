@@ -9,32 +9,6 @@
 import UIKit
 
 extension ConversationController {
-	class UI {
-		class func collectionView(layout: UICollectionViewLayout) -> UICollectionView {
-			let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-			collectionView.translatesAutoresizingMaskIntoConstraints = false
-			
-			collectionView.backgroundColor = .white
-			collectionView.keyboardDismissMode = .onDrag
-			collectionView.alwaysBounceVertical = true
-			
-			return collectionView
-		}
-		
-		class func messageBarView() -> MessageBarView {
-			let messageBarView = MessageBarView()
-			messageBarView.translatesAutoresizingMaskIntoConstraints = false
-			
-			messageBarView.placeholder = "message_placeholder".localized
-			
-			messageBarView.button.setTitle("sendMessage_button".localized, for: .normal)
-			messageBarView.button.setTitleColor(.main, for: .normal)
-			messageBarView.button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
-			
-			return messageBarView
-		}
-	}
-	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -53,10 +27,14 @@ extension ConversationController {
 		let conversationLayout = ConversationLayout()
 		conversationLayout.delegate = self
 		
-		collectionView = UI.collectionView(layout: conversationLayout)
+		collectionView = UICollectionView(frame: .zero, collectionViewLayout: conversationLayout)
+		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		collectionView.backgroundColor = .white
+		collectionView.keyboardDismissMode = .onDrag
+		collectionView.alwaysBounceVertical = true
 		collectionView.dataSource = self
 		
-		messageBarView = UI.messageBarView()
+		messageBarView = UI.messageBar
 		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
 	}
 	

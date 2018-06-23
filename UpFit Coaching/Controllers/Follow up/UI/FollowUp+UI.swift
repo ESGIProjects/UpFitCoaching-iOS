@@ -10,93 +10,6 @@ import UIKit
 import Charts
 
 extension FollowUpController {
-	class UI {
-		class func weightTitleLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "weightChart_title".localized
-			label.font = UIFont.boldSystemFont(ofSize: 20)
-			return label
-		}
-		
-		class func weightCharView() -> LineChartView {
-			let view = LineChartView()
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.chartDescription = nil
-			view.drawGridBackgroundEnabled = false
-			view.legend.enabled = false
-			view.xAxis.enabled = false
-//			view.noDataText = "Nothing to display"
-			
-			view.leftAxis.drawLabelsEnabled = false
-			
-			return view
-		}
-		
-		class func bodyTitleLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "bodyValuesChart_title".localized
-			label.font = UIFont.boldSystemFont(ofSize: 20)
-			return label
-		}
-		
-		class func bodyChartView() -> LineChartView {
-			let view = LineChartView()
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.chartDescription = nil
-			view.drawGridBackgroundEnabled = false
-			view.legend.enabled = false
-//			view.noDataText = "Nothing to display"
-
-			view.xAxis.drawGridLinesEnabled = false
-			view.xAxis.labelPosition = .bottom
-			view.leftAxis.drawLabelsEnabled = false
-			
-			return view
-		}
-		
-		class func BMILabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "currentBmi_label".localized
-			label.textAlignment = .center
-			label.font = UIFont.boldSystemFont(ofSize: 19)
-			return label
-		}
-		
-		class func currentBMILabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "19"
-			label.textColor = .followUpBMILine
-			label.textAlignment = .center
-			label.font = UIFont.systemFont(ofSize: 19)
-			return label
-		}
-		
-		class func BFPLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "currentBfp_label".localized
-			label.textAlignment = .center
-			label.font = UIFont.boldSystemFont(ofSize: 19)
-			return label
-		}
-		
-		class func currentBFPLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			label.text = "22 %"
-			label.textColor = .followUpBFPLine
-			label.textAlignment = .center
-			label.font = UIFont.systemFont(ofSize: 19)
-			return label
-		}
-	}
-	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -142,17 +55,47 @@ extension FollowUpController {
 	}
 	
 	fileprivate func setUIComponents() {
-		weightTitleLabel = UI.weightTitleLabel()
-		weightChartView = UI.weightCharView()
+		weightTitleLabel = UI.genericLabel
+		weightTitleLabel.text = "weightChart_title".localized
+		weightTitleLabel.font = .boldSystemFont(ofSize: 20)
+		
+		weightChartView = UI.genericLineChart
+		weightChartView.xAxis.enabled = false
+		weightChartView.leftAxis.drawLabelsEnabled = false
 
-		bodyTitleLabel = UI.bodyTitleLabel()
-		bodyChartView = UI.bodyChartView()
+		bodyTitleLabel = UI.genericLabel
+		bodyTitleLabel.text = "bodyValuesChart_title".localized
+		bodyTitleLabel.font = .boldSystemFont(ofSize: 20)
 		
-		BMILabel = UI.BMILabel()
-		currentBMILabel = UI.currentBMILabel()
+		bodyChartView = UI.genericLineChart
+		bodyChartView.xAxis.enabled = false
+		bodyChartView.leftAxis.drawLabelsEnabled = false
+		bodyChartView.xAxis.drawGridLinesEnabled = false
+		bodyChartView.xAxis.labelPosition = .bottom
 		
-		BFPLabel = UI.BFPLabel()
-		currentBFPLabel = UI.currentBFPLabel()
+		BMILabel = UI.genericLabel
+		BMILabel.text = "currentBmi_label".localized
+		BMILabel.textAlignment = .center
+		BMILabel.font = .boldSystemFont(ofSize: 19)
+		
+		currentBMILabel = UI.genericLabel
+		currentBMILabel.text = "19"
+		currentBMILabel.textColor = .followUpBMILine
+		currentBMILabel.textAlignment = .center
+		currentBMILabel.font = .systemFont(ofSize: 19)
+		
+		BFPLabel = UI.genericLabel
+		BFPLabel.text = "currentBfp_label".localized
+		BFPLabel.textAlignment = .center
+		BFPLabel.font = .boldSystemFont(ofSize: 19)
+		
+		currentBFPLabel = UI.genericLabel
+		currentBFPLabel.text = "22 %"
+		currentBFPLabel.textColor = .followUpBFPLine
+		currentBFPLabel.textAlignment = .center
+		currentBFPLabel.font = .systemFont(ofSize: 19)
+		
+		// Data
 		
 		weightChartData = LineChartData()
 		bodyChartData = LineChartData()

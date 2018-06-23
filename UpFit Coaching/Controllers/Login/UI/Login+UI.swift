@@ -8,83 +8,7 @@
 
 import UIKit
 
-extension LoginController {	
-	class UI {
-		class func scrollView() -> UIScrollView {
-			let view = UIScrollView()
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			view.keyboardDismissMode = .interactive
-			
-			return view
-		}
-		
-		class func contentView() -> UIView {
-			let view = UIView()
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			return view
-		}
-		
-		class func titleLabel() -> UILabel {
-			let label = UILabel()
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			label.text = "app_name".localized
-			label.font = UIFont.preferredFont(forTextStyle: .title1)
-			label.textAlignment = .center
-			
-			return label
-		}
-		
-		class func mailTextField() -> UITextField {
-			let textField = UITextField(frame: .zero)
-			textField.translatesAutoresizingMaskIntoConstraints = false
-			
-			textField.borderStyle = .roundedRect
-			textField.keyboardType = .emailAddress
-			textField.returnKeyType = .next
-			textField.placeholder = "mail_placeholder".localized
-			
-			return textField
-		}
-		
-		class func passwordTextField() -> UITextField {
-			let textField = UITextField(frame: .zero)
-			textField.translatesAutoresizingMaskIntoConstraints = false
-			
-			textField.borderStyle = .roundedRect
-			textField.isSecureTextEntry = true
-			textField.returnKeyType = .done
-			textField.placeholder = "password_placeholder".localized
-			
-			return textField
-		}
-		
-		class func loginButton() -> UIButton {
-			let button = UIButton()
-			button.translatesAutoresizingMaskIntoConstraints = false
-			
-			button.setTitle("loginButton".localized, for: .normal)
-			button.setTitleColor(.main, for: .normal)
-			
-			return button
-		}
-		
-		class func signUpButton() -> UIButton {
-			let button = UIButton()
-			button.translatesAutoresizingMaskIntoConstraints = false
-			
-			let attributedString = NSAttributedString(string: "signUpButton_long".localized, attributes: [
-				.font: UIFont.systemFont(ofSize: 15),
-				.foregroundColor: UIColor.main
-				])
-			button.setAttributedTitle(attributedString, for: .normal)
-			
-			return button
-		}
-	}
-	
+extension LoginController {		
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -124,17 +48,33 @@ extension LoginController {
 	}
 	
 	fileprivate func setUIComponents() {
-		scrollView = UI.scrollView()
-		contentView = UI.contentView()
-		titleLabel = UI.titleLabel()
-		mailTextField = UI.mailTextField()
-		passwordTextField = UI.passwordTextField()
+		scrollView = UI.genericScrollView
+		contentView = UI.genericView
 		
-		loginButton = UI.loginButton()
+		titleLabel = UI.titleLabel
+		titleLabel.text = "app_name".localized
+		titleLabel.textAlignment = .center
+		
+		mailTextField = UI.roundedTextField
+		mailTextField.keyboardType = .emailAddress
+		mailTextField.returnKeyType = .next
+		mailTextField.placeholder = "mail_placeholder".localized
+		
+		passwordTextField = UI.roundedTextField
+		passwordTextField.isSecureTextEntry = true
+		passwordTextField.returnKeyType = .done
+		passwordTextField.placeholder = "password_placeholder".localized
+		
+		loginButton = UI.genericButton
 		loginButton.addTarget(self, action: #selector(signIn(_:)), for: .touchUpInside)
+		loginButton.titleText = "loginButton".localized
+		loginButton.titleColor = .main
 
-		signUpButton = UI.signUpButton()
+		signUpButton = UI.genericButton
 		signUpButton.addTarget(self, action: #selector(signUp(_:)), for: .touchUpInside)
+		signUpButton.titleFont = .systemFont(ofSize: 15)
+		signUpButton.titleText = "signUpButton_long".localized
+		signUpButton.titleColor = .main
 	}
 	
 	func setupLayout() {

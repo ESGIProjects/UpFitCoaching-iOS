@@ -8,16 +8,7 @@
 
 import UIKit
 
-extension ThreadController {
-	class UI {
-		class func tableView() -> UITableView {
-			let view = UITableView(frame: .zero)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			view.separatorInset = .zero
-			return view
-		}
-	}
-	
+extension ThreadController {	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -30,7 +21,8 @@ extension ThreadController {
 	}
 	
 	fileprivate func setUIComponents() {
-		tableView = UI.tableView()
+		tableView = UI.genericTableView
+		tableView.separatorInset = .zero
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.tableFooterView = UIView(frame: .zero)

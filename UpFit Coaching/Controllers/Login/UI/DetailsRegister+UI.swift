@@ -51,7 +51,6 @@ extension DetailsRegisterController {
 		}
 		
 		sexRow = SegmentedRow<Int>("sex") {
-//			$0.title = "sex_fieldTitle".localized
 			$0.options = [1, 0]
 			$0.displayValueFor = { value in
 				guard let value = value else { return "" }

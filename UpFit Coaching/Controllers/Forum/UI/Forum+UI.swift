@@ -8,16 +8,7 @@
 
 import UIKit
 
-extension ForumController {
-	class UI {
-		class func tableView() -> UITableView {
-			let view = UITableView(frame: .zero)
-			view.translatesAutoresizingMaskIntoConstraints = false
-			
-			return view
-		}
-	}
-	
+extension ForumController {	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -30,7 +21,7 @@ extension ForumController {
 	}
 	
 	fileprivate func setUIComponents() {
-		tableView = UI.tableView()
+		tableView = UI.genericTableView
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.tableFooterView = UIView(frame: .zero)

@@ -9,50 +9,6 @@
 import UIKit
 
 extension ClientController {
-	class UICC {
-		
-		// MARK: - Labels
-		
-		static var genericLabel: UILabel {
-			let label = UILabel(frame: .zero)
-			label.translatesAutoresizingMaskIntoConstraints = false
-			
-			return label
-		}
-		
-		static var titleLabel: UILabel {
-			let label = UICC.genericLabel
-			label.font = .preferredFont(forTextStyle: .title1)
-
-			return label
-		}
-		
-		static var headlineLabel: UILabel {
-			let label = UICC.genericLabel
-			label.font = .preferredFont(forTextStyle: .headline)
-			label.textColor = .gray
-
-			return label
-		}
-		
-		// MARK: - Buttons
-		
-		static var genericButton: UIButton {
-			let button = UIButton(frame: .zero)
-			button.translatesAutoresizingMaskIntoConstraints = false
-			
-			return button
-		}
-		
-		static var roundButton: UIButton {
-			let button = UICC.genericButton
-			button.backgroundColor = .main
-			button.layer.cornerRadius = 5.0
-			
-			return button
-		}
-	}
-	
 	fileprivate func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -101,33 +57,33 @@ extension ClientController {
 	}
 	
 	fileprivate func setUIComponents() {
-		nameLabel = UICC.titleLabel
+		nameLabel = UI.titleLabel
 		nameLabel.numberOfLines = 2
 		
-		birthDateLabel = UICC.headlineLabel
+		birthDateLabel = UI.headlineLabel
 		birthDateLabel.numberOfLines = 2
 		
-		cityLabel = UICC.headlineLabel
+		cityLabel = UI.headlineLabel
 		
-		callButton = UICC.roundButton
+		callButton = UI.roundButton
 		callButton.titleText = "callButton".localized
 		callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
 		
-		mailButton = UICC.roundButton
+		mailButton = UI.roundButton
 		mailButton.titleText = "sendMailButton".localized
 		mailButton.addTarget(self, action: #selector(mail), for: .touchUpInside)
 		
-		followUpButton = UICC.roundButton
+		followUpButton = UI.roundButton
 		followUpButton.titleText = "showFollowUpButton".localized
 		
-		appraisalButton = UICC.roundButton
+		appraisalButton = UI.roundButton
 		appraisalButton.addTarget(self, action: #selector(newAppraisal), for: .touchUpInside)
 		
-		measurementsButton = UICC.roundButton
+		measurementsButton = UI.roundButton
 		measurementsButton.titleText = "measurementsButton".localized
 		measurementsButton.addTarget(self, action: #selector(updateMeasurements), for: .touchUpInside)
 		
-		testButton = UICC.roundButton
+		testButton = UI.roundButton
 		testButton.titleText = "newTestButton".localized
 		testButton.addTarget(self, action: #selector(newTest), for: .touchUpInside)
 	}

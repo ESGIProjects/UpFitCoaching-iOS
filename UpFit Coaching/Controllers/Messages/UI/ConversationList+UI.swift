@@ -9,18 +9,6 @@
 import UIKit
 
 extension ConversationListController {
-	class UI {
-		class func tableView() -> UITableView {
-			let tableView = UITableView(frame: .zero)
-			tableView.translatesAutoresizingMaskIntoConstraints = false
-
-			tableView.estimatedRowHeight = 100.0
-			tableView.rowHeight = UITableViewAutomaticDimension
-			
-			return tableView
-		}
-	}
-	
 	func getConstraints() -> [NSLayoutConstraint] {
 		let anchors = getAnchors()
 		
@@ -33,7 +21,9 @@ extension ConversationListController {
 	}
 	
 	func setUIComponents() {
-		tableView = UI.tableView()
+		tableView = UI.genericTableView
+		tableView.estimatedRowHeight = 100.0
+		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.delegate = self
 		tableView.dataSource = self
 	}
