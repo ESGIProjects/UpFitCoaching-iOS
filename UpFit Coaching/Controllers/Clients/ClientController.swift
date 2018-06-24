@@ -116,7 +116,13 @@ class ClientController: UIViewController {
 	}
 	
 	@objc func newTest() {
-		present(UINavigationController(rootViewController: NewTestController()), animated: true)
+		guard let client = client else { return }
+		
+		let newTestController = NewTestController()
+		newTestController.client = client
+		newTestController.oldTest = Database().getLastTest(for: client)
+		
+		present(UINavigationController(rootViewController: newTestController), animated: true)
 	}
 	
 	// MARK: - Helpers

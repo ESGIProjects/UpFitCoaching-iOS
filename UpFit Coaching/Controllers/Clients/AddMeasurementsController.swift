@@ -96,8 +96,8 @@ class AddMeasurementsController: FormViewController {
 		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
 		guard let json = unserializedJSON as? [String: Int] else { return nil }
 		
-		guard let appraisalId = json["id"] else { return nil }
+		guard let measurementsId = json["id"] else { return nil }
 		
-		return appraisalId
+		return measurementsId
 	}
 }

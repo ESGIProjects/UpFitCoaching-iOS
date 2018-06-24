@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class NewTestController: FormViewController {
 	var warmUpRow: DecimalRow!
@@ -65,7 +66,28 @@ class NewTestController: FormViewController {
 		guard let client = client else { return }
 		let test = Test(user: client, date: Date(), warmUp: warmUp, startSpeed: startSpeed, increase: increase, frequency: frequency, kneeFlexibility: kneeFlexibility, shinFlexibility: shinFlexibility, hitFootFlexibility: hitFootFlexibility, closedFistGroundFlexibility: closedFistGroundFlexibility, handFlatGroundFlexibility: handFlatGroundFlexibility)
 		
-		// Network & save…
+		HUD.show(.progress)
+
+		Network.postTest(test) { [weak self] data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 201) {
+				// Unserialize test id
+				guard let testID = self?.unserialize(data) else { return }
+				
+				// Update & save test in DB
+				test.testID = testID
+				Database().createOrUpdate(model: test, with: TestObject.init)
+				
+				DispatchQueue.main.async {
+					self?.navigationController?.dismiss(animated: true)
+				}
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
+			}
+		}
 	}
 	
 	@objc func cancel() {
@@ -78,5 +100,14 @@ class NewTestController: FormViewController {
 		navigationItem.rightBarButtonItem?.isEnabled = warmUp != nil && startSpeed != nil && increase != nil && frequency != nil
 			&& kneeFlexibility != nil && shinFlexibility != nil && hitFootFlexibility != nil && closedFistGroundFlexibility != nil
 			&& handFlatGroundFlexibility != nil
+	}
+	
+	private func unserialize(_ data: Data) -> Int? {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+		guard let json = unserializedJSON as? [String: Int] else { return nil }
+		
+		guard let testId = json["id"] else { return nil }
+		
+		return testId
 	}
 }
