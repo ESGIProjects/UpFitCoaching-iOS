@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class AddMeasurementsController: FormViewController {
 	var weightRow: DecimalRow!
@@ -55,6 +56,29 @@ class AddMeasurementsController: FormViewController {
 	@objc func update() {
 		guard let client = client else { return }
 		let measurements = Measurements(user: client, date: Date(), weight: weight, height: height, hipCircumference: hipCircumference, waistCircumference: waistCircumference, thighCircumference: thighCircumference, armCircumference: armCircumference)
+
+		HUD.show(.progress)
+		
+		Network.postMeasurements(measurements) { [weak self] data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 201) {
+				// Unserialize measurements id
+				guard let measurementsID = self?.unserialize(data) else { return }
+				
+				// Update & save measurements in DB
+				measurements.measurementsID = measurementsID
+				Database().createOrUpdate(model: measurements, with: MeasurementsObject.init)
+				
+				DispatchQueue.main.async {
+					self?.navigationController?.dismiss(animated: true)
+				}
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
+			}
+		}
 	}
 	
 	@objc func cancel() {
@@ -66,5 +90,14 @@ class AddMeasurementsController: FormViewController {
 	func toggleUpdateButton() {
 		navigationItem.rightBarButtonItem?.isEnabled = weight != nil && height != nil && hipCircumference != nil
 			&& waistCircumference != nil && thighCircumference != nil && armCircumference != nil
+	}
+	
+	private func unserialize(_ data: Data) -> Int? {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+		guard let json = unserializedJSON as? [String: Int] else { return nil }
+		
+		guard let appraisalId = json["id"] else { return nil }
+		
+		return appraisalId
 	}
 }

@@ -106,11 +106,11 @@ class ClientController: UIViewController {
 	}
 	
 	@objc func updateMeasurements() {
-		guard let client = client,
-			let lastMeasurement = Database().getLastMeasurement(for: client) else { return }
+		guard let client = client else { return }
 		
 		let addMeasurementsController = AddMeasurementsController()
-		addMeasurementsController.oldMeasurements = lastMeasurement
+		addMeasurementsController.client = client
+		addMeasurementsController.oldMeasurements = Database().getLastMeasurement(for: client)
 		
 		present(UINavigationController(rootViewController: addMeasurementsController), animated: true)
 	}
