@@ -86,6 +86,8 @@
 		D7B9CBF720541A0A00B755CD /* Conversation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */; };
 		D7B9CBF920541E6500B755CD /* ConversationList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */; };
 		D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B9CBFA20541E7300B755CD /* Login+UI.swift */; };
+		D7BEAF1720DFEA6400FF93F9 /* LibrariesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEAF1620DFEA6400FF93F9 /* LibrariesController.swift */; };
+		D7BEAF1B20DFEE9C00FF93F9 /* libraries.html in Resources */ = {isa = PBXBuildFile; fileRef = D7BEAF1A20DFEE9C00FF93F9 /* libraries.html */; };
 		D7C16C1520D58609004D6EA9 /* ClientsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1420D58609004D6EA9 /* ClientsListController.swift */; };
 		D7C16C1720D58618004D6EA9 /* ClientsList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */; };
 		D7C16C1A20D5937B004D6EA9 /* ClientsList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C16C1920D5937B004D6EA9 /* ClientsList+TableView.swift */; };
@@ -194,6 +196,8 @@
 		D7B9CBF620541A0A00B755CD /* Conversation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBF820541E6500B755CD /* ConversationList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+UI.swift"; sourceTree = "<group>"; };
 		D7B9CBFA20541E7300B755CD /* Login+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+UI.swift"; sourceTree = "<group>"; };
+		D7BEAF1620DFEA6400FF93F9 /* LibrariesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrariesController.swift; sourceTree = "<group>"; };
+		D7BEAF1A20DFEE9C00FF93F9 /* libraries.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = libraries.html; sourceTree = "<group>"; };
 		D7C16C1420D58609004D6EA9 /* ClientsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsListController.swift; sourceTree = "<group>"; };
 		D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientsList+UI.swift"; sourceTree = "<group>"; };
 		D7C16C1920D5937B004D6EA9 /* ClientsList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientsList+TableView.swift"; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 			children = (
 				D781194D207D4392001762D4 /* MoreController.swift */,
 				D724AB8520CD69260074164C /* EditProfileController.swift */,
+				D7BEAF1620DFEA6400FF93F9 /* LibrariesController.swift */,
 				1AB9E9E4209C842C003441F8 /* UI */,
 			);
 			path = More;
@@ -534,6 +539,7 @@
 				D773DD52203362DE001520CA /* Assets.xcassets */,
 				D773DD54203362DE001520CA /* LaunchScreen.storyboard */,
 				D789201320544E860020C703 /* Localizable.strings */,
+				D7BEAF1A20DFEE9C00FF93F9 /* libraries.html */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7BEAF1B20DFEE9C00FF93F9 /* libraries.html in Resources */,
 				D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */,
 				D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */,
 				D789201120544E860020C703 /* Localizable.strings in Resources */,
@@ -839,6 +846,7 @@
 				D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
 				1A34F8ED20DD244B008ED2A2 /* Measurements.swift in Sources */,
+				D7BEAF1720DFEA6400FF93F9 /* LibrariesController.swift in Sources */,
 				1A34F8DE20D7F211008ED2A2 /* EditAppraisalController.swift in Sources */,
 				D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */,
 				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,

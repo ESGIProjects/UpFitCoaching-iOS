@@ -23,6 +23,18 @@ extension MoreController {
 			}
 		}
 		
+		usedLibrariesRow = ButtonRow("usedLibraries") {
+			$0.title = "usedLibrariesButton".localized
+			$0.cellUpdate { cell, _ in
+				cell.textLabel?.textColor = .mainText
+				cell.textLabel?.textAlignment = .left
+				cell.accessoryType = .disclosureIndicator
+			}
+			$0.onCellSelection { [unowned self] _, _ in
+				self.usedLibraries()
+			}
+		}
+		
 		signOutRow = ButtonRow("signOut") {
 			$0.title = "signOutButton".localized
 			$0.cellUpdate { cell, _ in
@@ -39,6 +51,7 @@ extension MoreController {
 		setUIComponents()
 		
 		form +++ Section("accountManagement_sectionTitle".localized) <<< editProfileRow
-		form +++ Section("signOutButton".localized) <<< signOutRow
+		form +++ Section() <<< usedLibrariesRow
+		form +++ Section() <<< signOutRow
 	}
 }

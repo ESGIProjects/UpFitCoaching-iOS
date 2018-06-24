@@ -13,6 +13,7 @@ import Eureka
 class MoreController: FormViewController {
 	
 	var editProfileRow: ButtonRow!
+	var usedLibrariesRow: ButtonRow!
 	var signOutRow: ButtonRow!
 	
 	// MARK: - UIViewController
@@ -28,6 +29,10 @@ class MoreController: FormViewController {
 	
 	func editProfile() {
 		present(UINavigationController(rootViewController: EditProfileController()), animated: true)
+	}
+	
+	func usedLibraries() {
+		navigationController?.pushViewController(LibrariesController(), animated: true)
 	}
 	
 	func signOut() {
