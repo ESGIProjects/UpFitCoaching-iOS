@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class EditAppraisalController: FormViewController {
 	var goalRow: TextRow!
@@ -69,7 +70,28 @@ class EditAppraisalController: FormViewController {
 		guard let client = client else { return }
 		let appraisal = Appraisal(user: client, date: Date(), goal: goal, sessionsByWeek: sessionsByWeek, contraindication: contraindication, sportAntecedents: sportAntecedents, helpNeeded: helpNeeded, hasNutritionist: hasNutritionist, comments: comments)
 		
-		// Network & save
+		HUD.show(.progress)
+		
+		Network.postAppraisal(appraisal) { [weak self] data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 201) {
+				// Unserialize appraisal id
+				guard let appraisalID = self?.unserialize(data) else { return }
+				
+				// Update & save appraisal in DB
+				appraisal.appraisalID = appraisalID
+				Database().createOrUpdate(model: appraisal, with: AppraisalObject.init)
+				
+				DispatchQueue.main.async {
+					self?.navigationController?.dismiss(animated: true)
+				}
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
+			}
+		}
 	}
 	
 	@objc func cancel() {
@@ -78,5 +100,14 @@ class EditAppraisalController: FormViewController {
 	
 	func toggleConfirmationButton() {
 		navigationItem.rightBarButtonItem?.isEnabled = goal != ""
+	}
+	
+	private func unserialize(_ data: Data) -> Int? {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+		guard let json = unserializedJSON as? [String: Int] else { return nil }
+		
+		guard let appraisalId = json["id"] else { return nil }
+		
+		return appraisalId
 	}
 }

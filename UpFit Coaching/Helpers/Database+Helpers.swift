@@ -56,7 +56,7 @@ extension Database {
 		
 		// Creating the fetch request
 		let fetchRequest = FetchRequest<[Appraisal], AppraisalObject>(predicate: NSPredicate(format: "user.userID == %d", user.userID),
-																	  sortDescriptors: [SortDescriptor(keyPath: "date")],
+																	  sortDescriptors: [SortDescriptor(keyPath: "date", ascending: false)],
 																	  transformer: { $0.map(Appraisal.init) })
 		
 		return fetch(using: fetchRequest).first

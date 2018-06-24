@@ -89,6 +89,7 @@ class ClientController: UIViewController {
 		guard let client = client else { return }
 	
 		let editAppraisalController = EditAppraisalController()
+		editAppraisalController.client = client
 		editAppraisalController.appraisal = Database().getLastAppraisal(for: client)
 		
 		present(UINavigationController(rootViewController: editAppraisalController), animated: true)
