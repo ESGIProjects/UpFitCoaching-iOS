@@ -18,7 +18,6 @@ class EditAppraisalController: FormViewController {
 	var hasNutritionistRow: SwitchRow!
 	var commentsRow: TextAreaRow!
 	
-	var editionMode = EditionMode.add
 	var appraisal: Appraisal?
 	
 	var client: User?
@@ -35,19 +34,7 @@ class EditAppraisalController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		if editionMode == .add {
-			goal = ""
-			sessionsByWeek = 0
-			contraindication = ""
-			sportAntecedents = ""
-			helpNeeded = false
-			hasNutritionist = false
-			comments = ""
-			
-			navigationItem.rightBarButtonItem = UIBarButtonItem(title: "addButton".localized, style: .done, target: self, action: #selector(confirm))
-		} else {
-			guard let appraisal = appraisal else { return }
-			
+		if let appraisal = appraisal {
 			goal = appraisal.goal
 			sessionsByWeek = appraisal.sessionsByWeek
 			contraindication = appraisal.contraindication
@@ -57,6 +44,16 @@ class EditAppraisalController: FormViewController {
 			comments = appraisal.comments
 			
 			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(confirm))
+		} else {
+			goal = ""
+			sessionsByWeek = 0
+			contraindication = ""
+			sportAntecedents = ""
+			helpNeeded = false
+			hasNutritionist = false
+			comments = ""
+			
+			navigationItem.rightBarButtonItem = UIBarButtonItem(title: "addButton".localized, style: .done, target: self, action: #selector(confirm))
 		}
 		
 		title = "editAppraisalController_title".localized

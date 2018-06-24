@@ -61,4 +61,16 @@ extension Database {
 		
 		return fetch(using: fetchRequest).first
 	}
+	
+	func getMeasurements(for user: User) -> [Measurements] {
+		let fetchRequest = FetchRequest<[Measurements], MeasurementsObject>(predicate: NSPredicate(format: "user.userID == %d", user.userID),
+																			sortDescriptors: [SortDescriptor(keyPath: "date", ascending: false)],
+																	  transformer: { $0.map(Measurements.init) })
+		
+		return fetch(using: fetchRequest)
+	}
+	
+	func getLastMeasurement(for user: User) -> Measurements? {
+		return getMeasurements(for: user).first
+	}
 }

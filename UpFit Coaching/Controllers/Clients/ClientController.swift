@@ -57,6 +57,8 @@ class ClientController: UIViewController {
 		
 		birthDateLabel.text = "sexAndBirthDate_label".localized(with: "sex_\(client.sex)".localized, dateFormatter.string(from: birthDate))
 		cityLabel.text = "city_label".localized(with: client.city)
+		
+		refreshLayout()
 	}
 	
 	// MARK: - Actions
@@ -84,15 +86,32 @@ class ClientController: UIViewController {
 	}
 	
 	@objc func newAppraisal() {
-		present(UINavigationController(rootViewController: EditAppraisalController()), animated: true)
+		guard let client = client else { return }
+	
+		let editAppraisalController = EditAppraisalController()
+		editAppraisalController.appraisal = Database().getLastAppraisal(for: client)
+		
+		present(UINavigationController(rootViewController: editAppraisalController), animated: true)
 	}
 	
 	@objc func showAppraisal() {
-		
+//		guard let client = client,
+//			let lastAppraisal = Database().getLastAppraisal(for: client) else { return }
+//
+//		let appraisalControler = AppraisalController()
+//		appraisalControler.appraisal = lastAppraisal
+//
+//		present(UINavigationController(rootViewController: appraisalControler), animated: true)
 	}
 	
 	@objc func updateMeasurements() {
-		present(UINavigationController(rootViewController: AddMeasurementsController()), animated: true)
+		guard let client = client,
+			let lastMeasurement = Database().getLastMeasurement(for: client) else { return }
+		
+		let addMeasurementsController = AddMeasurementsController()
+		addMeasurementsController.oldMeasurements = lastMeasurement
+		
+		present(UINavigationController(rootViewController: addMeasurementsController), animated: true)
 	}
 	
 	@objc func newTest() {
@@ -107,7 +126,7 @@ class ClientController: UIViewController {
 		
 		let dispatchGroup = DispatchGroup()
 		
-		// Dowload appraisal
+		// Download appraisal
 		dispatchGroup.enter()
 		downloadAppraisal(for: client, in: dispatchGroup)
 		
@@ -174,8 +193,6 @@ class ClientController: UIViewController {
 				
 				// Decode tests
 				guard let tests = try? decoder.decode([Test].self, from: data) else { return }
-				
-				print(tests)
 				
 				// Save appraisal
 				Database().createOrUpdate(models: tests, with: TestObject.init)
