@@ -81,7 +81,7 @@ class ClientController: UIViewController {
 			
 			present(mailController, animated: true)
 		} else {
-			presentAlert(title: "mailAppMissing_title", message: "mailAppMissing_message")
+			presentAlert(title: "mailAppMissing_title".localized, message: "mailAppMissing_message".localized)
 		}
 	}
 	
@@ -93,6 +93,15 @@ class ClientController: UIViewController {
 		editAppraisalController.appraisal = Database().getLastAppraisal(for: client)
 		
 		present(UINavigationController(rootViewController: editAppraisalController), animated: true)
+	}
+	
+	@objc func showFollowUp() {
+		guard let client = client else { return }
+		
+		let followUpController = FollowUpController()
+		followUpController.user = client
+		
+		navigationController?.pushViewController(followUpController, animated: true)
 	}
 	
 	@objc func showAppraisal() {

@@ -20,6 +20,7 @@ class FollowUpController: UIViewController {
 	var BFPLabel: UILabel!
 	var currentBFPLabel: UILabel!
 	
+	var user: User?
 	var weightChartData: LineChartData!
 	var bodyChartData: LineChartData!
 	

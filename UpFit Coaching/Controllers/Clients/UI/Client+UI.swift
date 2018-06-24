@@ -75,6 +75,7 @@ extension ClientController {
 		
 		followUpButton = UI.roundButton
 		followUpButton.titleText = "showFollowUpButton".localized
+		followUpButton.addTarget(self, action: #selector(showFollowUp), for: .touchUpInside)
 		
 		appraisalButton = UI.roundButton
 		appraisalButton.addTarget(self, action: #selector(newAppraisal), for: .touchUpInside)
