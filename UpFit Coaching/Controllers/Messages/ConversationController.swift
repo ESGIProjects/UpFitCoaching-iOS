@@ -48,12 +48,8 @@ class ConversationController: UIViewController {
 		collectionView.register(MessageCell.self, forCellWithReuseIdentifier: "MessageCell")
 		NotificationCenter.default.addObserver(self, selector: #selector(loadMessages), name: .messagesDownloaded, object: nil)
 		
-		// If client, download messages
-		if currentUser?.type == 0 || currentUser?.type == 1 {
-			downloadMessages()
-		} else {
-			loadMessages()
-		}
+		loadMessages()
+		
 	}
 	
 	@objc func loadMessages() {
@@ -68,36 +64,6 @@ class ConversationController: UIViewController {
 		}
 	}
 	
-	func downloadMessages() {
-		guard let currentUser = currentUser else { return }
-		
-		DispatchQueue.main.async {
-			HUD.show(.progress)
-		}
-		
-		Network.getMessages(for: currentUser) { data, response, _ in
-			guard let data = data else { return }
-			
-			if Network.isSuccess(response: response, successCode: 200) {
-				// Decode messages list
-				let decoder = JSONDecoder.withDate
-				guard let messages = try? decoder.decode([Message].self, from: data) else { return }
-				
-				// Save messages
-				let database = Database()
-				database.deleteAll(of: MessageObject.self)
-				database.createOrUpdate(models: messages, with: MessageObject.init)
-				
-				// Post a notification telling it's done
-				NotificationCenter.default.post(name: .messagesDownloaded, object: nil, userInfo: nil)
-			}
-			
-			DispatchQueue.main.async {
-				HUD.hide()
-			}
-		}
-	}
-	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
@@ -106,9 +72,6 @@ class ConversationController: UIViewController {
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = self
 		MessagesDelegate.instance.displayMode = .hide
-		
-		// Set foreground observer
-		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -119,9 +82,6 @@ class ConversationController: UIViewController {
 		// Updates websocket delegate
 		MessagesDelegate.instance.delegate = nil
 		MessagesDelegate.instance.displayMode = .display
-		
-		// Remove foreground observer
-		NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	// MARK: - Helpers
@@ -177,10 +137,6 @@ class ConversationController: UIViewController {
 		// Reload UI
 		collectionView.reloadData()
 		scrollToBottom(animated: true)
-	}
-	
-	@objc func moveToForeground() {
-		downloadMessages()
 	}
 	
 	// MARK: - Keyboard management

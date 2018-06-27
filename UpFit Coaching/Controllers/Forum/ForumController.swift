@@ -49,7 +49,7 @@ class ForumController: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(threadsDownloaded), name: .threadsDownloaded, object: nil)
 		
 		// Download all threads
-		downloadThreads()
+//		downloadThreads()
 	}
 	
 	// MARK: - Helpers

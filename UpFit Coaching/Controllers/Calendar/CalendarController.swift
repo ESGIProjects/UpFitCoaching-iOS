@@ -49,7 +49,7 @@ class CalendarController: UIViewController {
 		// Register cells and notification
 		calendarView.register(CalendarCell.self, forCellWithReuseIdentifier: "CalendarCell")
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CalendarTableCell")
-		NotificationCenter.default.addObserver(self, selector: #selector(eventsDownloaded), name: .eventsDownloaded, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadEvents), name: .eventsDownloaded, object: nil)
 		
 		// Display the correct month
 		calendarView.visibleDates(updateMonthLabel)
@@ -58,9 +58,6 @@ class CalendarController: UIViewController {
 		currentDate = Date()
 		calendarView.selectDates([currentDate])
 		calendarView.scrollToDate(currentDate, animateScroll: false)
-		
-		// Download all events
-		downloadEvents()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -117,43 +114,9 @@ class CalendarController: UIViewController {
 		present(UINavigationController(rootViewController: addEventController), animated: true)
 	}
 	
-	@objc func eventsDownloaded() {
-		reloadEvents()
-	}
-	
 	// MARK: - Helpers
 	
-	func downloadEvents() {
-		guard let currentUser = currentUser else { return }
-		
-		DispatchQueue.main.async {
-			HUD.show(.progress)
-		}
-		
-		Network.getEvents(for: currentUser) { data, response, _ in
-			guard let data = data else { return }
-			
-			if Network.isSuccess(response: response, successCode: 200) {
-				// Decode events list
-				let decoder = JSONDecoder.withDate
-				guard let events = try? decoder.decode([Event].self, from: data) else { return }
-				
-				// Save events
-				let database = Database()
-				database.deleteAll(of: EventObject.self)
-				database.createOrUpdate(models: events, with: EventObject.init)
-				
-				// Post a notification telling its done
-				NotificationCenter.default.post(name: .eventsDownloaded, object: nil)
-			}
-			
-			DispatchQueue.main.async {
-				HUD.hide()
-			}
-		}
-	}
-	
-	func reloadEvents() {
+	@objc func reloadEvents() {
 		events = Database().fetch(using: Event.all)
 		todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
 		
