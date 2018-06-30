@@ -17,10 +17,10 @@ class ClientController: UIViewController {
 	var cityLabel: UILabel!
 	var callButton: UIButton!
 	var mailButton: UIButton!
+	var appraisalTitle: UILabel!
+	var appraisalLabel: UILabel!
 	var followUpButton: UIButton!
 	var appraisalButton: UIButton!
-	var measurementsButton: UIButton!
-	var testButton: UIButton!
 	
 	var appraisalTopConstraint: NSLayoutConstraint!
 	var showsFullLayout = false
@@ -85,7 +85,7 @@ class ClientController: UIViewController {
 		}
 	}
 	
-	@objc func newAppraisal() {
+	@objc func appraisal() {
 		guard let client = client else { return }
 	
 		let editAppraisalController = EditAppraisalController()
@@ -95,43 +95,13 @@ class ClientController: UIViewController {
 		present(UINavigationController(rootViewController: editAppraisalController), animated: true)
 	}
 	
-	@objc func showFollowUp() {
+	@objc func followUp() {
 		guard let client = client else { return }
 		
 		let followUpController = FollowUpController()
 		followUpController.user = client
 		
 		navigationController?.pushViewController(followUpController, animated: true)
-	}
-	
-	@objc func showAppraisal() {
-//		guard let client = client,
-//			let lastAppraisal = Database().getLastAppraisal(for: client) else { return }
-//
-//		let appraisalControler = AppraisalController()
-//		appraisalControler.appraisal = lastAppraisal
-//
-//		present(UINavigationController(rootViewController: appraisalControler), animated: true)
-	}
-	
-	@objc func updateMeasurements() {
-		guard let client = client else { return }
-		
-		let addMeasurementsController = AddMeasurementsController()
-		addMeasurementsController.client = client
-		addMeasurementsController.oldMeasurements = Database().getLastMeasurement(for: client)
-		
-		present(UINavigationController(rootViewController: addMeasurementsController), animated: true)
-	}
-	
-	@objc func newTest() {
-		guard let client = client else { return }
-		
-		let newTestController = NewTestController()
-		newTestController.client = client
-		newTestController.oldTest = Database().getLastTest(for: client)
-		
-		present(UINavigationController(rootViewController: newTestController), animated: true)
 	}
 	
 	// MARK: - Helpers

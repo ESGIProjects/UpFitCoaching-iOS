@@ -18,7 +18,7 @@ class AddMeasurementsController: FormViewController {
 	var thighCircumferenceRow: DecimalRow!
 	var armCircumferenceRow: DecimalRow!
 	
-	var oldMeasurements: Measurements? // type Measurement?
+	var oldMeasurements: Measurements?
 	
 	var client: User?
 	var weight: Double!

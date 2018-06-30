@@ -42,17 +42,17 @@ extension ClientController {
 		let anchors = getAnchors()
 		
 		return [
-			followUpButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0),
+			appraisalTitle.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0),
+			appraisalTitle.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			appraisalTitle.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			appraisalLabel.topAnchor.constraint(equalTo: appraisalTitle.bottomAnchor, constant: 15.0),
+			appraisalLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			appraisalLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			followUpButton.topAnchor.constraint(equalTo: appraisalLabel.bottomAnchor, constant: 45.0),
 			followUpButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			followUpButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
-			
-			measurementsButton.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 15.0),
-			measurementsButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			measurementsButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
-			
-			testButton.topAnchor.constraint(equalTo: measurementsButton.bottomAnchor, constant: 15.0),
-			testButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			testButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
+			followUpButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
 		]
 	}
 	
@@ -73,40 +73,40 @@ extension ClientController {
 		mailButton.titleText = "sendMailButton".localized
 		mailButton.addTarget(self, action: #selector(mail), for: .touchUpInside)
 		
+		appraisalTitle = UI.titleLabel
+		appraisalTitle.font = .boldSystemFont(ofSize: 20)
+		appraisalTitle.text = "Appraisal"
+		
+		appraisalLabel = UI.bodyLabel
+		appraisalLabel.numberOfLines = 2
+		appraisalLabel.text = "Goal: Loose fat\n3 sessions by week"
+		
 		followUpButton = UI.roundButton
 		followUpButton.titleText = "showFollowUpButton".localized
-		followUpButton.addTarget(self, action: #selector(showFollowUp), for: .touchUpInside)
+		followUpButton.addTarget(self, action: #selector(followUp), for: .touchUpInside)
 		
 		appraisalButton = UI.roundButton
-		appraisalButton.addTarget(self, action: #selector(newAppraisal), for: .touchUpInside)
-		
-		measurementsButton = UI.roundButton
-		measurementsButton.titleText = "measurementsButton".localized
-		measurementsButton.addTarget(self, action: #selector(updateMeasurements), for: .touchUpInside)
-		
-		testButton = UI.roundButton
-		testButton.titleText = "newTestButton".localized
-		testButton.addTarget(self, action: #selector(newTest), for: .touchUpInside)
+		appraisalButton.addTarget(self, action: #selector(appraisal), for: .touchUpInside)
 	}
 	
 	fileprivate func removeFullLayout() {
 		NSLayoutConstraint.deactivate(getAppraisalConstraints())
 		
+		appraisalTitle.removeFromSuperview()
+		appraisalLabel.removeFromSuperview()
 		followUpButton.removeFromSuperview()
-		measurementsButton.removeFromSuperview()
-		testButton.removeFromSuperview()
 		
 		appraisalButton.titleText = "newAppraisalButton".localized
 		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0)
 	}
 	
 	fileprivate func showFullLayout() {
+		view.addSubview(appraisalTitle)
+		view.addSubview(appraisalLabel)
 		view.addSubview(followUpButton)
-		view.addSubview(measurementsButton)
-		view.addSubview(testButton)
 		
 		appraisalButton.titleText = "showAppraisalButton".localized
-		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 45.0)
+		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 15.0)
 		NSLayoutConstraint.activate(getAppraisalConstraints())
 	}
 	

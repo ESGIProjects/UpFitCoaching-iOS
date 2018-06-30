@@ -54,7 +54,8 @@ class UI {
 	
 	static var roundButton: UIButton {
 		let button = genericButton
-		button.backgroundColor = .main
+		button.titleColor = .main
+		button.backgroundColor = UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
 		button.layer.cornerRadius = 5.0
 		
 		return button
