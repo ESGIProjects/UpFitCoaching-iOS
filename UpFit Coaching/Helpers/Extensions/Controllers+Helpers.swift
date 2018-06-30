@@ -53,6 +53,7 @@ extension UITabBarController {
 		// Follow Up
 		if user.type == 0 || user.type == 1 {
 			let followUpController = FollowUpController()
+			followUpController.user = user
 			followUpController.tabBarItem = UITabBarItem(title: "followUpController_title".localized, image: #imageLiteral(resourceName: "followUp"), tag: 4)
 			viewControllers.insert(followUpController, at: 0)
 		}

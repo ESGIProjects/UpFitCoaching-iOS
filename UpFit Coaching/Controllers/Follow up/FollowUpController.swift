@@ -20,6 +20,7 @@ class FollowUpController: UIViewController {
 	var BFPLabel: UILabel!
 	var currentBFPLabel: UILabel!
 	
+	let currentUser = Database().getCurrentUser()
 	var user: User?
 	var weightChartData: LineChartData!
 	var bodyChartData: LineChartData!
@@ -29,7 +30,48 @@ class FollowUpController: UIViewController {
 		
 		title = "followUpController_title".localized
 		view.backgroundColor = .white
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addData))
+		
 		setupLayout()
+	}
+	
+	@objc func addData() {
+		guard let currentUser = currentUser,
+			let user = user else { return }
+		
+		if currentUser.type == 2 {
+			// Coach
+			
+			let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+			alertController.addAction(UIAlertAction(title: "newAppraisalButton".localized, style: .default) { [weak self] _ in
+				let editAppraisal = EditAppraisalController()
+				editAppraisal.client = user
+				self?.present(UINavigationController(rootViewController: editAppraisal), animated: true)
+			})
+			
+			alertController.addAction(UIAlertAction(title: "updateMeasurements".localized, style: .default) { [weak self] _ in
+				self?.measurements(for: user)
+			})
+			
+			alertController.addAction(UIAlertAction(title: "newTest".localized, style: .default) { [weak self] _ in
+				let newTest = NewTestController()
+				newTest.client = user
+				self?.present(UINavigationController(rootViewController: newTest), animated: true)
+			})
+			
+			alertController.addAction(UIAlertAction(title: "cancelButton".localized, style: .cancel))
+			
+			present(alertController, animated: true)
+			
+		} else if currentUser == user {
+			measurements(for: user)
+		}
+	}
+	
+	private func measurements(for user: User) {
+		let addMeasurement = AddMeasurementsController()
+		addMeasurement.client = user
+		present(UINavigationController(rootViewController: addMeasurement), animated: true)
 	}
 	
 	func generateBMI() {
