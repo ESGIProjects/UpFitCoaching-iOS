@@ -30,8 +30,6 @@ class FollowUpController: UIViewController {
 		title = "followUpController_title".localized
 		view.backgroundColor = .white
 		setupLayout()
-		
-		presentAlert(title: "betaFeature_alertTitle".localized, message: "betaFeature_alertMessage".localized)
 	}
 	
 	func generateBMI() {
