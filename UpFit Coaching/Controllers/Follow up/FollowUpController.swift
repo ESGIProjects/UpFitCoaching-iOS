@@ -11,14 +11,20 @@ import Charts
 
 class FollowUpController: UIViewController {
 	
+	var scrollView: UIScrollView!
+	var contentView: UIView!
+	var timeFilter: UISegmentedControl!
 	var weightTitleLabel: UILabel!
+	var weightLabel: UILabel!
 	var weightChartView: LineChartView!
 	var bodyTitleLabel: UILabel!
 	var bodyChartView: LineChartView!
-	var BMILabel: UILabel!
-	var currentBMILabel: UILabel!
-	var BFPLabel: UILabel!
-	var currentBFPLabel: UILabel!
+	var bodyValues: UILabel!
+	var measurementsTitle: UILabel!
+	var measurementsChart: LineChartView!
+	var measurementsValues: UILabel!
+	
+	// Data
 	
 	let currentUser = Database().getCurrentUser()
 	var user: User?

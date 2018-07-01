@@ -14,50 +14,78 @@ extension FollowUpController {
 		let anchors = getAnchors()
 		
 		return [
-			weightTitleLabel.topAnchor.constraint(equalTo: anchors.top, constant: 10.0),
-			weightTitleLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			weightTitleLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
+			scrollView.topAnchor.constraint(equalTo: anchors.top),
+			scrollView.leadingAnchor.constraint(equalTo: anchors.leading),
+			scrollView.trailingAnchor.constraint(equalTo: anchors.trailing),
+			scrollView.bottomAnchor.constraint(equalTo: anchors.bottom),
+			
+			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+			
+			contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+			
+			timeFilter.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
+			timeFilter.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			timeFilter.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
+			
+			weightTitleLabel.topAnchor.constraint(equalTo: timeFilter.bottomAnchor, constant: 15.0),
+			weightTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			
+			weightLabel.centerYAnchor.constraint(equalTo: weightTitleLabel.centerYAnchor),
+			weightLabel.leadingAnchor.constraint(equalTo: weightTitleLabel.trailingAnchor, constant: 15.0),
+			weightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
 			weightChartView.topAnchor.constraint(equalTo: weightTitleLabel.bottomAnchor, constant: 10.0),
-			weightChartView.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			weightChartView.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
+			weightChartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			weightChartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			bodyTitleLabel.topAnchor.constraint(equalTo: weightChartView.bottomAnchor, constant: 10.0),
-			bodyTitleLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			bodyTitleLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
+			bodyTitleLabel.topAnchor.constraint(equalTo: weightChartView.bottomAnchor, constant: 15.0),
+			bodyTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			bodyTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
 			bodyChartView.topAnchor.constraint(equalTo: bodyTitleLabel.bottomAnchor, constant: 10.0),
-			bodyChartView.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			bodyChartView.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
+			bodyChartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			bodyChartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			weightChartView.heightAnchor.constraint(equalTo: bodyChartView.heightAnchor),
+			bodyValues.topAnchor.constraint(equalTo: bodyChartView.bottomAnchor, constant: 10.0),
+			bodyValues.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.0),
+			bodyValues.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.0),
 			
-			BMILabel.topAnchor.constraint(equalTo: bodyChartView.bottomAnchor, constant: 10.0),
-			BMILabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
+			measurementsTitle.topAnchor.constraint(equalTo: bodyValues.bottomAnchor, constant: 15.0),
+			measurementsTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			measurementsTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			BFPLabel.topAnchor.constraint(equalTo: bodyChartView.bottomAnchor, constant: 10.0),
-			BFPLabel.leadingAnchor.constraint(equalTo: BMILabel.trailingAnchor, constant: 10.0),
-			BFPLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
+			measurementsChart.topAnchor.constraint(equalTo: measurementsTitle.bottomAnchor, constant: 10.0),
+			measurementsChart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			measurementsChart.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			BMILabel.widthAnchor.constraint(equalTo: BFPLabel.widthAnchor),
+			measurementsValues.topAnchor.constraint(equalTo: measurementsChart.bottomAnchor, constant: 10.0),
+			measurementsValues.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.0),
+			measurementsValues.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.0),
+			measurementsValues.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 			
-			currentBMILabel.topAnchor.constraint(equalTo: BMILabel.bottomAnchor, constant: 5.0),
-			currentBMILabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 10.0),
-			currentBMILabel.bottomAnchor.constraint(equalTo: anchors.bottom, constant: -10.0),
-			
-			currentBFPLabel.topAnchor.constraint(equalTo: BFPLabel.bottomAnchor, constant: 5.0),
-			currentBFPLabel.leadingAnchor.constraint(equalTo: currentBMILabel.trailingAnchor, constant: 10.0),
-			currentBFPLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -10.0),
-			currentBFPLabel.bottomAnchor.constraint(equalTo: anchors.bottom, constant: -10.0),
-			
-			currentBMILabel.widthAnchor.constraint(equalTo: currentBFPLabel.widthAnchor)
+			weightChartView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
+			bodyChartView.heightAnchor.constraint(equalTo: weightChartView.heightAnchor),
+			measurementsChart.heightAnchor.constraint(equalTo: weightChartView.heightAnchor)
 		]
 	}
 	
 	fileprivate func setUIComponents() {
+		scrollView = UI.genericScrollView
+		contentView = UI.genericView
+		
+		timeFilter = UISegmentedControl(items: ["Global", "Month", "Year"])
+		timeFilter.translatesAutoresizingMaskIntoConstraints = false
+		timeFilter.selectedSegmentIndex = 1
+		
 		weightTitleLabel = UI.genericLabel
 		weightTitleLabel.text = "weightChart_title".localized
 		weightTitleLabel.font = .boldSystemFont(ofSize: 20)
+		
+		weightLabel = UI.genericLabel
+		weightLabel.text = "55 kg"
 		
 		weightChartView = UI.genericLineChart
 		weightChartView.xAxis.enabled = false
@@ -73,30 +101,23 @@ extension FollowUpController {
 		bodyChartView.xAxis.drawGridLinesEnabled = false
 		bodyChartView.xAxis.labelPosition = .bottom
 		
-		BMILabel = UI.genericLabel
-		BMILabel.text = "currentBmi_label".localized
-		BMILabel.textAlignment = .center
-		BMILabel.font = .boldSystemFont(ofSize: 19)
+		bodyValues = UI.bodyLabel
+		bodyValues.numberOfLines = 2
+		bodyValues.text = "IMG actuel : 19\nIMC actuel : 22"
 		
-		currentBMILabel = UI.genericLabel
-		currentBMILabel.text = "19"
-		currentBMILabel.textColor = .followUpBMILine
-		currentBMILabel.textAlignment = .center
-		currentBMILabel.font = .systemFont(ofSize: 19)
+		measurementsTitle = UI.genericLabel
+		measurementsTitle.text = "measurementsChart_title".localized
+		measurementsTitle.font = .boldSystemFont(ofSize: 20)
 		
-		BFPLabel = UI.genericLabel
-		BFPLabel.text = "currentBfp_label".localized
-		BFPLabel.textAlignment = .center
-		BFPLabel.font = .boldSystemFont(ofSize: 19)
+		measurementsChart = UI.genericLineChart
+		measurementsChart.xAxis.enabled = false
+		measurementsChart.leftAxis.drawLabelsEnabled = false
 		
-		currentBFPLabel = UI.genericLabel
-		currentBFPLabel.text = "22 %"
-		currentBFPLabel.textColor = .followUpBFPLine
-		currentBFPLabel.textAlignment = .center
-		currentBFPLabel.font = .systemFont(ofSize: 19)
+		measurementsValues = UI.bodyLabel
+		measurementsValues.numberOfLines = 4
+		measurementsValues.text = "Tour de hanche : 19 cm\nTour de ventre : 22\nTour de cuisse : 19 cm\nTour de bras : 22"
 		
 		// Data
-		
 		weightChartData = LineChartData()
 		bodyChartData = LineChartData()
 
@@ -106,22 +127,24 @@ extension FollowUpController {
 		
 		weightChartView.data = weightChartData
 		bodyChartView.data = bodyChartData
+		measurementsChart.data = bodyChartData
 	}
 	
 	func setupLayout() {
 		setUIComponents()
 		
-		view.addSubview(weightTitleLabel)
-		view.addSubview(weightChartView)
-		
-		view.addSubview(bodyTitleLabel)
-		view.addSubview(bodyChartView)
-		
-		view.addSubview(BMILabel)
-		view.addSubview(currentBMILabel)
-		
-		view.addSubview(BFPLabel)
-		view.addSubview(currentBFPLabel)
+		view.addSubview(scrollView)
+		scrollView.addSubview(contentView)
+		contentView.addSubview(timeFilter)
+		contentView.addSubview(weightTitleLabel)
+		contentView.addSubview(weightLabel)
+		contentView.addSubview(weightChartView)
+		contentView.addSubview(bodyTitleLabel)
+		contentView.addSubview(bodyChartView)
+		contentView.addSubview(bodyValues)
+		contentView.addSubview(measurementsTitle)
+		contentView.addSubview(measurementsChart)
+		contentView.addSubview(measurementsValues)
 		
 		NSLayoutConstraint.activate(getConstraints())
 	}
