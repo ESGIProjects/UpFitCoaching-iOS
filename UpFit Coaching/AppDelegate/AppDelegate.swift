@@ -57,17 +57,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 	
-	fileprivate func pullData(user: User) {
+	func pullData(user: User) {
 		let dispatchGroup = DispatchGroup()
 		
 		Downloader.messages(for: user, in: dispatchGroup)
 		Downloader.events(for: user, in: dispatchGroup)
 		Downloader.threads(in: dispatchGroup)
-
-		_ = dispatchGroup.wait(timeout: .now() + 20)
 		
-//		dispatchGroup.notify(queue: .main) {
-//			print("TASKS COMPLETE!!!!!")
-//		}
+		if user.type == 0 || user.type == 1 {
+			// Download appraisal, measurements & tests
+			Downloader.appraisal(for: user, in: dispatchGroup)
+			Downloader.measurements(for: user, in: dispatchGroup)
+			Downloader.tests(for: user, in: dispatchGroup)
+		}
+		
+		dispatchGroup.notify(queue: .main) {
+			if user.type == 0 || user.type == 1 {
+				NotificationCenter.default.post(name: .followUpDownloaded, object: nil)
+			}
+		}
 	}
 }

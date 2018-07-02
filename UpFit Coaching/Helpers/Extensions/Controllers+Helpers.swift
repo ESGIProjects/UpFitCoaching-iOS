@@ -106,6 +106,9 @@ extension UIViewController {
 		// Start notifications
 		(UIApplication.shared.delegate as? AppDelegate)?.requestFirebaseToken()
 		
+		// Download everything
+		(UIApplication.shared.delegate as? AppDelegate)?.pullData(user: user)
+		
 		// Start websocket
 		MessagesDelegate.instance.connect()
 		

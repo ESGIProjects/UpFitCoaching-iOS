@@ -41,17 +41,29 @@ class FollowUpController: UIViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeasurements))
 		
 		setupLayout()
+		
+		if user?.type == 0 || user?.type == 1 {
+			NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .followUpDownloaded, object: nil)
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		// Reload data
-		loadData(for: sorting)
-		loadCharts(with: displayedMeasurements)
+		reloadData()
 		
 		guard let measurement = measurements.first else { return }
 		updateTexts(for: measurement)
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		NotificationCenter.default.removeObserver(self, name: .followUpDownloaded, object: nil)
+	}
+	
+	@objc private func reloadData() {
+		loadData(for: sorting)
+		loadCharts(with: displayedMeasurements)
 	}
 	
 	private func updateTexts(for measurement: Measurements) {
@@ -253,7 +265,6 @@ class FollowUpController: UIViewController {
 		guard let newSorting = SortingMode(rawValue: timeFilter.selectedSegmentIndex) else { return }
 		sorting = newSorting
 		
-		loadData(for: sorting)
-		loadCharts(with: displayedMeasurements)
+		reloadData()
 	}
 }

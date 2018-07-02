@@ -78,4 +78,64 @@ class Downloader {
 			}
 		}
 	}
+	
+	class func appraisal(for user: User, in dispatchGroup: DispatchGroup? = nil) {
+		dispatchGroup?.enter()
+
+		Network.getLastAppraisal(for: user) { data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode appraisal
+				guard let appraisal = try? decoder.decode(Appraisal.self, from: data) else { return }
+				
+				// Save appraisal
+				Database().createOrUpdate(model: appraisal, with: AppraisalObject.init)
+			}
+			dispatchGroup?.leave()
+		}
+	}
+	
+	class func measurements(for user: User, in dispatchGroup: DispatchGroup? = nil) {
+		dispatchGroup?.enter()
+		
+		Network.getMeasurements(for: user) { data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode measurements
+				guard let measurements = try? decoder.decode([Measurements].self, from: data) else { return }
+				
+				// Save measurements
+				Database().createOrUpdate(models: measurements, with: MeasurementsObject.init)
+			}
+			dispatchGroup?.leave()
+		}
+	}
+	
+	class func tests(for client: User, in dispatchGroup: DispatchGroup? = nil) {
+		dispatchGroup?.enter()
+		
+		Network.getTests(for: client) { data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode tests
+				guard let tests = try? decoder.decode([Test].self, from: data) else { return }
+				
+				// Save tests
+				Database().createOrUpdate(models: tests, with: TestObject.init)
+			}
+			dispatchGroup?.leave()
+		}
+	}
 }
