@@ -64,7 +64,7 @@ extension FollowUpController {
 			measurementsValues.topAnchor.constraint(equalTo: measurementsChart.bottomAnchor, constant: 10.0),
 			measurementsValues.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.0),
 			measurementsValues.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.0),
-			measurementsValues.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+			measurementsValues.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.0),
 			
 			weightChartView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
 			bodyChartView.heightAnchor.constraint(equalTo: weightChartView.heightAnchor),
@@ -85,7 +85,6 @@ extension FollowUpController {
 		weightTitleLabel.font = .boldSystemFont(ofSize: 20)
 		
 		weightLabel = UI.genericLabel
-		weightLabel.text = "55 kg"
 		
 		weightChartView = UI.genericLineChart
 		weightChartView.xAxis.enabled = false
@@ -103,7 +102,6 @@ extension FollowUpController {
 		
 		bodyValues = UI.bodyLabel
 		bodyValues.numberOfLines = 2
-		bodyValues.text = "IMG actuel : 19\nIMC actuel : 22"
 		
 		measurementsTitle = UI.genericLabel
 		measurementsTitle.text = "measurementsChart_title".localized
@@ -115,7 +113,6 @@ extension FollowUpController {
 		
 		measurementsValues = UI.bodyLabel
 		measurementsValues.numberOfLines = 4
-		measurementsValues.text = "Tour de hanche : 19 cm\nTour de ventre : 22\nTour de cuisse : 19 cm\nTour de bras : 22"
 	}
 	
 	func setupLayout() {

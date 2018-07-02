@@ -49,6 +49,53 @@ class FollowUpController: UIViewController {
 		// Reload data
 		loadData(for: sorting)
 		loadCharts(with: displayedMeasurements)
+		
+		guard let measurement = measurements.first else { return }
+		updateTexts(for: measurement)
+	}
+	
+	private func updateTexts(for measurement: Measurements) {
+		let numberFormatter = NumberFormatter()
+		numberFormatter.alwaysShowsDecimalSeparator = false
+		numberFormatter.maximumFractionDigits = 1
+		
+		let currentBFP = computeBFP(for: measurement)
+		guard let currentBMI = computeBMI(for: user, with: measurement, and: currentBFP) else { return }
+		
+		// Format every numbers
+		guard let weightNumber = numberFormatter.string(from: NSNumber(value: measurement.weight)),
+			let bfpNumber = numberFormatter.string(from: NSNumber(value: currentBFP)),
+			let bmiNumber = numberFormatter.string(from: NSNumber(value: currentBMI)),
+			let hipNumber = numberFormatter.string(from: NSNumber(value: measurement.hipCircumference)),
+			let waistNumber = numberFormatter.string(from: NSNumber(value: measurement.waistCircumference)),
+			let thighNumber = numberFormatter.string(from: NSNumber(value: measurement.thighCircumference)),
+			let armNumber = numberFormatter.string(from: NSNumber(value: measurement.armCircumference)) else { return }
+		
+		// Creating attributed strings
+		let attributes: [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)]
+		
+		let bodyAttributedString = NSMutableAttributedString(string: "bfpValue".localized, attributes: attributes)
+		bodyAttributedString.append(NSAttributedString(string: bfpNumber))
+		bodyAttributedString.append(NSAttributedString(string: "\n"))
+		bodyAttributedString.append(NSAttributedString(string: "bmiValue".localized, attributes: attributes))
+		bodyAttributedString.append(NSAttributedString(string: bmiNumber))
+		
+		let measurementsAttributedString = NSMutableAttributedString(string: "hipValue".localized, attributes: attributes)
+		measurementsAttributedString.append(NSAttributedString(string: "cm_value".localized(with: hipNumber)))
+		measurementsAttributedString.append(NSAttributedString(string: "\n"))
+		measurementsAttributedString.append(NSAttributedString(string: "waistValue".localized, attributes: attributes))
+		measurementsAttributedString.append(NSAttributedString(string: "cm_value".localized(with: waistNumber)))
+		measurementsAttributedString.append(NSAttributedString(string: "\n"))
+		measurementsAttributedString.append(NSAttributedString(string: "thighValue".localized, attributes: attributes))
+		measurementsAttributedString.append(NSAttributedString(string: "cm_value".localized(with: thighNumber)))
+		measurementsAttributedString.append(NSAttributedString(string: "\n"))
+		measurementsAttributedString.append(NSAttributedString(string: "armValue".localized, attributes: attributes))
+		measurementsAttributedString.append(NSAttributedString(string: "cm_value".localized(with: armNumber)))
+		
+		// Set labels
+		weightLabel.text = "weightValue".localized(with: weightNumber)
+		bodyValues.attributedText = bodyAttributedString
+		measurementsValues.attributedText = measurementsAttributedString
 	}
 	
 	private func computeBFP(for measurement: Measurements) -> Double {
@@ -145,7 +192,7 @@ class FollowUpController: UIViewController {
 		guard let user = user else { return }
 		
 		if sorting == .all {
-			measurements = Database().getMeasurements(for: user).sorted { $0.date > $1.date }
+			measurements = Database().getMeasurements(for: user)
 			
 			guard let startDate = measurements.first?.date,
 				var endDate = measurements.last?.date else { return }
@@ -170,8 +217,6 @@ class FollowUpController: UIViewController {
 			measurements = Database().getMeasurements(for: user, from: endDate)
 			displayedMeasurements = groupMeasurements(measurements, from: &endDate, to: startDate)
 		}
-		
-		print(displayedMeasurements)
 	}
 	
 	private func groupMeasurements(_ measurements: [Measurements], from endDate: inout Date, to startDate: Date) -> [String: Measurements] {

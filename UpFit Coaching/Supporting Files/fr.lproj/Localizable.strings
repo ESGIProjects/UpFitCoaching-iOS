@@ -199,12 +199,16 @@
 // Follow Up
 "followUpController_title" = "Suivi";
 "weightChart_title" = "Poids";
+"weightValue" = "%@ kg";
 "bodyValuesChart_title" = "Indices corporels";
-"currentBmi_label" = "IMC actuel";
-"currentBfp_label" = "IMG actuel";
-"bmi_label" = "IMC";
-"bfp_label" = "IMG";
-"weight_label" = "Poids";
+"bfpValue" = "IMC actuel : ";
+"bmiValue" = "IMG actuel : ";
+"measurementsChart_title" = "Mensurations";
+"hipValue" = "Tour de hanche : ";
+"waistValue" = "Tour de ventre : ";
+"thighValue" = "Tour de cuisse : ";
+"armValue" = "Tour de bras : ";
+"cm_value" = "%@ cm";
 
 // Network messages
 "user_already_exists" = "Cet utilisateur existe déjà.";
