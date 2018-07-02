@@ -116,18 +116,6 @@ extension FollowUpController {
 		measurementsValues = UI.bodyLabel
 		measurementsValues.numberOfLines = 4
 		measurementsValues.text = "Tour de hanche : 19 cm\nTour de ventre : 22\nTour de cuisse : 19 cm\nTour de bras : 22"
-		
-		// Data
-		weightChartData = LineChartData()
-		bodyChartData = LineChartData()
-
-		generateBFP()
-		generateBMI()
-		generateWeight()
-		
-		weightChartView.data = weightChartData
-		bodyChartView.data = bodyChartData
-		measurementsChart.data = bodyChartData
 	}
 	
 	func setupLayout() {
