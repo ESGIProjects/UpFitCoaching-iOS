@@ -79,6 +79,7 @@ extension FollowUpController {
 		timeFilter = UISegmentedControl(items: ["Global", "Month", "Year"])
 		timeFilter.translatesAutoresizingMaskIntoConstraints = false
 		timeFilter.selectedSegmentIndex = 1
+		timeFilter.addTarget(self, action: #selector(changeFilter), for: .valueChanged)
 		
 		weightTitleLabel = UI.genericLabel
 		weightTitleLabel.text = "weightChart_title".localized

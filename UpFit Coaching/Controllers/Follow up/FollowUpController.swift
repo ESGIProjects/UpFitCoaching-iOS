@@ -9,8 +9,8 @@
 import UIKit
 import Charts
 
-enum SortingMode {
-	case all, month, year
+enum SortingMode: Int {
+	case all = 0, month, year
 }
 
 class FollowUpController: UIViewController {
@@ -247,5 +247,13 @@ class FollowUpController: UIViewController {
 		let addMeasurement = AddMeasurementsController()
 		addMeasurement.client = user
 		present(UINavigationController(rootViewController: addMeasurement), animated: true)
+	}
+	
+	@objc func changeFilter() {
+		guard let newSorting = SortingMode(rawValue: timeFilter.selectedSegmentIndex) else { return }
+		sorting = newSorting
+		
+		loadData(for: sorting)
+		loadCharts(with: displayedMeasurements)
 	}
 }
