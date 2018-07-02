@@ -198,6 +198,9 @@
 
 // Follow Up
 "followUpController_title" = "Follow Up";
+"timeFilter_global" = "Global";
+"timeFilter_month" = "Month";
+"timeFilter_year" = "Year";
 "weightChart_title" = "Weight";
 "weightValue" = "%@ kg";
 "bodyValuesChart_title" = "Body values";

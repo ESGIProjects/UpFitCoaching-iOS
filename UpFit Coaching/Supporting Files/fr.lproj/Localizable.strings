@@ -198,6 +198,9 @@
 
 // Follow Up
 "followUpController_title" = "Suivi";
+"timeFilter_global" = "Tout";
+"timeFilter_month" = "Mois";
+"timeFilter_year" = "Année";
 "weightChart_title" = "Poids";
 "weightValue" = "%@ kg";
 "bodyValuesChart_title" = "Indices corporels";

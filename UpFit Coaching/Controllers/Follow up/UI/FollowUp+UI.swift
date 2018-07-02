@@ -76,7 +76,7 @@ extension FollowUpController {
 		scrollView = UI.genericScrollView
 		contentView = UI.genericView
 		
-		timeFilter = UISegmentedControl(items: ["Global", "Month", "Year"])
+		timeFilter = UISegmentedControl(items: ["timeFilter_global".localized, "timeFilter_month".localized, "timeFilter_year".localized])
 		timeFilter.translatesAutoresizingMaskIntoConstraints = false
 		timeFilter.selectedSegmentIndex = 1
 		timeFilter.addTarget(self, action: #selector(changeFilter), for: .valueChanged)
