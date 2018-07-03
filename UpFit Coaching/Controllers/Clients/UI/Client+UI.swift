@@ -42,7 +42,7 @@ extension ClientController {
 		let anchors = getAnchors()
 		
 		return [
-			appraisalTitle.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0),
+			appraisalTitle.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 20.0),
 			appraisalTitle.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
 			appraisalTitle.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
 			
@@ -50,9 +50,24 @@ extension ClientController {
 			appraisalLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
 			appraisalLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
 			
-			followUpButton.topAnchor.constraint(equalTo: appraisalLabel.bottomAnchor, constant: 45.0),
+			followUpButton.topAnchor.constraint(equalTo: appraisalLabel.bottomAnchor, constant: 20.0),
 			followUpButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
-			followUpButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
+			followUpButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			testTitle.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 20.0),
+			testTitle.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			testTitle.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			testLabel.topAnchor.constraint(equalTo: testTitle.bottomAnchor, constant: 15.0),
+			testLabel.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			testLabel.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			testButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			testButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0),
+			
+			prescriptionButton.topAnchor.constraint(equalTo: testButton.bottomAnchor, constant: 15.0),
+			prescriptionButton.leadingAnchor.constraint(equalTo: anchors.leading, constant: 15.0),
+			prescriptionButton.trailingAnchor.constraint(equalTo: anchors.trailing, constant: -15.0)
 		]
 	}
 	
@@ -87,27 +102,82 @@ extension ClientController {
 		
 		appraisalButton = UI.roundButton
 		appraisalButton.addTarget(self, action: #selector(appraisal), for: .touchUpInside)
+		
+		testTitle = UI.titleLabel
+		testTitle.font = .boldSystemFont(ofSize: 20)
+		testTitle.text = "Appraisal"
+		
+		testLabel = UI.bodyLabel
+		testLabel.numberOfLines = 2
+		testLabel.text = "Goal: Loose fat\n3 sessions by week"
+		
+		testButton = UI.roundButton
+		testButton.titleText = "testButton".localized
+		testButton.addTarget(self, action: #selector(test), for: .touchUpInside)
+		
+		prescriptionButton = UI.roundButton
+		prescriptionButton.titleText = "prescriptionButton".localized
+		prescriptionButton.addTarget(self, action: #selector(followUp), for: .touchUpInside)
 	}
 	
 	fileprivate func removeFullLayout() {
+		removeTestLayout()
+		
 		NSLayoutConstraint.deactivate(getAppraisalConstraints())
 		
 		appraisalTitle.removeFromSuperview()
 		appraisalLabel.removeFromSuperview()
 		followUpButton.removeFromSuperview()
+		testButton.removeFromSuperview()
+		prescriptionButton.removeFromSuperview()
+		testTitle.removeFromSuperview()
+		testLabel.removeFromSuperview()
 		
 		appraisalButton.titleText = "newAppraisalButton".localized
 		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0)
+		
+		showsFullLayout = false
 	}
 	
-	fileprivate func showFullLayout() {
+	fileprivate func showFullLayout(test: Bool) {
 		view.addSubview(appraisalTitle)
 		view.addSubview(appraisalLabel)
 		view.addSubview(followUpButton)
+		view.addSubview(testButton)
+		view.addSubview(prescriptionButton)
+		view.addSubview(testTitle)
+		view.addSubview(testLabel)
 		
 		appraisalButton.titleText = "showAppraisalButton".localized
 		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 15.0)
+		testTopConstraint = testButton.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 15.0)
 		NSLayoutConstraint.activate(getAppraisalConstraints())
+		
+		showsFullLayout = true
+		
+		if test {
+			showTestLayout()
+		} else {
+			removeTestLayout()
+		}
+	}
+	
+	fileprivate func showTestLayout() {
+		testTopConstraint = testButton.topAnchor.constraint(equalTo: testLabel.bottomAnchor, constant: 15.0)
+		
+		testTitle.isHidden = false
+		testLabel.isHidden = false
+		
+		showsTestLayout = true
+	}
+	
+	fileprivate func removeTestLayout() {
+		testTopConstraint = testButton.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 15.0)
+		
+		testTitle.isHidden = true
+		testLabel.isHidden = true
+		
+		showsTestLayout = false
 	}
 	
 	func setupLayout() {
@@ -130,16 +200,31 @@ extension ClientController {
 		// Manipulate what should be removed and added on viewWillAppear
 		
 		guard let client = client else { return }
-		let lastAppraisal = Database().getLastAppraisal(for: client)
+		
+		let database = Database()
+		let lastAppraisal = database.getLastAppraisal(for: client)
+		let lastTest = database.getLastTest(for: client)
 		
 		appraisalTopConstraint.isActive = false
 		
 		if !showsFullLayout && lastAppraisal != nil {
-			showFullLayout()
+			showFullLayout(test: lastTest != nil)
 		}
 		
 		if showsFullLayout && lastAppraisal == nil {
 			removeFullLayout()
+		}
+		
+		if showsFullLayout {
+			testTopConstraint.isActive = false
+			
+			if !showsTestLayout && lastTest != nil {
+				showTestLayout()
+			} else if showsTestLayout && lastTest == nil {
+				removeTestLayout()
+			}
+			
+			testTopConstraint.isActive = true
 		}
 		
 		appraisalTopConstraint.isActive = true

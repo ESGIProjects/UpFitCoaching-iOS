@@ -21,9 +21,15 @@ class ClientController: UIViewController {
 	var appraisalLabel: UILabel!
 	var followUpButton: UIButton!
 	var appraisalButton: UIButton!
+	var testTitle: UILabel!
+	var testLabel: UILabel!
+	var testButton: UIButton!
+	var prescriptionButton: UIButton!
 	
 	var appraisalTopConstraint: NSLayoutConstraint!
+	var testTopConstraint: NSLayoutConstraint!
 	var showsFullLayout = false
+	var showsTestLayout = false
 	
 	var client: User?
 	
@@ -102,6 +108,16 @@ class ClientController: UIViewController {
 		followUpController.user = client
 		
 		navigationController?.pushViewController(followUpController, animated: true)
+	}
+	
+	@objc func test() {
+		guard let client = client else { return }
+		
+		let newTestController = NewTestController()
+		newTestController.client = client
+		newTestController.oldTest = Database().getLastTest(for: client)
+		
+		present(UINavigationController(rootViewController: newTestController), animated: true)
 	}
 	
 	// MARK: - Helpers
