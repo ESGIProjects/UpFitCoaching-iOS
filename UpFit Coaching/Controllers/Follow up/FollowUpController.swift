@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 enum SortingMode: Int {
-	case all = 0, month, year
+	case all = 0, year, month
 }
 
 class FollowUpController: UIViewController {
