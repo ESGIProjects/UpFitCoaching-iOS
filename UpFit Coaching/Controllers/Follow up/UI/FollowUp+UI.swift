@@ -24,7 +24,7 @@ extension FollowUpController {
 			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
 			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 			
-			contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+			contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
 			
 			timeFilter.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
 			timeFilter.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),

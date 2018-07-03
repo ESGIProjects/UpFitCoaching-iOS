@@ -12,6 +12,8 @@ import PKHUD
 
 class ClientController: UIViewController {
 	
+	var scrollView: UIScrollView!
+	var contentView: UIView!
 	var nameLabel: UILabel!
 	var birthDateLabel: UILabel!
 	var cityLabel: UILabel!
