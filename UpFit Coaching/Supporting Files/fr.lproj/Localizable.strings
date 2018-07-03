@@ -144,10 +144,16 @@
 "mailAppMissing_title" = "Application Mail absente";
 "mailAppMissing_message" = "Vous avez besoin de l'application Mail d'Apple installée pour envoyer des mails.";
 "newAppraisalButton" = "Nouvelle fiche bilan";
+"appraisalTitle" = "Bilan";
+"appraisal_goalLabel" = "Objectif : %@";
+"appraisal_sessionsNumberLabel" = "%d séances par semaine";
 "showFollowUpButton" = "Afficher le suivi";
 "showAppraisalButton" = "Consulter la fiche bilan";
-"measurementsButton" = "Mettre à jour les mensurations";
-"newTestButton" = "Effectuer un test";
+"lastTestTitle" = "Dernier test";
+"test_warmUpSpeedLabel" = "Vitesse d'échauffement : %@ km/h";
+"test_frequencyLabel" = "Fréquence : %@ seconds";
+"testButton" = "Nouveau test";
+"prescriptionButton" = "Faire une prescription";
 
 // Edit Appraisal
 "editAppraisalController_title" = "Nouvelle fiche bilan";

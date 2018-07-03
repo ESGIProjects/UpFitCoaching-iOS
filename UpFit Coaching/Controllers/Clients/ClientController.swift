@@ -64,6 +64,32 @@ class ClientController: UIViewController {
 		birthDateLabel.text = "sexAndBirthDate_label".localized(with: "sex_\(client.sex)".localized, dateFormatter.string(from: birthDate))
 		cityLabel.text = "city_label".localized(with: client.city)
 		
+		let database = Database()
+
+		if let lastAppraisal = database.getLastAppraisal(for: client) {
+			let appraisalString = "appraisal_goalLabel".localized(with: lastAppraisal.goal)
+				.appending("\n")
+				.appending("appraisal_sessionsNumberLabel".localized(with: lastAppraisal.sessionsByWeek))
+			
+			appraisalLabel.text = appraisalString
+		}
+		
+		if let lastTest = database.getLastTest(for: client) {
+			let numberFormatter = NumberFormatter()
+			numberFormatter.alwaysShowsDecimalSeparator = false
+			numberFormatter.maximumFractionDigits = 1
+			
+			if let warmUp = numberFormatter.string(from: NSNumber(value: lastTest.warmUp)),
+				let frequency = numberFormatter.string(from: NSNumber(value: lastTest.frequency)) {
+				testLabel.text = "test_warmUpSpeedLabel".localized(with: warmUp)
+				testLabel.text?.append("\n")
+				testLabel.text?.append("test_frequencyLabel".localized(with: frequency))
+
+			} else {
+				testLabel.text = ""
+			}
+		}
+		
 		refreshLayout()
 	}
 	

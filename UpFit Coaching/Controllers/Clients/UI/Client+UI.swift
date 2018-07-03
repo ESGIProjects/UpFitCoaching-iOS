@@ -90,11 +90,10 @@ extension ClientController {
 		
 		appraisalTitle = UI.titleLabel
 		appraisalTitle.font = .boldSystemFont(ofSize: 20)
-		appraisalTitle.text = "Appraisal"
+		appraisalTitle.text = "appraisalTitle".localized
 		
 		appraisalLabel = UI.bodyLabel
 		appraisalLabel.numberOfLines = 2
-		appraisalLabel.text = "Goal: Loose fat\n3 sessions by week"
 		
 		followUpButton = UI.roundButton
 		followUpButton.titleText = "showFollowUpButton".localized
@@ -105,11 +104,10 @@ extension ClientController {
 		
 		testTitle = UI.titleLabel
 		testTitle.font = .boldSystemFont(ofSize: 20)
-		testTitle.text = "Appraisal"
+		testTitle.text = "lastTestTitle".localized
 		
 		testLabel = UI.bodyLabel
 		testLabel.numberOfLines = 2
-		testLabel.text = "Goal: Loose fat\n3 sessions by week"
 		
 		testButton = UI.roundButton
 		testButton.titleText = "testButton".localized
