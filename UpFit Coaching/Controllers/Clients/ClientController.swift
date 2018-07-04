@@ -153,6 +153,14 @@ class ClientController: UIViewController {
 		present(UINavigationController(rootViewController: newTestController), animated: true)
 	}
 	
+	@objc func prescription() {
+		guard let client = client else { return }
+		
+		let prescriptionController = PrescriptionController()
+		
+		present(UINavigationController(rootViewController: prescriptionController), animated: true)
+	}
+	
 	// MARK: - Helpers
 	
 	func downloadData() {

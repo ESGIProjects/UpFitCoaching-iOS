@@ -70,6 +70,9 @@
 		D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEEE20C9DB0A00FC5320 /* Post.swift */; };
 		D744FEF120CADDDE00FC5320 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEF020CADDDE00FC5320 /* ThreadController.swift */; };
 		D744FEF420CC216800FC5320 /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEF320CC216800FC5320 /* AppDelegate+Notifications.swift */; };
+		D745DF7820EBFE3300916AE6 /* PrescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745DF7720EBFE3300916AE6 /* PrescriptionController.swift */; };
+		D745DF7B20EBFF0F00916AE6 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745DF7A20EBFF0F00916AE6 /* Prescription.swift */; };
+		D745DF7D20EBFF8C00916AE6 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745DF7C20EBFF8C00916AE6 /* Exercise.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -180,6 +183,9 @@
 		D744FEEE20C9DB0A00FC5320 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D744FEF020CADDDE00FC5320 /* ThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
 		D744FEF320CC216800FC5320 /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
+		D745DF7720EBFE3300916AE6 /* PrescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionController.swift; sourceTree = "<group>"; };
+		D745DF7A20EBFF0F00916AE6 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
+		D745DF7C20EBFF8C00916AE6 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -493,6 +499,15 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		D745DF7920EBFEF900916AE6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D745DF7A20EBFF0F00916AE6 /* Prescription.swift */,
+				D745DF7C20EBFF8C00916AE6 /* Exercise.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D773DD3F203362DD001520CA = {
 			isa = PBXGroup;
 			children = (
@@ -568,7 +583,9 @@
 			isa = PBXGroup;
 			children = (
 				D702D301209F8D4000970081 /* FollowUpController.swift */,
+				D745DF7720EBFE3300916AE6 /* PrescriptionController.swift */,
 				D724AB8920CD82510074164C /* UI */,
+				D745DF7920EBFEF900916AE6 /* Models */,
 			);
 			path = "Follow up";
 			sourceTree = "<group>";
@@ -803,6 +820,7 @@
 				D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */,
 				D7C16C1A20D5937B004D6EA9 /* ClientsList+TableView.swift in Sources */,
 				D702D2FE209F800100970081 /* AccountRegister+UI.swift in Sources */,
+				D745DF7B20EBFF0F00916AE6 /* Prescription.swift in Sources */,
 				1AB1D87120CE6C9C002B1B06 /* Thread+TableView.swift in Sources */,
 				D7B9CBFB20541E7300B755CD /* Login+UI.swift in Sources */,
 				1AA39739203C1BA10020092D /* ConversationListController.swift in Sources */,
@@ -837,6 +855,7 @@
 				1A13094020CEC8CA009B608B /* Network+Messages.swift in Sources */,
 				1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */,
 				D744FEE920C9D47600FC5320 /* CreateThread+UI.swift in Sources */,
+				D745DF7820EBFE3300916AE6 /* PrescriptionController.swift in Sources */,
 				D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */,
 				D7EFFF33204FDE47004694EC /* Network.swift in Sources */,
 				D7B3C32D20B3184300CE3D7A /* AccountRegisterController.swift in Sources */,
@@ -851,6 +870,7 @@
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
 				1A34F8ED20DD244B008ED2A2 /* Measurements.swift in Sources */,
 				D7BEAF1720DFEA6400FF93F9 /* LibrariesController.swift in Sources */,
+				D745DF7D20EBFF8C00916AE6 /* Exercise.swift in Sources */,
 				1A34F8DE20D7F211008ED2A2 /* EditAppraisalController.swift in Sources */,
 				D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */,
 				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,

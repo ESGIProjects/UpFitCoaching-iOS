@@ -128,7 +128,7 @@ extension ClientController {
 		
 		prescriptionButton = UI.roundButton
 		prescriptionButton.titleText = "prescriptionButton".localized
-		prescriptionButton.addTarget(self, action: #selector(followUp), for: .touchUpInside)
+		prescriptionButton.addTarget(self, action: #selector(prescription), for: .touchUpInside)
 	}
 	
 	fileprivate func removeFullLayout() {
