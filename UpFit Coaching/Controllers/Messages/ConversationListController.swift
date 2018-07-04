@@ -15,6 +15,7 @@ class ConversationListController: UIViewController {
 	// MARK: - UI
 	
 	var tableView: UITableView!
+	var refreshControl: UIRefreshControl!
 
 	// MARK: - Data
 	
@@ -67,6 +68,19 @@ class ConversationListController: UIViewController {
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
+			self?.refreshControl.endRefreshing()
+		}
+	}
+	
+	@objc func handleRefreshControl() {
+		guard let currentUser = currentUser else { return }
+		
+		let dispatchGroup = DispatchGroup()
+		
+		Downloader.messages(for: currentUser, in: dispatchGroup)
+		
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.reloadConversations()
 		}
 	}
 }

@@ -26,12 +26,18 @@ extension ConversationListController {
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.delegate = self
 		tableView.dataSource = self
+		
+		refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+		
 	}
 	
 	func setupLayout() {
 		setUIComponents()
 		
 		view.addSubview(tableView)
+		tableView.addSubview(refreshControl)
+		
 		NSLayoutConstraint.activate(getConstraints())
 	}
 }
