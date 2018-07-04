@@ -53,6 +53,11 @@ class ClientController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		refreshData()
+		refreshLayout()
+	}
+	
+	func refreshData() {
 		guard let client = client,
 			let birthDate = client.birthDate else { return }
 		
@@ -69,7 +74,7 @@ class ClientController: UIViewController {
 		cityLabel.text = "city_label".localized(with: client.city)
 		
 		let database = Database()
-
+		
 		if let lastAppraisal = database.getLastAppraisal(for: client) {
 			let appraisalString = "appraisal_goalLabel".localized(with: lastAppraisal.goal)
 				.appending("\n")
@@ -88,13 +93,11 @@ class ClientController: UIViewController {
 				testLabel.text = "test_warmUpSpeedLabel".localized(with: warmUp)
 				testLabel.text?.append("\n")
 				testLabel.text?.append("test_frequencyLabel".localized(with: frequency))
-
+				
 			} else {
 				testLabel.text = ""
 			}
 		}
-		
-		refreshLayout()
 	}
 	
 	// MARK: - Actions
@@ -167,6 +170,7 @@ class ClientController: UIViewController {
 		dispatchGroup.notify(queue: .main) { [weak self] in
 			DispatchQueue.main.async {
 				HUD.hide()
+				self?.refreshData()
 				self?.refreshLayout()
 			}
 		}
