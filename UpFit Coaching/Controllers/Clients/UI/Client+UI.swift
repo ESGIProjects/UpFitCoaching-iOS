@@ -146,6 +146,7 @@ extension ClientController {
 		
 		appraisalButton.titleText = "newAppraisalButton".localized
 		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 45.0)
+		contentBottomConstraint = appraisalButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 15.0)
 		
 		showsFullLayout = false
 	}
@@ -162,6 +163,7 @@ extension ClientController {
 		appraisalButton.titleText = "showAppraisalButton".localized
 		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 15.0)
 		testTopConstraint = testButton.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 15.0)
+		contentBottomConstraint = prescriptionButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 15.0)
 		NSLayoutConstraint.activate(getAppraisalConstraints())
 		
 		showsFullLayout = true
@@ -208,6 +210,7 @@ extension ClientController {
 		
 		removeFullLayout()
 		appraisalTopConstraint.isActive = true
+		contentBottomConstraint.isActive = true
 	}
 	
 	func refreshLayout() {
@@ -220,6 +223,7 @@ extension ClientController {
 		let lastTest = database.getLastTest(for: client)
 		
 		appraisalTopConstraint.isActive = false
+		contentBottomConstraint.isActive = false
 		
 		if !showsFullLayout && lastAppraisal != nil {
 			showFullLayout(test: lastTest != nil)
@@ -242,5 +246,6 @@ extension ClientController {
 		}
 		
 		appraisalTopConstraint.isActive = true
+		contentBottomConstraint.isActive = true
 	}
 }

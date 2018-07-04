@@ -30,6 +30,8 @@ class ClientController: UIViewController {
 	
 	var appraisalTopConstraint: NSLayoutConstraint!
 	var testTopConstraint: NSLayoutConstraint!
+	var contentBottomConstraint: NSLayoutConstraint!
+
 	var showsFullLayout = false
 	var showsTestLayout = false
 	
