@@ -219,6 +219,15 @@
 "armValue" = "Tour de bras : ";
 "cm_value" = "%@ cm";
 
+// Prescription
+"prescriptionController_title" = "Nouvelle prescription";
+"addExerciseButton" = "Ajouter un exercice";
+"exerciseName_title" = "Exercice";
+"exerciseDuration_title" = "Durée";
+"exerciseIntensity_title" = "Intensité";
+"exerciseRepetitions_title" = "Répétitions";
+"exerciseSeries_title" = "Séries";
+
 // Network messages
 "user_already_exists" = "Cet utilisateur existe déjà.";
 "user_insert_failed" = "Nous avons rencontré un problème lors de l'inscription. Merci de réessayer plus tard.";
