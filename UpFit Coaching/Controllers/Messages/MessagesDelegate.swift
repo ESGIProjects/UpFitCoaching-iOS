@@ -32,9 +32,14 @@ class MessagesDelegate {
 	
 	private init() {
 		guard let userID = UserDefaults.standard.object(forKey: "userID") as? Int else { return }
-		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)") else { return }
+		guard let authToken = UserDefaults.standard.object(forKey: "authToken") as? String else { return }
+		guard let url = URL(string: "ws://192.168.1.15/ws?id=\(userID)") else { return }
+		//212.47.234.147
 		
-		socket = WebSocket(url: url)
+		var request = URLRequest(url: url)
+		request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+		
+		socket = WebSocket(request: request)
 		socket?.delegate = self
 		
 		// Observers
