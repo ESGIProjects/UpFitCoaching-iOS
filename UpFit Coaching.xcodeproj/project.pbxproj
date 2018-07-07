@@ -256,11 +256,7 @@
 			children = (
 				D7C16C1420D58609004D6EA9 /* ClientsListController.swift */,
 				D7C16C1B20D5939A004D6EA9 /* ClientController.swift */,
-				1A34F8DD20D7F211008ED2A2 /* EditAppraisalController.swift */,
-				1A34F8E120D80328008ED2A2 /* AddMeasurementsController.swift */,
-				1A34F8E320D80332008ED2A2 /* NewTestController.swift */,
 				1A34F8DC20D7AC9C008ED2A2 /* UI */,
-				1A34F8E920DD2169008ED2A2 /* Models */,
 				D7C16C1820D5934D004D6EA9 /* Protocols */,
 			);
 			path = Clients;
@@ -271,21 +267,8 @@
 			children = (
 				D7C16C1620D58618004D6EA9 /* ClientsList+UI.swift */,
 				D7C16C1D20D593A5004D6EA9 /* Client+UI.swift */,
-				1A34F8DF20D7F63F008ED2A2 /* EditAppraisal+UI.swift */,
-				1A34F8E520D8056A008ED2A2 /* AddMeasurements+UI.swift */,
-				1A34F8E720D8057B008ED2A2 /* NewTest+UI.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		1A34F8E920DD2169008ED2A2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */,
-				1A34F8EC20DD244B008ED2A2 /* Measurements.swift */,
-				1A34F8EE20DD25FF008ED2A2 /* Test.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		1A8A18E6203AFD11006D2183 /* Views */ = {
@@ -455,6 +438,9 @@
 			isa = PBXGroup;
 			children = (
 				D724AB8A20CD825B0074164C /* FollowUp+UI.swift */,
+				1A34F8DF20D7F63F008ED2A2 /* EditAppraisal+UI.swift */,
+				1A34F8E520D8056A008ED2A2 /* AddMeasurements+UI.swift */,
+				1A34F8E720D8057B008ED2A2 /* NewTest+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -502,6 +488,9 @@
 		D745DF7920EBFEF900916AE6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1A34F8EA20DD2184008ED2A2 /* Appraisal.swift */,
+				1A34F8EC20DD244B008ED2A2 /* Measurements.swift */,
+				1A34F8EE20DD25FF008ED2A2 /* Test.swift */,
 				D745DF7A20EBFF0F00916AE6 /* Prescription.swift */,
 				D745DF7C20EBFF8C00916AE6 /* Exercise.swift */,
 			);
@@ -583,6 +572,9 @@
 			isa = PBXGroup;
 			children = (
 				D702D301209F8D4000970081 /* FollowUpController.swift */,
+				1A34F8DD20D7F211008ED2A2 /* EditAppraisalController.swift */,
+				1A34F8E120D80328008ED2A2 /* AddMeasurementsController.swift */,
+				1A34F8E320D80332008ED2A2 /* NewTestController.swift */,
 				D745DF7720EBFE3300916AE6 /* PrescriptionController.swift */,
 				D724AB8920CD82510074164C /* UI */,
 				D745DF7920EBFEF900916AE6 /* Models */,

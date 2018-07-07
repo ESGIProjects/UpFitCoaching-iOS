@@ -157,6 +157,7 @@ class ClientController: UIViewController {
 		guard let client = client else { return }
 		
 		let prescriptionController = PrescriptionController()
+		prescriptionController.user = client
 		
 		present(UINavigationController(rootViewController: prescriptionController), animated: true)
 	}

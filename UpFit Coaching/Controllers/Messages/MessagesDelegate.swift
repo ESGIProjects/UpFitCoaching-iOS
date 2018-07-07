@@ -43,8 +43,8 @@ class MessagesDelegate {
 		socket?.delegate = self
 		
 		// Observers
-		NotificationCenter.default.addObserver(self, selector: #selector(moveToBackground), name: .UIApplicationWillResignActive, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(moveToForeground), name: .UIApplicationDidBecomeActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(disconnect), name: .UIApplicationWillResignActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(connect), name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
 	deinit {
@@ -52,22 +52,14 @@ class MessagesDelegate {
 		NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
-	func connect() {
+	@objc func connect() {
 		userInitiatedDisconnect = false
 		socket?.connect()
 	}
 	
-	func disconnect() {
+	@objc func disconnect() {
 		userInitiatedDisconnect = true
 		socket?.disconnect()
-	}
-	
-	@objc private func moveToBackground() {
-		disconnect()
-	}
-	
-	@objc private func moveToForeground() {
-		connect()
 	}
 	
 	class func decode(from text: String) -> Message? {
