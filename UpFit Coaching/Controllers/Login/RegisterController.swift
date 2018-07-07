@@ -77,7 +77,8 @@ class RegisterController: UIViewController {
 			if Network.isSuccess(response: response, successCode: 201) {
 				let unserializedData = self?.unserialize(data)
 				
-				guard let userId = unserializedData?.0 else { return }
+				guard let userId = unserializedData?.id else { return }
+				guard let token = unserializedData?.token else { return }
 				guard let registerBox = self?.registerBox else { return }
 				
 				// Creating user info
@@ -87,7 +88,9 @@ class RegisterController: UIViewController {
 				
 				user.address = registerBox.address
 				user.birthDate = registerBox.birthDate
-				user.coach = unserializedData?.1
+				user.coach = unserializedData?.coach
+				
+				UserDefaults.standard.set(token, forKey: "authToken")
 				
 				self?.processLogin(for: user) {
 					self?.navigationController?.popToRootViewController(animated: false)
@@ -102,16 +105,16 @@ class RegisterController: UIViewController {
 		}
 	}
 	
-	private func unserialize(_ data: Data) -> (Int?, User?) {
-		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return (nil, nil) }
-		guard let json = unserializedJSON as? [String: Any] else { return (nil, nil) }
-		guard let userId = json["id"] as? Int else { return (nil, nil) }
+	private func unserialize(_ data: Data) -> (id: Int?, token: String?, coach: User?) {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return (nil, nil, nil) }
+		guard let json = unserializedJSON as? [String: Any] else { return (nil, nil, nil) }
+		guard let userId = json["id"] as? Int else { return (nil, nil, nil) }
+		guard let token = json["token"] as? String else { return (nil, nil, nil) }
 		
 		if let coachJson = json["coach"] as? [String: Any] {
-			print(coachJson)
-			return (userId, User(json: coachJson))
+			return (userId, token, User(json: coachJson))
 		}
 		
-		return (userId, nil)
+		return (userId, token, nil)
 	}
 }

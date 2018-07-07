@@ -14,3 +14,5 @@ type_name:
     - UI
 function_body_length:
   warning: 80
+large_tuple:
+  warning: 5

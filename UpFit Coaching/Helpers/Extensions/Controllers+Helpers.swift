@@ -78,7 +78,6 @@ extension UIViewController {
 		}
 	}
 	
-	// swiftlint:disable large_tuple
 	func getAnchors() -> (top: NSLayoutYAxisAnchor, bottom: NSLayoutYAxisAnchor, leading: NSLayoutXAxisAnchor, trailing: NSLayoutXAxisAnchor) {
 		
 		if #available(iOS 11.0, *) {
@@ -93,7 +92,6 @@ extension UIViewController {
 					view.trailingAnchor)
 		}
 	}
-	// swiftlint: enable large_tuple
 	
 	func processLogin(for user: User, completion: (() -> Void)? = nil) {
 		// Save user info

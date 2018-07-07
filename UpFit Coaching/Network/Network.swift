@@ -20,9 +20,10 @@ class Network {
 	// MARK: - Perform call
 	
 	typealias NetworkCallback = ((Data?, URLResponse?, Error?) -> Void)
-	static var baseURL = "http://212.47.234.147"
+	//static var baseURL = "http://212.47.234.147"
+	static var baseURL = "http://192.168.1.15"
 
-	class func call(_ stringUrl: String, httpMethod: HTTPMethod, parameters: [String: Any], completion: @escaping NetworkCallback) {
+	class func call(_ stringUrl: String, httpMethod: HTTPMethod, parameters: [String: Any], useToken: Bool = true, completion: @escaping NetworkCallback) {
 		var request: URLRequest
 		var callParameters = [String]()
 		
@@ -46,6 +47,10 @@ class Network {
 		}
 		
 		request.httpMethod = httpMethod.rawValue
+		
+		if useToken, let token = UserDefaults.standard.object(forKey: "authToken") as? String {
+			request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+		}
 		
 		let session = URLSession(configuration: .default)
 		session.dataTask(with: request, completionHandler: completion).resume()

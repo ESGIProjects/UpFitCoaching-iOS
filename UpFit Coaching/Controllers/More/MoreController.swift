@@ -41,6 +41,7 @@ class MoreController: FormViewController {
 		
 		// Clear preferences
 		UserDefaults.standard.removeObject(forKey: "userID")
+		UserDefaults.standard.removeObject(forKey: "authToken")
 		UserDefaults.standard.removeObject(forKey: "firebaseToken")
 		
 		// Disconnect from webscoket

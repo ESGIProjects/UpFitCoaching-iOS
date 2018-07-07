@@ -11,6 +11,11 @@ import RealmSwift
 import CryptoSwift
 import PKHUD
 
+struct Login: Codable {
+	var token: String
+	var user: User
+}
+
 class LoginController: UIViewController {
 	
 	// MARK: - UI
@@ -63,13 +68,15 @@ class LoginController: UIViewController {
 			guard let data = data else { return }
 			
 			if Network.isSuccess(response: response, successCode: 200) {
+				
 				// Decode user data
 				let decoder = JSONDecoder.withDate
-				guard let user = try? decoder.decode(User.self, from: data) else { return }
+				guard let loginInfo = try? decoder.decode(Login.self, from: data) else { return }
 				
-				print("User ID", user.userID)
+				UserDefaults.standard.set(loginInfo.token, forKey: "authToken")
+				print("User ID", loginInfo.user.userID)
 				
-				self?.processLogin(for: user) {
+				self?.processLogin(for: loginInfo.user) {
 					self?.mailTextField.text = ""
 					self?.passwordTextField.text = ""
 				}

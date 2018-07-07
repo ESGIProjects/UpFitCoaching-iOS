@@ -12,28 +12,29 @@ import Foundation
 extension Network {
 	
 	class func isMailExists(mail: String, completion: @escaping NetworkCallback) {
-		let url = baseURL.appending("/checkmail/")
+		let url = baseURL.appending("/login/checkmail/")
 		let parameters: [String: Any] = [
 			"mail": mail
 		]
 		
-		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+		call(url, httpMethod: .post, parameters: parameters, useToken: false, completion: completion)
 	}
 	
 	class func login(mail: String, password: String, completion: @escaping NetworkCallback) {
-		let url = Network.baseURL.appending("/signin/")
+		let url = Network.baseURL.appending("/login/signin/")
+		
 		let parameters: [String: Any] = [
 			"mail": mail,
 			"password": password
 		]
 		
-		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+		call(url, httpMethod: .post, parameters: parameters, useToken: false, completion: completion)
 	}
 	
 	class func register(with parameters: [String: Any], completion: @escaping NetworkCallback) {
-		let url = baseURL.appending("/signup/")
+		let url = baseURL.appending("/login/signup/")
 		
-		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+		call(url, httpMethod: .post, parameters: parameters, useToken: false, completion: completion)
 	}
 	
 	class func registerToken(_ token: String, oldToken: String? = nil, for user: User) {
