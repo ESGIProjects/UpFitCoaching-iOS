@@ -12,8 +12,19 @@ import PKHUD
 
 class PrescriptionController: FormViewController {
 	
+	let currentUser = Database().getCurrentUser()
 	var user: User?
-	var oldPrescription: Prescription?
+	var oldPrescription: Prescription? {
+		guard let user = user else { return nil }
+		
+		let exercises = [
+			Exercise.cycling(duration: 80, intensity: .weak),
+			Exercise.swimming(duration: 10),
+			Exercise.abs(repetitions: 20, series: 10)
+		]
+		
+		return Prescription(user: user, date: Date(), exercises: exercises)
+	}
 	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
 	override func viewDidLoad() {
@@ -23,10 +34,48 @@ class PrescriptionController: FormViewController {
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(displayData))
 		
-		form +++ Section() <<< ButtonRow("addExercise") {
-			$0.title = "addExerciseButton".localized
-			$0.onCellSelection { [unowned self] _, _ in
-				self.addExercise()
+		if let oldPrescription = oldPrescription {
+			var values = [String: Any?]()
+			var exercises = [String: Any?]()
+			
+			for (index, exercise) in oldPrescription.exercises.enumerated() {
+				
+				exercises["exercise-\(index)"] = exercise.name
+				values["exercise-\(index)"] = exercise.name
+				addExercise(autoSelect: false, afterButton: true)
+				
+				switch exercise.name {
+				case "Footing", "Vélo":
+					values["duration-\(index)"] = Double(exercise.duration!)
+					values["intensity-\(index)"] = exercise.intensity!.rawValue
+				case "Pompes", "Abdominaux", "Squats":
+					values["repetitions-\(index)"] = Double(exercise.repetitions!)
+					values["series-\(index)"] = Double(exercise.series!)
+				case "Natation":
+					values["duration-\(index)"] = Double(exercise.duration!)
+				default:
+					continue
+				}
+			}
+			
+			form.setValues(exercises)
+			form.setValues(values)
+			print(values)
+			print(form.values())
+		}
+		
+		guard let currentUser = currentUser else { return }
+		
+		if currentUser.type == 2 {
+			form +++ Section() <<< ButtonRow("addExercise") {
+				$0.title = "addExerciseButton".localized
+				$0.onCellSelection { [unowned self] _, _ in
+					self.addExercise()
+				}
+			}
+		} else {
+			for row in form.rows {
+				row.baseCell.isUserInteractionEnabled = false
 			}
 		}
 	}
@@ -131,7 +180,7 @@ class PrescriptionController: FormViewController {
 			addIntensityRow(for: &section)
 		case "Pompes", "Abdominaux", "Squats":
 			addRepetitionsRow(for: &section)
-			addSeriessRow(for: &section)
+			addSeriesRow(for: &section)
 		case "Natation":
 			addDurationRow(for: &section)
 		default:
@@ -170,7 +219,7 @@ class PrescriptionController: FormViewController {
 		}
 	}
 	
-	private func addSeriessRow(for section: inout Section) {
+	private func addSeriesRow(for section: inout Section) {
 		guard let index = section.index else { return }
 		
 		section <<< DecimalRow("series-\(index)") {
@@ -178,9 +227,15 @@ class PrescriptionController: FormViewController {
 		}
 	}
 	
-	private func addExercise() {
+	@discardableResult private func addExercise(autoSelect: Bool = true, afterButton: Bool = false) -> Section {
 		let section = Section()
-		let row = PushRow<String>("exercise-\(form.count - 1)") {
+		var index = form.count
+		
+		if !afterButton {
+			index -= 1
+		}
+		
+		let row = PushRow<String>("exercise-\(index)") {
 			$0.title = "exerciseName_title".localized
 			$0.options = availableExercises
 			$0.onChange { [unowned self] row in
@@ -196,8 +251,13 @@ class PrescriptionController: FormViewController {
 		
 		section <<< row
 		
-		form.insert(section, at: form.count - 1)
-		row.didSelect()
+		form.insert(section, at: index)
+		
+		if autoSelect {
+			row.didSelect()
+		}
+		
+		return section
 	}
 	
 	private func unserialize(_ data: Data) -> Int? {
