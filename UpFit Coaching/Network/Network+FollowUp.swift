@@ -96,4 +96,28 @@ extension Network {
 		
 		call(url, httpMethod: .post, parameters: parameters, completion: completion)
 	}
+	
+	class func getPrescriptions(for user: User, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/prescriptions/")
+		let parameters: [String: Any] = [
+			"userId": user.userID
+		]
+		
+		call(url, httpMethod: .get, parameters: parameters, completion: completion)
+	}
+	
+	class func createPrecription(_ prescription: Prescription, completion: @escaping NetworkCallback) {
+		let url = baseURL.appending("/prescriptions/")
+		
+		guard let json = try? JSONEncoder().encode(prescription.exercises),
+			let exercises = String(data: json, encoding: .utf8) else { return }
+		
+		let parameters: [String: Any] = [
+			"userId": prescription.user.userID,
+			"date": DateFormatter.time.string(from: prescription.date),
+			"exercises": exercises
+		]
+		
+		call(url, httpMethod: .post, parameters: parameters, completion: completion)
+	}
 }

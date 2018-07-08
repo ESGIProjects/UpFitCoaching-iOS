@@ -43,7 +43,7 @@ enum Intensity: Int, Codable {
 
 class Exercise: NSObject, Codable {
 	enum CodingKeys: String, CodingKey {
-		case name, duration, intensity, repetitions, series
+		case name = "exercise", duration, intensity, repetitions, series
 	}
 	
 	var exerciseID: Int?

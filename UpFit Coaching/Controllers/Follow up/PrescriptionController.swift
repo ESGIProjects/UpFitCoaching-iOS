@@ -8,11 +8,13 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class PrescriptionController: FormViewController {
-	//var exerciseName: String!
+	
 	var user: User?
 	var oldPrescription: Prescription?
+	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,18 +29,52 @@ class PrescriptionController: FormViewController {
 				self.addExercise()
 			}
 		}
-		
-		addExercise()
 	}
 	
+	// MARK: - Actions
+	
 	@objc func displayData() {
+		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
+		
 		guard let user = user else { return }
 		
-		// Get indexes
-		let values = form.values()
+		// Create prescription
+		let prescription = Prescription(user: user, date: Date(), exercises: getExercises())
+		
+		Network.createPrecription(prescription) { [weak self] data, response, _ in
+			guard let data = data else { return }
+			
+			if Network.isSuccess(response: response, successCode: 201) {
+				// Unserialize the prescription ID
+				guard let prescriptionID = self?.unserialize(data) else { return }
+				prescription.prescriptionID = prescriptionID
+				
+				// Save prescription
+				Database().createOrUpdate(model: prescription, with: PrescriptionObject.init)
+				
+				// Dismiss controller
+				self?.navigationController?.dismiss(animated: true)
+			}
+			
+			DispatchQueue.main.async {
+				HUD.hide()
+			}
+		}
+	}
+	
+	@objc func cancel() {
+		navigationController?.dismiss(animated: true)
+	}
+	
+	// MARK: - Data Helpers
+	
+	private var indexes: [Int] {
 		var indexes = [Int]()
 		
-		values.forEach { key, _ in
+		form.values().forEach { key, _ in
 			if key.contains("exercise-"),
 				let indexString = key.split(separator: "-").last,
 				let index = Int(indexString) {
@@ -47,14 +83,16 @@ class PrescriptionController: FormViewController {
 		}
 		
 		indexes.sort()
-		print(indexes)
-		
+		return indexes
+	}
+	
+	private func getExercises() -> [Exercise] {
 		var exercises = [Exercise]()
+		let values = form.values()
 		
 		// For each index, create the appropriate exercise if possible
 		for index in indexes {
 			guard let exerciseName = values["exercise-\(index)"] as? String else { continue }
-			print(exerciseName)
 			
 			switch exerciseName {
 			case "Footing", "Vélo":
@@ -79,20 +117,12 @@ class PrescriptionController: FormViewController {
 			}
 		}
 		
-		// Create prescription
-		let prescription = Prescription(user: user, date: Date(), exercises: exercises)
-		
-		if let prescriptionData = try? JSONEncoder.withDate.encode(prescription),
-			let prescriptionDataString = String(data: prescriptionData, encoding: .utf8) {
-			print(prescriptionDataString)
-		}
+		return exercises
 	}
 	
-	@objc func cancel() {
-		navigationController?.dismiss(animated: true)
-	}
+	// MARK: - UI Helpers
 	
-	func loadSection(_ section: inout Section, for exercise: String) {
+	private func loadSection(_ section: inout Section, for exercise: String) {
 		section.removeLast(section.count - 1)
 		
 		switch exercise {
@@ -107,9 +137,11 @@ class PrescriptionController: FormViewController {
 		default:
 			break
 		}
+		
+		section.reload()
 	}
 	
-	func addIntensityRow(for section: inout Section) {
+	private func addIntensityRow(for section: inout Section) {
 		guard let index = section.index else { return }
 		
 		section <<< AlertRow<Intensity>("intensity-\(index)") {
@@ -122,7 +154,7 @@ class PrescriptionController: FormViewController {
 		}
 	}
 	
-	func addDurationRow(for section: inout Section) {
+	private func addDurationRow(for section: inout Section) {
 		guard let index = section.index else { return }
 		
 		section <<< DecimalRow("duration-\(index)") {
@@ -130,7 +162,7 @@ class PrescriptionController: FormViewController {
 		}
 	}
 	
-	func addRepetitionsRow(for section: inout Section) {
+	private func addRepetitionsRow(for section: inout Section) {
 		guard let index = section.index else { return }
 		
 		section <<< DecimalRow("repetitions-\(index)") {
@@ -138,7 +170,7 @@ class PrescriptionController: FormViewController {
 		}
 	}
 	
-	func addSeriessRow(for section: inout Section) {
+	private func addSeriessRow(for section: inout Section) {
 		guard let index = section.index else { return }
 		
 		section <<< DecimalRow("series-\(index)") {
@@ -146,16 +178,34 @@ class PrescriptionController: FormViewController {
 		}
 	}
 	
-	func addExercise() {
-		form +++ Section()
-			<<< PushRow<String>("exercise-\(form.count)") {
+	private func addExercise() {
+		let section = Section()
+		let row = PushRow<String>("exercise-\(form.count - 1)") {
 			$0.title = "exerciseName_title".localized
-			$0.options = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
+			$0.options = availableExercises
 			$0.onChange { [unowned self] row in
 				if let value = row.value, var section = row.section {
 					self.loadSection(&section, for: value)
+					
+					if let index = self.availableExercises.index(of: value) {
+						self.availableExercises.remove(at: index)
+					}
 				}
 			}
 		}
+		
+		section <<< row
+		
+		form.insert(section, at: form.count - 1)
+		row.didSelect()
+	}
+	
+	private func unserialize(_ data: Data) -> Int? {
+		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+		guard let json = unserializedJSON as? [String: Int] else { return nil }
+		
+		guard let prescriptionId = json["id"] else { return nil }
+		
+		return prescriptionId
 	}
 }
