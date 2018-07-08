@@ -65,6 +65,7 @@ extension EditEventController {
 		startDateRow = DateTimeInlineRow("startDate") {
 			$0.title = "startDate_fieldTitle".localized
 			$0.value = startDate
+			$0.minimumDate = startDate
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.startDate = value
@@ -77,6 +78,7 @@ extension EditEventController {
 		endDateRow = DateTimeInlineRow("endDate") {
 			$0.title = "endDate_fieldTitle".localized
 			$0.value = endDate
+			$0.minimumDate = startDate
 			$0.onChange { [unowned self] row in
 				if let value = row.value {
 					self.endDate = value
