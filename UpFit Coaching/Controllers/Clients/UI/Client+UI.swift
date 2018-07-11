@@ -163,7 +163,7 @@ extension ClientController {
 		appraisalButton.titleText = "showAppraisalButton".localized
 		appraisalTopConstraint = appraisalButton.topAnchor.constraint(equalTo: followUpButton.bottomAnchor, constant: 15.0)
 		testTopConstraint = testButton.topAnchor.constraint(equalTo: appraisalButton.bottomAnchor, constant: 15.0)
-		contentBottomConstraint = prescriptionButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 15.0)
+		contentBottomConstraint = prescriptionButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.0)
 		NSLayoutConstraint.activate(getAppraisalConstraints())
 		
 		showsFullLayout = true

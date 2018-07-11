@@ -20,8 +20,7 @@ class Network {
 	// MARK: - Perform call
 	
 	typealias NetworkCallback = ((Data?, URLResponse?, Error?) -> Void)
-	//static var baseURL = "http://212.47.234.147"
-	static var baseURL = "http://192.168.1.15"
+	static var baseURL = "http://212.47.234.147"
 
 	class func call(_ stringUrl: String, httpMethod: HTTPMethod, parameters: [String: Any], useToken: Bool = true, completion: @escaping NetworkCallback) {
 		var request: URLRequest

@@ -25,6 +25,7 @@ class PrescriptionController: FormViewController {
 		
 		return Prescription(user: user, date: Date(), exercises: exercises)
 	}
+	var values = [String: Any?]()
 	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
 	override func viewDidLoad() {
@@ -35,19 +36,17 @@ class PrescriptionController: FormViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(displayData))
 		
 		if let oldPrescription = oldPrescription {
-			var values = [String: Any?]()
-			var exercises = [String: Any?]()
+			values.removeAll()
 			
 			for (index, exercise) in oldPrescription.exercises.enumerated() {
 				
-				exercises["exercise-\(index)"] = exercise.name
 				values["exercise-\(index)"] = exercise.name
 				addExercise(autoSelect: false, afterButton: true)
 				
 				switch exercise.name {
 				case "Footing", "Vélo":
 					values["duration-\(index)"] = Double(exercise.duration!)
-					values["intensity-\(index)"] = exercise.intensity!.rawValue
+					values["intensity-\(index)"] = exercise.intensity
 				case "Pompes", "Abdominaux", "Squats":
 					values["repetitions-\(index)"] = Double(exercise.repetitions!)
 					values["series-\(index)"] = Double(exercise.series!)
@@ -58,10 +57,7 @@ class PrescriptionController: FormViewController {
 				}
 			}
 			
-			form.setValues(exercises)
 			form.setValues(values)
-			print(values)
-			print(form.values())
 		}
 		
 		guard let currentUser = currentUser else { return }
@@ -196,6 +192,7 @@ class PrescriptionController: FormViewController {
 		section <<< AlertRow<Intensity>("intensity-\(index)") {
 			$0.title = "exerciseIntensity_title".localized
 			$0.options = [.weak, .average, .strong]
+			$0.value = values["intensity-\(index)"] as? Intensity
 			$0.displayValueFor = { value in
 				guard let value = value else { return "" }
 				return "\(value.rawValue)"
@@ -208,6 +205,10 @@ class PrescriptionController: FormViewController {
 		
 		section <<< DecimalRow("duration-\(index)") {
 			$0.title = "exerciseDuration_title".localized
+			
+			if let value = values["duration-\(index)"] as? Int {
+				$0.value = Double(value)
+			}
 		}
 	}
 	
@@ -216,6 +217,10 @@ class PrescriptionController: FormViewController {
 		
 		section <<< DecimalRow("repetitions-\(index)") {
 			$0.title = "exerciseRepetitions_title".localized
+			
+			if let value = values["repetitions-\(index)"] as? Int {
+				$0.value = Double(value)
+			}
 		}
 	}
 	
@@ -224,6 +229,10 @@ class PrescriptionController: FormViewController {
 		
 		section <<< DecimalRow("series-\(index)") {
 			$0.title = "exerciseSeries_title".localized
+			
+			if let value = values["series-\(index)"] as? Int {
+				$0.value = Double(value)
+			}
 		}
 	}
 	
