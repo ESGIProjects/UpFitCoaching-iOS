@@ -39,6 +39,11 @@ class ForumController: UIViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addThread))
 		setupLayout()
 		
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = true
+			navigationItem.largeTitleDisplayMode = .always
+		}
+		
 		// Setup dateformatter
 		dateFormatter.dateStyle = .short
 		dateFormatter.timeStyle = .short

@@ -46,6 +46,10 @@ class ClientController: UIViewController {
 		view.backgroundColor = .background
 		setupLayout()
 		
+		if #available(iOS 11.0, *) {
+			navigationItem.largeTitleDisplayMode = .never
+		}
+		
 		// Download appraisal
 		downloadData()
 	}

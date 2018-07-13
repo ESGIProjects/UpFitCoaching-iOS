@@ -23,6 +23,11 @@ class MoreController: FormViewController {
 		
 		title = "moreController_title".localized
 		setupLayout()
+		
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = true
+			navigationItem.largeTitleDisplayMode = .always
+		}
 	}
 	
 	// MARK: - Actions

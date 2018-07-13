@@ -22,6 +22,12 @@ class ClientsListController: UIViewController {
 		view.backgroundColor = .background
 		setupLayout()
 		
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = true
+			navigationItem.largeTitleDisplayMode = .always
+			navigationItem.hidesSearchBarWhenScrolling = false
+		}
+		
 		// Register cell
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ClientCell")
 		

@@ -39,6 +39,10 @@ class ThreadController: UIViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPost))
 		setupLayout()
 		
+		if #available(iOS 11.0, *) {
+			navigationItem.largeTitleDisplayMode = .never
+		}
+		
 		// Setup formatter
 		dateFormatter.timeStyle = .short
 		dateFormatter.dateStyle = .short

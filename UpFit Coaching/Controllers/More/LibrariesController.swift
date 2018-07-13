@@ -21,6 +21,10 @@ class LibrariesController: UIViewController {
 		view.backgroundColor = .background
 		setupLayout()
 		
+		if #available(iOS 11.0, *) {
+			navigationItem.largeTitleDisplayMode = .never
+		}
+		
 		guard let path = Bundle.main.path(forResource: "libraries", ofType: "html") else { return }
 		
 		let url = URL(fileURLWithPath: path)
