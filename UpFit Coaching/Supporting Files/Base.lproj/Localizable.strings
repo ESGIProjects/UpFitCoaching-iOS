@@ -229,7 +229,21 @@
 "exerciseSeries_title" = "Series";
 
 // Network messages
+"appraisal_not_found" = "No appraisal found.";
 "user_already_exists" = "This user already exists.";
-"user_insert_failed" = "There was a problem while signing up. Please try later.";
+"user_insert_failed" = "There was a problem while creating or modifying your user info. Please try later.";
+"prescription_insert_failed" = "There was a problem while adding the prescription. Please try later.";
+"thread_insert_failed" = "There was a problem while adding the thread. Please try later.";
+"post_insert_failed" = "There was a problem while adding the post. Please try later.";
+"appraisal_insert_failed" = "There was a problem while adding the appraisal. Please try later.";
+"measurements_insert_failed" = "There was a problem while adding measurements. Please try later.";
+"test_insert_failed" = "There was a problem while adding the test. Please try later.";
+"event_insert_failed" = "There was a problem while adding the event. Please try later.";
+"token_error" = "We can't identify you anymore because of an unknown error. Please log out before trying again.";
+"token_not_valid" = "We can't identify you anymore because of an unknown error. Please log out before trying again.";
+"user_wrong_password" = "This password isn't correct.";
+"parameter_error" = "Some parameters are missing or wrong. Check before trying again.";
 "user_not_exist" = "This user doesn't exist.";
+"event_not_exist" = "This event doesn't exist.";
+"token_creation_error" = "We have a network problem. Please try later.";
 "internal_error" = "We have a network problem. Please try later.";

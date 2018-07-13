@@ -229,7 +229,21 @@
 "exerciseSeries_title" = "Séries";
 
 // Network messages
+"appraisal_not_found" = "Aucun bilan correspondant.";
 "user_already_exists" = "Cet utilisateur existe déjà.";
-"user_insert_failed" = "Nous avons rencontré un problème lors de l'inscription. Merci de réessayer plus tard.";
+"user_insert_failed" = "Nous avons rencontré un problème lors du traitement du compte utilisateur. Merci de réessayer plus tard.";
+"prescription_insert_failed" = "Nous avons rencontré un problème lors de l'ajout de la prescription. Merci de réessayer plus tard.";
+"thread_insert_failed" = "Nous avons rencontré un problème lors de l'ajout du sujet. Merci de réessayer plus tard.";
+"post_insert_failed" = "Nous avons rencontré un problème lors de l'ajout du message. Merci de réessayer plus tard.";
+"appraisal_insert_failed" = "Nous avons rencontré un problème lors de l'ajout du bilan. Merci de réessayer plus tard.";
+"measurements_insert_failed" = "Nous avons recontré un problème lors de l'ajout des mensurations. Merci de réessayer plus tard.";
+"test_insert_failed" = "Nous avons rencontré un problème lors de l'ajout du test. Merci de réessayer plus tard.";
+"event_insert_failed" = "Nous avons rencontré un problème lors de l'ajout de l'événement. Merci de réessayer plus tard.";
+"token_error" = "En raison d'une erreur inconnue, nous ne pouvons plus vous identifier. Merci de vous reconnecer avant de réessayer.";
+"token_not_valid" = "En raison d'une erreur inconnue, nous ne pouvons plus vous identifier. Merci de vous reconnecer avant de réessayer.";
+"user_wrong_password" = "Ce mot de passe est incorrect.";
+"parameter_error" = "Certains paramètres sont manquants ou erronés. Vérifiez avant de réessayer.";
 "user_not_exist" = "Cet utilisateur n'existe pas.";
+"event_not_exist" = "Cet événement n'existe pas.";
+"token_creation_error" = "Nous recontrons un problème réseau. Merci de réessayer plus tard.";
 "internal_error" = "Nous recontrons un problème réseau. Merci de réessayer plus tard.";
