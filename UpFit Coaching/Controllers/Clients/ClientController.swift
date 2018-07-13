@@ -158,6 +158,7 @@ class ClientController: UIViewController {
 		
 		let prescriptionController = PrescriptionController()
 		prescriptionController.user = client
+		prescriptionController.oldPrescription = Database().getLastPrescription(for: client)
 		
 		present(UINavigationController(rootViewController: prescriptionController), animated: true)
 	}
@@ -174,6 +175,7 @@ class ClientController: UIViewController {
 		Downloader.appraisal(for: client, in: dispatchGroup)
 		Downloader.measurements(for: client, in: dispatchGroup)
 		Downloader.tests(for: client, in: dispatchGroup)
+		Downloader.prescriptions(for: client, in: dispatchGroup)
 		
 		// Refresh UI when done
 		dispatchGroup.notify(queue: .main) { [weak self] in

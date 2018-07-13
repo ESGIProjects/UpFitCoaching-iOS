@@ -93,4 +93,16 @@ extension Database {
 	func getLastTest(for user: User) -> Test? {
 		return getTests(for: user).first
 	}
+	
+	func getPrescriptions(for user: User) -> [Prescription] {
+		let fetchRequest = FetchRequest<[Prescription], PrescriptionObject>(predicate: NSPredicate(format: "user.userID == %d", user.userID),
+															sortDescriptors: [SortDescriptor(keyPath: "date", ascending: false)],
+															transformer: { $0.map(Prescription.init) })
+		
+		return fetch(using: fetchRequest)
+	}
+	
+	func getLastPrescription(for user: User) -> Prescription? {
+		return getPrescriptions(for: user).first
+	}
 }
