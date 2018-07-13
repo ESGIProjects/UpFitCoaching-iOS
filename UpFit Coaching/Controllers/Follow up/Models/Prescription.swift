@@ -33,6 +33,10 @@ final class PrescriptionObject: Object {
 }
 
 class Prescription: NSObject, Codable {
+	enum CodingKeys: String, CodingKey {
+		case prescriptionID = "id", user, date, exercises
+	}
+	
 	var prescriptionID: Int?
 	var user: User
 	var date: Date

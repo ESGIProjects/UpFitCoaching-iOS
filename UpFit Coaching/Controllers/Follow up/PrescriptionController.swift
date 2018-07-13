@@ -16,6 +16,7 @@ class PrescriptionController: FormViewController {
 	var user: User?
 	var oldPrescription: Prescription?
 	var values = [String: Any?]()
+	var tagIndex = 0
 	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
 	override func viewDidLoad() {
@@ -27,12 +28,11 @@ class PrescriptionController: FormViewController {
 		
 		if let oldPrescription = oldPrescription {
 			values.removeAll()
-			
+
 			for (index, exercise) in oldPrescription.exercises.enumerated() {
-				
 				values["exercise-\(index)"] = exercise.name
 				addExercise(autoSelect: false, afterButton: true)
-				
+
 				switch exercise.name {
 				case "Footing", "Vélo":
 					values["duration-\(index)"] = Double(exercise.duration!)
@@ -45,8 +45,13 @@ class PrescriptionController: FormViewController {
 				default:
 					continue
 				}
+				
+				// Update tagIndex
+				if tagIndex < index {
+					tagIndex = index
+				}
 			}
-			
+
 			form.setValues(values)
 		}
 		
@@ -179,7 +184,8 @@ class PrescriptionController: FormViewController {
 	}
 	
 	private func addIntensityRow(for section: inout Section) {
-		guard let index = section.index else { return }
+		guard let exerciseTag = section.first?.tag,
+			let index = exerciseTag.split(separator: "-").last else { return }
 		
 		section <<< AlertRow<Intensity>("intensity-\(index)") {
 			$0.title = "exerciseIntensity_title".localized
@@ -193,7 +199,8 @@ class PrescriptionController: FormViewController {
 	}
 	
 	private func addDurationRow(for section: inout Section) {
-		guard let index = section.index else { return }
+		guard let exerciseTag = section.first?.tag,
+			let index = exerciseTag.split(separator: "-").last else { return }
 		
 		section <<< DecimalRow("duration-\(index)") {
 			$0.title = "exerciseDuration_title".localized
@@ -205,7 +212,8 @@ class PrescriptionController: FormViewController {
 	}
 	
 	private func addRepetitionsRow(for section: inout Section) {
-		guard let index = section.index else { return }
+		guard let exerciseTag = section.first?.tag,
+			let index = exerciseTag.split(separator: "-").last else { return }
 		
 		section <<< DecimalRow("repetitions-\(index)") {
 			$0.title = "exerciseRepetitions_title".localized
@@ -217,7 +225,8 @@ class PrescriptionController: FormViewController {
 	}
 	
 	private func addSeriesRow(for section: inout Section) {
-		guard let index = section.index else { return }
+		guard let exerciseTag = section.first?.tag,
+			let index = exerciseTag.split(separator: "-").last else { return }
 		
 		section <<< DecimalRow("series-\(index)") {
 			$0.title = "exerciseSeries_title".localized
@@ -230,13 +239,13 @@ class PrescriptionController: FormViewController {
 	
 	@discardableResult private func addExercise(autoSelect: Bool = true, afterButton: Bool = false) -> Section {
 		let section = Section()
-		var index = form.count
+		var insertIndex = form.count
 		
 		if !afterButton {
-			index -= 1
+			insertIndex -= 1
 		}
 		
-		let row = PushRow<String>("exercise-\(index)") {
+		let row = PushRow<String>("exercise-\(tagIndex)") {
 			$0.title = "exerciseName_title".localized
 			$0.options = availableExercises
 			$0.onChange { [unowned self] row in
@@ -248,16 +257,40 @@ class PrescriptionController: FormViewController {
 					}
 				}
 			}
+			
+			$0.trailingSwipe.performsFirstActionWithFullSwipe = false
+			
+			let action = SwipeAction(style: .normal, title: "Delete") { [weak self] _, row, handler in
+				guard let row = row as? PushRow<String>,
+					let section = row.section,
+					let index = section.index else { handler?(false); return }
+				
+				// Re-insert the exercise in the list
+				if let value = row.value {
+					self?.availableExercises.append(value)
+				}
+				
+				// Delete section
+				self?.form.remove(at: index)
+				
+				handler?(true)
+			}
+			
+			action.backgroundColor = .red
+			
+			$0.trailingSwipe.actions.append(action)
+
 		}
 		
 		section <<< row
 		
-		form.insert(section, at: index)
+		form.insert(section, at: insertIndex)
 		
 		if autoSelect {
 			row.didSelect()
 		}
 		
+		tagIndex += 1
 		return section
 	}
 	

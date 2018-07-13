@@ -10,21 +10,15 @@ import Foundation
 import RealmSwift
 
 final class ExerciseObject: Object {
-	@objc dynamic var exerciseID = 0
 	@objc dynamic var name = ""
 	var duration = RealmOptional<Int>()
 	var intensity = RealmOptional<Int>()
 	var repetitions = RealmOptional<Int>()
 	var series = RealmOptional<Int>()
 	
-	override static func primaryKey() -> String? {
-		return "exerciseID"
-	}
-	
 	convenience init(exercise: Exercise) {
 		self.init()
 		
-		exerciseID = exercise.exerciseID ?? Database().next(type: ExerciseObject.self, of: "exerciseID")
 		name = exercise.name
 		duration.value = exercise.duration
 		
@@ -46,7 +40,6 @@ class Exercise: NSObject, Codable {
 		case name = "exercise", duration, intensity, repetitions, series
 	}
 	
-	var exerciseID: Int?
 	var name: String
 	var duration: Int?
 	var intensity: Intensity?
@@ -62,7 +55,6 @@ class Exercise: NSObject, Codable {
 	}
 	
 	init(object: ExerciseObject) {
-		exerciseID = object.exerciseID
 		name = object.name
 		duration = object.duration.value
 		
