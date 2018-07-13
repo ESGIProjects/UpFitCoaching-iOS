@@ -47,9 +47,6 @@ class ForumController: UIViewController {
 		// Register cell and notification
 		tableView.register(ThreadCell.self, forCellReuseIdentifier: "ThreadCell")
 		NotificationCenter.default.addObserver(self, selector: #selector(threadsDownloaded), name: .threadsDownloaded, object: nil)
-		
-		// Download all threads
-//		downloadThreads()
 	}
 	
 	// MARK: - Helpers
@@ -74,6 +71,8 @@ class ForumController: UIViewController {
 				
 				// Post a notification telling its done
 				NotificationCenter.default.post(name: .threadsDownloaded, object: nil)
+			} else {
+				Network.displayError(self, from: data)
 			}
 			
 			DispatchQueue.main.async {

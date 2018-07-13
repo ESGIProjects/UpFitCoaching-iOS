@@ -76,6 +76,8 @@ class ThreadController: UIViewController {
 				
 				// Post a notification telling its done
 				NotificationCenter.default.post(name: .postsDownloaded, object: nil)
+			} else {
+				Network.displayError(self, from: data)
 			}
 			
 			DispatchQueue.main.async {

@@ -153,8 +153,7 @@ class EventController: UIViewController {
 		alertController.addAction(UIAlertAction(title: "noButton".localized, style: .cancel))
 		alertController.addAction(UIAlertAction(title: "yesButton".localized, style: .destructive, handler: { [weak self] _ in
 			
-			Network.cancelEvent(event) { _, response, _ in
-				
+			Network.cancelEvent(event) { data, response, _ in
 				DispatchQueue.main.async {
 					HUD.show(.progress)
 				}
@@ -165,6 +164,9 @@ class EventController: UIViewController {
 					DispatchQueue.main.async {
 						self?.navigationController?.popViewController(animated: true)
 					}					
+				} else {
+					guard let data = data else { return }
+					Network.displayError(self, from: data)
 				}
 				
 				DispatchQueue.main.async {

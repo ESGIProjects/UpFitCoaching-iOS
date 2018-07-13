@@ -123,6 +123,8 @@ class EditEventController: FormViewController {
 				
 				// Dismiss controller
 				self?.navigationController?.dismiss(animated: true)
+			} else {
+				Network.displayError(self, from: data)
 			}
 			
 			DispatchQueue.main.async {
@@ -152,6 +154,8 @@ class EditEventController: FormViewController {
 				
 				// Dismiss controller
 				self?.navigationController?.dismiss(animated: true)
+			} else {
+				Network.displayError(self, from: data)
 			}
 			
 			DispatchQueue.main.async {
