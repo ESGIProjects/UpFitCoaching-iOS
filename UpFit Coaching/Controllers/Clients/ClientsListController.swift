@@ -11,9 +11,11 @@ import UIKit
 class ClientsListController: UIViewController {
 	
 	var tableView: UITableView!
+	let searchController = UISearchController(searchResultsController: nil)
 	
 	let currentUser = Database().getCurrentUser()
 	var users = [User]()
+	var filteredUsers = [User]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,6 +33,18 @@ class ClientsListController: UIViewController {
 		// Register cell
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ClientCell")
 		
+		// Search Controller
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search Clients"
+		definesPresentationContext = true
+		
+		if #available(iOS 11.0, *) {
+			navigationItem.searchController = searchController
+		} else {
+			tableView.tableHeaderView = searchController.searchBar
+		}
+		
 		// Fetch users
 		users = Database().fetch(using: User.all)
 		guard let currentUser = currentUser,
@@ -38,4 +52,5 @@ class ClientsListController: UIViewController {
 		
 		users.remove(at: index)
 	}
+
 }
