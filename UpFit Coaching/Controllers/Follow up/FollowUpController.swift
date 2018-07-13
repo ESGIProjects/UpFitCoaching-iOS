@@ -30,8 +30,10 @@ class FollowUpController: UIViewController {
 	
 	var user: User?
 	var measurements = [Measurements]()
-	var displayedMeasurements = [String: Measurements]()
+	var displayedMeasurements = [Measurements]()
 	var sorting = SortingMode.month
+	
+	// MARK: - UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -61,10 +63,49 @@ class FollowUpController: UIViewController {
 		NotificationCenter.default.removeObserver(self, name: .followUpDownloaded, object: nil)
 	}
 	
+	// MARK: - Actions
+	
 	@objc private func reloadData() {
 		loadData(for: sorting)
 		loadCharts(with: displayedMeasurements)
 	}
+	
+	@objc func addMeasurements() {
+		guard let user = user else { return }
+		
+		let addMeasurement = AddMeasurementsController()
+		addMeasurement.client = user
+		present(UINavigationController(rootViewController: addMeasurement), animated: true)
+	}
+	
+	@objc func changeFilter() {
+		guard let newSorting = SortingMode(rawValue: timeFilter.selectedSegmentIndex) else { return }
+		sorting = newSorting
+		
+		reloadData()
+	}
+	
+	// MARK: - Computing
+	
+	private func computeBFP(for measurement: Measurements) -> Double {
+		return measurement.weight / (measurement.height/100) * (measurement.height / 100)
+	}
+	
+	private func computeBMI(for user: User?, with measurement: Measurements, and bfp: Double) -> Double? {
+		guard let user = user,
+			let birthDate = user.birthDate else { return nil }
+		
+		let dateComponents = Calendar.current.dateComponents([.year], from: birthDate, to: measurement.date)
+		guard let age = dateComponents.year else { return nil }
+		
+		var bmi = 1.20 * bfp
+		bmi += 0.23 * Double(age)
+		bmi -= 10.8 * Double(user.sex) - 5.4
+		
+		return bmi
+	}
+	
+	// MARK: - Helpers
 	
 	private func updateTexts(for measurement: Measurements) {
 		let numberFormatter = NumberFormatter()
@@ -110,25 +151,7 @@ class FollowUpController: UIViewController {
 		measurementsValues.attributedText = measurementsAttributedString
 	}
 	
-	private func computeBFP(for measurement: Measurements) -> Double {
-		return measurement.weight / (measurement.height/100) * (measurement.height / 100)
-	}
-	
-	private func computeBMI(for user: User?, with measurement: Measurements, and bfp: Double) -> Double? {
-		guard let user = user,
-			let birthDate = user.birthDate else { return nil }
-		
-		let dateComponents = Calendar.current.dateComponents([.year], from: birthDate, to: measurement.date)
-		guard let age = dateComponents.year else { return nil }
-		
-		var bmi = 1.20 * bfp
-		bmi += 0.23 * Double(age)
-		bmi -= 10.8 * Double(user.sex) - 5.4
-		
-		return bmi
-	}
-	
-	private func loadCharts(with measurements: [String: Measurements]) {
+	private func loadCharts(with measurements: [Measurements]) {
 		var weightEntries = [ChartDataEntry](),
 		bfpEntries = [ChartDataEntry](), bmiEntries = [ChartDataEntry](),
 		hipEntries = [ChartDataEntry](), waistEntries = [ChartDataEntry](),
@@ -137,8 +160,7 @@ class FollowUpController: UIViewController {
 		var index = 0
 		
 		// Compute entries
-		
-		for (_, measurement) in measurements {
+		for measurement in measurements {
 			let bfp = computeBFP(for: measurement)
 			guard let bmi = computeBMI(for: user, with: measurement, and: bfp) else { return }
 			
@@ -203,68 +225,60 @@ class FollowUpController: UIViewController {
 	private func loadData(for sorting: SortingMode) {
 		guard let user = user else { return }
 		
-		if sorting == .all {
-			measurements = Database().getMeasurements(for: user)
+		measurements = Database().getMeasurements(for: user)
+		
+		if sorting == .month {
 			
-			guard let startDate = measurements.first?.date,
-				var endDate = measurements.last?.date else { return }
-			
-			displayedMeasurements = groupMeasurements(measurements, from: &endDate, to: startDate)
-		} else {
-			let startDate = Date()
-			var endDate: Date
-			
-			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "dd/MM/yyyy"
-			
-			if sorting == .month {
-				guard let date = Calendar.current.date(byAdding: .month, value: -1, to: startDate) else { return }
-				endDate = date
-			} else {
-				guard let date = Calendar.current.date(byAdding: .year, value: -1, to: startDate) else { return }
-				endDate = date
+			let periodicMeasurements = measurements.filter {
+				let now = Date()
+				let currentMonth = Calendar.current.component(.month, from: now)
+				let currentYear = Calendar.current.component(.year, from: now)
+				
+				let month = Calendar.current.component(.month, from: $0.date)
+				let year = Calendar.current.component(.year, from: $0.date)
+				
+				return currentMonth == month && currentYear == year
 			}
 			
-			// Getting the correct data
-			measurements = Database().getMeasurements(for: user, from: endDate)
-			displayedMeasurements = groupMeasurements(measurements, from: &endDate, to: startDate)
+			displayedMeasurements = groupMeasurements(periodicMeasurements)
+			
+		} else if sorting == .year {
+			let periodicMeasurements = measurements.filter {
+				let now = Date()
+				let currentYear = Calendar.current.component(.year, from: now)
+				let year = Calendar.current.component(.year, from: $0.date)
+				
+				return currentYear == year
+			}
+			
+			displayedMeasurements = groupMeasurements(periodicMeasurements)
+		} else {
+			displayedMeasurements = groupMeasurements(measurements)
 		}
 	}
 	
-	private func groupMeasurements(_ measurements: [Measurements], from endDate: inout Date, to startDate: Date) -> [String: Measurements] {
+	private func groupMeasurements(_ measurements: [Measurements]) -> [Measurements] {
 		var dates = [String]()
-		var sortedMeasurements = [String: Measurements]()
+		var sortedMeasurements = [Measurements]()
 		
 		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "dd/MM/yyyy"
+		dateFormatter.dateFormat = "yyyy/MM/dd"
 		
-		while startDate >= endDate {
-			dates.append(dateFormatter.string(from: endDate))
-			endDate.addTimeInterval(60 * 60 * 24)
+		for measurement in measurements {
+			let date = dateFormatter.string(from: measurement.date)
+			if !dates.contains(date) {
+				dates.append(date)
+			}
 		}
+		dates.sort(by: <)
 		
 		for date in dates {
 			let measurementsFromDate = measurements.filter { dateFormatter.string(from: $0.date) == date }
 			if let mostRecent = measurementsFromDate.sorted(by: { $0.date > $1.date }).first {
-				sortedMeasurements[date] = mostRecent
+				sortedMeasurements.append(mostRecent)
 			}
 		}
 		
 		return sortedMeasurements
-	}
-	
-	@objc func addMeasurements() {
-		guard let user = user else { return }
-		
-		let addMeasurement = AddMeasurementsController()
-		addMeasurement.client = user
-		present(UINavigationController(rootViewController: addMeasurement), animated: true)
-	}
-	
-	@objc func changeFilter() {
-		guard let newSorting = SortingMode(rawValue: timeFilter.selectedSegmentIndex) else { return }
-		sorting = newSorting
-		
-		reloadData()
 	}
 }
