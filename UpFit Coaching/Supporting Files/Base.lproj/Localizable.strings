@@ -124,6 +124,7 @@
 "accountManagement_sectionTitle" = "Account management";
 "editProfileButton" = "Edit Profile";
 "signOutButton" = "Sign Out";
+"librariesController_title" = "Open-source libraries";
 
 // Edit Profile
 "editProfileController_title" = "Edit Profile";

@@ -24,7 +24,7 @@ extension MoreController {
 		}
 		
 		usedLibrariesRow = ButtonRow("usedLibraries") {
-			$0.title = "usedLibrariesButton".localized
+			$0.title = "librariesController_title".localized
 			$0.cellUpdate { cell, _ in
 				cell.textLabel?.textColor = .mainText
 				cell.textLabel?.textAlignment = .left

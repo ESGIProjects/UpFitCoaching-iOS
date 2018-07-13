@@ -124,6 +124,7 @@
 "accountManagement_sectionTitle" = "Gestion du compte";
 "editProfileButton" = "Modifier le profil";
 "signOutButton" = "Déconnexion";
+"librariesController_title" = "Bibliothèques open-sources";
 
 // Edit Profile
 "editProfileController_title" = "Modifier le profil";
