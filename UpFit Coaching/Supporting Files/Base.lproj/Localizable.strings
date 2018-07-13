@@ -6,9 +6,6 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
-"betaFeature_alertTitle" = "Beta feature";
-"betaFeature_alertMessage" = "This feature is beta and probably won't work.\nCome back after a future update!";
-
 // Common labels
 "app_name" = "UpFit Coaching";
 "error" = "Error";
@@ -111,6 +108,7 @@
 // Forum
 "forumController_title" = "Forum";
 "thread_subtitle" = "Last message: %@ by %@ %@";
+"noThreadYet" = "No thread yet.\nStart yours!";
 
 "createThreadController_title" = "Create Thread";
 "threadTitle_placeholder" = "Title";

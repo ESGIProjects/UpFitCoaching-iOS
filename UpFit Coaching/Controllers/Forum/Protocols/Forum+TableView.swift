@@ -31,6 +31,28 @@ extension ForumController: UITableViewDataSource {
 		return cell
 	}
 	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		if threads.count > 0 {
+			tableView.separatorColor = .gray
+			tableView.backgroundView = nil
+			
+			return 1
+		} else {
+			let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+			messageLabel.text = "noThreadYet".localized
+			messageLabel.textColor = .gray
+			messageLabel.numberOfLines = 0
+			messageLabel.textAlignment = .center
+			messageLabel.font = .boldSystemFont(ofSize: 17.0)
+			messageLabel.sizeToFit()
+			
+			tableView.separatorColor = .clear
+			tableView.backgroundView = messageLabel
+			
+			return 0
+		}
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return threads.count
 	}

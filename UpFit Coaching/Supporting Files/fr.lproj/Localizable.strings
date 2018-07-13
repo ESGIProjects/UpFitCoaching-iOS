@@ -6,9 +6,6 @@
   Copyright © 2018 Jason Pierna. All rights reserved.
 */
 
-"betaFeature_alertTitle" = "Fonctionnalité bêta";
-"betaFeature_alertMessage" = "Cette fonctionnalité est encore en bêta et ne fonctionnera probablement pas.\nRevenez après une prochaine mise à jour !";
-
 // Common labels
 "app_name" = "UpFit Coaching";
 "error" = "Erreur";
@@ -111,6 +108,7 @@
 // Forum
 "forumController_title" = "Forum";
 "thread_subtitle" = "Dernier message : %@ par %@ %@";
+"noThreadYet" = "Aucun sujet de discussion.\nLancez le votre !";
 
 "createThreadController_title" = "Nouveau fil de discussion";
 "threadTitle_placeholder" = "Titre";
