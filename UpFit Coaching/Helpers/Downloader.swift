@@ -138,4 +138,24 @@ class Downloader {
 			dispatchGroup?.leave()
 		}
 	}
+	
+	class func prescriptions(for client: User, in dispatchGroup: DispatchGroup? = nil) {
+		dispatchGroup?.enter()
+		
+		Network.getPrescriptions(for: client) { data, response, _ in
+			guard let data = data else { dispatchGroup?.leave(); return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Setting up JSON Decoder
+				let decoder = JSONDecoder.withDate
+				
+				// Decode prescriptions
+				guard let prescriptions = try? decoder.decode([Prescription].self, from: data) else { dispatchGroup?.leave(); return }
+				
+				// Save prescriptions
+				Database().createOrUpdate(models: prescriptions, with: PrescriptionObject.init)
+			}
+			dispatchGroup?.leave()
+		}
+	}
 }

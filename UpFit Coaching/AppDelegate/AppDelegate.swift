@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			Downloader.appraisal(for: user, in: dispatchGroup)
 			Downloader.measurements(for: user, in: dispatchGroup)
 			Downloader.tests(for: user, in: dispatchGroup)
+			Downloader.prescriptions(for: user, in: dispatchGroup)
 		}
 		
 		dispatchGroup.notify(queue: .main) {
