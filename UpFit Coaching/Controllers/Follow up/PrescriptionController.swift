@@ -14,17 +14,7 @@ class PrescriptionController: FormViewController {
 	
 	let currentUser = Database().getCurrentUser()
 	var user: User?
-	var oldPrescription: Prescription? {
-		guard let user = user else { return nil }
-		
-		let exercises = [
-			Exercise.cycling(duration: 80, intensity: .weak),
-			Exercise.swimming(duration: 10),
-			Exercise.abs(repetitions: 20, series: 10)
-		]
-		
-		return Prescription(user: user, date: Date(), exercises: exercises)
-	}
+	var oldPrescription: Prescription?
 	var values = [String: Any?]()
 	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
