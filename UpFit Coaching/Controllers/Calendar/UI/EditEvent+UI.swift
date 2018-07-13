@@ -39,7 +39,7 @@ extension EditEventController {
 		}
 		
 		if currentUser?.type == 2 {
-			otherUserRow = PushRow<User>("otherUser") {
+			otherUserRow = SearchPushRow<User>("otherUser") {
 				$0.title = "otherUser_fieldTitle".localized
 				$0.value = otherUser
 				

@@ -18,7 +18,7 @@ class EditEventController: FormViewController {
 	
 	var titleRow: TextRow!
 	var typeRow: PushRow<Int>!
-	var otherUserRow: PushRow<User>?
+	var otherUserRow: SearchPushRow<User>?
 	var startDateRow: DateTimeInlineRow!
 	var endDateRow: DateTimeInlineRow!
 	

@@ -56,6 +56,7 @@
 		D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724AB8A20CD825B0074164C /* FollowUp+UI.swift */; };
 		D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D731446920D989660077AFEC /* Database+Migrations.swift */; };
 		D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D736E3F920C6DD93000A147E /* GoogleService-Info.plist */; };
+		D73F2AE320F8DB9C005993FA /* SearchablePushRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F2AE220F8DB9C005993FA /* SearchablePushRow.swift */; };
 		D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */; };
 		D744014820A4C9760078BEA4 /* Calendar+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014720A4C9760078BEA4 /* Calendar+TableView.swift */; };
 		D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014920A4D5DF0078BEA4 /* RegisterBox.swift */; };
@@ -169,6 +170,7 @@
 		D731446920D989660077AFEC /* Database+Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Migrations.swift"; sourceTree = "<group>"; };
 		D736E3F920C6DD93000A147E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D736E3FB20C6EDA9000A147E /* UpFit Coaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UpFit Coaching.entitlements"; sourceTree = "<group>"; };
+		D73F2AE220F8DB9C005993FA /* SearchablePushRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePushRow.swift; sourceTree = "<group>"; };
 		D744014320A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+JTAppleCalendar.swift"; sourceTree = "<group>"; };
 		D744014720A4C9760078BEA4 /* Calendar+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+TableView.swift"; sourceTree = "<group>"; };
 		D744014920A4D5DF0078BEA4 /* RegisterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBox.swift; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 				D731446920D989660077AFEC /* Database+Migrations.swift */,
 				D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */,
 				D7F8ED062087E0260049B385 /* Extensions */,
+				D73F2AE220F8DB9C005993FA /* SearchablePushRow.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -892,6 +895,7 @@
 				1A34F8E020D7F63F008ED2A2 /* EditAppraisal+UI.swift in Sources */,
 				D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */,
 				D7EF961F20860EBB002E0A9B /* User.swift in Sources */,
+				D73F2AE320F8DB9C005993FA /* SearchablePushRow.swift in Sources */,
 				1A34F8EB20DD2184008ED2A2 /* Appraisal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

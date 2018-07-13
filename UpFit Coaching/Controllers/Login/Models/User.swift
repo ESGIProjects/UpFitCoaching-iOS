@@ -147,3 +147,12 @@ class User: NSObject, Codable {
 		return userID == (object as? User)?.userID
 	}
 }
+
+extension User: SearchItem {
+	func matchesSearchQuery(_ query: String) -> Bool {
+		return firstName.lowercased()
+			.appending(" ")
+			.appending(lastName.lowercased())
+			.contains(query.lowercased())
+	}
+}
