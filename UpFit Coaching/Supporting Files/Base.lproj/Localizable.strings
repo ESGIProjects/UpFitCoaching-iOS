@@ -132,6 +132,7 @@
 
 // Clients List
 "clientsListController_title" = "Clients";
+"noClientYet" = "You have no clients yet.\nGet them to register!";
 
 // Client file
 "clientController_title" = "Client";

@@ -65,7 +65,7 @@
 
 // Messages
 "conversationListController_title" = "Messages";
-"noMessagesYet" = "Aucun message.\nDites à vos clients de s'inscrire!";
+"noMessagesYet" = "Aucun message.\nDites à vos clients de s'inscrire !";
 
 "message_placeholder" = "Message";
 "sendMessage_button" = "Envoyer";
@@ -132,6 +132,7 @@
 
 // Clients List
 "clientsListController_title" = "Clients";
+"noClientYet" = "Aucun client.\nDites leur de s'inscrire !";
 
 // Client file
 "clientController_title" = "Client";
