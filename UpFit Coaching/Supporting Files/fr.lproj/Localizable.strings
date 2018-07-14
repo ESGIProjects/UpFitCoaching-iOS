@@ -220,6 +220,7 @@
 "thighValue" = "Tour de cuisse : ";
 "armValue" = "Tour de bras : ";
 "cm_value" = "%@ cm";
+"noDataYet" = "Pas de données pour le moment !";
 
 // Prescription
 "prescriptionController_title" = "Nouvelle prescription";

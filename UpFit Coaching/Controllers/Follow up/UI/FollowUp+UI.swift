@@ -37,19 +37,19 @@ extension FollowUpController {
 			weightLabel.leadingAnchor.constraint(equalTo: weightTitleLabel.trailingAnchor, constant: 15.0),
 			weightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			weightChartView.topAnchor.constraint(equalTo: weightTitleLabel.bottomAnchor, constant: 10.0),
-			weightChartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
-			weightChartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
+			weightChart.topAnchor.constraint(equalTo: weightTitleLabel.bottomAnchor),
+			weightChart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			weightChart.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			bodyTitleLabel.topAnchor.constraint(equalTo: weightChartView.bottomAnchor, constant: 15.0),
+			bodyTitleLabel.topAnchor.constraint(equalTo: weightChart.bottomAnchor, constant: 20.0),
 			bodyTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
 			bodyTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			bodyChartView.topAnchor.constraint(equalTo: bodyTitleLabel.bottomAnchor, constant: 10.0),
-			bodyChartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
-			bodyChartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
+			bodyChart.topAnchor.constraint(equalTo: bodyTitleLabel.bottomAnchor),
+			bodyChart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			bodyChart.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			bodyValues.topAnchor.constraint(equalTo: bodyChartView.bottomAnchor, constant: 10.0),
+			bodyValues.topAnchor.constraint(equalTo: bodyChart.bottomAnchor, constant: 20.0),
 			bodyValues.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.0),
 			bodyValues.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.0),
 			
@@ -57,18 +57,18 @@ extension FollowUpController {
 			measurementsTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
 			measurementsTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			measurementsChart.topAnchor.constraint(equalTo: measurementsTitle.bottomAnchor, constant: 10.0),
-			measurementsChart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
+			measurementsChart.topAnchor.constraint(equalTo: measurementsTitle.bottomAnchor),
+			measurementsChart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 			measurementsChart.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
 			
-			measurementsValues.topAnchor.constraint(equalTo: measurementsChart.bottomAnchor, constant: 10.0),
+			measurementsValues.topAnchor.constraint(equalTo: measurementsChart.bottomAnchor, constant: 20.0),
 			measurementsValues.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.0),
 			measurementsValues.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.0),
 			measurementsValues.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.0),
 			
-			weightChartView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-			bodyChartView.heightAnchor.constraint(equalTo: weightChartView.heightAnchor),
-			measurementsChart.heightAnchor.constraint(equalTo: weightChartView.heightAnchor)
+			weightChart.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35),
+			bodyChart.heightAnchor.constraint(equalTo: weightChart.heightAnchor),
+			measurementsChart.heightAnchor.constraint(equalTo: weightChart.heightAnchor)
 		]
 	}
 	
@@ -87,19 +87,13 @@ extension FollowUpController {
 		
 		weightLabel = UI.genericLabel
 		
-		weightChartView = UI.genericLineChart
-		weightChartView.xAxis.enabled = false
-		weightChartView.leftAxis.drawLabelsEnabled = false
+		weightChart = UI.genericLineChart
 
 		bodyTitleLabel = UI.genericLabel
 		bodyTitleLabel.text = "bodyValuesChart_title".localized
 		bodyTitleLabel.font = .boldSystemFont(ofSize: 20)
 		
-		bodyChartView = UI.genericLineChart
-		bodyChartView.xAxis.enabled = false
-		bodyChartView.leftAxis.drawLabelsEnabled = false
-		bodyChartView.xAxis.drawGridLinesEnabled = false
-		bodyChartView.xAxis.labelPosition = .bottom
+		bodyChart = UI.genericLineChart
 		
 		bodyValues = UI.bodyLabel
 		bodyValues.numberOfLines = 2
@@ -109,8 +103,6 @@ extension FollowUpController {
 		measurementsTitle.font = .boldSystemFont(ofSize: 20)
 		
 		measurementsChart = UI.genericLineChart
-		measurementsChart.xAxis.enabled = false
-		measurementsChart.leftAxis.drawLabelsEnabled = false
 		
 		measurementsValues = UI.bodyLabel
 		measurementsValues.numberOfLines = 4
@@ -124,9 +116,9 @@ extension FollowUpController {
 		contentView.addSubview(timeFilter)
 		contentView.addSubview(weightTitleLabel)
 		contentView.addSubview(weightLabel)
-		contentView.addSubview(weightChartView)
+		contentView.addSubview(weightChart)
 		contentView.addSubview(bodyTitleLabel)
-		contentView.addSubview(bodyChartView)
+		contentView.addSubview(bodyChart)
 		contentView.addSubview(bodyValues)
 		contentView.addSubview(measurementsTitle)
 		contentView.addSubview(measurementsChart)

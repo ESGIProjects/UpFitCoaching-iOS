@@ -220,6 +220,7 @@
 "thighValue" = "Thigh circumference: ";
 "armValue" = "Arm circumference: ";
 "cm_value" = "%@ centimeters";
+"noDataYet" = "No data yet!";
 
 // Prescription
 "prescriptionController_title" = "New prescription";

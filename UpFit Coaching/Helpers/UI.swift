@@ -182,6 +182,18 @@ class UI {
 		view.drawGridBackgroundEnabled = false
 		view.legend.enabled = false
 		
+		view.noDataText = "noDataYet".localized
+		view.noDataFont = .systemFont(ofSize: 15.0)
+		view.noDataTextColor = .red
+		
+		view.leftAxis.drawLabelsEnabled = false
+		view.xAxis.enabled = true
+		view.xAxis.granularity = 1.0
+		view.xAxis.labelPosition = .bottom
+		view.xAxis.labelRotationAngle = -35.0
+
+		view.xAxis.labelFont = .systemFont(ofSize: 8.0)
+		
 		return view
 	}
 }

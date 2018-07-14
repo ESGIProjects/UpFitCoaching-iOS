@@ -20,9 +20,9 @@ class FollowUpController: UIViewController {
 	var timeFilter: UISegmentedControl!
 	var weightTitleLabel: UILabel!
 	var weightLabel: UILabel!
-	var weightChartView: LineChartView!
+	var weightChart: LineChartView!
 	var bodyTitleLabel: UILabel!
-	var bodyChartView: LineChartView!
+	var bodyChart: LineChartView!
 	var bodyValues: UILabel!
 	var measurementsTitle: UILabel!
 	var measurementsChart: LineChartView!
@@ -31,6 +31,7 @@ class FollowUpController: UIViewController {
 	var user: User?
 	var measurements = [Measurements]()
 	var displayedMeasurements = [Measurements]()
+	var dates = [String]()
 	var sorting = SortingMode.month
 	
 	// MARK: - UIViewController
@@ -152,6 +153,13 @@ class FollowUpController: UIViewController {
 	}
 	
 	private func loadCharts(with measurements: [Measurements]) {
+		if measurements.count == 0 {
+			weightChart.data = nil
+			bodyChart.data = nil
+			measurementsChart.data = nil
+			return
+		}
+		
 		var weightEntries = [ChartDataEntry](),
 		bfpEntries = [ChartDataEntry](), bmiEntries = [ChartDataEntry](),
 		hipEntries = [ChartDataEntry](), waistEntries = [ChartDataEntry](),
@@ -202,8 +210,8 @@ class FollowUpController: UIViewController {
 		
 		// Set data on charts
 		
-		setData(on: weightChartView, with: weightDataSet)
-		setData(on: bodyChartView, with: bfpDataSet, bmiDataSet)
+		setData(on: weightChart, with: weightDataSet)
+		setData(on: bodyChart, with: bfpDataSet, bmiDataSet)
 		setData(on: measurementsChart, with: hipDataSet, waistDataSet, thighDataSet, armDataSet)
 	}
 	
@@ -220,6 +228,8 @@ class FollowUpController: UIViewController {
 	private func setData(on chart: LineChartView, with dataSets: IChartDataSet...) {
 		let chartData = LineChartData(dataSets: dataSets)
 		chart.data = chartData
+		
+		chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: dates)
 	}
 	
 	private func loadData(for sorting: SortingMode) {
@@ -262,7 +272,7 @@ class FollowUpController: UIViewController {
 		var sortedMeasurements = [Measurements]()
 		
 		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "yyyy/MM/dd"
+		dateFormatter.dateFormat = "yyyy-MM-dd"
 		
 		for measurement in measurements {
 			let date = dateFormatter.string(from: measurement.date)
@@ -278,6 +288,8 @@ class FollowUpController: UIViewController {
 				sortedMeasurements.append(mostRecent)
 			}
 		}
+		
+		self.dates = dates
 		
 		return sortedMeasurements
 	}
