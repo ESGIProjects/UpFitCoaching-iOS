@@ -123,6 +123,8 @@
 "editProfileButton" = "Modifier le profil";
 "signOutButton" = "Déconnexion";
 "librariesController_title" = "Bibliothèques open-sources";
+"coachController_title" = "Fiche du coach";
+"geocoderError" = "Nous recontrons un problème réseau. Merci de réessayer plus tard.";
 
 // Edit Profile
 "editProfileController_title" = "Modifier le profil";

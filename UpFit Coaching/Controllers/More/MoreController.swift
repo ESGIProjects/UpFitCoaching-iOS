@@ -13,6 +13,7 @@ import Eureka
 class MoreController: FormViewController {
 	
 	var editProfileRow: ButtonRow!
+	var coachRow: ButtonRow?
 	var usedLibrariesRow: ButtonRow!
 	var signOutRow: ButtonRow!
 	
@@ -34,6 +35,10 @@ class MoreController: FormViewController {
 	
 	func editProfile() {
 		present(UINavigationController(rootViewController: EditProfileController()), animated: true)
+	}
+	
+	func coach() {
+		navigationController?.pushViewController(CoachController(), animated: true)
 	}
 	
 	func usedLibraries() {

@@ -74,6 +74,7 @@
 		D745DF7820EBFE3300916AE6 /* PrescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745DF7720EBFE3300916AE6 /* PrescriptionController.swift */; };
 		D745DF7B20EBFF0F00916AE6 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745DF7A20EBFF0F00916AE6 /* Prescription.swift */; };
 		D745DF7D20EBFF8C00916AE6 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745DF7C20EBFF8C00916AE6 /* Exercise.swift */; };
+		D745EA2820FA5A4700486346 /* CoachController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D745EA2720FA5A4700486346 /* CoachController.swift */; };
 		D773DD4C203362DE001520CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4B203362DE001520CA /* AppDelegate.swift */; };
 		D773DD4E203362DE001520CA /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773DD4D203362DE001520CA /* ConversationController.swift */; };
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
@@ -188,6 +189,7 @@
 		D745DF7720EBFE3300916AE6 /* PrescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionController.swift; sourceTree = "<group>"; };
 		D745DF7A20EBFF0F00916AE6 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		D745DF7C20EBFF8C00916AE6 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		D745EA2720FA5A4700486346 /* CoachController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachController.swift; sourceTree = "<group>"; };
 		D773DD48203362DE001520CA /* UpFit Coaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UpFit Coaching.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D773DD4B203362DE001520CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D773DD4D203362DE001520CA /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			children = (
 				D781194D207D4392001762D4 /* MoreController.swift */,
 				D724AB8520CD69260074164C /* EditProfileController.swift */,
+				D745EA2720FA5A4700486346 /* CoachController.swift */,
 				D7BEAF1620DFEA6400FF93F9 /* LibrariesController.swift */,
 				1AB9E9E4209C842C003441F8 /* UI */,
 			);
@@ -890,6 +893,7 @@
 				1AB1D87320CE6CB5002B1B06 /* Thread+UI.swift in Sources */,
 				D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */,
 				D7C8AA8E20DE406100427F89 /* UI.swift in Sources */,
+				D745EA2820FA5A4700486346 /* CoachController.swift in Sources */,
 				1A34F8F120DD4226008ED2A2 /* Network+FollowUp.swift in Sources */,
 				D744014420A4C9600078BEA4 /* Calendar+JTAppleCalendar.swift in Sources */,
 				1A34F8E020D7F63F008ED2A2 /* EditAppraisal+UI.swift in Sources */,

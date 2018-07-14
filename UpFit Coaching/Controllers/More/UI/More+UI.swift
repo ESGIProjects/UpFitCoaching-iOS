@@ -23,6 +23,21 @@ extension MoreController {
 			}
 		}
 		
+		let currentUser = Database().getCurrentUser()
+		if currentUser?.type == 0 || currentUser?.type == 1 {
+			coachRow = ButtonRow("coachProfile") {
+				$0.title = "coachController_title".localized
+				$0.cellUpdate { cell, _ in
+					cell.textLabel?.textColor = .mainText
+					cell.textLabel?.textAlignment = .left
+					cell.accessoryType = .disclosureIndicator
+				}
+				$0.onCellSelection { [unowned self] _, _ in
+					self.coach()
+				}
+			}
+		}
+		
 		usedLibrariesRow = ButtonRow("usedLibraries") {
 			$0.title = "librariesController_title".localized
 			$0.cellUpdate { cell, _ in
@@ -50,8 +65,13 @@ extension MoreController {
 	func setupLayout() {
 		setUIComponents()
 		
+		let section = Section()
+		if let coachRow = coachRow {
+			section <<< coachRow
+		}
+		
 		form +++ Section("accountManagement_sectionTitle".localized) <<< editProfileRow
-		form +++ Section() <<< usedLibrariesRow
+		form +++ section <<< usedLibrariesRow
 		form +++ Section() <<< signOutRow
 	}
 }
