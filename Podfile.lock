@@ -31,6 +31,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
+  - JSONWebToken (2.2.0)
   - JTAppleCalendar (7.1.5)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - Eureka
   - Firebase/Core
   - Firebase/Messaging
+  - JSONWebToken
   - JTAppleCalendar
   - PKHUD
   - RealmSwift
@@ -68,6 +70,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - GoogleToolboxForMac
+    - JSONWebToken
     - JTAppleCalendar
     - nanopb
     - PKHUD
@@ -86,6 +89,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
   FirebaseMessaging: f2360a966ecfb0d14facf0fbdf306efc2df0ddbe
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
@@ -94,6 +98,6 @@ SPEC CHECKSUMS:
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: c92b6b5881343a8900bcfdcd628fae82e45bba11
+PODFILE CHECKSUM: dd25689cde99636bbd1a5b7c6173b8d349f80c35
 
 COCOAPODS: 1.5.0

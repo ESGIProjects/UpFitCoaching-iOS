@@ -14,4 +14,5 @@ target 'UpFit Coaching' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'PKHUD'
+  pod 'JSONWebToken'
 end
