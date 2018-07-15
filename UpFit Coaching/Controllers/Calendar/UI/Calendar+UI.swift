@@ -17,7 +17,7 @@ extension CalendarController {
 			monthLabel.topAnchor.constraint(equalTo: anchors.top),
 			monthLabel.leadingAnchor.constraint(equalTo: anchors.leading),
 			monthLabel.trailingAnchor.constraint(equalTo: anchors.trailing),
-			monthLabel.heightAnchor.constraint(equalToConstant: 50.0),
+			monthLabel.heightAnchor.constraint(equalToConstant: 45.0),
 			
 			weekdaysHeaderView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 10.0),
 			weekdaysHeaderView.leadingAnchor.constraint(equalTo: anchors.leading),
@@ -26,7 +26,7 @@ extension CalendarController {
 			calendarView.topAnchor.constraint(equalTo: weekdaysHeaderView.bottomAnchor),
 			calendarView.leadingAnchor.constraint(equalTo: anchors.leading),
 			calendarView.trailingAnchor.constraint(equalTo: anchors.trailing),
-			calendarView.heightAnchor.constraint(equalToConstant: 250),
+			calendarView.heightAnchor.constraint(equalToConstant: 240.0),
 			
 			tableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor),
 			tableView.leadingAnchor.constraint(equalTo: anchors.leading),
@@ -37,7 +37,7 @@ extension CalendarController {
 	
 	func setUIComponents() {
 		monthLabel = UI.genericLabel
-		monthLabel.font = UIFont.boldSystemFont(ofSize: 24.0)
+		monthLabel.font = UIFont.boldSystemFont(ofSize: 22.0)
 		monthLabel.textAlignment = .center
 		monthLabel.textColor = .white
 		monthLabel.backgroundColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)

@@ -47,12 +47,12 @@ class PostCell: UITableViewCell {
 	private func setUIComponents() {
 		leftView = UIView(frame: .zero)
 		leftView.translatesAutoresizingMaskIntoConstraints = false
-		leftView.backgroundColor = tintColor
+		leftView.backgroundColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 		
 		userNameLabel = UILabel(frame: .zero)
 		userNameLabel.translatesAutoresizingMaskIntoConstraints = false
 		userNameLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-		userNameLabel.textColor = tintColor
+		userNameLabel.textColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 		
 		dateLabel = UILabel(frame: .zero)
 		dateLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -98,5 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// UISegmentedControl
 		UISegmentedControl.appearance().tintColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
+		
+		// UIToolbar
+		UIToolbar.appearance().barTintColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 	}
 }

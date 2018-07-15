@@ -60,7 +60,7 @@ extension EventController {
 		mapView.addGestureRecognizer(tapGestureRecognizer)
 		
 		// Toolbar
-		deleteButton = UIBarButtonItem(title: "cancelEventButton".localized, style: .plain, target: self, action: #selector(cancel))
+		deleteButton = UIBarButtonItem(title: "cancelEventButton".localized, style: .done, target: self, action: #selector(cancel))
 		deleteButton.tintColor = .red
 		
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)

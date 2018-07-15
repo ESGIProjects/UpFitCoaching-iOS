@@ -69,7 +69,12 @@ class ConversationListController: UIViewController {
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
 			self?.refreshControl.endRefreshing()
-			self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+			
+			let count = self?.conversations.count ?? 0
+			
+			if count > 0 {
+				self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+			}
 		}
 	}
 	
