@@ -31,8 +31,8 @@
 "mail_missingTitle" = "Adresse e-mail manquante";
 "password_missingTitle" = "Mot de passe manquant";
 
-"loginButton" = "Se connecter";
-"signUpButton_long" = "Pas encore de compte ? Inscrivez-vous.";
+"loginButton" = "Connexion";
+"signUpButton_long" = "Inscription";
 
 // Sign Up
 "signUpController_title" = "Inscription";
