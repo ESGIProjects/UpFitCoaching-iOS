@@ -68,6 +68,9 @@ extension AccountRegisterController {
 		
 		nextRow = ButtonRow {
 			$0.title = "nextButton".localized
+			$0.cellUpdate { cell, _ in
+				cell.textLabel?.textColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
+			}
 			$0.onCellSelection { [unowned self] _, _ in
 				self.next()
 			}
