@@ -31,16 +31,6 @@ class MessagesDelegate {
 	private var userInitiatedDisconnect = false
 	
 	private init() {
-		guard let userID = UserDefaults.standard.object(forKey: "userID") as? Int else { return }
-		guard let authToken = UserDefaults.standard.object(forKey: "authToken") as? String else { return }
-		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)") else { return }
-		
-		var request = URLRequest(url: url)
-		request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-		
-		socket = WebSocket(request: request)
-		socket?.delegate = self
-		
 		// Observers
 		NotificationCenter.default.addObserver(self, selector: #selector(disconnect), name: .UIApplicationWillResignActive, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(connect), name: .UIApplicationDidBecomeActive, object: nil)
@@ -51,7 +41,23 @@ class MessagesDelegate {
 		NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
 	}
 	
+	private func makeSocket() -> WebSocket? {
+		guard let userID = UserDefaults.standard.object(forKey: "userID") as? Int else { return nil }
+		guard let authToken = UserDefaults.standard.object(forKey: "authToken") as? String else { return nil }
+		guard let url = URL(string: "ws://212.47.234.147/ws?id=\(userID)") else { return nil }
+		
+		var request = URLRequest(url: url)
+		request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+		
+		let socket = WebSocket(request: request)
+		socket.delegate = self
+		
+		return socket
+	}
+	
 	@objc func connect() {
+		self.socket = makeSocket()
+		
 		userInitiatedDisconnect = false
 		socket?.connect()
 	}
@@ -84,9 +90,9 @@ extension MessagesDelegate: WebSocketDelegate {
 		print(#function, error?.localizedDescription ?? "")
 		
 		if !userInitiatedDisconnect {
-			Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
+			Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [unowned self] timer in
 				if !socket.isConnected {
-					self?.connect()
+					self.connect()
 					timer.invalidate()
 				}
 			}
