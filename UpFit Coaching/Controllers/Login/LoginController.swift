@@ -20,6 +20,7 @@ class LoginController: UIViewController {
 	
 	// MARK: - UI
 	
+	var backgroundImage: UIImageView!
 	var scrollView: UIScrollView!
 	var contentView: UIView!
 	var titleLabel: UILabel!
