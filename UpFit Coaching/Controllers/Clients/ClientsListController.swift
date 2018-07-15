@@ -34,9 +34,19 @@ class ClientsListController: UIViewController {
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ClientCell")
 		
 		// Search Controller
+		searchController.searchBar.tintColor = .white
+		searchController.searchBar.barTintColor = .white
+		
+		if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField,
+			let backgroundView = textField.subviews.first {
+			backgroundView.backgroundColor = .white
+			backgroundView.layer.cornerRadius = 10
+			backgroundView.clipsToBounds = true
+		}
+		
 		searchController.searchResultsUpdater = self
 		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.placeholder = "Search Clients"
+		searchController.searchBar.placeholder = "searchPlaceholder".localized
 		definesPresentationContext = true
 		
 		if #available(iOS 11.0, *) {

@@ -21,6 +21,15 @@ open class _SearchSelectorViewController<Row: SelectableRowType, OptionsRow: Opt
 		
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
+		searchController.searchBar.tintColor = .white
+		searchController.searchBar.barTintColor = .white
+		
+		if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField,
+			let backgroundView = textField.subviews.first {
+			backgroundView.backgroundColor = .white
+			backgroundView.layer.cornerRadius = 10
+			backgroundView.clipsToBounds = true
+		}
 		
 		definesPresentationContext = true
 		
