@@ -38,6 +38,7 @@ class MessageCell: UICollectionViewCell {
 		messageLabel.translatesAutoresizingMaskIntoConstraints = false
 		messageLabel.numberOfLines = 0
 		messageLabel.lineBreakMode = .byWordWrapping
+		messageLabel.textColor = .white
 		
 		contentView.addSubview(messageLabel)
 

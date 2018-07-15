@@ -10,10 +10,10 @@ import UIKit
 
 class ConversationListCell: UITableViewCell {
 	
-	var photoImageView: UIImageView!
+	var circleView: UIView!
+	var circleLabel: UILabel!
 	var nameLabel: UILabel!
 	var messageLabel: UILabel!
-	var dateLabel: UILabel!
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,6 +23,14 @@ class ConversationListCell: UITableViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
+		if let circleView = aDecoder.decodeObject(forKey: "circleView") as? UIView {
+			self.circleView = circleView
+		}
+		
+		if let circleLabel = aDecoder.decodeObject(forKey: "circleLabel") as? UILabel {
+			self.circleLabel = circleLabel
+		}
+		
 		if let nameLabel = aDecoder.decodeObject(forKey: "nameLabel") as? UILabel {
 			self.nameLabel = nameLabel
 		}
@@ -30,17 +38,14 @@ class ConversationListCell: UITableViewCell {
 		if let messageLabel = aDecoder.decodeObject(forKey: "messageLabel") as? UILabel {
 			self.messageLabel = messageLabel
 		}
-		
-		if let dateLabel = aDecoder.decodeObject(forKey: "dateLabel") as? UILabel {
-			self.dateLabel = dateLabel
-		}
 	}
 	
 	override func encode(with aCoder: NSCoder) {
 		super.encode(with: aCoder)
+		aCoder.encode(circleView, forKey: "circleView")
+		aCoder.encode(circleLabel, forKey: "circleLabel")
 		aCoder.encode(nameLabel, forKey: "nameLabel")
 		aCoder.encode(messageLabel, forKey: "messageLabel")
-		aCoder.encode(dateLabel, forKey: "dateLabel")
 	}
 	
 	// MARK: - Layout
@@ -52,28 +57,36 @@ class ConversationListCell: UITableViewCell {
 		return [
 			heightConstraint,
 			
-			photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-			photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
-			photoImageView.heightAnchor.constraint(equalToConstant: 50.0),
-			photoImageView.widthAnchor.constraint(equalToConstant: 50.0),
+			circleView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+			circleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25.0),
+			circleView.heightAnchor.constraint(equalToConstant: 50.0),
+			circleView.widthAnchor.constraint(equalToConstant: 50.0),
 			
-			nameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor),
-			nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
+			circleLabel.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
+			circleLabel.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
+			
+			nameLabel.topAnchor.constraint(equalTo: circleView.topAnchor),
+			nameLabel.leadingAnchor.constraint(equalTo: circleView.trailingAnchor, constant: 8.0),
 			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
 			
 			messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2.0),
-			messageLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 8.0),
+			messageLabel.leadingAnchor.constraint(equalTo: circleView.trailingAnchor, constant: 8.0),
 			messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
 			messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8.0)
 		]
 	}
 	
 	private func setUIComponents() {
-		photoImageView = UIImageView(frame: .zero)
-		photoImageView.translatesAutoresizingMaskIntoConstraints = false
-		photoImageView.layer.masksToBounds = true
-		photoImageView.backgroundColor = tintColor
-		photoImageView.layer.cornerRadius = 25.0
+		circleView = UIImageView(frame: .zero)
+		circleView.translatesAutoresizingMaskIntoConstraints = false
+		circleView.layer.masksToBounds = true
+		circleView.backgroundColor = UIColor(red: 17.0/255.0, green: 142.0/255.0, blue: 135.0/255.0, alpha: 1.0)
+		circleView.layer.cornerRadius = 25.0
+		
+		circleLabel = UILabel()
+		circleLabel.translatesAutoresizingMaskIntoConstraints = false
+		circleLabel.textColor = .white
+		circleLabel.font = .boldSystemFont(ofSize: 22.0)
 		
 		nameLabel = UILabel()
 		nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -84,16 +97,13 @@ class ConversationListCell: UITableViewCell {
 		messageLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
 		messageLabel.numberOfLines = 2
 		messageLabel.textColor = .gray
-		
-		dateLabel = UILabel()
-		dateLabel.translatesAutoresizingMaskIntoConstraints = false
-		dateLabel.textColor = .gray
 	}
 	
 	private func setupLayout() {
 		setUIComponents()
 		
-		contentView.addSubview(photoImageView)
+		contentView.addSubview(circleView)
+		contentView.addSubview(circleLabel)
 		contentView.addSubview(nameLabel)
 		contentView.addSubview(messageLabel)
 		

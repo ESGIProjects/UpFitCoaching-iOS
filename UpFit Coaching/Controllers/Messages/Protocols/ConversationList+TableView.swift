@@ -63,6 +63,7 @@ extension ConversationListController: UITableViewDataSource {
 		
 		let conversation = conversations[indexPath.row]
 		
+		cell.circleLabel.text = conversation.user.firstName.prefix(1).uppercased()
 		cell.nameLabel.text = "\(conversation.user.firstName) \(conversation.user.lastName)"
 		cell.messageLabel.text = conversation.message.content
 		

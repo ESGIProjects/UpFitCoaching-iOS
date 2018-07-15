@@ -62,7 +62,7 @@
 		D744014A20A4D5DF0078BEA4 /* RegisterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014920A4D5DF0078BEA4 /* RegisterBox.swift */; };
 		D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */; };
 		D744015120A4E8780078BEA4 /* ConversationList+WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */; };
-		D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015220A4ED600078BEA4 /* Conversation+TableView.swift */; };
+		D744015320A4ED600078BEA4 /* Conversation+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015220A4ED600078BEA4 /* Conversation+CollectionView.swift */; };
 		D744015520A4ED6F0078BEA4 /* Conversation+WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744015420A4ED6F0078BEA4 /* Conversation+WebSocket.swift */; };
 		D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE420C9848100FC5320 /* CreateThreadController.swift */; };
 		D744FEE720C9D46900FC5320 /* Forum+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744FEE620C9D46900FC5320 /* Forum+UI.swift */; };
@@ -177,7 +177,7 @@
 		D744014920A4D5DF0078BEA4 /* RegisterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBox.swift; sourceTree = "<group>"; };
 		D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+TableView.swift"; sourceTree = "<group>"; };
 		D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+WebSocket.swift"; sourceTree = "<group>"; };
-		D744015220A4ED600078BEA4 /* Conversation+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+TableView.swift"; sourceTree = "<group>"; };
+		D744015220A4ED600078BEA4 /* Conversation+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+CollectionView.swift"; sourceTree = "<group>"; };
 		D744015420A4ED6F0078BEA4 /* Conversation+WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+WebSocket.swift"; sourceTree = "<group>"; };
 		D744FEE420C9848100FC5320 /* CreateThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadController.swift; sourceTree = "<group>"; };
 		D744FEE620C9D46900FC5320 /* Forum+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forum+UI.swift"; sourceTree = "<group>"; };
@@ -455,7 +455,7 @@
 			children = (
 				D744014E20A4E85C0078BEA4 /* ConversationList+TableView.swift */,
 				D744015020A4E8780078BEA4 /* ConversationList+WebSocket.swift */,
-				D744015220A4ED600078BEA4 /* Conversation+TableView.swift */,
+				D744015220A4ED600078BEA4 /* Conversation+CollectionView.swift */,
 				D744015420A4ED6F0078BEA4 /* Conversation+WebSocket.swift */,
 			);
 			path = Protocols;
@@ -865,7 +865,7 @@
 				D744FEE520C9848100FC5320 /* CreateThreadController.swift in Sources */,
 				D7D399DE20C941980058EA0A /* ForumController.swift in Sources */,
 				D7D399DA20C88CEA0058EA0A /* Event+UI.swift in Sources */,
-				D744015320A4ED600078BEA4 /* Conversation+TableView.swift in Sources */,
+				D744015320A4ED600078BEA4 /* Conversation+CollectionView.swift in Sources */,
 				D724AB8B20CD825B0074164C /* FollowUp+UI.swift in Sources */,
 				D744014F20A4E85C0078BEA4 /* ConversationList+TableView.swift in Sources */,
 				1A34F8ED20DD244B008ED2A2 /* Measurements.swift in Sources */,

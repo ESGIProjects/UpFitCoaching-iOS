@@ -1,5 +1,5 @@
 //
-//  Conversation+TableView.swift
+//  Conversation+CollectionView.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 10/05/2018.
@@ -25,11 +25,9 @@ extension ConversationController: UICollectionViewDataSource {
 		cell.messageLabel.text = message.content
 		
 		if message.sender != currentUser {
-			cell.messageLabel.textColor = .messageReceivedText
-			cell.contentView.backgroundColor = .messageReceivedBackground
+			cell.contentView.backgroundColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 		} else {
-			cell.messageLabel.textColor = .messageSentText
-			cell.contentView.backgroundColor = .messageSentBackground
+			cell.contentView.backgroundColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1.0)
 		}
 		
 		return cell

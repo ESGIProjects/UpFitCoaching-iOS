@@ -65,8 +65,9 @@ class MessageBarView: UIView {
 			textView.topAnchor.constraint(equalTo: topAnchor, constant: 8.0),
 			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
 			textView.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8.0),
-			button.heightAnchor.constraint(equalToConstant: 35.0),
-			button.widthAnchor.constraint(equalToConstant: 65.0),
+			
+			button.heightAnchor.constraint(equalToConstant: 36.0),
+			button.widthAnchor.constraint(equalToConstant: 36.0),
 			button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0),
 			button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0)
 		]
@@ -89,6 +90,9 @@ class MessageBarView: UIView {
 		// Initialize Button
 		button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
+		button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+		button.setImage(#imageLiteral(resourceName: "send"), for: .normal)
+		button.tintColor = UIColor(red: 17.0/255.0, green: 142.0/255.0, blue: 135.0/255.0, alpha: 1.0)
 	}
 	
 	private func setupLayout() {
@@ -138,6 +142,6 @@ extension MessageBarView: UITextViewDelegate {
 		let size = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: maxHeight))
 		textFieldHeightConstraint.constant = CGFloat.minimum(size.height, maxHeight)
 		
-		textView.isScrollEnabled = textView.contentSize.height < maxHeight ? false : true
+		textView.isScrollEnabled = textView.contentSize.height >= maxHeight
 	}
 }
