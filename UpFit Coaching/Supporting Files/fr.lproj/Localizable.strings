@@ -100,7 +100,7 @@
 "eventTitle_placeholder" = "Titre";
 "eventType_fieldTitle" = "Type";
 "eventType_appraisal" = "Bilan";
-"eventType_session" = "Séance";
+"eventType_session" = "Session";
 "otherUser_fieldTitle" = "Client";
 "startDate_fieldTitle" = "Début";
 "endDate_fieldTitle" = "Fin";
@@ -149,7 +149,7 @@
 "newAppraisalButton" = "Nouvelle fiche bilan";
 "appraisalTitle" = "Bilan";
 "appraisal_goalLabel" = "Objectif : %@";
-"appraisal_sessionsNumberLabel" = "%d séances par semaine";
+"appraisal_sessionsNumberLabel" = "%d sessions par semaine";
 "showFollowUpButton" = "Afficher le suivi";
 "showAppraisalButton" = "Consulter la fiche bilan";
 "lastTestTitle" = "Dernier test";
@@ -162,7 +162,7 @@
 "editAppraisalController_title" = "Nouvelle fiche bilan";
 
 "appraisalGoal_fieldTitle" = "Objectif";
-"appraisalSessionsByWeek_fieldTitle" = "Séances par semaine";
+"appraisalSessionsByWeek_fieldTitle" = "Sessions par semaine";
 "appraisalContraindication_fieldTitle" = "Contre indication";
 "appraisalSportAntecedents_fieldTitle" = "Antécédents sportifs";
 "appraisalHelpNeeded_fieldTitle" = "Aide nécessaire";
@@ -237,6 +237,9 @@
 "exerciseIntensity_title" = "Intensité";
 "exerciseRepetitions_title" = "Répétitions";
 "exerciseSeries_title" = "Séries";
+"intensity_weak" = "Faible";
+"intensity_average" = "Moyen";
+"intensity_strong" = "Fort";
 
 // Network messages
 "appraisal_not_found" = "Aucun bilan correspondant.";

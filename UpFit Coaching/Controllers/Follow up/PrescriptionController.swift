@@ -60,6 +60,9 @@ class PrescriptionController: FormViewController {
 		if currentUser.type == 2 {
 			form +++ Section() <<< ButtonRow("addExercise") {
 				$0.title = "addExerciseButton".localized
+				$0.cellUpdate { cell, _ in
+					cell.textLabel?.textColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
+				}
 				$0.onCellSelection { [unowned self] _, _ in
 					self.addExercise()
 				}
@@ -193,7 +196,14 @@ class PrescriptionController: FormViewController {
 			$0.value = values["intensity-\(index)"] as? Intensity
 			$0.displayValueFor = { value in
 				guard let value = value else { return "" }
-				return "\(value.rawValue)"
+				switch value {
+				case .weak:
+					return "intensity_weak".localized
+				case .average:
+					return "intensity_average".localized
+				case .strong:
+					return "intensity_strong".localized
+				}
 			}
 		}
 	}

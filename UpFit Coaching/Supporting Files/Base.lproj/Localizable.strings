@@ -237,6 +237,9 @@
 "exerciseIntensity_title" = "Intensity";
 "exerciseRepetitions_title" = "Repetitions";
 "exerciseSeries_title" = "Series";
+"intensity_weak" = "Weak";
+"intensity_average" = "Average";
+"intensity_strong" = "Strong";
 
 // Network messages
 "appraisal_not_found" = "No appraisal found.";
