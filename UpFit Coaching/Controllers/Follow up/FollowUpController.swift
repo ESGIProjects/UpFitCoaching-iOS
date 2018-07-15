@@ -89,7 +89,7 @@ class FollowUpController: UIViewController {
 	// MARK: - Computing
 	
 	private func computeBFP(for measurement: Measurements) -> Double {
-		return measurement.weight / (measurement.height/100) * (measurement.height / 100)
+		return measurement.weight / ((measurement.height / 100) * (measurement.height / 100))
 	}
 	
 	private func computeBMI(for user: User?, with measurement: Measurements, and bfp: Double) -> Double? {
