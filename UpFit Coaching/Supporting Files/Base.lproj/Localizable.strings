@@ -135,6 +135,7 @@
 // Clients List
 "clientsListController_title" = "Clients";
 "noClientYet" = "You have no clients yet.\nGet them to register!";
+"searchPlaceholder" = "Search";
 
 // Client file
 "clientController_title" = "Client";
@@ -221,6 +222,12 @@
 "armValue" = "Arm circumference: ";
 "cm_value" = "%@ centimeters";
 "noDataYet" = "No data yet!";
+"bfp" = "BFP";
+"bmi" = "BMI";
+"hipCircumference" = "Hip circumference";
+"waistCircumference" = "Waist circumference";
+"thighCircumference" = "Thigh circumference";
+"armCircumference" = "Arm circumference";
 
 // Prescription
 "prescriptionController_title" = "New prescription";

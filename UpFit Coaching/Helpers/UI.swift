@@ -54,9 +54,12 @@ class UI {
 	
 	static var roundButton: UIButton {
 		let button = genericButton
-		button.titleColor = .main
-		button.backgroundColor = UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
-		button.layer.cornerRadius = 5.0
+		button.titleColor = .white
+		button.backgroundColor = UIColor(red: 17.0/255.0, green: 142.0/255.0, blue: 135.0/255.0, alpha: 1.0)
+		button.layer.cornerRadius = 3.0
+		button.titleFont = .boldSystemFont(ofSize: 18.0)
+		
+		button.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
 		
 		return button
 	}
@@ -190,7 +193,7 @@ class UI {
 		view.xAxis.enabled = true
 		view.xAxis.granularity = 1.0
 		view.xAxis.labelPosition = .bottom
-		view.xAxis.labelRotationAngle = -35.0
+		view.xAxis.labelRotationAngle = 35.0
 
 		view.xAxis.labelFont = .systemFont(ofSize: 8.0)
 		

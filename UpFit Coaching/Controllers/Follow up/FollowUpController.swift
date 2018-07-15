@@ -188,25 +188,26 @@ class FollowUpController: UIViewController {
 		// Creating data sets
 		
 		let weightDataSet = newDataSet(with: weightEntries)
-		weightDataSet.setColor(.followUpBMILine)
+		weightDataSet.setColor(UIColor(red: 33.0/255.0, green: 150.0/255.0, blue: 243.0/255.0, alpha: 1.0))
+		weightDataSet.drawFilledEnabled = true
 		
-		let bfpDataSet = newDataSet(with: bfpEntries)
-		bfpDataSet.setColor(.followUpBMILine)
+		let bfpDataSet = newDataSet(with: bfpEntries, label: "bfp".localized)
+		bfpDataSet.setColor(UIColor(red: 244.0/255.0, green: 67.0/255.0, blue: 54.0/255.0, alpha: 1.0))
 		
-		let bmiDataSet = newDataSet(with: bmiEntries)
-		bmiDataSet.setColor(.followUpBMILine)
+		let bmiDataSet = newDataSet(with: bmiEntries, label: "bmi".localized)
+		bmiDataSet.setColor(UIColor(red: 202.0/255.0, green: 10.0/255.0, blue: 170.0/255.0, alpha: 1.0))
 		
-		let hipDataSet = newDataSet(with: hipEntries)
-		hipDataSet.setColor(.followUpBMILine)
+		let hipDataSet = newDataSet(with: hipEntries, label: "hipCircumference".localized)
+		hipDataSet.setColor(UIColor(red: 145.0/255.0, green: 39.0/255.0, blue: 243.0/255.0, alpha: 1.0))
 		
-		let waistDataSet = newDataSet(with: waistEntries)
-		waistDataSet.setColor(.followUpBMILine)
+		let waistDataSet = newDataSet(with: waistEntries, label: "waistCircumference".localized)
+		waistDataSet.setColor(UIColor(red: 145.0/255.0, green: 241.0/255.0, blue: 90.0/255.0, alpha: 1.0))
 		
-		let thighDataSet = newDataSet(with: thighEntries)
-		thighDataSet.setColor(.followUpBMILine)
+		let thighDataSet = newDataSet(with: thighEntries, label: "thighCircumference".localized)
+		thighDataSet.setColor(UIColor(red: 52.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0))
 		
-		let armDataSet = newDataSet(with: armEntries)
-		armDataSet.setColor(.followUpBMILine)
+		let armDataSet = newDataSet(with: armEntries, label: "armCircumference".localized)
+		armDataSet.setColor(UIColor(red: 212.0/255.0, green: 128.0/255.0, blue: 0.0/255.0, alpha: 1.0))
 		
 		// Set data on charts
 		
@@ -215,8 +216,8 @@ class FollowUpController: UIViewController {
 		setData(on: measurementsChart, with: hipDataSet, waistDataSet, thighDataSet, armDataSet)
 	}
 	
-	private func newDataSet(with entries: [ChartDataEntry]) -> LineChartDataSet {
-		let dataSet = LineChartDataSet(values: entries, label: nil)
+	private func newDataSet(with entries: [ChartDataEntry], label: String? = nil) -> LineChartDataSet {
+		let dataSet = LineChartDataSet(values: entries, label: label)
 		dataSet.circleRadius = 5.0
 		dataSet.drawValuesEnabled = false
 		dataSet.mode = .horizontalBezier

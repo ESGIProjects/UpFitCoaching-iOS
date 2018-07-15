@@ -135,6 +135,7 @@
 // Clients List
 "clientsListController_title" = "Clients";
 "noClientYet" = "Aucun client.\nDites leur de s'inscrire !";
+"searchPlaceholder" = "Rechercher";
 
 // Client file
 "clientController_title" = "Client";
@@ -221,6 +222,12 @@
 "armValue" = "Tour de bras : ";
 "cm_value" = "%@ cm";
 "noDataYet" = "Pas de données pour le moment !";
+"bfp" = "IMC";
+"bmi" = "IMG";
+"hipCircumference" = "Tour de hanche";
+"waistCircumference" = "Tour de ventre";
+"thighCircumference" = "Tour de cuisse";
+"armCircumference" = "Tour de bras";
 
 // Prescription
 "prescriptionController_title" = "Nouvelle prescription";

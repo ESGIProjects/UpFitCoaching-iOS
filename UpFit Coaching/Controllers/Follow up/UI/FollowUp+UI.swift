@@ -94,6 +94,8 @@ extension FollowUpController {
 		bodyTitleLabel.font = .boldSystemFont(ofSize: 20)
 		
 		bodyChart = UI.genericLineChart
+		bodyChart.legend.enabled = true
+		bodyChart.legend.horizontalAlignment = .center
 		
 		bodyValues = UI.bodyLabel
 		bodyValues.numberOfLines = 2
@@ -103,6 +105,8 @@ extension FollowUpController {
 		measurementsTitle.font = .boldSystemFont(ofSize: 20)
 		
 		measurementsChart = UI.genericLineChart
+		measurementsChart.legend.enabled = true
+		measurementsChart.legend.horizontalAlignment = .center
 		
 		measurementsValues = UI.bodyLabel
 		measurementsValues.numberOfLines = 4
