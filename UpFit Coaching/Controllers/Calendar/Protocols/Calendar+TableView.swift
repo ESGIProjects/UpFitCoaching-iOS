@@ -77,7 +77,7 @@ extension CalendarController: UITableViewDataSource {
 			infoLabelText.append("\n\(address)")
 		}
 		
-		cell.iconImageView.backgroundColor = event.status == 0 ? .red : .blue
+		cell.iconImageView.image = event.type == 0 ? #imageLiteral(resourceName: "appraisalIcon") : #imageLiteral(resourceName: "sessionIcon")
 		cell.titleLabel.text = event.name
 		cell.infoLabel.text = infoLabelText
 		
