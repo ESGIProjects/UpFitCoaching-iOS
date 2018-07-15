@@ -123,6 +123,7 @@
 "editProfileButton" = "Edit Profile";
 "displayPrescription" = "Exercise Prescription";
 "signOutButton" = "Sign Out";
+"signOut_confirmation" = "Are you sure to sign out?";
 "librariesController_title" = "Open-source libraries";
 "coachController_title" = "See Coach Info";
 "geocoderError" = "There was a network problem. Try again later.";

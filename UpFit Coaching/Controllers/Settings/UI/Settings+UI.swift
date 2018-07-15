@@ -73,7 +73,7 @@ extension SettingsController {
 				
 			}
 			$0.onCellSelection { [unowned self] _, _ in
-				self.signOut()
+				self.signOutTapped()
 			}
 		}
 	}

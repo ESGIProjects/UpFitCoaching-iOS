@@ -57,6 +57,16 @@ class SettingsController: FormViewController {
 		navigationController?.pushViewController(LibrariesController(), animated: true)
 	}
 	
+	func signOutTapped() {
+		let alertController = UIAlertController(title: "signOutButton".localized, message: "signOut_confirmation".localized, preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "noButton".localized, style: .cancel))
+		alertController.addAction(UIAlertAction(title: "yesButton".localized, style: .destructive) { [weak self] _ in
+			self?.signOut()
+		})
+		
+		present(alertController, animated: true)
+	}
+	
 	func signOut() {
 		// Clear database
 		Database().deleteAll()
