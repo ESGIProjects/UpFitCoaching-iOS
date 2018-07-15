@@ -65,7 +65,7 @@
 
 // Messages
 "conversationListController_title" = "Messages";
-"noMessagesYet" = "Aucun message.\nDites à vos clients de s'inscrire !";
+"noMessagesYet" = "Aucun message.";
 
 "message_placeholder" = "Message";
 "sendMessage_button" = "Envoyer";
@@ -91,7 +91,7 @@
 "eventDate_simple" = "%@\nde %@ à %@";
 "eventDate_multiple" = "Du %@ à %@\nau %@ à %@";
 "cancelEventButton" = "Annuler l'événement";
-"cancelEvent_message" = "Êtes-vous sûr d'annuler cet événement ? Nous préviendrons votre correspondant.";
+"cancelEvent_message" = "Êtes-vous sûr de vouloir annuler cet événement ? Nous préviendrons votre correspondant.";
 
 // Add Event
 "editEventController_addTitle" = "Nouvel événement";
@@ -100,7 +100,7 @@
 "eventTitle_placeholder" = "Titre";
 "eventType_fieldTitle" = "Type";
 "eventType_appraisal" = "Bilan";
-"eventType_session" = "Session";
+"eventType_session" = "Séance";
 "otherUser_fieldTitle" = "Client";
 "startDate_fieldTitle" = "Début";
 "endDate_fieldTitle" = "Fin";
@@ -108,7 +108,7 @@
 // Forum
 "forumController_title" = "Forum";
 "thread_subtitle" = "Dernier message : %@ par %@ %@";
-"noThreadYet" = "Aucun sujet de discussion.\nLancez le votre !";
+"noThreadYet" = "Aucun sujet de discussion.";
 
 "createThreadController_title" = "Nouveau fil de discussion";
 "threadTitle_placeholder" = "Titre";
@@ -134,13 +134,13 @@
 
 // Clients List
 "clientsListController_title" = "Clients";
-"noClientYet" = "Aucun client.\nDites leur de s'inscrire !";
+"noClientYet" = "Aucun client.";
 "searchPlaceholder" = "Rechercher";
 
 // Client file
-"clientController_title" = "Client";
+"clientController_title" = "Fiche client";
 "clientName_titleLabel" = "%@ %@ (%@ ans)";
-"sexAndBirthDate_label" = "%@\nné le %@";
+"sexAndBirthDate_label" = "%@\nNé(e) le %@";
 "city_label" = "Habite à %@";
 "callButton" = "Appeler";
 "sendMailButton" = "Envoyer un mail";
@@ -154,7 +154,7 @@
 "showAppraisalButton" = "Consulter la fiche bilan";
 "lastTestTitle" = "Dernier test";
 "test_warmUpSpeedLabel" = "Vitesse d'échauffement : %@ km/h";
-"test_frequencyLabel" = "Fréquence : %@ seconds";
+"test_frequencyLabel" = "Fréquence : %@ secondes";
 "testButton" = "Nouveau test";
 "prescriptionButton" = "Faire une prescription";
 
@@ -162,7 +162,7 @@
 "editAppraisalController_title" = "Nouvelle fiche bilan";
 
 "appraisalGoal_fieldTitle" = "Objectif";
-"appraisalSessionsByWeek_fieldTitle" = "Nombre de séances par semaine";
+"appraisalSessionsByWeek_fieldTitle" = "Séances par semaine";
 "appraisalContraindication_fieldTitle" = "Contre indication";
 "appraisalSportAntecedents_fieldTitle" = "Antécédents sportifs";
 "appraisalHelpNeeded_fieldTitle" = "Aide nécessaire";
