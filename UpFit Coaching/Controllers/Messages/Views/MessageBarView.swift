@@ -108,7 +108,7 @@ class MessageBarView: UIView {
 		button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-		button.setImage(#imageLiteral(resourceName: "send"), for: .normal)
+		button.setImage(#imageLiteral(resourceName: "sendButton"), for: .normal)
 		button.tintColor = UIColor(red: 17.0/255.0, green: 142.0/255.0, blue: 135.0/255.0, alpha: 1.0)
 	}
 	

@@ -1,5 +1,5 @@
 //
-//  MoreController.swift
+//  SettingsController.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 10/04/2018.
@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Eureka
 
-class MoreController: FormViewController {
+class SettingsController: FormViewController {
 	
 	var editProfileRow: ButtonRow!
 	var coachRow: ButtonRow?
@@ -22,7 +22,7 @@ class MoreController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "moreController_title".localized
+		title = "settingsController_title".localized
 		setupLayout()
 		
 		if #available(iOS 11.0, *) {

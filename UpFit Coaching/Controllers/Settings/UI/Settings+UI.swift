@@ -1,5 +1,5 @@
 //
-//  More+UI.swift
+//  Settings+UI.swift
 //  UpFit Coaching
 //
 //  Created by Jason Pierna on 04/05/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-extension MoreController {
+extension SettingsController {
 	fileprivate func setUIComponents() {		
 		editProfileRow = ButtonRow("editProfile") {
 			$0.title = "editProfileButton".localized

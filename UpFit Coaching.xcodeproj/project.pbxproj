@@ -32,7 +32,7 @@
 		1AB1D87720CE7A60002B1B06 /* AddPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87620CE7A60002B1B06 /* AddPostController.swift */; };
 		1AB1D87920CE7AC4002B1B06 /* AddPost+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1D87820CE7AC4002B1B06 /* AddPost+UI.swift */; };
 		1AB9E9E3209C6E13003441F8 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E2209C6E13003441F8 /* EditEventController.swift */; };
-		1AB9E9E6209C843D003441F8 /* More+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* More+UI.swift */; };
+		1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E5209C843D003441F8 /* Settings+UI.swift */; };
 		1AB9E9E8209C85A9003441F8 /* EditEvent+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */; };
 		1AD6A51F20C1509400146F31 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6A51E20C1509400146F31 /* EventController.swift */; };
 		1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */; };
@@ -80,7 +80,7 @@
 		D773DD53203362DE001520CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D773DD52203362DE001520CA /* Assets.xcassets */; };
 		D773DD56203362DE001520CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D773DD54203362DE001520CA /* LaunchScreen.storyboard */; };
 		D781194A207D3F2D001762D4 /* Controllers+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */; };
-		D781194E207D4392001762D4 /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781194D207D4392001762D4 /* MoreController.swift */; };
+		D781194E207D4392001762D4 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781194D207D4392001762D4 /* SettingsController.swift */; };
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
 		D789201720544FAD0020C703 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Helpers.swift */; };
@@ -143,7 +143,7 @@
 		1AB1D87620CE7A60002B1B06 /* AddPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostController.swift; sourceTree = "<group>"; };
 		1AB1D87820CE7AC4002B1B06 /* AddPost+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPost+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E2209C6E13003441F8 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
-		1AB9E9E5209C843D003441F8 /* More+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "More+UI.swift"; sourceTree = "<group>"; };
+		1AB9E9E5209C843D003441F8 /* Settings+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UI.swift"; sourceTree = "<group>"; };
 		1AB9E9E7209C85A9003441F8 /* EditEvent+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEvent+UI.swift"; sourceTree = "<group>"; };
 		1AD6A51E20C1509400146F31 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		D773DD52203362DE001520CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D773DD57203362DE001520CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7811949207D3F2D001762D4 /* Controllers+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Controllers+Helpers.swift"; sourceTree = "<group>"; };
-		D781194D207D4392001762D4 /* MoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
+		D781194D207D4392001762D4 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789201420544E890020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D789201620544FAD0020C703 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
@@ -299,16 +299,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		1A9E194A207E30900091FABB /* More */ = {
+		1A9E194A207E30900091FABB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D781194D207D4392001762D4 /* MoreController.swift */,
+				D781194D207D4392001762D4 /* SettingsController.swift */,
 				D724AB8520CD69260074164C /* EditProfileController.swift */,
 				D745EA2720FA5A4700486346 /* CoachController.swift */,
 				D7BEAF1620DFEA6400FF93F9 /* LibrariesController.swift */,
 				1AB9E9E4209C842C003441F8 /* UI */,
 			);
-			path = More;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1A9E194B207E30A40091FABB /* Messages */ = {
@@ -334,7 +334,7 @@
 				D71D60C9208CB29D00F143CA /* Calendar */,
 				1A9E194B207E30A40091FABB /* Messages */,
 				D7D399DC20C939C10058EA0A /* Forum */,
-				1A9E194A207E30900091FABB /* More */,
+				1A9E194A207E30900091FABB /* Settings */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -363,7 +363,7 @@
 		1AB9E9E4209C842C003441F8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				1AB9E9E5209C843D003441F8 /* More+UI.swift */,
+				1AB9E9E5209C843D003441F8 /* Settings+UI.swift */,
 				D724AB8720CD77B70074164C /* EditProfile+UI.swift */,
 			);
 			path = UI;
@@ -874,11 +874,11 @@
 				1A34F8DE20D7F211008ED2A2 /* EditAppraisalController.swift in Sources */,
 				D731446A20D989660077AFEC /* Database+Migrations.swift in Sources */,
 				1AB1D86D20CE632B002B1B06 /* ThreadCell.swift in Sources */,
-				1AB9E9E6209C843D003441F8 /* More+UI.swift in Sources */,
+				1AB9E9E6209C843D003441F8 /* Settings+UI.swift in Sources */,
 				1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */,
 				1A34F8E420D80332008ED2A2 /* NewTestController.swift in Sources */,
 				1AB1D87920CE7AC4002B1B06 /* AddPost+UI.swift in Sources */,
-				D781194E207D4392001762D4 /* MoreController.swift in Sources */,
+				D781194E207D4392001762D4 /* SettingsController.swift in Sources */,
 				D7D399E120C9668E0058EA0A /* ForumThread.swift in Sources */,
 				D744FEEF20C9DB0A00FC5320 /* Post.swift in Sources */,
 				1A34F8E620D8056A008ED2A2 /* AddMeasurements+UI.swift in Sources */,

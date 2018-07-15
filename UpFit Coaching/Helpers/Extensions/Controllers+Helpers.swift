@@ -23,30 +23,30 @@ extension UITabBarController {
 		
 		// Common controllers
 		let calendarController = CalendarController()
-		calendarController.tabBarItem = UITabBarItem(title: "calendarController_title".localized, image: #imageLiteral(resourceName: "calendar"), tag: 0)
+		calendarController.tabBarItem = UITabBarItem(title: "calendarController_title".localized, image: #imageLiteral(resourceName: "calendarTab"), tag: 0)
 		viewControllers.append(calendarController)
 		
 		let forumController = ForumController()
-		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forum"), tag: 1)
+		forumController.tabBarItem = UITabBarItem(title: "forumController_title".localized, image: #imageLiteral(resourceName: "forumTab"), tag: 1)
 		viewControllers.append(forumController)
 		
-		let moreController = MoreController()
-		moreController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
-		viewControllers.append(moreController)
+		let settingsController = SettingsController()
+		settingsController.tabBarItem = UITabBarItem(title: "settingsController_title".localized, image: #imageLiteral(resourceName: "settingsTab"), tag: 2)
+		viewControllers.append(settingsController)
 		
 		// User-type specific views
 		if user.type == 2 {
 			let conversationListController = ConversationListController()
-			conversationListController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 3)
+			conversationListController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "messagesTab"), tag: 3)
 			viewControllers.insert(conversationListController, at: 1)
 			
 			let clientsListController = ClientsListController()
-			clientsListController.tabBarItem = UITabBarItem(title: "clientsListController_title".localized, image: #imageLiteral(resourceName: "clients"), tag: 4)
+			clientsListController.tabBarItem = UITabBarItem(title: "clientsListController_title".localized, image: #imageLiteral(resourceName: "clientsTab"), tag: 4)
 			viewControllers.insert(clientsListController, at: 0)
 		} else if let otherUser = user.coach {
 			let conversationController = ConversationController()
 			conversationController.otherUser = otherUser
-			conversationController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "chat"), tag: 3)
+			conversationController.tabBarItem = UITabBarItem(title: "conversationListController_title".localized, image: #imageLiteral(resourceName: "messagesTab"), tag: 3)
 			viewControllers.insert(conversationController, at: 1)
 		}
 		
