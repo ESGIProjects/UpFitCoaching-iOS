@@ -23,8 +23,24 @@ extension SettingsController {
 			}
 		}
 		
-		let currentUser = Database().getCurrentUser()
-		if currentUser?.type == 0 || currentUser?.type == 1 {
+		let database = Database()
+		guard let currentUser = database.getCurrentUser() else { return }
+		
+		if database.getLastPrescription(for: currentUser) != nil {
+			prescriptionRow = ButtonRow("prescription") {
+				$0.title = "displayPrescription".localized
+				$0.cellUpdate { cell, _ in
+					cell.textLabel?.textColor = .mainText
+					cell.textLabel?.textAlignment = .left
+					cell.accessoryType = .disclosureIndicator
+				}
+				$0.onCellSelection { [unowned self] _, _ in
+					self.prescription()
+				}
+			}
+		}
+		
+		if currentUser.type == 0 || currentUser.type == 1 {
 			coachRow = ButtonRow("coachProfile") {
 				$0.title = "coachController_title".localized
 				$0.cellUpdate { cell, _ in
@@ -65,13 +81,18 @@ extension SettingsController {
 	func setupLayout() {
 		setUIComponents()
 		
-		let section = Section()
-		if let coachRow = coachRow {
-			section <<< coachRow
+		let firstSection = Section("accountManagement_sectionTitle".localized) <<< editProfileRow
+		if let prescriptionRow = prescriptionRow {
+			firstSection <<< prescriptionRow
 		}
 		
-		form +++ Section("accountManagement_sectionTitle".localized) <<< editProfileRow
-		form +++ section <<< usedLibrariesRow
+		let secondSection = Section()
+		if let coachRow = coachRow {
+			secondSection <<< coachRow
+		}
+		
+		form +++ firstSection
+		form +++ secondSection <<< usedLibrariesRow
 		form +++ Section() <<< signOutRow
 	}
 }

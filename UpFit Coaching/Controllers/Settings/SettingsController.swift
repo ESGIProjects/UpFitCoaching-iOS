@@ -13,6 +13,7 @@ import Eureka
 class SettingsController: FormViewController {
 	
 	var editProfileRow: ButtonRow!
+	var prescriptionRow: ButtonRow?
 	var coachRow: ButtonRow?
 	var usedLibrariesRow: ButtonRow!
 	var signOutRow: ButtonRow!
@@ -35,6 +36,17 @@ class SettingsController: FormViewController {
 	
 	func editProfile() {
 		present(UINavigationController(rootViewController: EditProfileController()), animated: true)
+	}
+	
+	func prescription() {
+		let database = Database()
+		guard let currentUser = database.getCurrentUser() else { return }
+		
+		let prescriptionController = PrescriptionController()
+		prescriptionController.user = currentUser
+		prescriptionController.oldPrescription = database.getLastPrescription(for: currentUser)
+		
+		navigationController?.pushViewController(prescriptionController, animated: true)
 	}
 	
 	func coach() {

@@ -121,6 +121,7 @@
 "clientsRowButton" = "Clients";
 "accountManagement_sectionTitle" = "Gestion du compte";
 "editProfileButton" = "Modifier le profil";
+"displayPrescription" = "Prescription d'exercise";
 "signOutButton" = "Déconnexion";
 "librariesController_title" = "Bibliothèques open-sources";
 "coachController_title" = "Fiche du coach";
@@ -230,7 +231,8 @@
 "armCircumference" = "Tour de bras";
 
 // Prescription
-"prescriptionController_title" = "Nouvelle prescription";
+"prescriptionController_title" = "Prescription";
+"prescriptionController_title_new" = "Nouvelle prescription";
 "addExerciseButton" = "Ajouter un exercice";
 "exerciseName_title" = "Exercice";
 "exerciseDuration_title" = "Durée";

@@ -19,45 +19,53 @@ class PrescriptionController: FormViewController {
 	var tagIndex = 0
 	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
+	private func buildForm(from prescription: Prescription) {
+		values.removeAll()
+		
+		for (index, exercise) in prescription.exercises.enumerated() {
+			values["exercise-\(index)"] = exercise.name
+			addExercise(autoSelect: false, afterButton: true)
+			
+			switch exercise.name {
+			case "Footing", "Vélo":
+				values["duration-\(index)"] = Double(exercise.duration!)
+				values["intensity-\(index)"] = exercise.intensity
+			case "Pompes", "Abdominaux", "Squats":
+				values["repetitions-\(index)"] = Double(exercise.repetitions!)
+				values["series-\(index)"] = Double(exercise.series!)
+			case "Natation":
+				values["duration-\(index)"] = Double(exercise.duration!)
+			default:
+				continue
+			}
+			
+			// Update tagIndex
+			if tagIndex < index {
+				tagIndex = index
+			}
+		}
+		
+		form.setValues(values)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		title = "prescriptionController_title".localized
-		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(displayData))
+		if #available(iOS 11.0, *) {
+			navigationItem.largeTitleDisplayMode = .never
+		}
 		
 		if let oldPrescription = oldPrescription {
-			values.removeAll()
-
-			for (index, exercise) in oldPrescription.exercises.enumerated() {
-				values["exercise-\(index)"] = exercise.name
-				addExercise(autoSelect: false, afterButton: true)
-
-				switch exercise.name {
-				case "Footing", "Vélo":
-					values["duration-\(index)"] = Double(exercise.duration!)
-					values["intensity-\(index)"] = exercise.intensity
-				case "Pompes", "Abdominaux", "Squats":
-					values["repetitions-\(index)"] = Double(exercise.repetitions!)
-					values["series-\(index)"] = Double(exercise.series!)
-				case "Natation":
-					values["duration-\(index)"] = Double(exercise.duration!)
-				default:
-					continue
-				}
-				
-				// Update tagIndex
-				if tagIndex < index {
-					tagIndex = index
-				}
-			}
-
-			form.setValues(values)
+			buildForm(from: oldPrescription)
 		}
 		
 		guard let currentUser = currentUser else { return }
 		
 		if currentUser.type == 2 {
+			title = "prescriptionController_title_new".localized
+			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(displayData))
+			
 			form +++ Section() <<< ButtonRow("addExercise") {
 				$0.title = "addExerciseButton".localized
 				$0.cellUpdate { cell, _ in
@@ -68,6 +76,8 @@ class PrescriptionController: FormViewController {
 				}
 			}
 		} else {
+			title = "prescriptionController_title".localized
+			
 			for row in form.rows {
 				row.baseCell.isUserInteractionEnabled = false
 			}
