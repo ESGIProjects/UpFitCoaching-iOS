@@ -29,7 +29,7 @@ class CalendarCell: JTAppleCell {
 	private func setUIComponents() {
 		selectedBackground = UIView()
 		selectedBackground.translatesAutoresizingMaskIntoConstraints = false
-		selectedBackground.backgroundColor = #colorLiteral(red: 0.3411764706, green: 0.4941176471, blue: 0.8745098039, alpha: 1)
+		selectedBackground.backgroundColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 		selectedBackground.layer.cornerRadius = 15.0
 		selectedBackground.isHidden = true
 		

@@ -39,8 +39,8 @@ extension CalendarController {
 		monthLabel = UI.genericLabel
 		monthLabel.font = UIFont.boldSystemFont(ofSize: 24.0)
 		monthLabel.textAlignment = .center
-		monthLabel.textColor = .calendarMonthText
-		monthLabel.backgroundColor = .calendarMonthBackground
+		monthLabel.textColor = .white
+		monthLabel.backgroundColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 		
 		weekdaysHeaderView = UI.calendarWeekdaysHeader
 		
