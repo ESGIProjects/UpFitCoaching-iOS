@@ -13,8 +13,8 @@ extension ConversationListController {
 		let anchors = getAnchors()
 		
 		return [
-			tableView.topAnchor.constraint(equalTo: anchors.top),
-			tableView.bottomAnchor.constraint(equalTo: anchors.bottom),
+			tableView.topAnchor.constraint(equalTo: view.topAnchor),
+			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			tableView.leadingAnchor.constraint(equalTo: anchors.leading),
 			tableView.trailingAnchor.constraint(equalTo: anchors.trailing)
 		]
@@ -28,15 +28,15 @@ extension ConversationListController {
 		tableView.dataSource = self
 		
 		refreshControl = UIRefreshControl()
+		refreshControl.tintColor = .white
 		refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
-		
 	}
 	
 	func setupLayout() {
 		setUIComponents()
 		
 		view.addSubview(tableView)
-		tableView.addSubview(refreshControl)
+		tableView.refreshControl = refreshControl
 		
 		NSLayoutConstraint.activate(getConstraints())
 	}

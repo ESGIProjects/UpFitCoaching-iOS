@@ -69,12 +69,12 @@ class ConversationListController: UIViewController {
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
 			self?.refreshControl.endRefreshing()
+			self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
 		}
 	}
 	
 	@objc func handleRefreshControl() {
 		guard let currentUser = currentUser else { return }
-		
 		let dispatchGroup = DispatchGroup()
 		
 		Downloader.messages(for: currentUser, in: dispatchGroup)

@@ -95,5 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UITabBar.appearance().barTintColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 		UITabBar.appearance().tintColor = .white
 		UITabBar.appearance().unselectedItemTintColor = UIColor(red: 17.0/255.0, green: 142.0/255.0, blue: 135.0/255.0, alpha: 1.0)
+		
+		// UISegmentedControl
+		UISegmentedControl.appearance().tintColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 	}
 }
