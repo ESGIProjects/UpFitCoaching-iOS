@@ -22,8 +22,25 @@ class MessageBarView: UIView {
 	}
 	
 	private var isEditing = false
+	private var target: UIViewController?
+	private var action: Selector?
+	
 	var isMessageEmpty: Bool {
 		return textView.text == "" || textView.text == placeholder && !isEditing
+	}
+	
+	func addTarget(_ target: UIViewController?, action: Selector) {
+		self.target = target
+		self.action = action
+	}
+	
+	@objc private func buttonTapped() {
+		if let action = action {
+			target?.performSelector(onMainThread: action, with: nil, waitUntilDone: false)
+		}
+		
+		textFieldHeightConstraint.constant = 35.0
+		textView.isScrollEnabled = false
 	}
 	
 	private var textFieldHeightConstraint: NSLayoutConstraint!

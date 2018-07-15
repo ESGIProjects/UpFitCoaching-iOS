@@ -35,7 +35,7 @@ extension ConversationController {
 		collectionView.dataSource = self
 		
 		messageBarView = UI.messageBar
-		messageBarView.button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
+		messageBarView.addTarget(self, action: #selector(sendButtonTapped(_:)))
 	}
 	
 	func setupLayout() {
