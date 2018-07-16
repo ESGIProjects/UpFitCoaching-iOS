@@ -119,6 +119,7 @@ class CalendarController: UIViewController {
 	@objc func reloadEvents() {
 		events = Database().fetch(using: Event.all)
 		todayEvents = events.filter { Calendar.current.isDate($0.start, inSameDayAs: currentDate) }
+		todayEvents.sort { $0.start < $1.start }
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.calendarView.reloadData()
