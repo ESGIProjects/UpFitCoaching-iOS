@@ -49,6 +49,7 @@ extension Network {
 			"eventId": eventId,
 			"name": event.name,
 			"type": event.type,
+			"status": event.status,
 			"start": dateFormatter.string(from: event.start),
 			"end": dateFormatter.string(from: event.end),
 			"updated": dateFormatter.string(from: event.updated),

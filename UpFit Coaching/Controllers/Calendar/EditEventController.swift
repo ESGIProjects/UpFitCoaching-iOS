@@ -86,6 +86,7 @@ class EditEventController: FormViewController {
 			event.start = startDate
 			event.end = endDate
 			event.updated = Date()
+			event.updatedBy = currentUser
 			
 			if event.firstUser == currentUser {
 				event.secondUser = otherUser
