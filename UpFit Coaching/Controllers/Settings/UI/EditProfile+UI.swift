@@ -22,6 +22,7 @@ extension EditProfileController {
 			}
 			
 			$0.add(rule: RuleRequired(msg: "mail_missingTitle".localized))
+			$0.add(rule: RuleEmail(msg: "mail_formatError".localized))
 			$0.validationOptions = .validatesOnChange
 			$0.cellUpdate { cell, row in
 				if !row.isValid {
@@ -129,6 +130,7 @@ extension EditProfileController {
 			}
 			
 			$0.add(rule: RuleRequired(msg: "phoneNumber_missingTitle".localized))
+			$0.add(rule: RuleExactLength(exactLength: 10, msg: "phoneNumber_formatError".localized))
 			$0.validationOptions = .validatesOnChange
 			$0.cellUpdate { cell, row in
 				if !row.isValid {

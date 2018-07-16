@@ -104,8 +104,7 @@ extension DetailsRegisterController {
 			}
 			
 			$0.add(rule: RuleRequired(msg: "phoneNumber_missingTitle".localized))
-			$0.add(rule: RuleMinLength(minLength: 10, msg: "phoneNumber_formatError".localized))
-			$0.add(rule: RuleMaxLength(maxLength: 10, msg: "phoneNumber_formatError".localized))
+			$0.add(rule: RuleExactLength(exactLength: 10, msg: "phoneNumber_formatError".localized))
 			$0.validationOptions = .validatesOnChange
 			$0.cellUpdate { cell, row in
 				if !row.isValid {
