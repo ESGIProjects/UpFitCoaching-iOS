@@ -245,6 +245,8 @@
 "intensity_weak" = "Weak";
 "intensity_average" = "Average";
 "intensity_strong" = "Strong";
+"noMoreAvailableExercises_title" = "No more available exercises";
+"noMoreAvailableExercises_message" = "Every available exercises are currently used.";
 
 // Network messages
 "appraisal_not_found" = "No appraisal found.";

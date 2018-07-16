@@ -245,6 +245,8 @@
 "intensity_weak" = "Faible";
 "intensity_average" = "Moyen";
 "intensity_strong" = "Fort";
+"noMoreAvailableExercises_title" = "Aucun exercice disponible";
+"noMoreAvailableExercises_message" = "Tous les exercices sont déjà utilisés.";
 
 // Network messages
 "appraisal_not_found" = "Aucun bilan correspondant.";

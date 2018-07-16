@@ -72,7 +72,11 @@ class PrescriptionController: FormViewController {
 					cell.textLabel?.textColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
 				}
 				$0.onCellSelection { [unowned self] _, _ in
-					self.addExercise()
+					if self.availableExercises.count > 0 {
+						self.addExercise()
+					} else {
+						self.presentAlert(title: "noMoreAvailableExercises_title".localized, message: "noMoreAvailableExercises_message".localized)
+					}
 				}
 			}
 		} else {
