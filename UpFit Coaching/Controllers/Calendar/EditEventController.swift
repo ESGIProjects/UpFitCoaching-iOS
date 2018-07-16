@@ -82,6 +82,7 @@ class EditEventController: FormViewController {
 		} else {
 			guard let event = event else { return }
 			event.name = eventTitle
+			event.type = type
 			event.start = startDate
 			event.end = endDate
 			event.updated = Date()

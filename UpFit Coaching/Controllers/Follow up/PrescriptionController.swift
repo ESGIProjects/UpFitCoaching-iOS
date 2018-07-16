@@ -17,9 +17,7 @@ class PrescriptionController: FormViewController {
 	var oldPrescription: Prescription?
 	var values = [String: Any?]()
 	var tagIndex = 0
-	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
-	
-	
+	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

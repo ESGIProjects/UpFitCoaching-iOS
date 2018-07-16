@@ -48,6 +48,7 @@ extension Network {
 		let parameters: [String: Any] = [
 			"eventId": eventId,
 			"name": event.name,
+			"type": event.type,
 			"start": dateFormatter.string(from: event.start),
 			"end": dateFormatter.string(from: event.end),
 			"updated": dateFormatter.string(from: event.updated),
