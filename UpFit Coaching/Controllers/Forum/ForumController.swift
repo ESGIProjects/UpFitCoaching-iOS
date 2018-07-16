@@ -14,6 +14,7 @@ class ForumController: UIViewController {
 	// MARK: - UI
 	
 	var tableView: UITableView!
+	var refreshControl: UIRefreshControl!
 	
 	// MARK: - Data
 	
@@ -95,6 +96,13 @@ class ForumController: UIViewController {
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
+			self?.refreshControl.endRefreshing()
+			
+			let count = self?.threads.count ?? 0
+
+			if count > 8 {
+				self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+			}
 		}
 	}
 	
@@ -102,5 +110,15 @@ class ForumController: UIViewController {
 		let createThreadController = CreateThreadController()
 		createThreadController.forum = forum
 		present(UINavigationController(rootViewController: createThreadController), animated: true)
+	}
+	
+	@objc func handleRefreshControl() {
+		let dispatchGroup = DispatchGroup()
+		
+		Downloader.threads(in: dispatchGroup)
+		
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.threadsDownloaded()
+		}
 	}
 }

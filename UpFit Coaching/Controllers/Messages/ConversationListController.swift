@@ -72,7 +72,7 @@ class ConversationListController: UIViewController {
 			
 			let count = self?.conversations.count ?? 0
 			
-			if count > 0 {
+			if count > 8 {
 				self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
 			}
 		}

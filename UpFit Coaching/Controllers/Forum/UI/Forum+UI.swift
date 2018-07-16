@@ -36,6 +36,8 @@ extension ForumController {
 		setUIComponents()
 		
 		view.addSubview(tableView)
+		tableView.refreshControl = refreshControl
+		
 		NSLayoutConstraint.activate(getConstraints())
 	}
 }
