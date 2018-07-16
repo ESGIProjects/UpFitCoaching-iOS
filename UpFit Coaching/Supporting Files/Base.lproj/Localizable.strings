@@ -29,6 +29,7 @@
 "password_fieldTitle" = "Password";
 
 "mail_missingTitle" = "Mail missing";
+"mail_formatError" = "Mail not valid";
 "password_missingTitle" = "Password missing";
 
 "loginButton" = "Sign In";

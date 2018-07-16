@@ -60,6 +60,11 @@ class LoginController: UIViewController {
 			return
 		}
 		
+		guard isMailValid(mailValue) else {
+			presentAlert(title: "mail_formatError".localized, message: nil)
+			return
+		}
+		
 		// Perform the network call
 		DispatchQueue.main.async {
 			HUD.show(.progress)
@@ -93,5 +98,10 @@ class LoginController: UIViewController {
 	
 	@objc func signUp(_ sender: UIButton) {
 		navigationController?.pushViewController(RegisterController(), animated: true)
+	}
+	
+	private func isMailValid(_ mail: String) -> Bool {
+			return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
+				.evaluate(with: mail)
 	}
 }

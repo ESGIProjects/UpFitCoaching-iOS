@@ -26,6 +26,7 @@
 "password_placeholder" = "Mot de passe";
 
 "mail_fieldTitle" = "Adresse e-mail";
+"mail_formatError" = "Cette adresse e-mail n'est pas valide.";
 "password_fieldTitle" = "Mot de passe";
 
 "mail_missingTitle" = "Adresse e-mail manquante";
