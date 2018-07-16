@@ -59,6 +59,7 @@
 "confirmPassword_errorTitle" = "You must enter the same password twice.";
 "city_missingTitle" = "City missing.";
 "phoneNumber_missingTitle" = "Phone Number missing.";
+"phoneNumber_formatError" = "The phoner number must have 10-digit.";
 "birthDate_missingTitle" = "Birth date missing.";
 "address_missingTitle" = "Address missing.";
 

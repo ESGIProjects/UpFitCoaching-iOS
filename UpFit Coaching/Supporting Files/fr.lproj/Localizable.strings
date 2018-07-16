@@ -59,6 +59,7 @@
 "confirmPassword_errorTitle" = "Vous devez entrer le même mot de passe deux fois.";
 "city_missingTitle" = "Ville manquante.";
 "phoneNumber_missingTitle" = "Numéro de téléphone manquant";
+"phoneNumber_formatError" = "Le numéro de téléphone doit faire 10 caractères.";
 "birthDate_missingTitle" = "Date de naissance manquante.";
 "address_missingTitle" = "Adresse manquante.";
 

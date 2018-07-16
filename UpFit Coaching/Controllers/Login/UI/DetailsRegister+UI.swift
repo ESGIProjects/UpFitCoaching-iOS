@@ -104,6 +104,8 @@ extension DetailsRegisterController {
 			}
 			
 			$0.add(rule: RuleRequired(msg: "phoneNumber_missingTitle".localized))
+			$0.add(rule: RuleMinLength(minLength: 10, msg: "phoneNumber_formatError".localized))
+			$0.add(rule: RuleMaxLength(maxLength: 10, msg: "phoneNumber_formatError".localized))
 			$0.validationOptions = .validatesOnChange
 			$0.cellUpdate { cell, row in
 				if !row.isValid {
@@ -145,6 +147,19 @@ extension DetailsRegisterController {
 			birthDateRow = DateInlineRow("birthDate") {
 				$0.title = "birthDate_fieldTitle".localized
 				$0.value = registerController?.registerBox.birthDate
+				
+				let now = Date()
+				let day = Calendar.current.component(.day, from: now)
+				let month = Calendar.current.component(.month, from: now)
+				let year = Calendar.current.component(.year, from: now)
+				
+				let minimumDateComponents = DateComponents(year: year - 100, month: month, day: day)
+				let maximumDateComponents = DateComponents(year: year - 18, month: month, day: day)
+				
+				$0.minimumDate = Calendar.current.date(from: minimumDateComponents)
+				$0.maximumDate = Calendar.current.date(from: maximumDateComponents)
+				$0.value = $0.maximumDate
+				
 				$0.onChange { [unowned self] row in
 					if let value = row.value {
 						self.registerController?.registerBox.birthDate = value
