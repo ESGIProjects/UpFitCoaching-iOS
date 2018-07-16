@@ -4,7 +4,7 @@
 //
 //  Created by Jason Pierna on 03/07/2018.
 //  Copyright © 2018 Jason Pierna. All rights reserved.
-//
+// Version 1.0
 
 import UIKit
 import Eureka
@@ -17,7 +17,7 @@ class PrescriptionController: FormViewController {
 	var oldPrescription: Prescription?
 	var values = [String: Any?]()
 	var tagIndex = 0
-	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]	
+	var availableExercises = ["Footing", "Natation", "Pompes", "Squats", "Vélo", "Abdominaux"]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

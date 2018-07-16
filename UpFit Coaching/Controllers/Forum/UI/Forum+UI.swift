@@ -4,7 +4,7 @@
 //
 //  Created by Jason Pierna on 07/06/2018.
 //  Copyright © 2018 Jason Pierna. All rights reserved.
-//
+// Version 1.0
 
 import UIKit
 
@@ -26,6 +26,10 @@ extension ForumController {
 		tableView.delegate = self
 		tableView.tableFooterView = UIView(frame: .zero)
 		tableView.estimatedRowHeight = 50.0
+		
+		refreshControl = UIRefreshControl()
+		refreshControl.tintColor = .white
+		refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
 	}
 	
 	func setupLayout() {
