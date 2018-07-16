@@ -57,7 +57,7 @@ extension LoginController {
 	fileprivate func setUIComponents() {
 		backgroundImage = UIImageView(image: #imageLiteral(resourceName: "loginBackground"))
 		backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-		backgroundImage.contentMode = .scaleAspectFit
+		backgroundImage.contentMode = .scaleAspectFill
 		
 		scrollView = UI.genericScrollView
 		contentView = UI.genericView
