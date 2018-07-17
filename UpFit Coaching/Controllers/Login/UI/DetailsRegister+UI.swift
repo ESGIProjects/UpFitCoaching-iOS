@@ -157,7 +157,6 @@ extension DetailsRegisterController {
 				
 				$0.minimumDate = Calendar.current.date(from: minimumDateComponents)
 				$0.maximumDate = Calendar.current.date(from: maximumDateComponents)
-				$0.value = $0.maximumDate
 				
 				$0.onChange { [unowned self] row in
 					if let value = row.value {
