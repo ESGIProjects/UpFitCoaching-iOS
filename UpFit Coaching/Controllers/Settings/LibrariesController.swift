@@ -61,8 +61,8 @@ extension LibrariesController: WKNavigationDelegate {
 			navigationAction.navigationType == .linkActivated else { decisionHandler(.allow); return }
 		
 		let safariViewController = SFSafariViewController(url: url)
-		safariViewController.preferredBarTintColor = .red
-		safariViewController.preferredControlTintColor = .green
+		safariViewController.preferredBarTintColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 165.0/255.0, alpha: 1.0)
+		safariViewController.preferredControlTintColor = .white
 		
 		present(safariViewController, animated: true)
 		decisionHandler(.cancel)
