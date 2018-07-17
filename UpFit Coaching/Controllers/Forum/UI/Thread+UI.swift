@@ -26,12 +26,18 @@ extension ThreadController {
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.tableFooterView = UIView(frame: .zero)
+		
+		refreshControl = UIRefreshControl()
+		refreshControl.tintColor = .black
+		refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
 	}
 	
 	func setupLayout() {
 		setUIComponents()
 		
 		view.addSubview(tableView)
+		tableView.refreshControl = refreshControl
+		
 		NSLayoutConstraint.activate(getConstraints())
 	}
 }

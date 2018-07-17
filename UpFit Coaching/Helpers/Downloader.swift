@@ -79,6 +79,29 @@ class Downloader {
 		}
 	}
 	
+	class func posts(for thread: ForumThread, in dispatchGroup: DispatchGroup? = nil) {
+		dispatchGroup?.enter()
+		
+		Network.getPosts(for: thread) { data, response, _ in
+			guard let data = data else { dispatchGroup?.leave(); return }
+			
+			if Network.isSuccess(response: response, successCode: 200) {
+				// Decode post list
+				let decoder = JSONDecoder.withDate
+				guard let posts = try? decoder.decode([Post].self, from: data) else { dispatchGroup?.leave(); return }
+				
+				// Save posts
+				let database = Database()
+				database.deleteAll(of: PostObject.self)
+				database.createOrUpdate(models: posts, with: PostObject.init)
+				
+				// Post a notification telling its done
+				NotificationCenter.default.post(name: .postsDownloaded, object: nil)
+				dispatchGroup?.leave()
+			}
+		}
+	}
+	
 	class func appraisal(for user: User, in dispatchGroup: DispatchGroup? = nil) {
 		dispatchGroup?.enter()
 

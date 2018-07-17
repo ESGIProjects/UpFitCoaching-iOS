@@ -14,7 +14,8 @@ class ThreadController: UIViewController {
 	// MARK: - UI
 	
 	var tableView: UITableView!
-	
+	var refreshControl: UIRefreshControl!
+
 	// MARK: - Data
 	
 	var currentUser = Database().getCurrentUser()
@@ -112,6 +113,25 @@ class ThreadController: UIViewController {
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.tableView.reloadData()
+			self?.refreshControl.endRefreshing()
+			
+			let count = self?.posts.count ?? 0
+			
+			if count > 10 {
+				self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+			}
+		}
+	}
+	
+	@objc func handleRefreshControl() {
+		guard let thread = thread else { return }
+		
+		let dispatchGroup = DispatchGroup()
+		
+		Downloader.posts(for: thread, in: dispatchGroup)
+		
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.postsDownloaded()
 		}
 	}
 }
