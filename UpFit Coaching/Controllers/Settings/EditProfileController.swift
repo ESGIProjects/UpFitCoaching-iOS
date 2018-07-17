@@ -71,7 +71,6 @@ class EditProfileController: FormViewController {
 			]
 			
 			if let password = password, password != "" {
-				print(password)
 				values["password"] = password.sha256()
 			}
 			

@@ -48,9 +48,7 @@ class Network {
 	// MARK: - Actions
 
 	class func isSuccess(response: URLResponse?, successCode: Int, caller: String = #function) -> Bool {
-		guard let response = response as? HTTPURLResponse else { return false }
-		print(caller, "Status code:", response.statusCode)
-		
+		guard let response = response as? HTTPURLResponse else { return false }		
 		return response.statusCode == successCode
 	}
 	

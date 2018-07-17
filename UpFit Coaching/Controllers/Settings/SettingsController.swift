@@ -80,11 +80,7 @@ class SettingsController: FormViewController {
 		MessagesDelegate.instance.disconnect()
 		
 		// Reset Firebase ID
-		InstanceID.instanceID().deleteID { error in
-			if let error = error {
-				print(error.localizedDescription)
-			}
-		}
+		InstanceID.instanceID().deleteID { _ in	}
 		
 		// Go back to thee login screen
 		if tabBarController?.presentingViewController != nil {

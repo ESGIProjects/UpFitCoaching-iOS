@@ -80,7 +80,6 @@ class LoginController: UIViewController {
 				guard let loginInfo = try? decoder.decode(Login.self, from: data) else { return }
 				
 				UserDefaults.standard.set(loginInfo.token, forKey: "authToken")
-				print("User ID", loginInfo.user.userID)
 				
 				// Launch the login processing flow
 				self?.processLogin(for: loginInfo.user) {

@@ -18,9 +18,7 @@ extension ConversationListController: WebSocketDelegate {
 		MessagesDelegate.instance.websocketDidDisconnect(socket: socket, error: error)
 	}
 	
-	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-		print(#function)
-		
+	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {		
 		guard let message = MessagesDelegate.decode(from: text), message.messageID != nil else { return }
 		
 		// Save message

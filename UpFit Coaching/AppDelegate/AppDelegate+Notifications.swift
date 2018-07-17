@@ -38,10 +38,6 @@ extension AppDelegate: MessagingDelegate {
 	func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
 		registerToken(fcmToken)
 	}
-	
-	func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-		print("Received data message: \(remoteMessage.appData)")
-	}
 }
 
 // MARK: - UNUserNotificationCenterDelegate

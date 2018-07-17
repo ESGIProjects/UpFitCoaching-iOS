@@ -101,8 +101,7 @@ class EventController: UIViewController {
 		CLGeocoder().geocodeAddressString(address) { [weak self] placemarks, error in
 			guard let mapView = self?.mapView else { return }
 			
-			if let error = error {
-				print(error.localizedDescription)
+			if error != nil {
 				mapView.isHidden = true
 			} else {
 				mapView.isHidden = false

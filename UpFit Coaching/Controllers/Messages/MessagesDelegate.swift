@@ -83,12 +83,9 @@ class MessagesDelegate {
 
 extension MessagesDelegate: WebSocketDelegate {
 	func websocketDidConnect(socket: WebSocketClient) {
-		print(#function)
 	}
 	
 	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		print(#function, error?.localizedDescription ?? "")
-		
 		if !userInitiatedDisconnect {
 			Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [unowned self] timer in
 				if !socket.isConnected {
@@ -100,15 +97,11 @@ extension MessagesDelegate: WebSocketDelegate {
 	}
 	
 	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-		print(#function)
-		
 		guard let message = MessagesDelegate.decode(from: text), message.messageID != nil else { return }
 		
 		// Save message
 		Database().createOrUpdate(model: message, with: MessageObject.init)
 	}
 	
-	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-		print(#function)
-	}
+	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {}
 }
