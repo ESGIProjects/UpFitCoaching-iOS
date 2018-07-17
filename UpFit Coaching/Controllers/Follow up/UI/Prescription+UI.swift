@@ -22,13 +22,13 @@ extension PrescriptionController {
 			
 			switch exercise.name {
 			case "Footing", "Vélo":
-				values["duration-\(index)"] = Double(exercise.duration!)
+				values["duration-\(index)"] = Double(exercise.duration!) / 60.0
 				values["intensity-\(index)"] = exercise.intensity
 			case "Pompes", "Abdominaux", "Squats":
 				values["repetitions-\(index)"] = Double(exercise.repetitions!)
 				values["series-\(index)"] = Double(exercise.series!)
 			case "Natation":
-				values["duration-\(index)"] = Double(exercise.duration!)
+				values["duration-\(index)"] = Double(exercise.duration!) / 60.0
 			default:
 				continue
 			}
@@ -146,6 +146,13 @@ extension PrescriptionController {
 		
 		section <<< DecimalRow("duration-\(index)") {
 			$0.title = "exerciseDuration_title".localized
+			$0.placeholder = "exerciseDuration_placeholder".localized
+			
+			let formatter = NumberFormatter()
+			formatter.maximumFractionDigits = 0
+			
+			$0.formatter = formatter
+			$0.useFormatterDuringInput = true
 			
 			if let value = values["duration-\(index)"] as? Int {
 				$0.value = Double(value)
@@ -160,6 +167,12 @@ extension PrescriptionController {
 		section <<< DecimalRow("repetitions-\(index)") {
 			$0.title = "exerciseRepetitions_title".localized
 			
+			let formatter = NumberFormatter()
+			formatter.maximumFractionDigits = 0
+			
+			$0.formatter = formatter
+			$0.useFormatterDuringInput = true
+			
 			if let value = values["repetitions-\(index)"] as? Int {
 				$0.value = Double(value)
 			}
@@ -172,6 +185,12 @@ extension PrescriptionController {
 		
 		section <<< DecimalRow("series-\(index)") {
 			$0.title = "exerciseSeries_title".localized
+			
+			let formatter = NumberFormatter()
+			formatter.maximumFractionDigits = 0
+			
+			$0.formatter = formatter
+			$0.useFormatterDuringInput = true
 			
 			if let value = values["series-\(index)"] as? Int {
 				$0.value = Double(value)

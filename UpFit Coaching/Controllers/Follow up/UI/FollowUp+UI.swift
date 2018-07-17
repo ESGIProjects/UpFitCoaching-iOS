@@ -67,8 +67,8 @@ extension FollowUpController {
 			measurementsValues.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.0),
 			
 			weightChart.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35),
-			bodyChart.heightAnchor.constraint(equalTo: weightChart.heightAnchor),
-			measurementsChart.heightAnchor.constraint(equalTo: weightChart.heightAnchor)
+			bodyChart.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35),
+			measurementsChart.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
 		]
 	}
 	

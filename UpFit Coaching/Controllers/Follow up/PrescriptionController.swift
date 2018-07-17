@@ -117,7 +117,7 @@ class PrescriptionController: FormViewController {
 				guard let duration = (values["duration-\(index)"] as? Double?) as? Double,
 					let intensity = (values["intensity-\(index)"] as? Intensity?) as? Intensity else { continue }
 				
-				exercises.append(Exercise(name: exerciseName, duration: Int(duration), intensity: intensity))
+				exercises.append(Exercise(name: exerciseName, duration: Int(duration) * 60, intensity: intensity))
 				
 			case "Pompes", "Abdominaux", "Squats":
 				guard let repetitions = (values["repetitions-\(index)"] as? Double?) as? Double,
@@ -128,7 +128,7 @@ class PrescriptionController: FormViewController {
 			case "Natation":
 				guard let duration = (values["duration-\(index)"] as? Double?) as? Double else { continue }
 				
-				exercises.append(Exercise.swimming(duration: Int(duration)))
+				exercises.append(Exercise.swimming(duration: Int(duration) * 60))
 				
 			default:
 				continue

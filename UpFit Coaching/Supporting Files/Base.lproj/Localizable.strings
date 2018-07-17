@@ -240,6 +240,7 @@
 "addExerciseButton" = "Add exercise";
 "exerciseName_title" = "Exercise";
 "exerciseDuration_title" = "Duration";
+"exerciseDuration_placeholder" = "minutes";
 "exerciseIntensity_title" = "Intensity";
 "exerciseRepetitions_title" = "Repetitions";
 "exerciseSeries_title" = "Series";
