@@ -249,6 +249,7 @@
 "intensity_strong" = "Fort";
 "noMoreAvailableExercises_title" = "Aucun exercice disponible";
 "noMoreAvailableExercises_message" = "Tous les exercices sont déjà utilisés.";
+"prescription_noExerciseError" = "Une prescription doit avoir au moins un exercice.";
 
 // Network messages
 "appraisal_not_found" = "Aucun bilan correspondant.";

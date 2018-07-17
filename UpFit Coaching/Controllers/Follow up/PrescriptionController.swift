@@ -35,7 +35,7 @@ class PrescriptionController: FormViewController {
 		if currentUser.type == 2 {
 			title = "prescriptionController_title_new".localized
 			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(displayData))
+			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(postData))
 			
 			setAddButton()
 		} else {
@@ -49,16 +49,20 @@ class PrescriptionController: FormViewController {
 	
 	// MARK: - Actions
 	
-	@objc func displayData() {
-		
-		DispatchQueue.main.async {
-			HUD.show(.progress)
-		}
-		
+	@objc func postData() {
 		guard let user = user else { return }
 		
 		// Create prescription
 		let prescription = Prescription(user: user, date: Date(), exercises: getExercises())
+		
+		guard prescription.exercises.count > 0 else {
+			self.presentAlert(title: "error".localized, message: "prescription_noExerciseError".localized)
+			return
+		}
+		
+		DispatchQueue.main.async {
+			HUD.show(.progress)
+		}
 		
 		Network.createPrecription(prescription) { [weak self] data, response, _ in
 			guard let data = data else { return }
