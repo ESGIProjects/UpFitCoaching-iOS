@@ -15,4 +15,8 @@ target 'UpFit Coaching' do
   pod 'Firebase/Messaging'
   pod 'PKHUD'
   pod 'JSONWebToken'
+
+  target 'UpFit Coaching Tests' do
+    inherit! :search_paths
+  end
 end

@@ -38,6 +38,7 @@
 		1AD6F38420B41E4700E5F682 /* DetailsRegister+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */; };
 		1AFD971D2097207700289FB3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD971C2097207700289FB3 /* Event.swift */; };
 		84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */; };
+		A1C631570B10C9FCD51DFEA8 /* Pods_UpFit_Coaching_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A9644FCC3DEBFD94D40A69E /* Pods_UpFit_Coaching_Tests.framework */; };
 		D702D2F2209F598C00970081 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F1209F598C00970081 /* RegisterController.swift */; };
 		D702D2F4209F599500970081 /* Register+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F3209F599500970081 /* Register+UI.swift */; };
 		D702D2F6209F7D9D00970081 /* TypeRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D702D2F5209F7D9D00970081 /* TypeRegisterController.swift */; };
@@ -84,6 +85,7 @@
 		D789200D20542CF60020C703 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789200C20542CF60020C703 /* Conversation.swift */; };
 		D789201120544E860020C703 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D789201320544E860020C703 /* Localizable.strings */; };
 		D789201720544FAD0020C703 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789201620544FAD0020C703 /* String+Helpers.swift */; };
+		D78FB3CA20FE7D64007CBD5A /* UpFitCoachingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB3C920FE7D64007CBD5A /* UpFitCoachingTests.swift */; };
 		D7A5414920B0A87C003C9338 /* Decoding+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A5414820B0A87C003C9338 /* Decoding+Helpers.swift */; };
 		D7AA4E9020548098004A0986 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E8F20548098004A0986 /* MessageCell.swift */; };
 		D7AA4E92205481F3004A0986 /* ConversationLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA4E91205481F3004A0986 /* ConversationLayout.swift */; };
@@ -113,6 +115,16 @@
 		D7EFFF33204FDE47004694EC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFFF32204FDE47004694EC /* Network.swift */; };
 		D7F8ED032087DD1D0049B385 /* Database+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F8ED022087DD1D0049B385 /* Database+Helpers.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D78FB3CC20FE7D64007CBD5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D773DD40203362DD001520CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D773DD47203362DE001520CA;
+			remoteInfo = "UpFit Coaching";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpFit_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,8 +162,11 @@
 		1AD6F38320B41E4700E5F682 /* DetailsRegister+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsRegister+UI.swift"; sourceTree = "<group>"; };
 		1AFD971C2097207700289FB3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.debug.xcconfig"; sourceTree = "<group>"; };
+		1F87790D6A66A29658C213E9 /* Pods-UpFit Coaching Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching Tests/Pods-UpFit Coaching Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3FFD1784B4119009CA67EE2B /* Pods-Coaching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coaching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coaching/Pods-Coaching.debug.xcconfig"; sourceTree = "<group>"; };
+		6A9644FCC3DEBFD94D40A69E /* Pods_UpFit_Coaching_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpFit_Coaching_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB9226391226412543F80BB /* Pods-UpFit Coaching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching/Pods-UpFit Coaching.release.xcconfig"; sourceTree = "<group>"; };
+		B307A969CE0A20269739239D /* Pods-UpFit Coaching Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpFit Coaching Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpFit Coaching Tests/Pods-UpFit Coaching Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coaching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D702D2F1209F598C00970081 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D702D2F3209F599500970081 /* Register+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Register+UI.swift"; sourceTree = "<group>"; };
@@ -201,6 +216,9 @@
 		D789200C20542CF60020C703 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D789201420544E890020C703 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D789201620544FAD0020C703 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
+		D78FB3C720FE7D64007CBD5A /* UpFit Coaching Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UpFit Coaching Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D78FB3C920FE7D64007CBD5A /* UpFitCoachingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpFitCoachingTests.swift; sourceTree = "<group>"; };
+		D78FB3CB20FE7D64007CBD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7A5414820B0A87C003C9338 /* Decoding+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoding+Helpers.swift"; sourceTree = "<group>"; };
 		D7AA4E8F20548098004A0986 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D7AA4E91205481F3004A0986 /* ConversationLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLayout.swift; sourceTree = "<group>"; };
@@ -238,6 +256,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F7B7CE05AB1483B99962F9 /* Pods_UpFit_Coaching.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D78FB3C420FE7D64007CBD5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1C631570B10C9FCD51DFEA8 /* Pods_UpFit_Coaching_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +419,7 @@
 			children = (
 				D2D0B65FD3BE78E21D99AA34 /* Pods_Coaching.framework */,
 				040754759783E12EA5745BA7 /* Pods_UpFit_Coaching.framework */,
+				6A9644FCC3DEBFD94D40A69E /* Pods_UpFit_Coaching_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -404,6 +431,8 @@
 				E995B5783B3772E82DD83D26 /* Pods-Coaching.release.xcconfig */,
 				1B45136A80100CF7FB7047A0 /* Pods-UpFit Coaching.debug.xcconfig */,
 				7BB9226391226412543F80BB /* Pods-UpFit Coaching.release.xcconfig */,
+				B307A969CE0A20269739239D /* Pods-UpFit Coaching Tests.debug.xcconfig */,
+				1F87790D6A66A29658C213E9 /* Pods-UpFit Coaching Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -509,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				D773DD4A203362DE001520CA /* UpFit Coaching */,
+				D78FB3C820FE7D64007CBD5A /* UpFit Coaching Tests */,
 				D773DD49203362DE001520CA /* Products */,
 				AFEE5D02DBB12D6E37D24D0F /* Pods */,
 				6D2E07DAE6FDC13B41A69836 /* Frameworks */,
@@ -519,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				D773DD48203362DE001520CA /* UpFit Coaching.app */,
+				D78FB3C720FE7D64007CBD5A /* UpFit Coaching Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -556,6 +587,15 @@
 				D7BEAF1A20DFEE9C00FF93F9 /* libraries.html */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D78FB3C820FE7D64007CBD5A /* UpFit Coaching Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D78FB3C920FE7D64007CBD5A /* UpFitCoachingTests.swift */,
+				D78FB3CB20FE7D64007CBD5A /* Info.plist */,
+			);
+			path = "UpFit Coaching Tests";
 			sourceTree = "<group>";
 		};
 		D7B9CBF5205419F300B755CD /* UI */ = {
@@ -674,13 +714,32 @@
 			productReference = D773DD48203362DE001520CA /* UpFit Coaching.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D78FB3C620FE7D64007CBD5A /* UpFit Coaching Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D78FB3D020FE7D64007CBD5A /* Build configuration list for PBXNativeTarget "UpFit Coaching Tests" */;
+			buildPhases = (
+				C5BB2D3802C4C6018192D7A9 /* [CP] Check Pods Manifest.lock */,
+				D78FB3C320FE7D64007CBD5A /* Sources */,
+				D78FB3C420FE7D64007CBD5A /* Frameworks */,
+				D78FB3C520FE7D64007CBD5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D78FB3CD20FE7D64007CBD5A /* PBXTargetDependency */,
+			);
+			name = "UpFit Coaching Tests";
+			productName = "UpFit Coaching Tests";
+			productReference = D78FB3C720FE7D64007CBD5A /* UpFit Coaching Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D773DD40203362DD001520CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jason Pierna";
 				TargetAttributes = {
@@ -692,6 +751,11 @@
 								enabled = 1;
 							};
 						};
+					};
+					D78FB3C620FE7D64007CBD5A = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D773DD47203362DE001520CA;
 					};
 				};
 			};
@@ -710,6 +774,7 @@
 			projectRoot = "";
 			targets = (
 				D773DD47203362DE001520CA /* UpFit Coaching */,
+				D78FB3C620FE7D64007CBD5A /* UpFit Coaching Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -724,6 +789,13 @@
 				D736E3FA20C6DD93000A147E /* GoogleService-Info.plist in Resources */,
 				D789201120544E860020C703 /* Localizable.strings in Resources */,
 				D773DD53203362DE001520CA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D78FB3C520FE7D64007CBD5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,6 +854,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-UpFit Coaching-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5BB2D3802C4C6018192D7A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UpFit Coaching Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -910,7 +1000,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D78FB3C320FE7D64007CBD5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D78FB3CA20FE7D64007CBD5A /* UpFitCoachingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D78FB3CD20FE7D64007CBD5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D773DD47203362DE001520CA /* UpFit Coaching */;
+			targetProxy = D78FB3CC20FE7D64007CBD5A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D773DD54203362DE001520CA /* LaunchScreen.storyboard */ = {
@@ -1087,6 +1193,46 @@
 			};
 			name = Release;
 		};
+		D78FB3CE20FE7D64007CBD5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B307A969CE0A20269739239D /* Pods-UpFit Coaching Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7CXWF46ZWD;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "UpFit Coaching Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upfitcoaching.UpFit-Coaching-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UpFit Coaching.app/UpFit Coaching";
+			};
+			name = Debug;
+		};
+		D78FB3CF20FE7D64007CBD5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F87790D6A66A29658C213E9 /* Pods-UpFit Coaching Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7CXWF46ZWD;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "UpFit Coaching Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.upfitcoaching.UpFit-Coaching-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UpFit Coaching.app/UpFit Coaching";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1104,6 +1250,15 @@
 			buildConfigurations = (
 				D773DD5B203362DE001520CA /* Debug */,
 				D773DD5C203362DE001520CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D78FB3D020FE7D64007CBD5A /* Build configuration list for PBXNativeTarget "UpFit Coaching Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D78FB3CE20FE7D64007CBD5A /* Debug */,
+				D78FB3CF20FE7D64007CBD5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

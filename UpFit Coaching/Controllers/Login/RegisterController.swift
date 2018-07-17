@@ -92,6 +92,7 @@ class RegisterController: UIViewController {
 				
 				UserDefaults.standard.set(token, forKey: "authToken")
 				
+				// Launch the login process flow
 				self?.processLogin(for: user) {
 					self?.navigationController?.popToRootViewController(animated: false)
 				}
@@ -105,7 +106,7 @@ class RegisterController: UIViewController {
 		}
 	}
 	
-	private func unserialize(_ data: Data) -> (id: Int?, token: String?, coach: User?) {
+	func unserialize(_ data: Data) -> (id: Int?, token: String?, coach: User?) {		
 		guard let unserializedJSON = try? JSONSerialization.jsonObject(with: data, options: []) else { return (nil, nil, nil) }
 		guard let json = unserializedJSON as? [String: Any] else { return (nil, nil, nil) }
 		guard let userId = json["id"] as? Int else { return (nil, nil, nil) }

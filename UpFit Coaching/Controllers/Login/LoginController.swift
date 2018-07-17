@@ -82,6 +82,7 @@ class LoginController: UIViewController {
 				UserDefaults.standard.set(loginInfo.token, forKey: "authToken")
 				print("User ID", loginInfo.user.userID)
 				
+				// Launch the login processing flow
 				self?.processLogin(for: loginInfo.user) {
 					self?.mailTextField.text = ""
 					self?.passwordTextField.text = ""
@@ -100,7 +101,7 @@ class LoginController: UIViewController {
 		navigationController?.pushViewController(RegisterController(), animated: true)
 	}
 	
-	private func isMailValid(_ mail: String) -> Bool {
+	func isMailValid(_ mail: String) -> Bool {
 			return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
 				.evaluate(with: mail)
 	}
