@@ -34,7 +34,7 @@
 "password_missingTitle" = "Password missing";
 
 "loginButton" = "Sign In";
-"signUpButton_long" = "No account yet? Sign Up.";
+"signUpButton_long" = "Sign Up";
 
 // Sign Up
 "signUpController_title" = "Sign Up";
@@ -68,7 +68,7 @@
 
 // Messages
 "conversationListController_title" = "Messages";
-"noMessagesYet" = "You have no messages yet.\nGet clients to register!";
+"noMessagesYet" = "No messages yet.";
 
 "message_placeholder" = "Message";
 "sendMessage_button" = "Send";
@@ -94,7 +94,7 @@
 "eventDate_simple" = "%@\nfrom %@ to %@";
 "eventDate_multiple" = "From %@ at %@\nto %@ at %@";
 "cancelEventButton" = "Cancel event";
-"cancelEvent_message" = "Are you sure to cancel this event? We will alert the other person.";
+"cancelEvent_message" = "Do you really want to cancel this event? We will notify the other person.";
 
 // Add Event
 "editEventController_addTitle" = "New Event";
@@ -111,7 +111,7 @@
 // Forum
 "forumController_title" = "Forum";
 "thread_subtitle" = "Last message: %@ by %@ %@";
-"noThreadYet" = "No thread yet.\nStart yours!";
+"noThreadYet" = "No thread yet.";
 
 "createThreadController_title" = "Create Thread";
 "threadTitle_placeholder" = "Title";
@@ -126,7 +126,7 @@
 "editProfileButton" = "Edit Profile";
 "displayPrescription" = "Exercise Prescription";
 "signOutButton" = "Sign Out";
-"signOut_confirmation" = "Are you sure to sign out?";
+"signOut_confirmation" = "Do you really want to sign out?";
 "librariesController_title" = "Open-source libraries";
 "coachController_title" = "See Coach Info";
 "geocoderError" = "There was a network problem. Try again later.";
@@ -139,7 +139,7 @@
 
 // Clients List
 "clientsListController_title" = "Clients";
-"noClientYet" = "You have no clients yet.\nGet them to register!";
+"noClientYet" = "No client yet.";
 "searchPlaceholder" = "Search";
 
 // Client file
